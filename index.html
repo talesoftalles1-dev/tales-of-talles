@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#05070d" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>TALES OF TALLES · IDENTITY OS</title>
+<style>
+/* ============================================================================
+   TALES OF TALLES · IDENTITY OS
+   Single-file HTML PWA — Dark sci-fi glassmorphism, gold + emerald accents.
+   Mobile-first (iPhone 13). No frameworks. No build step.
+   ========================================================================== */
+
+:root {
+  --bg-0: #05070d;
+  --bg-1: #0a0e18;
+  --bg-2: #0f1524;
+  --glass: rgba(18, 26, 44, 0.55);
+  --glass-strong: rgba(22, 32, 54, 0.78);
+  --stroke: rgba(120, 160, 220, 0.14);
+  --stroke-strong: rgba(140, 190, 255, 0.28);
+  --text-0: #eaf2ff;
+  --text-1: #9fb2d4;
+  --text-2: #5f718f;
+  --gold: #f5c451;
+  --gold-deep: #c8932a;
+  --emerald: #2ce6a6;
+  --emerald-deep: #12a877;
+  --danger: #ff6b5e;
+  --warn: #ffb547;
+  --shadow: 0 18px 50px -20px rgba(0, 0, 0, 0.85);
+  --radius: 20px;
+  --radius-sm: 14px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+}
+
+body {
+  background:
+    radial-gradient(1100px 620px at 78% -8%, rgba(245, 196, 81, 0.10), transparent 60%),
+    radial-gradient(900px 540px at -10% 12%, rgba(44, 230, 166, 0.10), transparent 58%),
+    radial-gradient(1200px 900px at 50% 120%, rgba(40, 80, 160, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 55%, var(--bg-0));
+  min-height: 100dvh;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + 14px) 16px calc(var(--safe-bottom) + 108px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- Glass primitives ---------- */
+.card {
+  position: relative;
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.16), transparent 38%, transparent 70%, rgba(120, 170, 255, 0.08));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-label .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 10px var(--emerald); }
+
+/* ---------- Identity header ---------- */
+.identity {
+  background: linear-gradient(150deg, var(--glass-strong), rgba(10, 14, 24, 0.6));
+}
+.identity-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 11px; }
+.sigil {
+  width: 42px; height: 42px; border-radius: 13px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 17px; color: #06122a;
+  background: linear-gradient(150deg, var(--gold), var(--gold-deep));
+  box-shadow: 0 0 26px -4px rgba(245, 196, 81, 0.55), inset 0 1px 2px rgba(255,255,255,0.4);
+}
+.brand-text h1 { font-size: 15px; font-weight: 800; letter-spacing: 0.04em; }
+.brand-text p { font-size: 10.5px; color: var(--text-2); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px; }
+
+.becoming { margin-top: 16px; }
+.becoming .lead { font-size: 12px; color: var(--text-1); }
+.becoming .title { font-size: 21px; font-weight: 800; line-height: 1.15; margin-top: 3px; }
+.becoming .title .accent { color: var(--gold); }
+
+.identity-stats { display: flex; gap: 10px; margin-top: 16px; }
+.istat { flex: 1; background: rgba(8, 12, 22, 0.5); border: 1px solid var(--stroke); border-radius: var(--radius-sm); padding: 10px 11px; }
+.istat .k { font-size: 10px; color: var(--text-2); letter-spacing: 0.12em; text-transform: uppercase; }
+.istat .v { font-size: 17px; font-weight: 800; margin-top: 3px; }
+.istat .v small { font-size: 11px; color: var(--text-2); font-weight: 600; }
+
+/* ---------- Readiness gauge ---------- */
+.readiness-row { display: flex; align-items: center; gap: 18px; }
+.gauge { position: relative; width: 116px; height: 116px; flex: 0 0 auto; }
+.gauge svg { transform: rotate(-90deg); display: block; }
+.gauge .gv { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+.gauge .gv b { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.gauge .gv span { display: block; font-size: 9.5px; color: var(--text-2); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 1px; }
+.readiness-meta { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+.meta-bar .meta-head { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; }
+.meta-bar .meta-head .lab { color: var(--text-1); }
+.meta-bar .meta-head .val { color: var(--text-0); font-weight: 700; font-variant-numeric: tabular-nums; }
+.track { height: 6px; border-radius: 6px; background: rgba(8, 12, 22, 0.7); overflow: hidden; }
+.track > i { display: block; height: 100%; border-radius: 6px; transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ---------- Coach ---------- */
+.coach { display: flex; gap: 13px; align-items: center; }
+.coach-avatar {
+  width: 50px; height: 50px; border-radius: 15px; flex: 0 0 auto;
+  display: grid; place-items: center; font-size: 24px;
+  background: linear-gradient(150deg, rgba(44,230,166,0.18), rgba(18,40,70,0.6));
+  border: 1px solid var(--stroke-strong);
+}
+.coach-body { flex: 1; min-width: 0; }
+.coach-name { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--emerald); font-weight: 700; }
+.coach-msg { font-size: 15px; font-weight: 600; margin-top: 3px; line-height: 1.3; }
+.coach-msg .num { color: var(--gold); font-weight: 800; }
+
+/* ---------- Mission ---------- */
+.mission { background: linear-gradient(150deg, rgba(28,40,30,0.55), var(--glass)); }
+.mission-head { display: flex; align-items: center; justify-content: space-between; }
+.mission-title { font-size: 17px; font-weight: 800; }
+.mission-sub { font-size: 12.5px; color: var(--text-1); margin-top: 5px; line-height: 1.4; }
+.mission-chip { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(44,230,166,0.12); color: var(--emerald); border: 1px solid rgba(44,230,166,0.3); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  appearance: none; border: 1px solid var(--stroke-strong); cursor: pointer;
+  background: rgba(18, 26, 44, 0.7); color: var(--text-0);
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  padding: 12px 16px; border-radius: 13px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  transition: transform 0.12s ease, background 0.2s ease, border-color 0.2s ease;
+  min-height: 46px;
+}
+.btn:active { transform: scale(0.96); }
+.btn.gold { background: linear-gradient(150deg, var(--gold), var(--gold-deep)); color: #1a1203; border-color: transparent; box-shadow: 0 0 22px -6px rgba(245,196,81,0.5); }
+.btn.emerald { background: linear-gradient(150deg, var(--emerald), var(--emerald-deep)); color: #042018; border-color: transparent; box-shadow: 0 0 22px -6px rgba(44,230,166,0.5); }
+.btn.block { width: 100%; }
+.btn-row { display: flex; gap: 10px; margin-top: 14px; }
+
+/* ---------- Striking arsenal ---------- */
+.strike-list { display: flex; flex-direction: column; gap: 11px; }
+.strike {
+  background: rgba(8, 12, 22, 0.45); border: 1px solid var(--stroke);
+  border-radius: var(--radius-sm); padding: 12px 13px;
+  display: flex; align-items: center; gap: 12px;
+}
+.strike-icon { width: 38px; height: 38px; border-radius: 11px; flex: 0 0 auto; display: grid; place-items: center; font-size: 19px; background: rgba(245,196,81,0.10); border: 1px solid rgba(245,196,81,0.2); }
+.strike-main { flex: 1; min-width: 0; }
+.strike-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.strike-name { font-size: 14px; font-weight: 700; }
+.stars { font-size: 12.5px; letter-spacing: 1px; color: var(--gold); }
+.stars .off { color: rgba(120,140,170,0.32); }
+.strike-xp { margin-top: 7px; }
+.xp-track { height: 5px; border-radius: 5px; background: rgba(255,255,255,0.06); overflow: hidden; }
+.xp-track > i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-deep), var(--gold)); border-radius: 5px; transition: width 0.6s cubic-bezier(0.22,1,0.36,1); }
+.strike-xp .xp-text { font-size: 10px; color: var(--text-2); margin-top: 4px; display: flex; justify-content: space-between; }
+.strike-btn {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px;
+  border: 1px solid var(--stroke-strong); background: rgba(18,26,44,0.7);
+  color: var(--gold); font-size: 22px; font-weight: 700; cursor: pointer;
+  display: grid; place-items: center; transition: transform 0.12s ease, background 0.2s;
+}
+.strike-btn:active { transform: scale(0.9); background: rgba(245,196,81,0.16); }
+
+/* ---------- Heatmap ---------- */
+.heatmap-wrap { display: flex; gap: 16px; align-items: center; }
+#heatmap { width: 150px; height: 230px; flex: 0 0 auto; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5)); }
+.heat-legend { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--text-1); }
+.legend-swatch { width: 26px; height: 8px; border-radius: 4px; flex: 0 0 auto; }
+.heat-stat { margin-top: 6px; font-size: 11px; color: var(--text-2); line-height: 1.5; }
+.heat-stat b { color: var(--text-0); }
+
+/* ---------- Gym quick log ---------- */
+.exercise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ex-btn {
+  background: rgba(8,12,22,0.5); border: 1px solid var(--stroke); border-radius: var(--radius-sm);
+  padding: 13px 12px; cursor: pointer; color: var(--text-0); font-family: inherit; text-align: left;
+  transition: transform 0.12s ease, border-color 0.2s, background 0.2s;
+}
+.ex-btn:active { transform: scale(0.96); border-color: var(--stroke-strong); background: rgba(44,230,166,0.08); }
+.ex-btn .ex-name { font-size: 13px; font-weight: 700; }
+.ex-btn .ex-tag { font-size: 10px; color: var(--text-2); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+/* ---------- Body scan ---------- */
+.scan-current { display: flex; align-items: baseline; gap: 8px; }
+.scan-current b { font-size: 30px; font-weight: 800; }
+.scan-current span { color: var(--text-2); font-size: 13px; }
+.scan-progress { margin-top: 12px; }
+.scan-track { height: 9px; border-radius: 9px; background: rgba(8,12,22,0.7); overflow: hidden; position: relative; }
+.scan-track > i { display: block; height: 100%; background: linear-gradient(90deg, var(--emerald-deep), var(--emerald), var(--gold)); border-radius: 9px; transition: width 0.7s cubic-bezier(0.22,1,0.36,1); }
+.scan-labels { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-2); margin-top: 6px; }
+.scan-history { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
+.scan-entry { display: flex; justify-content: space-between; font-size: 12px; padding: 7px 10px; background: rgba(8,12,22,0.4); border-radius: 10px; border: 1px solid var(--stroke); }
+.scan-entry .d { color: var(--text-2); }
+.scan-entry .w { font-weight: 700; }
+.scan-entry .delta { font-size: 11px; font-weight: 700; }
+.delta.up { color: var(--emerald); }
+.delta.down { color: var(--danger); }
+
+/* ---------- Toast ---------- */
+#toast-layer { position: fixed; left: 0; right: 0; bottom: calc(var(--safe-bottom) + 84px); display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none; z-index: 60; }
+.toast {
+  background: var(--glass-strong); border: 1px solid var(--stroke-strong);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-radius: 13px; padding: 11px 16px; font-size: 13px; font-weight: 600;
+  box-shadow: var(--shadow); max-width: 340px;
+  animation: toast-in 0.32s cubic-bezier(0.22,1,0.36,1);
+}
+.toast .num { color: var(--gold); font-weight: 800; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes toast-out { to { opacity: 0; transform: translateY(8px) scale(0.97); } }
+
+/* ---------- Bottom nav ---------- */
+#nav {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(var(--safe-bottom) + 14px);
+  width: min(440px, calc(100% - 28px));
+  display: flex; justify-content: space-around; gap: 4px;
+  background: var(--glass-strong); border: 1px solid var(--stroke-strong);
+  border-radius: 20px; padding: 8px; z-index: 50;
+  backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: var(--shadow);
+}
+.nav-btn {
+  flex: 1; background: transparent; border: none; cursor: pointer; color: var(--text-2);
+  font-family: inherit; font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 7px 4px;
+  border-radius: 13px; transition: color 0.2s, background 0.2s;
+}
+.nav-btn .ico { font-size: 18px; line-height: 1; }
+.nav-btn.active { color: var(--emerald); background: rgba(44,230,166,0.10); }
+
+/* ---------- View transitions ---------- */
+.view { display: none; flex-direction: column; gap: 16px; }
+.view.active { display: flex; animation: view-in 0.36s cubic-bezier(0.22,1,0.36,1); }
+@keyframes view-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.pulse { animation: pulse 0.5s ease; }
+@keyframes pulse { 0% { transform: scale(1); } 40% { transform: scale(1.04); } 100% { transform: scale(1); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <div class="card identity" id="identity-card"></div>
+    <div class="card" id="readiness-card"></div>
+    <div class="card" id="coach-card"></div>
+    <div class="card mission" id="mission-card"></div>
+  </section>
+
+  <!-- TRAIN -->
+  <section class="view" id="view-train">
+    <div class="card" id="arsenal-card"></div>
+    <div class="card" id="gym-card"></div>
+  </section>
+
+  <!-- BODY -->
+  <section class="view" id="view-body">
+    <div class="card" id="heatmap-card"></div>
+    <div class="card" id="scan-card"></div>
+  </section>
+</div>
+
+<div id="toast-layer"></div>
+
+<nav id="nav">
+  <button class="nav-btn active" data-view="home"><span class="ico">◎</span>Identity</button>
+  <button class="nav-btn" data-view="train"><span class="ico">🥊</span>Train</button>
+  <button class="nav-btn" data-view="body"><span class="ico">🧬</span>Body</button>
+</nav>
+
+<script>
+"use strict";
+/* ============================================================================
+   TALES OF TALLES · IDENTITY OS — Application core
+   Architecture: event-sourced, pure reducer, deterministic replay.
+   State is NEVER mutated. Every change flows through dispatch(event).
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   0. CONFIG — athlete identity & domain constants (immutable reference data)
+   -------------------------------------------------------------------------- */
+const CONFIG = Object.freeze({
+  athlete: Object.freeze({
+    name: "TALLES",
+    heightM: 1.94,
+    startWeight: 77,
+    targetWeight: 84,
+    discipline: "MMA + Boxing",
+  }),
+  // Biomechanical fatigue modifiers — applied multiplicatively to muscle fatigue.
+  biomech: Object.freeze({ back: 1.15, calves: 1.15 }),
+  decay: Object.freeze({ rate: 0.02, intervalMs: 5 * 60 * 1000 }), // -2% / 5min idle
+  xpPerStar: 100, // ★1..★5 → 0..500 xp, capped at 500
+  schemaVersion: 1,
+});
+
+const STRIKES = Object.freeze([
+  { id: "jab",      name: "Jab",       icon: "👊", muscles: { shoulders: 6, triceps: 5, forearms: 4, obliques: 3 } },
+  { id: "straight", name: "Straight",  icon: "🥊", muscles: { shoulders: 7, triceps: 6, back: 5, obliques: 4 } },
+  { id: "hook",     name: "Hook",      icon: "🪝", muscles: { shoulders: 6, chest: 5, obliques: 7, back: 4 } },
+  { id: "uppercut", name: "Uppercut",  icon: "⬆️", muscles: { shoulders: 6, biceps: 5, obliques: 6, quads: 4 } },
+  { id: "body",     name: "Body Shot", icon: "🎯", muscles: { obliques: 8, abs: 6, back: 5, shoulders: 4 } },
+]);
+
+const EXERCISES = Object.freeze([
+  { id: "squat",    name: "Back Squat",  tag: "Lower",     load: 9, muscles: { quads: 10, glutes: 8, back: 6, hamstrings: 5 } },
+  { id: "deadlift", name: "Deadlift",    tag: "Posterior", load: 10, muscles: { back: 10, hamstrings: 8, glutes: 7, forearms: 4 } },
+  { id: "press",    name: "OH Press",    tag: "Push",      load: 7, muscles: { shoulders: 10, triceps: 7, abs: 4 } },
+  { id: "pull",     name: "Weighted Pull", tag: "Pull",    load: 8, muscles: { lats: 10, biceps: 7, back: 6, forearms: 5 } },
+  { id: "calfraise",name: "Calf Raise",  tag: "Calves",    load: 5, muscles: { calves: 12 } },
+  { id: "core",     name: "Hanging Raise", tag: "Core",    load: 5, muscles: { abs: 10, obliques: 7 } },
+]);
+
+// Muscle registry with normalized silhouette coordinates (front view, 0..1).
+const MUSCLES = Object.freeze([
+  { id: "shoulders", label: "Shoulders", x: 0.50, y: 0.20, r: 0.30 },
+  { id: "chest",     label: "Chest",     x: 0.50, y: 0.28, r: 0.26 },
+  { id: "biceps",    label: "Biceps",    x: 0.50, y: 0.34, r: 0.34 },
+  { id: "triceps",   label: "Triceps",   x: 0.50, y: 0.36, r: 0.36 },
+  { id: "forearms",  label: "Forearms",  x: 0.50, y: 0.46, r: 0.38 },
+  { id: "abs",       label: "Abs",       x: 0.50, y: 0.42, r: 0.14 },
+  { id: "obliques",  label: "Obliques",  x: 0.50, y: 0.44, r: 0.22 },
+  { id: "back",      label: "Back",      x: 0.50, y: 0.33, r: 0.10 },
+  { id: "lats",      label: "Lats",      x: 0.50, y: 0.36, r: 0.27 },
+  { id: "traps",     label: "Traps",     x: 0.50, y: 0.16, r: 0.12 },
+  { id: "glutes",    label: "Glutes",    x: 0.50, y: 0.56, r: 0.18 },
+  { id: "quads",     label: "Quads",     x: 0.50, y: 0.68, r: 0.20 },
+  { id: "hamstrings",label: "Hamstrings",x: 0.50, y: 0.70, r: 0.18 },
+  { id: "calves",    label: "Calves",    x: 0.50, y: 0.86, r: 0.16 },
+]);
+const MUSCLE_IDS = Object.freeze(MUSCLES.map(m => m.id));
+
+const COACHES = Object.freeze({
+  sanji:  { name: "Sanji",        domain: "Nutrition",   avatar: "🍳" },
+  ilia:   { name: "Ilia Topuria", domain: "Striking",    avatar: "🥊" },
+  cariani:{ name: "Cariani",      domain: "S&C",         avatar: "💪" },
+  muzy:   { name: "Muzy",         domain: "Recovery",    avatar: "🧠" },
+});
+
+/* ----------------------------------------------------------------------------
+   1. UTIL — pure helpers
+   -------------------------------------------------------------------------- */
+const clamp = (n, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, n));
+const round = (n, p = 0) => { const f = 10 ** p; return Math.round(n * f) / f; };
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Deterministic local-day key for a timestamp (UTC-based for replay stability). */
+const dayKey = (ts) => Math.floor(ts / DAY_MS);
+
+/** DOM element factory — avoids innerHTML entirely. */
+function el(tag, props, children) {
+  const node = document.createElement(tag);
+  if (props) {
+    for (const k in props) {
+      if (k === "class") node.className = props[k];
+      else if (k === "dataset") Object.assign(node.dataset, props[k]);
+      else if (k.startsWith("on") && typeof props[k] === "function") node.addEventListener(k.slice(2), props[k]);
+      else if (k === "style" && typeof props[k] === "object") Object.assign(node.style, props[k]);
+      else if (props[k] != null) node.setAttribute(k, props[k]);
+    }
+  }
+  if (children != null) {
+    (Array.isArray(children) ? children : [children]).forEach(c => {
+      if (c == null || c === false) return;
+      node.appendChild(typeof c === "string" || typeof c === "number" ? document.createTextNode(String(c)) : c);
+    });
+  }
+  return node;
+}
+function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+const xpToStars = (xp) => clamp(Math.floor(xp / CONFIG.xpPerStar) + 1, 1, 5);
+const starsMarkup = (level) => "★".repeat(level) + "☆".repeat(5 - level);
+
+/* ----------------------------------------------------------------------------
+   2. STATE — initial shape (a fresh, frozen-by-convention snapshot factory)
+   -------------------------------------------------------------------------- */
+function initialState() {
+  const muscles = {};
+  MUSCLE_IDS.forEach(id => { muscles[id] = { activation: 0, fatigue: 0 }; });
+  const strikes = {};
+  STRIKES.forEach(s => { strikes[s.id] = { xp: 0 }; });
+  return {
+    schemaVersion: CONFIG.schemaVersion,
+    muscles,
+    strikes,
+    scans: [],                 // { ts, weight }
+    weight: CONFIG.athlete.startWeight,
+    sessionDays: [],           // distinct day-keys with any activity (for streak)
+    lastActivityTs: 0,
+    trainingLoad: 0,           // rolling load proxy (0..100), decays over time
+    totalSessions: 0,
+  };
+}
+
+/* ----------------------------------------------------------------------------
+   3. REDUCER — PURE. (state, event) => state. No mutation, no side effects.
+   Event shape: { type, ts, payload }
+   -------------------------------------------------------------------------- */
+function applyMuscleWork(muscles, work, intensity) {
+  // work: { muscleId: amount } ; returns a NEW muscles map.
+  const next = {};
+  for (const id of MUSCLE_IDS) {
+    const cur = muscles[id] || { activation: 0, fatigue: 0 };
+    const amt = work[id] || 0;
+    if (amt === 0) { next[id] = cur; continue; }
+    const mod = CONFIG.biomech[id] || 1;
+    next[id] = {
+      activation: clamp(cur.activation + amt * intensity),
+      fatigue: clamp(cur.fatigue + amt * intensity * 0.7 * mod),
+    };
+  }
+  return next;
+}
+
+function reducer(state, event) {
+  switch (event.type) {
+    case "COMPLETE_BOXING_DRILL": {
+      const { strikeId, reps = 1 } = event.payload;
+      const def = STRIKES.find(s => s.id === strikeId);
+      if (!def) return state;
+      const prev = state.strikes[strikeId] || { xp: 0 };
+      const gainedXp = clamp(10 + reps * 4, 0, 1e9);
+      const strikes = { ...state.strikes, [strikeId]: { xp: Math.min(500, prev.xp + gainedXp) } };
+      const muscles = applyMuscleWork(state.muscles, def.muscles, 0.9 + reps * 0.05);
+      return {
+        ...state,
+        strikes,
+        muscles,
+        lastActivityTs: event.ts,
+        sessionDays: pushDay(state.sessionDays, event.ts),
+        trainingLoad: clamp(state.trainingLoad + 4),
+        totalSessions: state.totalSessions + 1,
+      };
+    }
+    case "COMPLETE_GYM_EXERCISE": {
+      const { exerciseId } = event.payload;
+      const def = EXERCISES.find(e => e.id === exerciseId);
+      if (!def) return state;
+      const muscles = applyMuscleWork(state.muscles, def.muscles, 1.0);
+      return {
+        ...state,
+        muscles,
+        lastActivityTs: event.ts,
+        sessionDays: pushDay(state.sessionDays, event.ts),
+        trainingLoad: clamp(state.trainingLoad + def.load),
+        totalSessions: state.totalSessions + 1,
+      };
+    }
+    case "ADD_BODY_SCAN": {
+      const { weight } = event.payload;
+      const w = round(weight, 1);
+      return {
+        ...state,
+        weight: w,
+        scans: [...state.scans, { ts: event.ts, weight: w }],
+        lastActivityTs: event.ts,
+      };
+    }
+    case "DECAY": {
+      // Deterministic: payload carries integer tick count. -2% per tick.
+      const ticks = event.payload.ticks | 0;
+      if (ticks <= 0) return state;
+      const factor = Math.pow(1 - CONFIG.decay.rate, ticks);
+      const muscles = {};
+      for (const id of MUSCLE_IDS) {
+        const m = state.muscles[id];
+        muscles[id] = { activation: round(m.activation * factor, 2), fatigue: round(m.fatigue * factor, 2) };
+      }
+      const loadFactor = Math.pow(1 - CONFIG.decay.rate * 1.5, ticks);
+      return { ...state, muscles, trainingLoad: round(state.trainingLoad * loadFactor, 2) };
+    }
+    default:
+      return state;
+  }
+}
+
+function pushDay(days, ts) {
+  const k = dayKey(ts);
+  return days.includes(k) ? days : [...days, k];
+}
+
+/* ----------------------------------------------------------------------------
+   4. SELECTORS — pure derivations from state
+   -------------------------------------------------------------------------- */
+function selectFatigueLoad(state) {
+  let sum = 0;
+  for (const id of MUSCLE_IDS) sum += state.muscles[id].fatigue;
+  return sum / MUSCLE_IDS.length; // avg fatigue 0..100
+}
+
+function selectRecovery(state) {
+  return clamp(100 - selectFatigueLoad(state));
+}
+
+function selectStreak(state, now) {
+  // Consecutive trailing days (ending today or yesterday) with activity.
+  if (state.sessionDays.length === 0) return 0;
+  const today = dayKey(now);
+  const set = new Set(state.sessionDays);
+  let streak = 0;
+  let cursor = set.has(today) ? today : today - 1;
+  while (set.has(cursor)) { streak++; cursor--; }
+  return streak;
+}
+
+function selectReadiness(state, now) {
+  const recovery = selectRecovery(state);
+  const fatigue = selectFatigueLoad(state);
+  const streak = selectStreak(state, now);
+  const load = state.trainingLoad;
+  // Weighted blend, clamped. Recovery dominant; fatigue & overload subtract; streak rewards.
+  const score =
+    recovery * 0.55 +
+    (100 - load) * 0.20 +
+    Math.min(streak, 7) / 7 * 100 * 0.15 +
+    (100 - fatigue) * 0.10;
+  return {
+    score: clamp(round(score)),
+    recovery: round(recovery),
+    fatigue: round(fatigue),
+    streak,
+    load: round(load),
+  };
+}
+
+function selectStrikeMastery(state) {
+  let total = 0;
+  STRIKES.forEach(s => { total += xpToStars(state.strikes[s.id].xp); });
+  return { total, max: STRIKES.length * 5, avg: total / STRIKES.length };
+}
+
+function selectWeightProgress(state) {
+  const { startWeight, targetWeight } = CONFIG.athlete;
+  const pct = clamp(((state.weight - startWeight) / (targetWeight - startWeight)) * 100);
+  return { current: state.weight, start: startWeight, target: targetWeight, pct: round(pct), gap: round(targetWeight - state.weight, 1) };
+}
+
+/* ----------------------------------------------------------------------------
+   5. AI COACH — PURE. Selects ONE lead coach. Format: "[NUMBER] → [ACTION]"
+   Max 140 chars. Priority: safety (recovery) > nutrition gap > striking > S&C.
+   -------------------------------------------------------------------------- */
+function selectCoach(state, now) {
+  const r = selectReadiness(state, now);
+  const w = selectWeightProgress(state);
+  const mastery = selectStrikeMastery(state);
+
+  let pick;
+  if (r.score < 50 || r.fatigue > 65) {
+    pick = { coach: "muzy", number: r.score, action: "Reduce sparring volume, prioritize sleep." };
+  } else if (r.load > 75) {
+    pick = { coach: "muzy", number: r.load, action: "Deload today — active recovery only." };
+  } else if (w.gap > 0.2) {
+    const kcal = Math.min(400, Math.max(150, Math.round(w.gap * 110 / 50) * 50));
+    pick = { coach: "sanji", number: w.current, action: `Add ${kcal} kcal today to build mass.` };
+  } else if (mastery.avg < 4) {
+    const weakest = STRIKES.reduce((a, b) =>
+      xpToStars(state.strikes[a.id].xp) <= xpToStars(state.strikes[b.id].xp) ? a : b);
+    pick = { coach: "ilia", number: xpToStars(state.strikes[weakest.id].xp), action: `Drill ${weakest.name.toLowerCase()} — sharpen the gap.` };
+  } else {
+    pick = { coach: "cariani", number: r.score, action: "Push intensity — add load progressively." };
+  }
+
+  const num = Math.round(pick.number);
+  let message = `${num} → ${pick.action}`;
+  if (message.length > 140) message = message.slice(0, 139) + "…";
+  return { ...COACHES[pick.coach], number: num, action: pick.action, message };
+}
+
+/* ----------------------------------------------------------------------------
+   6. DAILY MISSION — pure suggestion engine
+   -------------------------------------------------------------------------- */
+function selectMission(state, now) {
+  const r = selectReadiness(state, now);
+  const today = dayKey(now);
+  const trainedToday = state.sessionDays.includes(today);
+  const mastery = selectStrikeMastery(state);
+
+  if (r.score < 50) {
+    return { chip: "Recover", title: "Recovery Protocol", sub: "Readiness is low. Mobility, hydration, and 8h sleep. No hard sparring today." };
+  }
+  if (!trainedToday) {
+    return { chip: "Activate", title: "Open The Session", sub: "No work logged today. Start with a boxing combination to ignite the system." };
+  }
+  if (mastery.avg < 4) {
+    return { chip: "Sharpen", title: "Technical Refinement", sub: "Add focused striking volume. Close the star gaps on your weakest weapon." };
+  }
+  return { chip: "Build", title: "Progressive Overload", sub: "System is primed. Add load to a compound lift and bank quality volume." };
+}
+
+/* ----------------------------------------------------------------------------
+   7. PERSISTENCE — event log in localStorage. Replay = source of truth.
+   -------------------------------------------------------------------------- */
+const STORAGE_KEY = "tot_identity_os_events_v1";
+
+function loadEvents() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch { return []; }
+}
+function saveEvents(events) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(events)); } catch {}
+}
+
+/** Deterministic replay: fold the full event log into final state. */
+function replay(events) {
+  return events.reduce(reducer, initialState());
+}
+
+/* ----------------------------------------------------------------------------
+   8. STORE — the only mutable boundary. Append-only event log + subscribers.
+   -------------------------------------------------------------------------- */
+const Store = (() => {
+  let events = loadEvents();
+  let state = replay(events);
+  const subs = new Set();
+
+  function notify() { subs.forEach(fn => fn(state)); }
+
+  function dispatch(type, payload = {}, ts = Date.now()) {
+    const event = { type, ts, payload };
+    const next = reducer(state, event);
+    if (next === state) return state; // no-op events don't pollute the log
+    events = [...events, event];
+    state = next;
+    saveEvents(events);
+    notify();
+    return state;
+  }
+
+  function subscribe(fn) { subs.add(fn); return () => subs.delete(fn); }
+  function getState() { return state; }
+
+  return { dispatch, subscribe, getState };
+})();
+
+/* ----------------------------------------------------------------------------
+   9. IDLE DECAY — deterministic catch-up. Generates DECAY events with explicit
+   tick counts so the log replays identically regardless of when it runs.
+   -------------------------------------------------------------------------- */
+function runDecayCatchUp() {
+  const s = Store.getState();
+  if (!s.lastActivityTs) return;
+  const idle = Date.now() - s.lastActivityTs;
+  const ticks = Math.floor(idle / CONFIG.decay.intervalMs);
+  // Only emit when there are whole new ticks beyond what's already applied.
+  const appliedKey = "tot_decay_applied_v1";
+  let alreadyApplied = 0;
+  try { alreadyApplied = parseInt(localStorage.getItem(appliedKey) || "0", 10) || 0; } catch {}
+  const newTicks = ticks - alreadyApplied;
+  if (newTicks > 0) {
+    Store.dispatch("DECAY", { ticks: newTicks }, s.lastActivityTs + ticks * CONFIG.decay.intervalMs);
+    try { localStorage.setItem(appliedKey, String(ticks)); } catch {}
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   10. TOAST
+   -------------------------------------------------------------------------- */
+function toast(text, number) {
+  const layer = document.getElementById("toast-layer");
+  const node = el("div", { class: "toast" }, number != null
+    ? [el("span", { class: "num" }, String(number) + " "), "→ " + text]
+    : text);
+  layer.appendChild(node);
+  setTimeout(() => { node.style.animation = "toast-out 0.3s ease forwards"; setTimeout(() => node.remove(), 300); }, 2400);
+}
+
+/* ----------------------------------------------------------------------------
+   11. HEATMAP — canvas render of activation / fatigue / recovery
+   -------------------------------------------------------------------------- */
+function heatColor(fatigue, activation) {
+  // emerald (low fatigue) → gold (mid) → danger (high). Alpha tracks activation.
+  let r, g, b;
+  if (fatigue < 50) { const t = fatigue / 50; r = 44 + (245 - 44) * t; g = 230 + (196 - 230) * t; b = 166 + (81 - 166) * t; }
+  else { const t = (fatigue - 50) / 50; r = 245 + (255 - 245) * t; g = 196 + (107 - 196) * t; b = 81 + (94 - 81) * t; }
+  const a = 0.18 + (activation / 100) * 0.7;
+  return `rgba(${r|0},${g|0},${b|0},${a.toFixed(3)})`;
+}
+
+function drawHeatmap(canvas, state) {
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const W = canvas.clientWidth, H = canvas.clientHeight;
+  if (!W || !H) return;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
+
+  // Silhouette base
+  ctx.save();
+  ctx.fillStyle = "rgba(140,170,220,0.06)";
+  ctx.strokeStyle = "rgba(140,180,255,0.18)";
+  ctx.lineWidth = 1.4;
+  drawBody(ctx, W, H);
+  ctx.fill(); ctx.stroke();
+  ctx.restore();
+
+  // Muscle heat blobs
+  MUSCLES.forEach(m => {
+    const ms = state.muscles[m.id];
+    if (ms.activation < 1 && ms.fatigue < 1) return;
+    const cx = m.x * W, cy = m.y * H, rad = m.r * W * 0.5;
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+    grad.addColorStop(0, heatColor(ms.fatigue, ms.activation));
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function drawBody(ctx, W, H) {
+  // Simplified front-facing humanoid silhouette.
+  const cx = W * 0.5;
+  ctx.beginPath();
+  ctx.arc(cx, H * 0.09, W * 0.11, 0, Math.PI * 2); // head
+  ctx.moveTo(cx - W * 0.18, H * 0.20);             // shoulders
+  ctx.quadraticCurveTo(cx, H * 0.16, cx + W * 0.18, H * 0.20);
+  ctx.lineTo(cx + W * 0.34, H * 0.46);             // right arm
+  ctx.lineTo(cx + W * 0.28, H * 0.50);
+  ctx.lineTo(cx + W * 0.16, H * 0.26);
+  ctx.lineTo(cx + W * 0.16, H * 0.54);             // torso right
+  ctx.lineTo(cx + W * 0.12, H * 0.98);             // right leg
+  ctx.lineTo(cx + W * 0.02, H * 0.98);
+  ctx.lineTo(cx, H * 0.60);
+  ctx.lineTo(cx - W * 0.02, H * 0.98);             // left leg
+  ctx.lineTo(cx - W * 0.12, H * 0.98);
+  ctx.lineTo(cx - W * 0.16, H * 0.54);             // torso left
+  ctx.lineTo(cx - W * 0.16, H * 0.26);
+  ctx.lineTo(cx - W * 0.28, H * 0.50);             // left arm
+  ctx.lineTo(cx - W * 0.34, H * 0.46);
+  ctx.lineTo(cx - W * 0.18, H * 0.20);
+  ctx.closePath();
+}
+
+/* ----------------------------------------------------------------------------
+   12. RENDER — build UI from state. No innerHTML; DOM is rebuilt per card.
+   -------------------------------------------------------------------------- */
+function ringSvg(score) {
+  const NS = "http://www.w3.org/2000/svg";
+  const size = 116, stroke = 9, r = (size - stroke) / 2 - 2, c = 2 * Math.PI * r;
+  const color = score >= 70 ? "var(--emerald)" : score >= 45 ? "var(--gold)" : "var(--danger)";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("width", size); svg.setAttribute("height", size);
+  const mk = (extra) => {
+    const ci = document.createElementNS(NS, "circle");
+    ci.setAttribute("cx", size / 2); ci.setAttribute("cy", size / 2); ci.setAttribute("r", r);
+    ci.setAttribute("fill", "none"); ci.setAttribute("stroke-width", stroke); ci.setAttribute("stroke-linecap", "round");
+    for (const k in extra) ci.setAttribute(k, extra[k]);
+    return ci;
+  };
+  svg.appendChild(mk({ stroke: "rgba(255,255,255,0.07)" }));
+  svg.appendChild(mk({ stroke: color, "stroke-dasharray": c, "stroke-dashoffset": c * (1 - score / 100), style: "transition:stroke-dashoffset .8s cubic-bezier(.22,1,.36,1)" }));
+  return svg;
+}
+
+function renderIdentity(state, now) {
+  const card = document.getElementById("identity-card");
+  const w = selectWeightProgress(state);
+  const mastery = selectStrikeMastery(state);
+  const r = selectReadiness(state, now);
+  clear(card);
+  card.appendChild(el("div", { class: "identity-top" }, [
+    el("div", { class: "brand" }, [
+      el("div", { class: "sigil" }, "T"),
+      el("div", { class: "brand-text" }, [
+        el("h1", null, "TALES OF TALLES"),
+        el("p", null, "Identity OS"),
+      ]),
+    ]),
+    el("div", { class: "mission-chip" }, "Welterweight"),
+  ]));
+  card.appendChild(el("div", { class: "becoming" }, [
+    el("div", { class: "lead" }, "Who you are becoming"),
+    el("div", { class: "title" }, [
+      "A ", el("span", { class: "accent" }, "84kg"), " striking welterweight",
+    ]),
+  ]));
+  card.appendChild(el("div", { class: "identity-stats" }, [
+    el("div", { class: "istat" }, [ el("div", { class: "k" }, "Weight"), el("div", { class: "v" }, [String(w.current), el("small", null, " kg")]) ]),
+    el("div", { class: "istat" }, [ el("div", { class: "k" }, "Mastery"), el("div", { class: "v" }, [String(mastery.total), el("small", null, "/" + mastery.max)]) ]),
+    el("div", { class: "istat" }, [ el("div", { class: "k" }, "Streak"), el("div", { class: "v" }, [String(r.streak), el("small", null, r.streak === 1 ? " day" : " days")]) ]),
+  ]));
+}
+
+function metaBar(label, value, color) {
+  return el("div", { class: "meta-bar" }, [
+    el("div", { class: "meta-head" }, [ el("span", { class: "lab" }, label), el("span", { class: "val" }, value + "%") ]),
+    el("div", { class: "track" }, el("i", { style: { width: clamp(value) + "%", background: color } })),
+  ]);
+}
+
+function renderReadiness(state, now) {
+  const card = document.getElementById("readiness-card");
+  const r = selectReadiness(state, now);
+  const color = r.score >= 70 ? "var(--emerald)" : r.score >= 45 ? "var(--gold)" : "var(--danger)";
+  clear(card);
+  card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Readiness Engine"]));
+  card.appendChild(el("div", { class: "readiness-row" }, [
+    el("div", { class: "gauge" }, [
+      ringSvg(r.score),
+      el("div", { class: "gv" }, [ el("b", { style: { color } }, String(r.score)), el("span", null, "Ready") ]),
+    ]),
+    el("div", { class: "readiness-meta" }, [
+      metaBar("Recovery", r.recovery, "linear-gradient(90deg,var(--emerald-deep),var(--emerald))"),
+      metaBar("Fatigue", r.fatigue, "linear-gradient(90deg,var(--gold-deep),var(--danger))"),
+      metaBar("Load", r.load, "linear-gradient(90deg,#3a6,#6ad)"),
+    ]),
+  ]));
+}
+
+function renderCoach(state, now) {
+  const card = document.getElementById("coach-card");
+  const c = selectCoach(state, now);
+  const parts = c.message.split("→");
+  clear(card);
+  card.appendChild(el("div", { class: "coach" }, [
+    el("div", { class: "coach-avatar" }, c.avatar),
+    el("div", { class: "coach-body" }, [
+      el("div", { class: "coach-name" }, c.name + " · " + c.domain),
+      el("div", { class: "coach-msg" }, [
+        el("span", { class: "num" }, parts[0].trim()),
+        " → " + (parts[1] || "").trim(),
+      ]),
+    ]),
+  ]));
+}
+
+function renderMission(state, now) {
+  const card = document.getElementById("mission-card");
+  const m = selectMission(state, now);
+  clear(card);
+  card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Today's Mission"]));
+  card.appendChild(el("div", { class: "mission-head" }, [
+    el("div", { class: "mission-title" }, m.title),
+    el("div", { class: "mission-chip" }, m.chip),
+  ]));
+  card.appendChild(el("div", { class: "mission-sub" }, m.sub));
+}
+
+function renderArsenal(state) {
+  const card = document.getElementById("arsenal-card");
+  clear(card);
+  card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Striking Arsenal"]));
+  const list = el("div", { class: "strike-list" });
+  STRIKES.forEach(s => {
+    const xp = state.strikes[s.id].xp;
+    const level = xpToStars(xp);
+    const inLevel = xp % CONFIG.xpPerStar;
+    const pct = level >= 5 ? 100 : (inLevel / CONFIG.xpPerStar) * 100;
+    const starEls = [];
+    for (let i = 0; i < 5; i++) starEls.push(el("span", { class: i < level ? "" : "off" }, "★"));
+    list.appendChild(el("div", { class: "strike" }, [
+      el("div", { class: "strike-icon" }, s.icon),
+      el("div", { class: "strike-main" }, [
+        el("div", { class: "strike-top" }, [
+          el("div", { class: "strike-name" }, s.name),
+          el("div", { class: "stars" }, starEls),
+        ]),
+        el("div", { class: "strike-xp" }, [
+          el("div", { class: "xp-track" }, el("i", { style: { width: pct + "%" } })),
+          el("div", { class: "xp-text" }, [
+            el("span", null, level >= 5 ? "MAX MASTERY" : "★" + level + " → ★" + (level + 1)),
+            el("span", null, level >= 5 ? "500 XP" : inLevel + " / " + CONFIG.xpPerStar + " XP"),
+          ]),
+        ]),
+      ]),
+      el("button", { class: "strike-btn", "aria-label": "Log " + s.name, onclick: () => {
+        Store.dispatch("COMPLETE_BOXING_DRILL", { strikeId: s.id, reps: 12 });
+        const c = selectCoach(Store.getState(), Date.now());
+        toast(s.name + " drilled · +XP");
+      } }, "+"),
+    ]));
+  });
+  card.appendChild(list);
+}
+
+function renderGym(state) {
+  const card = document.getElementById("gym-card");
+  clear(card);
+  card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Strength Log"]));
+  const grid = el("div", { class: "exercise-grid" });
+  EXERCISES.forEach(ex => {
+    grid.appendChild(el("button", { class: "ex-btn", onclick: () => {
+      Store.dispatch("COMPLETE_GYM_EXERCISE", { exerciseId: ex.id });
+      toast(ex.name + " logged");
+    } }, [
+      el("div", { class: "ex-name" }, ex.name),
+      el("div", { class: "ex-tag" }, ex.tag),
+    ]));
+  });
+  card.appendChild(grid);
+}
+
+function renderHeatmapCard(state, now) {
+  const card = document.getElementById("heatmap-card");
+  // Preserve canvas across renders to avoid flushed redraw cost; rebuild siblings.
+  let canvas = card.querySelector("#heatmap");
+  if (!canvas) {
+    clear(card);
+    card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Metabolic Heatmap"]));
+    const wrap = el("div", { class: "heatmap-wrap" });
+    canvas = el("canvas", { id: "heatmap" });
+    wrap.appendChild(canvas);
+    wrap.appendChild(el("div", { class: "heat-legend", id: "heat-legend" }));
+    card.appendChild(wrap);
+  }
+  const legend = card.querySelector("#heat-legend");
+  clear(legend);
+  const recovery = selectRecovery(state);
+  const fatigue = selectFatigueLoad(state);
+  const hottest = MUSCLE_IDS.reduce((a, b) => state.muscles[a].fatigue >= state.muscles[b].fatigue ? a : b);
+  const hottestDef = MUSCLES.find(m => m.id === hottest);
+  legend.appendChild(el("div", { class: "legend-item" }, [el("span", { class: "legend-swatch", style: { background: "linear-gradient(90deg,var(--emerald),var(--gold),var(--danger))" } }), "Recovered → Fatigued"]));
+  legend.appendChild(el("div", { class: "heat-stat" }, [
+    "Recovery ", el("b", null, round(recovery) + "%"), " · Avg fatigue ", el("b", null, round(fatigue) + "%"),
+  ]));
+  legend.appendChild(el("div", { class: "heat-stat" }, [
+    "Hot zone: ", el("b", null, hottestDef.label), " (", round(state.muscles[hottest].fatigue) + "%", ")",
+  ]));
+  legend.appendChild(el("div", { class: "heat-stat" }, "Idle decay −2% / 5 min · back & calves +15% load"));
+  requestAnimationFrame(() => drawHeatmap(canvas, state));
+}
+
+function renderScan(state) {
+  const card = document.getElementById("scan-card");
+  const w = selectWeightProgress(state);
+  clear(card);
+  card.appendChild(el("div", { class: "section-label" }, [el("span", { class: "dot" }), "Body Scan"]));
+  card.appendChild(el("div", { class: "scan-current" }, [
+    el("b", null, String(w.current)), el("span", null, "kg · " + (w.gap > 0 ? w.gap + "kg to target" : "target reached")),
+  ]));
+  card.appendChild(el("div", { class: "scan-progress" }, [
+    el("div", { class: "scan-track" }, el("i", { style: { width: w.pct + "%" } })),
+    el("div", { class: "scan-labels" }, [ el("span", null, w.start + "kg"), el("span", null, w.pct + "%"), el("span", null, w.target + "kg") ]),
+  ]));
+  card.appendChild(el("div", { class: "btn-row" }, [
+    el("button", { class: "btn emerald block", onclick: () => promptScan(state) }, "+ Log Weight"),
+  ]));
+  if (state.scans.length) {
+    const hist = el("div", { class: "scan-history" });
+    const recent = state.scans.slice(-5).reverse();
+    recent.forEach((sc, i) => {
+      const prev = recent[i + 1];
+      const delta = prev ? round(sc.weight - prev.weight, 1) : null;
+      const d = new Date(sc.ts);
+      hist.appendChild(el("div", { class: "scan-entry" }, [
+        el("span", { class: "d" }, d.toLocaleDateString(undefined, { month: "short", day: "numeric" })),
+        el("span", { class: "w" }, sc.weight + " kg"),
+        el("span", { class: "delta " + (delta == null ? "" : delta >= 0 ? "up" : "down") }, delta == null ? "—" : (delta >= 0 ? "▲ " : "▼ ") + Math.abs(delta) + "kg"),
+      ]));
+    });
+    card.appendChild(hist);
+  }
+}
+
+function promptScan(state) {
+  const input = window.prompt("Log bodyweight (kg):", String(state.weight));
+  if (input == null) return;
+  const v = parseFloat(input.replace(",", "."));
+  if (!isFinite(v) || v < 40 || v > 160) { toast("Invalid weight"); return; }
+  Store.dispatch("ADD_BODY_SCAN", { weight: v });
+  toast("Scan recorded · " + round(v, 1) + "kg");
+}
+
+/* ----------------------------------------------------------------------------
+   13. APP — wiring, navigation, lifecycle
+   -------------------------------------------------------------------------- */
+function renderAll() {
+  const state = Store.getState();
+  const now = Date.now();
+  renderIdentity(state, now);
+  renderReadiness(state, now);
+  renderCoach(state, now);
+  renderMission(state, now);
+  renderArsenal(state);
+  renderGym(state);
+  renderHeatmapCard(state, now);
+  renderScan(state);
+}
+
+function setupNav() {
+  const buttons = Array.from(document.querySelectorAll(".nav-btn"));
+  buttons.forEach(btn => btn.addEventListener("click", () => {
+    const target = btn.dataset.view;
+    buttons.forEach(b => b.classList.toggle("active", b === btn));
+    document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + target));
+    if (target === "body") requestAnimationFrame(() => {
+      const c = document.getElementById("heatmap");
+      if (c) drawHeatmap(c, Store.getState());
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }));
+}
+
+function init() {
+  setupNav();
+  Store.subscribe(renderAll);
+  runDecayCatchUp();
+  renderAll();
+
+  // Live idle decay + clock-sensitive selectors (streak) refresh.
+  setInterval(() => { runDecayCatchUp(); }, 30 * 1000);
+  setInterval(() => { renderAll(); }, 60 * 1000);
+
+  window.addEventListener("resize", () => {
+    const c = document.getElementById("heatmap");
+    if (c && document.getElementById("view-body").classList.contains("active")) drawHeatmap(c, Store.getState());
+  });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) { runDecayCatchUp(); renderAll(); } });
+}
+
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+else init();
+</script>
+</body>
+</html>
