@@ -1,0 +1,20 @@
+Resumo: adiciona script de bootstrap (Node.js), utilitário external_id e 31 arquivos iniciais (Volumes 00–70) com rascunhos dos Capítulos 01–04 (Volume I). Inclui runbook de rotação de credenciais e scaffold do MCP CRM (Yalt).
+
+Alterações principais:
+- scripts/bootstrap_jarvis_os.js
+- sample/scripts/external_id.js
+- 31 markdown chapters (00–70)
+- 70 Sistema/Chapter 28 — Security & Secrets Runbook.md
+- 70 Sistema/CRM MCP — Contract & Scaffold.md
+- 70 Sistema/CRM n8n Workflows — README.md
+- 70 Sistema/Runbooks/Rotate_CRM_Key.md
+
+Commit: 7523e54b1ebc70e68222df42a014b7fb65e3a0ad (branch bootstrap/jarvis-os)
+
+Checklist before merge:
+- Operator performs CRM key rotation in scheduled window and registers new key in n8n credentials (do not share key in chat).
+- Run PoC import workflow (yalt_sync_import_seed) with 10 test leads and confirm no duplicates.
+- Remove any remaining exposed secrets from the Vault (commit recorded).
+- Reviewers sign off on Volume I drafts.
+
+Notes: No secrets are included in these commits. The bootstrap script is idempotent — re‑running will not overwrite existing files.
