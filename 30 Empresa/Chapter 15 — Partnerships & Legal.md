@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Partnerships & Legal"
 tipo: chapter
 status: backlog
 area: 30 Empresa

@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Archives & Migration"
 tipo: chapter
 status: backlog
 area: 60 Conhecimento

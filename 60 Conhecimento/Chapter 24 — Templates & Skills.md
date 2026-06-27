@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Templates & Skills"
 tipo: chapter
 status: backlog
 area: 60 Conhecimento

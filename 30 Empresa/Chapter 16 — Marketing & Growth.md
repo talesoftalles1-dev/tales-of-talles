@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Marketing & Growth"
 tipo: chapter
 status: backlog
 area: 30 Empresa

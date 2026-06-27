@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Commercial Ops (Yalt)"
 tipo: chapter
 status: backlog
 area: 30 Empresa

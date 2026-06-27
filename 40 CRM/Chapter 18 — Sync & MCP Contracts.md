@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Sync & MCP Contracts"
 tipo: chapter
 status: backlog
 area: 40 CRM

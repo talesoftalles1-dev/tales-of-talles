@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Revenue Ops"
 tipo: chapter
 status: backlog
 area: 50 Financeiro

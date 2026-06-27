@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Projects & Releases"
 tipo: chapter
 status: backlog
 area: 30 Empresa
