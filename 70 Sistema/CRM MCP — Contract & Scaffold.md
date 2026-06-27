@@ -1,0 +1,39 @@
+---
+tipo: doc
+status: rascunho
+categoria: sistema
+area: empresa
+criado: 2026-06-27
+atualizado: 2026-06-27
+relacionado:
+  - "[[TALES OF TALLES OS — Master Evolution Report]]"
+tags:
+  - crm
+  - mcp
+  - scaffold
+---
+
+# CRM MCP — Contract & Scaffold
+
+## Overview
+Scaffold for a minimal MCP (connector) to the Yalt CRM. This contract documents endpoints, auth, idempotency, and retry behaviour.
+
+## Auth
+- API Key via `X-Api-Key` header or `Authorization: Bearer <key>`.
+- Key must be kept in n8n credentials or external secret manager.
+
+## Endpoints (minimal)
+- GET /leads?external_id={external_id}
+- POST /leads
+- PATCH /leads/{id}
+- (optional) POST /webhooks/verify
+
+## Idempotency
+- `external_id` is the dedupe key. Clients MUST calculate `external_id` before creating new leads.
+- Server should accept `Idempotency-Key` header where supported.
+
+## Retries
+- Exponential backoff on 5xx and 429. Do not retry 4xx except 429.
+
+## Sample payload
+Refer to `70 Sistema/CRM — Mapeamento de Entidades.md` for field mapping.
