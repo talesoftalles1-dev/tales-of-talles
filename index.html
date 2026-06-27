@@ -177,7 +177,11 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.4);cursor:poi
   letter-spacing:3px;color:var(--muted);white-space:nowrap;text-transform:uppercase}
 
 /* ═══════ MISSÃO DO DIA — destaque P1 ═══════ */
-.mission-card{padding:20px 19px 19px;border-width:1.5px}
+.mission-card{padding:21px 19px 20px;border-width:1.5px;
+  border-color:rgba(212,175,55,.34);
+  background:linear-gradient(180deg,rgba(212,175,55,.07),var(--s1) 44%);
+  box-shadow:var(--sh),var(--hair),inset 0 0 0 1px rgba(212,175,55,.10),0 16px 44px -20px rgba(212,175,55,.30);
+  margin-bottom:22px}
 .mission-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;
   letter-spacing:4px;color:var(--gold2);text-transform:uppercase;margin-bottom:10px;
   text-shadow:0 0 14px rgba(212,175,55,.3)}
@@ -2154,9 +2158,11 @@ textarea:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,
       <button type="button" class="btn-expand" id="btn-expand-all">▾ VER TREINO</button>
     </div>
     <div class="mission-collapse" id="mission-collapse">
-      <div id="ex-list"></div>
+      <div class="mission-collapse-inner">
+        <div id="ex-list"></div>
+        <div id="boxe-prog"></div>
+      </div>
     </div>
-    <div id="boxe-prog"></div>
     <button type="button" class="btn-primary" id="btn-camp-day" style="margin-top:14px">✓ CAMP DAY CONCLUÍDO</button>
   </div>
 
@@ -2203,19 +2209,6 @@ textarea:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,
       <div class="tele-cell"><span class="tele-v" id="tele-vol">0<small>ex</small></span><span class="tele-l">VOLUME SEMANAL</span><span class="tele-d pos" id="tele-vol-d">—</span></div>
       <div class="tele-cell"><span class="tele-v" id="tele-dens">—</span><span class="tele-l">DENSIDADE</span><span class="tele-d" id="tele-dens-d">sessões/dia</span></div>
     </div>
-  </div>
-
-
-  <!-- Corner -->
-  <div data-collapse="corner" data-collapse-default="open" class="card corner-team open" id="corner-team">
-    <div class="corner-head" id="corner-head">
-      <div class="ct ct-blue" style="margin-bottom:0">🏟️ CORNER TEAM</div>
-      <div class="corner-toggle">
-        <div class="corner-avatars" id="corner-avatars"></div>
-        <span class="corner-arrow">▾</span>
-      </div>
-    </div>
-    <div class="corner-body"><div id="corner-rows" style="padding-top:8px"></div></div>
   </div>
 
 
@@ -5227,7 +5220,7 @@ let ACTIVE_FLAG='';      // small label shown on the leading coach
 function setActiveCoach(key,flag){ACTIVE_COACH=key;ACTIVE_FLAG=flag||'';}
 
 function rCorner(state,rd){
-  const el=document.getElementById('corner-rows');if(!el)return;el.textContent='';
+  const el=document.getElementById('corner-rows');if(!el){trig='geral';ACTIVE_COACH=null;ACTIVE_FLAG='';return;}el.textContent='';
   let msgs=getDynamicCoachMsgs(state,_lastEvents||[],rd,trig);
   // Promote the active coach to the front
   if(ACTIVE_COACH){
