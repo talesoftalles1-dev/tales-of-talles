@@ -1,0 +1,9 @@
+{
+  "slackWebhookUrl": "",
+  "slackBotToken": "",
+  "slackChannel": "#daily",
+  "n8nWebhookUrl": "https://seu-n8n.exemplo/webhook/morning-brief",
+  "vaultRoot": "C:\\Users\\talle\\OneDrive\\Documents\\Jarvis\\vault",
+  "dryRun": false,
+  "logLevel": "info"
+}
