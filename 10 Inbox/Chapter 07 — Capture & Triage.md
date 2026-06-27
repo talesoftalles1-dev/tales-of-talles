@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Capture & Triage"
 tipo: chapter
 status: backlog
 area: 10 Inbox

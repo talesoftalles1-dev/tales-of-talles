@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Budgets & KPIs"
 tipo: chapter
 status: backlog
 area: 50 Financeiro

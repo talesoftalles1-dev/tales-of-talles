@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "CRM Data Model"
 tipo: chapter
 status: backlog
 area: 40 CRM

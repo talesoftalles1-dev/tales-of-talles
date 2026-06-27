@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Nutrition & Body"
 tipo: chapter
 status: backlog
 area: 20 Pessoal

@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Vault Structure & Dataviews"
 tipo: chapter
 status: backlog
 area: 60 Conhecimento

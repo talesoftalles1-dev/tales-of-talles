@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Outreach & ESP Strategy"
 tipo: chapter
 status: backlog
 area: 40 CRM

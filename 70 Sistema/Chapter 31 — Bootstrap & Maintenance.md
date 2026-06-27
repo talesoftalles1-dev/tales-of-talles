@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Bootstrap & Maintenance"
 tipo: chapter
 status: backlog
 area: 70 Sistema

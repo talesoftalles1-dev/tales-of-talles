@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Training Logs"
 tipo: chapter
 status: backlog
 area: 20 Pessoal
