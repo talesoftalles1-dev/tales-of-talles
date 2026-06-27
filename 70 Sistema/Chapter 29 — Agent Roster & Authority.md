@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Agent Roster & Authority"
 tipo: chapter
 status: backlog
 area: 70 Sistema

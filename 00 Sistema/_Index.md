@@ -3,6 +3,7 @@ tipo: index
 status: canonico
 categoria: sistema
 area: 00 Sistema
+title: 00 Sistema — Índice
 criado: 2026-06-27
 atualizado: 2026-06-27
 aliases:

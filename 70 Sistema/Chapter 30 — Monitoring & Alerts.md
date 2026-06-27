@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Monitoring & Alerts"
 tipo: chapter
 status: backlog
 area: 70 Sistema
