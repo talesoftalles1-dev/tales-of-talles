@@ -2,7 +2,8 @@
 tipo: index
 status: canonico
 categoria: sistema
-area: empresa
+area: 70 Sistema
+title: 70 Sistema — Índice
 criado: 2026-06-27
 atualizado: 2026-06-27
 aliases:
