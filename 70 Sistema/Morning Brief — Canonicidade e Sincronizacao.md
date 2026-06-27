@@ -5,7 +5,12 @@ categoria: sistema
 area: empresa
 criado: 2026-06-27
 atualizado: 2026-06-27
+aliases:
+  - Morning Brief — Canonicidade
+  - Brief — Canonicidade e Sincronização
+  - Morning Brief Sync
 relacionado:
+  - "[[70 Sistema/_Index]]"
   - "[[TALES OF TALLES OS — Master Evolution Report]]"
 tags:
   - brief

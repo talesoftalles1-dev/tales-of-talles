@@ -5,6 +5,14 @@ categoria: operations
 area: security
 criado: 2026-06-27
 atualizado: 2026-06-27
+relacionado:
+  - "[[70 Sistema/_Index]]"
+  - "[[CRM n8n Workflows — README]]"
+  - "[[CRM Unification — Plan]]"
+tags:
+  - runbook
+  - crm
+  - security
 ---
 
 # Runbook: Rotate CRM Key (yalt)

@@ -1,3 +1,24 @@
+---
+tipo: doc
+status: canonico
+categoria: sistema
+area: 00 Sistema
+criado: 2026-06-27
+atualizado: 2026-06-27
+aliases:
+  - Prompt de Organização do Vault
+  - Vault Organization Prompt
+  - Claude Obsidian Prompt
+relacionado:
+  - "[[00 Sistema/_Index]]"
+  - "[[Morning Brief — Canonicidade e Sincronizacao]]"
+tags:
+  - governanca
+  - canonicidade
+  - vault
+  - prompt
+---
+
 # Claude Obsidian — Prompt de Organização Proativa
 
 > **Para:** Claude (e agentes IA)  
