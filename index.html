@@ -7472,10 +7472,10 @@ function onMotion(e){
   try{navigator.vibrate&&navigator.vibrate(15);}catch(_){}
   const cnt=document.getElementById('pt-count');
   if(cnt){cnt.textContent=PT.total;cnt.classList.remove('punch-flash');void cnt.offsetWidth;cnt.classList.add('punch-flash');}
-  document.getElementById('pt-jab').textContent=PT.jab+PT.hook>0?PT.jab:0;
-  document.getElementById('pt-hook').textContent=PT.hook;
-  document.getElementById('pt-body').textContent=PT.body;
-  document.getElementById('pt-knee').textContent=PT.knee;
+  const jabEl=document.getElementById('pt-jab');if(jabEl)jabEl.textContent=PT.jab;
+  const hookEl=document.getElementById('pt-hook');if(hookEl)hookEl.textContent=PT.hook;
+  const bodyEl=document.getElementById('pt-body');if(bodyEl)bodyEl.textContent=PT.body;
+  const kneeEl=document.getElementById('pt-knee');if(kneeEl)kneeEl.textContent=PT.knee;
 }
 
 function ptTick(){
