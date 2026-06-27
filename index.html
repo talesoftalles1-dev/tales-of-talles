@@ -3884,91 +3884,63 @@ async function syncNotion(auto=false){
   if(!base){if(!auto)toast('⚠ Configura o n8n primeiro (card 🔗 Ligações)');return;}
   if(btn)btn.classList.add('syncing');if(st)st.textContent='A SINCRONIZAR...';
 
-  const today=new Date().toISOString().split('T')[0];
+  // ── DIÁRIO SIMPLES: um payload PLANO por dia, alinhado com o fluxo n8n
+  // "TALES · Sync Notion (Diário do Camp)" (webhook tales-notion-sync, que cria
+  // 1 página com campos dia/workout/readiness/streak/xp/exercicios/series/volume/
+  // refeicoes/peso/destaque). Sem o formato de 4 bases — evita o mismatch. ──
   const s=LIVE;const mm=s.mus||{};
-  const avgFat=Object.values(mm).reduce((a,m)=>a+(m.f||0),0)/Math.max(1,Object.values(mm).length);
-  const exToday=Object.values(s.exDone||{}).filter(e=>e.day===(s.dia||1)).length;
+  const today=new Date().toISOString().split('T')[0];
+  const dia=s.dia||1;
+  const evs=Array.isArray(_lastEvents)?_lastEvents:[];
+  const isToday=ts=>{if(!ts)return false;try{return new Date(ts).toISOString().split('T')[0]===today;}catch(_){return false;}};
+  const setLogsToday=evs.filter(e=>e&&e.t==='SET_LOG'&&isToday(e.ts));
+  const series=setLogsToday.length;
+  const volume=Math.round(setLogsToday.reduce((a,e)=>a+((+(e.p&&e.p.kg)||0)*(+(e.p&&e.p.reps)||0)*(+(e.p&&e.p.sets)||1)),0));
+  const exToday=Object.values(s.exDone||{}).filter(e=>e.day===dia).length;
+  const refeicoes=(Array.isArray(s.mealLog)?s.mealLog.filter(m=>(m.day||0)===dia).length:0)||(s.mealCount||0);
+  const peso=(s.scans&&s.scans.length?s.scans[s.scans.length-1].kg:null)||77;
+  const xp=Math.round(Object.values(s.arsenal||{}).reduce((a,m)=>a+(m.xp||0),0));
+  const readiness=(typeof pront==='function')?pront(s):0;
+  const workout=(typeof currentWorkout==='function')?currentWorkout():'Treino';
   const topPR=Object.entries(s.prLog||{}).sort(([,a],[,b])=>(b.e1rm||0)-(a.e1rm||0))[0];
-  const arEntries=Object.entries(s.arsenal||{});
-  const avgStars=arEntries.length?arEntries.reduce((a,[,m])=>a+(m.stars||1),0)/arEntries.length:1;
-  const totXP=arEntries.reduce((a,[,m])=>a+(m.xp||0),0);
-  const grupoLabel=(Object.values(s.exDone||{}).find(e=>e.day===(s.dia||1))?.group)||'Push';
-  const carNote=CARIANI_REACTION||`${exToday} exercícios registados. OVR ${calcOvr(s)}.`;
-  const mNote=MUZY_REACTION||`Fadiga média ${avgFat.toFixed(0)}%.`;
-  const wt=(s.scans&&s.scans.length?s.scans[s.scans.length-1].kg:null)||77;
-  const legFat=Math.round(((mm.quads?.f||0)+(mm.hamstrings?.f||0)+(mm.calves?.f||0))/3);
+  const destaque=topPR
+    ? `PR ${topPR[0]} ${topPR[1].kg}kg×${topPR[1].reps} (e1RM ${Math.round(topPR[1].e1rm||0)}) · OVR ${calcOvr(s)}`
+    : (CARIANI_REACTION||`OVR ${calcOvr(s)} · ${exToday} exercícios · streak ${s.streak||0}`);
 
-  const payloads=[
-    {ds:NOTION_DS.cariani,props:{
-      "Treino":`Treino ${today} · ${grupoLabel}`,
-      "date:Data:start":today,"date:Data:is_datetime":0,
-      "Grupo Muscular":grupoLabel.charAt(0).toUpperCase()+grupoLabel.slice(1).toLowerCase(),
-      "Exercícios Feitos":exToday,
-      "Novo PR":topPR?"__YES__":"__NO__",
-      "Exercício PR":topPR?topPR[0]:'',
-      "e1RM PR (kg)":topPR?Math.round(topPR[1].e1rm||0):null,
-      "OVR no Dia":calcOvr(s),"Fadiga Média (%)":Math.round(avgFat),
-      "Notas do Cariani":carNote,"Streak no Dia":s.streak||0}},
-    {ds:NOTION_DS.ilia,props:{
-      "Sessão":`Striking ${today}`,
-      "date:Data:start":today,"date:Data:is_datetime":0,
-      "Tipo":"Saco","XP Ganho":totXP,
-      "Estrelas Médias":Math.round(avgStars*10)/10,
-      "Qualidade":totXP>50?"🔥 Excelente":totXP>20?"✅ Boa":"⚠️ Regular",
-      "Notas do Ilia":`${arEntries.length} golpes · ${totXP} XP total`,
-      "Rounds":s.bDays||0,"Streak no Dia":s.streak||0}},
-    {ds:NOTION_DS.sanji,props:{
-      "Dia":`Dia ${s.dia||1} · ${today}`,
-      "date:Data:start":today,"date:Data:is_datetime":0,
-      "Refeições Feitas":s.mealCount||0,"Meta Refeições":5,
-      "Proteína OK":(s.mealCount||0)>=3?"__YES__":"__NO__",
-      "Peso (kg)":wt,
-      "Aderência":(s.mealCount||0)>=5?"✅ Completo":(s.mealCount||0)>=3?"⚠️ Parcial":"❌ Off-plan",
-      "Comentário do Sanji":`${s.mealCount||0} refeições · streak ${s.streak||0}`}},
-    {ds:NOTION_DS.muzy,props:{
-      "Scan":`Scan ${today}`,
-      "date:Data:start":today,"date:Data:is_datetime":0,
-      "Peso (kg)":wt,
-      "Pescoço (cm)":s.measures?.neck||null,"Peito (cm)":s.measures?.chest||null,
-      "Cintura (cm)":s.measures?.waist||null,"Quadril (cm)":s.measures?.hip||null,
-      "Coxa (cm)":s.measures?.thigh||null,"Bícep (cm)":s.measures?.bicep||null,
-      "Fadiga Costas (%)":Math.round(mm.back?.f||0),"Fadiga Pernas (%)":legFat,
-      "Status Recuperação":avgFat<40?"🟢 Pronto":avgFat<70?"🟡 Moderado":"🔴 Deload",
-      "Alerta do Muzy":mNote}}
-  ];
+  const body={
+    app:'TALES_OF_TALLES',
+    data:today, dia, workout,
+    readiness, streak:s.streak||0, xp,
+    exercicios:exToday, series, volume,
+    refeicoes, peso,
+    destaque:String(destaque).slice(0,180)
+  };
 
-  // A chave da Anthropic e o Notion MCP vivem no n8n (server-side), nunca no browser.
-  // O webhook 'tales-notion-sync' recebe os payloads e cria as páginas. Resolve CORS + segurança.
-  const N=payloads.length;
-  let syncOk=0,syncFailed=N;
+  // A chave do Notion vive no n8n (server-side), nunca no browser.
+  // O webhook 'tales-notion-sync' recebe o resumo e cria a página. Resolve CORS + segurança.
+  let ok=false;
   try{
     const resp=await fetch(base+'/webhook/tales-notion-sync',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({app:'TALES_OF_TALLES',date:today,dia:s.dia||1,payloads})
+      body:JSON.stringify(body)
     });
     if(resp.ok){
       let d=null;try{d=await resp.json();}catch(_){}
       const o=Array.isArray(d)?d[0]:d;
-      const reported=o&&(o.ok!=null?Number(o.ok):(o.synced!=null?Number(o.synced):null));
-      syncOk=(reported!=null&&!isNaN(reported))?Math.min(reported,N):N; // sem detalhe → assume tudo ok no 200
-      syncFailed=Math.max(0,N-syncOk);
-    }else{syncOk=0;syncFailed=N;}
-  }catch(e){syncOk=0;syncFailed=N;}
+      ok=(!o||o.ok===undefined)?true:(o.ok===true||o.ok==='true'||o.ok===1);
+    }
+  }catch(_){ok=false;}
 
   if(btn)btn.classList.remove('syncing');
-  if(syncFailed===0){
+  if(ok){
     if(btn)btn.classList.add('ok');
     if(st)st.textContent=`✓ ${new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`;
-    toast('◆ NOTION SINCRONIZADO · '+syncOk+' agentes');
+    toast('◆ NOTION SINCRONIZADO · dia '+dia);
     vibrate([20,10,30,10,50]);
-  }else if(syncOk>0){
-    if(btn)btn.classList.add('ok');
-    if(st)st.textContent=`${syncOk} OK · ${syncFailed} FALHA`;
-    if(!auto)toast('⚠ Sync parcial '+syncOk+'/'+N);
   }else{
     if(btn)btn.classList.add('err');
     if(st)st.textContent='FALHA — vê o n8n';
-    if(!auto)toast('⚠ Sync falhou. Ativa o webhook \'tales-notion-sync\' no n8n.');
+    if(!auto)toast('⚠ Sync falhou. Liga o fluxo \'tales-notion-sync\' e a chave do Notion no n8n.');
   }
   setTimeout(()=>{if(btn)btn.classList.remove('ok','err');if(st)st.textContent='GUARDAR PROGRESSO';},6000);
 }
