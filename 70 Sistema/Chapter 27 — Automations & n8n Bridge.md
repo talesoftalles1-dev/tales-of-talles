@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Automations & n8n Bridge"
 tipo: chapter
 status: backlog
 area: 70 Sistema

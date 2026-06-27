@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Prioritization Formula"
 tipo: chapter
 status: backlog
 area: 00 Sistema
