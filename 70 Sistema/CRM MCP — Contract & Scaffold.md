@@ -6,6 +6,10 @@ area: empresa
 criado: 2026-06-27
 atualizado: 2026-06-27
 relacionado:
+  - "[[70 Sistema/_Index]]"
+  - "[[CRM — Mapeamento de Entidades]]"
+  - "[[CRM Unification — Plan]]"
+  - "[[CRM n8n Workflows — README]]"
   - "[[TALES OF TALLES OS — Master Evolution Report]]"
 tags:
   - crm
