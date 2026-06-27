@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Security & Secrets Runbook"
 tipo: chapter
 status: backlog
 area: 70 Sistema

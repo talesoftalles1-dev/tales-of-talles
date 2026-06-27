@@ -1,4 +1,6 @@
 ---
+aliases:
+  - "Decision Surface & Dashboard"
 tipo: chapter
 status: backlog
 area: 00 Sistema
