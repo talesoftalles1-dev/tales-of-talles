@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"title","type":"text","text":"# 🗺️ Mapa do Sistema JARVIS\nClique em qualquer cartão para abrir a área. As linhas mostram como tudo se conecta ao Dashboard.","x":-940,"y":-440,"width":1240,"height":100},
+		{"id":"hub","type":"file","file":"00 JARVIS/🤖 JARVIS.md","x":-160,"y":-60,"width":320,"height":120,"color":"#22D3EE"},
+		{"id":"constituicao","type":"file","file":"00 JARVIS/🪐 Constituição JARVIS.md","x":-160,"y":-260,"width":320,"height":100,"color":"6"},
+		{"id":"pessoal","type":"file","file":"20 Pessoal/🌱 Pessoal.md","x":-940,"y":-260,"width":260,"height":100,"color":"4"},
+		{"id":"empresa","type":"file","file":"30 Empresa/🏢 Yalt.md","x":-640,"y":-260,"width":260,"height":100,"color":"4"},
+		{"id":"crm","type":"file","file":"40 CRM/🤝 CRM.md","x":240,"y":-260,"width":260,"height":100,"color":"5"},
+		{"id":"financeiro","type":"file","file":"50 Financeiro/💰 Financeiro.md","x":540,"y":-260,"width":260,"height":100,"color":"5"},
+		{"id":"conhecimento","type":"file","file":"60 Conhecimento/🧠 Conhecimento.md","x":-940,"y":160,"width":260,"height":100,"color":"5"},
+		{"id":"sistema","type":"file","file":"70 Sistema/_Spec JARVIS.md","x":-640,"y":160,"width":260,"height":100,"color":"2"},
+		{"id":"inbox","type":"file","file":"10 Inbox/📥 Inbox.md","x":240,"y":160,"width":260,"height":100,"color":"3"},
+		{"id":"arquivo","type":"file","file":"90 Arquivo/🗄️ Arquivo.md","x":540,"y":160,"width":260,"height":100,"color":"6"}
+	],
+	"edges":[
+		{"id":"e-const","fromNode":"hub","fromSide":"top","toNode":"constituicao","toSide":"bottom"},
+		{"id":"e-pessoal","fromNode":"hub","fromSide":"top","toNode":"pessoal","toSide":"bottom"},
+		{"id":"e-empresa","fromNode":"hub","fromSide":"top","toNode":"empresa","toSide":"bottom"},
+		{"id":"e-crm","fromNode":"hub","fromSide":"top","toNode":"crm","toSide":"bottom"},
+		{"id":"e-financeiro","fromNode":"hub","fromSide":"top","toNode":"financeiro","toSide":"bottom"},
+		{"id":"e-conhecimento","fromNode":"hub","fromSide":"bottom","toNode":"conhecimento","toSide":"top"},
+		{"id":"e-sistema","fromNode":"hub","fromSide":"bottom","toNode":"sistema","toSide":"top"},
+		{"id":"e-inbox","fromNode":"hub","fromSide":"bottom","toNode":"inbox","toSide":"top"},
+		{"id":"e-arquivo","fromNode":"hub","fromSide":"bottom","toNode":"arquivo","toSide":"top"}
+	]
+}
