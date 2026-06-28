@@ -6,12 +6,19 @@ area: empresa
 criado: 2026-06-27
 atualizado: 2026-06-27
 relacionado:
+  - "[[70 Sistema/_Index]]"
+  - "[[CRM — Mapeamento de Entidades]]"
+  - "[[CRM Unification — Plan]]"
+  - "[[CRM n8n Workflows — README]]"
   - "[[TALES OF TALLES OS — Master Evolution Report]]"
 tags:
   - crm
   - mcp
   - scaffold
 ---
+
+<!-- canonicity-banner -->
+> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
 
 # CRM MCP — Contract & Scaffold
 

@@ -5,13 +5,21 @@ categoria: sistema
 area: empresa
 criado: 2026-06-27
 atualizado: 2026-06-27
+aliases:
+  - Morning Brief — Canonicidade
+  - Brief — Canonicidade e Sincronização
+  - Morning Brief Sync
 relacionado:
+  - "[[70 Sistema/_Index]]"
   - "[[TALES OF TALLES OS — Master Evolution Report]]"
 tags:
   - brief
   - ssot
   - vault
 ---
+
+<!-- canonicity-banner -->
+> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
 
 # Morning Brief — Versão Canônica e Sincronização
 
