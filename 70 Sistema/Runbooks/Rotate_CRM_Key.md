@@ -5,7 +5,18 @@ categoria: operations
 area: security
 criado: 2026-06-27
 atualizado: 2026-06-27
+relacionado:
+  - "[[70 Sistema/_Index]]"
+  - "[[CRM n8n Workflows — README]]"
+  - "[[CRM Unification — Plan]]"
+tags:
+  - runbook
+  - crm
+  - security
 ---
+
+<!-- canonicity-banner -->
+> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
 
 # Runbook: Rotate CRM Key (yalt)
 

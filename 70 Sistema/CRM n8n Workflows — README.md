@@ -1,3 +1,24 @@
+---
+tipo: doc
+status: rascunho
+categoria: sistema
+area: empresa
+criado: 2026-06-27
+atualizado: 2026-06-27
+relacionado:
+  - "[[70 Sistema/_Index]]"
+  - "[[CRM MCP — Contract & Scaffold]]"
+  - "[[CRM — Mapeamento de Entidades]]"
+  - "[[Rotate_CRM_Key]]"
+tags:
+  - crm
+  - n8n
+  - vault
+---
+
+<!-- canonicity-banner -->
+> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
+
 # CRM n8n Workflows — README
 
 This README describes the PoC n8n workflows for syncing Vault notes to the Yalt CRM.

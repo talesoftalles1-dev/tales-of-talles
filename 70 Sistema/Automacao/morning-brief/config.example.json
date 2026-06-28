@@ -1,10 +1,9 @@
 {
-  "vaultRoot": "C:/Users/talle/OneDrive/Documents/Jarvis",
-  "n8nWebhookUrl": "https://n8n.enyo.cc/webhook/jarvis-morning-brief",
   "slackWebhookUrl": "",
   "slackBotToken": "",
   "slackChannel": "#daily",
-  "outputDir": "./output",
-  "stateFile": "./state/last-post.json",
-  "logDir": "./logs"
+  "n8nWebhookUrl": "https://YOUR_N8N_INSTANCE/webhook/YOUR_WEBHOOK_ID",
+  "vaultRoot": "C:\\Users\\talle\\OneDrive\\Documents\\Jarvis\\vault",
+  "dryRun": false,
+  "logLevel": "info"
 }
