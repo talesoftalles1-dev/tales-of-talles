@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: doc
 status: publicado
 categoria: ia

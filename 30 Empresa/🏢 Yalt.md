@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: nota
 status: ativo
 area: empresa

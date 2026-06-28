@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: contato
 status: ativo
 empresa: <% tp.system.prompt("Empresa (nome do cliente vinculado, sem colchetes)") %>

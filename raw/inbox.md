@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: nota
 status: nova
 criado: 2026-06-27

@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: semanal
 status: ativo
 semana: <% tp.date.now("gggg-[W]ww", 0, tp.file.title, "gggg-[W]ww") %>

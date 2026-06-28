@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: index
 status: referenciado
 area: 20 Pessoal

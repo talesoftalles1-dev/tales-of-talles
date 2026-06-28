@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: nota
 status: ativo
 area: pessoal

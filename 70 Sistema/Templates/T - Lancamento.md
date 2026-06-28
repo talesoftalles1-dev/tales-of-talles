@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: lancamento
 data: <% tp.date.now("YYYY-MM-DD") %>
 valor: <% tp.system.prompt("Valor (sempre positivo, ex: 1500.00)") %>

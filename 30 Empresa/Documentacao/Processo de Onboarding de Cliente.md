@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: doc
 status: publicado
 categoria: operacoes

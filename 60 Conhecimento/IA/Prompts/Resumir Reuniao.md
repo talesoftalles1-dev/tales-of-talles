@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: prompt
 status: ativo
 modelo: claude-opus

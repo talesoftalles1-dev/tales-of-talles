@@ -1,4 +1,5 @@
 ---
+dominio: talles
 aliases:
   - "Goals & Progress"
 tipo: chapter

@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: objetivo
 nivel: objetivo
 status: ativo

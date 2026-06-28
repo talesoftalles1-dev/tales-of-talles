@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: cliente
 status: ativo
 empresa: Acme Corp

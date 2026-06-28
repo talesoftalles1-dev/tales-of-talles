@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: estudo
 status: backlog
 disciplina: <% tp.system.prompt("Disciplina / área de estudo") %>

@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Partnerships & Legal"
 tipo: chapter

@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: cliente
 status: <% tp.system.prompt("Status (lead | ativo | inativo | perdido)", "lead") %>
 empresa: <% tp.system.prompt("Nome da empresa") %>

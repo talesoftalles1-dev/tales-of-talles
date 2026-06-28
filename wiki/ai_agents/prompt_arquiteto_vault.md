@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Prompt do Arquiteto do Vault — JARVIS OS

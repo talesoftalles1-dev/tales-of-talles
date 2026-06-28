@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: index
 status: canonico
 titulo: Master Index — JARVIS OS Central Registry

@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: habito
 status: ativo
 frequencia: <% tp.system.prompt("Frequência (diario/semanal)", "diario") %>

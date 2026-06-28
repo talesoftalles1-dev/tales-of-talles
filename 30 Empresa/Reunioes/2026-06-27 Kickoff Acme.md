@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: reuniao
 status: realizada
 data: 2026-06-27

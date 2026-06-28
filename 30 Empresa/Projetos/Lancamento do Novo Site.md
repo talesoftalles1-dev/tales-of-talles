@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: projeto
 status: ativo
 area: empresa

@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Executive Assistant — Agent Contract

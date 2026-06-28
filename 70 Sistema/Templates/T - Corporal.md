@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: corporal
 data: <% tp.date.now("YYYY-MM-DD") %>
 peso_kg: <% tp.system.prompt("Peso (kg)", "77") %>

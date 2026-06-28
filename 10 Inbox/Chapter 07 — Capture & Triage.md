@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 aliases:
   - "Capture & Triage"
 tipo: chapter

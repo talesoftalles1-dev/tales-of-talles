@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: doc
 status: rascunho
 categoria: <% tp.system.prompt("Categoria do documento") %>

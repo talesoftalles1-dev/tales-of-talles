@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: nutricao
 status: parcial
 data: <% tp.date.now("YYYY-MM-DD") %>

@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: habito
 status: ativo
 frequencia: diario
