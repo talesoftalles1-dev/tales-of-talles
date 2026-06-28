@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "CRM Data Model"
 tipo: chapter

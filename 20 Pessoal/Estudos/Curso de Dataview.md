@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: estudo
 status: estudando
 disciplina: Obsidian

@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Billing & Forecasting"
 tipo: chapter

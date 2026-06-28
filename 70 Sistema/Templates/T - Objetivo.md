@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: objetivo
 nivel: <% tp.system.prompt("Nível (objetivo = qualitativo / meta = mensurável)", "objetivo") %>
 status: ativo

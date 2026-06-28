@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: checklist
 status: ativo
 contexto: <% tp.system.prompt("Contexto de uso (ex: onboarding cliente, viagem, publicação)") %>

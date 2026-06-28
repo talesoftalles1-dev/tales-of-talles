@@ -1,4 +1,5 @@
 ---
+dominio: talles
 tipo: projeto
 status: ativo
 area: pessoal

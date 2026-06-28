@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: nota
 status: ativo
 criado: 2026-06-27

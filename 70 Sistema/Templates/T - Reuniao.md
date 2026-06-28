@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: reuniao
 status: agendada
 data: <% tp.date.now("YYYY-MM-DD") %>

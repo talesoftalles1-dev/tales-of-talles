@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 aliases:
   - "Vault Structure & Dataviews"
 tipo: chapter

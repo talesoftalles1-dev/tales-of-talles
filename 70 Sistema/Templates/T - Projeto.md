@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: projeto
 status: ativo
 area: <% tp.system.prompt("Área do projeto (pessoal | empresa)", "pessoal") %>

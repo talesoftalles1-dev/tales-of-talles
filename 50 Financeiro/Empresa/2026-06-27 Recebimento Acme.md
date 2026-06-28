@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: lancamento
 data: 2026-06-27
 valor: 6000

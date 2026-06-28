@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: prompt
 status: ativo
 modelo: <% tp.system.prompt("Modelo alvo (ex: Claude Opus, GPT-4o, Gemini)", "Claude Opus") %>

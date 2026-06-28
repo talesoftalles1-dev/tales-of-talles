@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: ideia
 status: nova
 area: <% tp.system.prompt("Área (pessoal/empresa)", "pessoal") %>

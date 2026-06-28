@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: treino
 status: feito
 data: <% tp.date.now("YYYY-MM-DD") %>

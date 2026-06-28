@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 aliases:
   - "Automations & n8n Bridge"
 tipo: chapter

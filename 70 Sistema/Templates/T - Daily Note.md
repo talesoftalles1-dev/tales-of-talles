@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: diario
 data: <% tp.date.now("YYYY-MM-DD") %>
 humor: <% tp.system.prompt("Humor (1-5)", "3") %>

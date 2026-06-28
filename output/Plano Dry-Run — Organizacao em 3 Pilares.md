@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: output
 status: ativo
 titulo: Plano Dry-Run — Organização em 3 Pilares (JARVIS / YALT / TALLES)

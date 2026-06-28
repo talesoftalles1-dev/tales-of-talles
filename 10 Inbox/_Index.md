@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: index
 status: referenciado
 area: 10 Inbox

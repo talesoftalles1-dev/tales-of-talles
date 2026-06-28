@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: sistema
 status: ativo
 criado: 2026-06-27
@@ -119,6 +120,7 @@ Toda nota de conteúdo carrega a **base comum** + as específicas do `tipo`.
 | `tipo` | text | discriminador — ver tabela abaixo |
 | `status` | text | depende do tipo |
 | `area` | text | `pessoal` \| `empresa` (quando aplicável) |
+| `dominio` | text | `jarvis` \| `yalt` \| `talles` — pilar do vault (sistema / empresa / pessoal); fonte dos MOCs e dos grupos de cor do graph. Default por pasta, override por nota. |
 | `criado` | date | `YYYY-MM-DD` |
 | `atualizado` | date | `YYYY-MM-DD` |
 | `tags` | list | temas transversais (ver taxonomia) |

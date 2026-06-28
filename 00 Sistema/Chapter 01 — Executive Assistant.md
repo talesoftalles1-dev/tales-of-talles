@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 aliases:
   - "Executive Assistant"
 tipo: chapter
