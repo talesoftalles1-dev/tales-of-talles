@@ -1,0 +1,8 @@
+# Ignorar envs e arquivos locais do Vault (local-first)
+wiki/.env
+wiki/.obsidian/
+wiki/.obsidian/plugins/
+wiki/.obsidian/appearance.json
+.vscode/
+*.sqlite
+*.db
