@@ -1,0 +1,95 @@
+{
+  "name": "TALES · Ilia (Striking)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "30b823f7-dd8b-4a0f-be6a-443efb133214",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "d059e384-6b4a-4845-b721-a0ef777f70d1",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-ilia",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "7789688e-4189-441b-9117-10bcaaa1aeb8",
+      "name": "Ilia",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "\nconst b = ($input.first() && $input.first().json && $input.first().json.body) || {};\nconst wo = (b.workout || 'Peito').toString();\nconst streak = Number(b.streak) || 0;\nconst S = {\n  Costas: 'Costas e biceps puxam: hoje constroi o clinch e o controlo. No saco, gancho de retorno ao sair do agarrao.',\n  Peito: 'Peito e ombro empurram: e o teu direto e cruzado. Hoje, 1-2 seco e reto, sem telegrafar.',\n  Pernas: 'A forca do soco nasce do chao. Pernas hoje = base e explosao. Trabalha footwork e entradas.',\n  Potencia: 'Dia de potencia: quadril e cadeia posterior, o que da o nocaute. No saco, cruzado pesado com giro total.',\n  Recup: 'Recuperacao: hoje a luta e tecnica. Sombra limpa, guarda perfeita, retorno rapido.'\n};\nlet msg = S[wo] || ('Treino de hoje: ' + wo + '. Tudo o que fazes no ginasio vira soco, guarda ou base. Leva a serio.');\nif (streak >= 5) msg += ' ' + streak + ' dias seguidos — e disto que se faz um lutador.';\nreturn [{ json: { coach: 'ILIA', flag: 'FOCO', msg, workout: wo } }];\n"
+      }
+    },
+    {
+      "id": "bdcd4deb-95cc-436b-8f78-44e2128983cb",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Ilia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ilia": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Agente Ilia: treino->boxe e foco do dia. Sem credenciais."
+}

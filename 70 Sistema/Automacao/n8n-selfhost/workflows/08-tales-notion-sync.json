@@ -1,0 +1,166 @@
+{
+  "name": "TALES · Sync Notion (Diário do Camp)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "1386653b-b119-4233-9b11-1e872d843705",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "50ba04b9-9dcc-41d6-b963-a79ef3eb7de0",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-notion-sync",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "e2620870-ce58-4fae-9c25-19b08313ba82",
+      "name": "Diário do Camp",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "authentication": "apiKey",
+        "databaseId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "405d06f8-df2b-402a-966e-a06dd9ae79e1"
+        },
+        "title": "=Dia {{ $json.body.dia || 1 }} · {{ $json.body.workout || \"Treino\" }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Destaque|rich_text",
+              "type": "rich_text",
+              "richText": false,
+              "textContent": "={{ $json.body.destaque || \"\" }}"
+            },
+            {
+              "key": "Data|date",
+              "type": "date",
+              "range": false,
+              "includeTime": false,
+              "date": "={{ $json.body.data || $now.toISODate() }}"
+            },
+            {
+              "key": "Readiness|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.readiness) || 0 }}"
+            },
+            {
+              "key": "Streak|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.streak) || 0 }}"
+            },
+            {
+              "key": "XP|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.xp) || 0 }}"
+            },
+            {
+              "key": "Exercícios|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.exercicios) || 0 }}"
+            },
+            {
+              "key": "Séries|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.series) || 0 }}"
+            },
+            {
+              "key": "Volume (kg)|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.volume) || 0 }}"
+            },
+            {
+              "key": "Refeições|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.refeicoes) || 0 }}"
+            },
+            {
+              "key": "Peso (kg)|number",
+              "type": "number",
+              "numberValue": "={{ Number($json.body.peso) || 0 }}"
+            }
+          ]
+        }
+      },
+      "credentials": {
+        "notionApi": {
+          "name": "Notion API"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "id": "97efcdac-e2db-46ff-ad68-99b6a9f6cb7f",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, url: $json.url } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Diário do Camp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Diário do Camp": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Resumo do dia -> cria pagina no Notion. Requer credencial \"Notion API\"."
+}
