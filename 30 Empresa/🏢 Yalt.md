@@ -93,6 +93,18 @@ hide task count
 
 ---
 
+## 🗂️ Todo o domínio YALT (`dominio = "yalt"`)
+
+> Índice completo do pilar, dirigido pela propriedade canônica `dominio` (não por pasta nem palavra-chave).
+
+```dataview
+TABLE WITHOUT ID file.link AS "Nota", tipo AS "Tipo", status AS "Status"
+WHERE dominio = "yalt"
+SORT tipo ASC, file.name ASC
+```
+
+---
+
 ## Navegação
 
 - 🤖 Dashboard principal: [[🤖 JARVIS]]
