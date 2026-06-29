@@ -32,15 +32,15 @@ raw/                      → o Operador manda: dump universal, captura bruta
 
 wiki/                     → a IA organiza: domínio estruturado e auto-maintained
   _master-index.md        → índice soberano da memória operacional
-  ai-agents/              → prompts, contratos e rotinas dos agentes
+  ai_agents/              → prompts, contratos e rotinas dos agentes
   areas/                  → contextos perenes
   projects/               → iniciativas ativas e dependências
   knowledge/              → conceitos e notas consolidadas
 
 output/                   → o sistema entrega: compilação limpa e descartável
   daily_dashboard.md      → painel diário limpo
-  query-results.md        → resultados automáticos de Dataview/Tasks
-  slide-decks/            → relatórios e apresentações exportáveis
+  query_results.md        → resultados automáticos de Dataview/Tasks
+  slide_decks/            → relatórios e apresentações exportáveis
 ```
 
 ```mermaid
@@ -50,7 +50,7 @@ graph TD
 
     subgraph W["wiki/ - Domínio da IA"]
         B --> B1["_master-index.md"]
-        B1 --> B2["ai-agents/"]
+        B1 --> B2["ai_agents/"]
         B1 --> B3["projects/"]
         B1 --> B4["knowledge/"]
     end
