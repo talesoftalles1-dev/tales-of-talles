@@ -1,0 +1,152 @@
+{
+  "name": "TALES · Visão (Ilia/Cariani)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "daeed0f0-8b62-4519-be88-ae0f6e2b908e",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "b7f58af0-78c6-415f-97da-623ebb3cf988",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-vision",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "4220eb27-7d08-49c8-99da-f9c31e46ec49",
+      "name": "Montar payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "\nconst b = ($input.first() && $input.first().json && $input.first().json.body) || {};\nconst content = [{ type: 'text', text: String(b.prompt || 'Descreve a imagem em JSON.') }];\n(b.images || []).forEach(im => { if (im && im.media_type && im.data) content.push({ type: 'image', source: { type: 'base64', media_type: im.media_type, data: im.data } }); });\nreturn [{ json: { payload: { model: 'claude-sonnet-4-20250514', max_tokens: Number(b.max_tokens) || 500, messages: [{ role: 'user', content }] } } }];\n"
+      }
+    },
+    {
+      "id": "5b38573a-d875-4105-b4f0-201ace310017",
+      "name": "Claude Vision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.payload }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 30000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "name": "Anthropic x-api-key"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "id": "01ecd276-6102-4c93-aa95-ac7f51a33e24",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Montar payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar payload": {
+      "main": [
+        [
+          {
+            "node": "Claude Vision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Vision": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Visao generica (prompt+imagens -> Claude). Requer credencial Header Auth \"Anthropic x-api-key\"."
+}

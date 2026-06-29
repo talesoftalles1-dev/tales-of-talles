@@ -1,0 +1,95 @@
+{
+  "name": "TALES · Sanji (Nutrição)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "46c0f688-602c-465b-b68b-10162b56b1b5",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "f26d69a6-6c0a-4b6b-8e83-90f9ea862f0a",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-sanji",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "147c7af7-24fc-46ac-a783-46b4112eead9",
+      "name": "Sanji",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "\nconst b = ($input.first() && $input.first().json && $input.first().json.body) || {};\nconst wo = (b.workout || 'treino').toString();\nconst mealsTotal = Number(b.mealsToday != null ? b.mealsToday : (b.mealsTotal || 0)) || 0;\nconst proteinEst = Number(b.proteinEst) || mealsTotal * 45;\nconst target = Number(b.proteinTarget) || 154;\nconst rem = Math.max(0, Math.round(target - proteinEst));\nlet flag = 'COMBUSTIVEL', msg;\nif (mealsTotal === 0) { msg = 'Ainda nao registaste refeicoes hoje. Com ' + wo + ' no plano, comer E o treino mais importante — comeca ja.'; }\nelse if (rem > 50) { msg = 'Vais em ~' + proteinEst + 'g de proteina, faltam uns ' + rem + 'g para a meta. Bulk e constancia a mesa — nao pares.'; }\nelse { flag = 'EM DIA'; msg = 'Proteina no ponto (~' + proteinEst + 'g). E assim que se recupera de um dia de ' + wo + '. Continua.'; }\nreturn [{ json: { coach: 'SANJI', flag, msg, proteinEst, rem, mealsTotal } }];\n"
+      }
+    },
+    {
+      "id": "d36c0780-9d34-42ee-a774-6d95643d98c1",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Sanji",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sanji": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Agente Sanji: feedback de nutricao. Sem credenciais."
+}
