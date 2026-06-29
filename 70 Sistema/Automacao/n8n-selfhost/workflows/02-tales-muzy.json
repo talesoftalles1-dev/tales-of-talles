@@ -1,0 +1,95 @@
+{
+  "name": "TALES · Muzy (Recuperação)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "15c57df7-99b3-4fe7-9ce4-4d1dce611fce",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "e8ff9b53-27a1-4012-9ad5-a37a7d138390",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-muzy",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "24732801-7eab-4389-b7bb-ac39a2b87ef5",
+      "name": "Muzy",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "\nconst b = ($input.first() && $input.first().json && $input.first().json.body) || {};\nconst rd = Number(b.rd != null ? b.rd : b.readiness) || 0;\nconst streak = Number(b.streak) || 0;\nconst gym = Number(b.gymThisWeek) || 0;\nconst mus = b.mus || {}; const ks = Object.keys(mus);\nlet avgFat = Number(b.avgFat);\nif (isNaN(avgFat) && ks.length) { avgFat = ks.reduce((a, k) => a + Number((mus[k] && mus[k].f) || 0), 0) / ks.length; }\navgFat = Math.round(avgFat || 0);\nconst band = rd >= 75 ? 'otima' : rd >= 55 ? 'adequada' : rd >= 40 ? 'comprometida' : 'critica';\nlet flag = 'DADOS', msg;\nif (band === 'critica') { flag = 'RECUPERAR'; msg = 'Prontidao critica em ' + rd + '%. Hoje o melhor treino e dormir e comer — forcar agora atrasa-te.'; }\nelse if (avgFat > 65) { flag = 'DELOAD'; msg = 'Fadiga media em ' + avgFat + '% — corpo a pedir semana leve. Deload nao e fraqueza, e estrategia.'; }\nelse if (band === 'otima' && streak >= 3) { flag = 'JANELA'; msg = 'Prontidao ' + rd + '% e ' + streak + ' dias seguidos. Janela para puxar pesado — da para bater PR.'; }\nelse { msg = 'Recuperacao ' + band + ' (' + rd + '%). Da para treinar com qualidade, sem heroismo. ' + gym + ' estimulos esta semana.'; }\nreturn [{ json: { coach: 'MUZY', flag, msg, readiness: rd, avgFat, band } }];\n"
+      }
+    },
+    {
+      "id": "7a0ebc1f-b4fb-47e1-a79e-0ac57dac988c",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Muzy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Muzy": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Agente Muzy: veredito de recuperacao/carga. Sem credenciais."
+}
