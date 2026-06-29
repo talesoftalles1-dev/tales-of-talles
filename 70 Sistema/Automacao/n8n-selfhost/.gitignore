@@ -1,0 +1,4 @@
+# Segredos e dados — nunca comitar
+.env
+n8n-data/
+*.log
