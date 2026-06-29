@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: runbook
 status: draft
 categoria: operations

@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Budgets & KPIs"
 tipo: chapter

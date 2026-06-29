@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 aliases:
   - "Prioritization Formula"
 tipo: chapter

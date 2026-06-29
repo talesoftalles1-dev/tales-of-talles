@@ -1,21 +1,21 @@
 ---
-tipo: inbox
-status: active
-titulo: Universal Inbox
+dominio: jarvis
+tipo: nota
+status: nova
 criado: 2026-06-27
 atualizado: 2026-06-27
 tags:
-  - inbox
-  - raw
-  - capture
+  - captura
 ---
 
-# Inbox
+# 📥 Inbox Bruto
 
-> Drop anything here. Voice transcriptions, quick ideas, links, tasks, random
-> thoughts. No formatting required. The Executive Assistant processes this daily.
+Área de despejo humano. Cole aqui transcrições, pensamentos soltos, recortes rápidos e notas de voz.
 
----
+## Capturas pendentes
 
-<!-- New entries below this line -->
+- 
 
+## Processado
+
+Itens só entram aqui depois que o Executive Assistant materializar a informação em `wiki/` e atualizar `wiki/_master-index.md`.

@@ -1,4 +1,5 @@
 ---
+dominio: talles
 aliases:
   - "Training Logs"
 tipo: chapter

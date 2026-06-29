@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 tipo: index
 status: referenciado
 area: 40 CRM

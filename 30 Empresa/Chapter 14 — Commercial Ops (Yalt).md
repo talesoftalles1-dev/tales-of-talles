@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Commercial Ops (Yalt)"
 tipo: chapter
