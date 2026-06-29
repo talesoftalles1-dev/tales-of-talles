@@ -110,6 +110,18 @@ hide task count
 
 ---
 
+## 🗂️ Todo o domínio TALLES (`dominio = "talles"`)
+
+> Índice completo do pilar pessoal, dirigido pela propriedade canônica `dominio`.
+
+```dataview
+TABLE WITHOUT ID file.link AS "Nota", tipo AS "Tipo", status AS "Status"
+WHERE dominio = "talles"
+SORT tipo ASC, file.name ASC
+```
+
+---
+
 ## Navegação
 
 - 🤖 Dashboard principal: [[🤖 JARVIS]]
