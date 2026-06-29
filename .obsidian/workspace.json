@@ -1,0 +1,248 @@
+{
+  "main": {
+    "id": "86d60cd7aa449131",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a31a9dbf0f7388c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "24232bf4f5cb2e75",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "raw/clips/_README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bf2e8c9c782b6405",
+    "type": "split",
+    "children": [
+      {
+        "id": "478d7323c1c609c5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c44f872f4336de73",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "0c7def7dab678a8e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "d83cf5037b3b7632",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "beb38b7cba0d4ce1",
+    "type": "split",
+    "children": [
+      {
+        "id": "641ea8855118d225",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "48e174118d2621dc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "00 JARVIS/🤖 JARVIS.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos para 🤖 JARVIS"
+            }
+          },
+          {
+            "id": "1c295f71e6235936",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "00 JARVIS/🤖 JARVIS.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída para 🤖 JARVIS"
+            }
+          },
+          {
+            "id": "035766c4717c4613",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "96e7d5ecd4822ce0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "958ac3b8ae4f9c34",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "00 JARVIS/🤖 JARVIS.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário de 🤖 JARVIS"
+            }
+          },
+          {
+            "id": "4a8a1965154061d4",
+            "type": "leaf",
+            "state": {
+              "type": "footnotes",
+              "state": {},
+              "icon": "lucide-file-signature",
+              "title": "Notas de rodapé"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
+      "workspaces:Gerenciar leiautes da área de trabalho": false,
+      "zk-prefixer:Criar nova nota única": false,
+      "markdown-importer:Abrir importador Markdown": false,
+      "audio-recorder:Começar/parar a gravação de áudio": false,
+      "random-note:Abrir nota aleatória": false,
+      "publish:Publicar mudanças": false
+    }
+  },
+  "active": "24232bf4f5cb2e75",
+  "lastOpenFiles": [
+    "output/Plano Dry-Run — Organizacao em 3 Pilares.md",
+    "output/Plano Dry-Run — Organizacao em 3 Pilares.md.tmp.36136.0b8cca1b0d4a",
+    "40 CRM/Chapter 19 — Outreach & ESP Strategy.md",
+    "40 CRM/Chapter 18 — Sync & MCP Contracts.md",
+    "40 CRM/Chapter 17 — CRM Data Model.md",
+    "40 CRM/🤝 CRM.md",
+    "Sem título.base",
+    "raw/clips/_README.md",
+    "Sem título.md",
+    "Sem título 1",
+    "Sem título",
+    "raw/inbox.md",
+    "70 Sistema/🔌 Plugins.md",
+    "Recording 20260627141753.m4a",
+    "CLAUDE.md",
+    "60 Conhecimento/IA/Prompts/Resumir Reuniao.md",
+    "60 Conhecimento/IA/Agentes JARVIS.md",
+    "30 Empresa/Chapter 15 — Partnerships & Legal.md",
+    "30 Empresa/Chapter 14 — Commercial Ops (Yalt).md",
+    "30 Empresa/Chapter 13 — Projects & Releases.md",
+    "30 Empresa/🏢 Yalt.md",
+    "00 JARVIS/🤖 JARVIS.md",
+    "70 Sistema/Automacao/🔌 Ponte APEX ↔ JARVIS.md",
+    "20 Pessoal/🩺 Saúde & Performance.md",
+    "AGENTS.md",
+    "wiki/ai_agents/prompt_arquiteto_vault.md",
+    "wiki/ai_agents/executive_assistant.md",
+    "wiki/_master_index.md",
+    "output/query_results.md",
+    "output/migration_report.md",
+    "CONSTITUTION.md",
+    "70 Sistema/Automacao/executive-assistant/run.ps1",
+    "70 Sistema/Automacao/executive-assistant/logs/2026-06-28.log",
+    "70 Sistema/Automacao/executive-assistant/logs",
+    "70 Sistema/Automacao/executive-assistant/dashboard.mjs",
+    "70 Sistema/Automacao/executive-assistant",
+    "00 JARVIS/🗺️ Mapa do Sistema.canvas",
+    "Sem título 1.canvas",
+    "Sem título 3.canvas",
+    "Sem título 2.canvas",
+    "Sem título 4.canvas",
+    "Sem título.canvas"
+  ]
+}

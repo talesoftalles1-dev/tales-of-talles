@@ -1,0 +1,106 @@
+{
+  "name": "JARVIS - Morning Brief Delivery → #daily",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "jarvis-morning-brief",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Morning Brief",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "jarvis-morning-brief"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "has-text",
+              "leftValue": "={{ $json.body.text }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEmpty" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-has-text",
+      "name": "Tem conteúdo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "={{ $json.body.channel || '#daily' }}"
+        },
+        "text": "={{ $json.body.text }}",
+        "otherOptions": {}
+      },
+      "id": "slack-post",
+      "name": "Slack #daily",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [440, -80],
+      "credentials": {
+        "slackApi": {
+          "id": "REPLACE_WITH_YOUR_SLACK_CREDENTIAL_ID",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: true, delivered: true, date: $json.body.date } }}",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [660, -80]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { ok: false, error: 'empty text' } }}",
+        "options": { "responseCode": 400 }
+      },
+      "id": "respond-empty",
+      "name": "Respond Empty",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [440, 100]
+    }
+  ],
+  "connections": {
+    "Webhook Morning Brief": {
+      "main": [[{ "node": "Tem conteúdo?", "type": "main", "index": 0 }]]
+    },
+    "Tem conteúdo?": {
+      "main": [
+        [{ "node": "Slack #daily", "type": "main", "index": 0 }],
+        [{ "node": "Respond Empty", "type": "main", "index": 0 }]
+      ]
+    },
+    "Slack #daily": {
+      "main": [[{ "node": "Respond OK", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "description": "Workflow ADITIVO — recebe brief do script local e posta no #daily. Importar inativo, testar, ativar."
+  }
+}

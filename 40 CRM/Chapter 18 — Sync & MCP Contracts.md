@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Sync & MCP Contracts"
 tipo: chapter

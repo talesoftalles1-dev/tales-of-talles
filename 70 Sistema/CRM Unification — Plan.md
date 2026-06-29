@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: plano
 status: rascunho
 categoria: sistema

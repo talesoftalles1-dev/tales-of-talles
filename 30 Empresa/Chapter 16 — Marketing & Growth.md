@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Marketing & Growth"
 tipo: chapter

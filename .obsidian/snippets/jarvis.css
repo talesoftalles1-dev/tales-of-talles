@@ -1,0 +1,597 @@
+/* =====================================================================
+   JARVIS — Snippet visual premium
+   Aparência de software (Apple / Linear / Raycast) para o vault Obsidian.
+   ---------------------------------------------------------------------
+   COMO ATIVAR: Config > Aparência > CSS snippets > recarregar > ligar "jarvis".
+   Documentação completa: 70 Sistema/🎨 Tema e Visual.md
+   ---------------------------------------------------------------------
+   PRINCÍPIO DE SEGURANÇA: o visual escuro/premium é aplicado APENAS via
+   classes próprias e callouts custom (data-callout). Refinamentos globais
+   usam variáveis nativas do tema, então NÃO quebram temas claros.
+   ===================================================================== */
+
+/* =====================================================================
+   1. VARIÁVEIS DA MARCA  (:root)
+   Tokens de cor da marca JARVIS. Usados só pelos componentes próprios.
+   ===================================================================== */
+:root {
+  /* Fundos e superfícies */
+  --jarvis-bg:            #0B0E14;  /* quase preto azulado */
+  --jarvis-surface:       #11151F;  /* superfície dos cards */
+  --jarvis-surface-2:     #161B27;  /* superfície elevada / hover */
+
+  /* Accent primário (ciano JARVIS) */
+  --jarvis-accent:        #22D3EE;
+  --jarvis-accent-soft:   #36C5F0;
+  --jarvis-accent-rgb:    34, 211, 238;   /* p/ rgba() em glows */
+
+  /* Accent secundário e estados */
+  --jarvis-amber:         #F5A524;  /* alerta / destaque */
+  --jarvis-success:       #22C55E;
+  --jarvis-danger:        #EF4444;
+
+  /* Texto */
+  --jarvis-text:          #E6EDF3;
+  --jarvis-text-muted:    #8B98A9;
+
+  /* Bordas, raios e sombras (geometria premium) */
+  --jarvis-border:        rgba(255, 255, 255, 0.07);
+  --jarvis-border-strong: rgba(255, 255, 255, 0.12);
+  --jarvis-radius:        12px;
+  --jarvis-radius-sm:     8px;
+  --jarvis-shadow:        0 1px 2px rgba(0, 0, 0, 0.25),
+                          0 8px 24px rgba(0, 0, 0, 0.35);
+  --jarvis-glow:          0 0 0 1px rgba(var(--jarvis-accent-rgb), 0.35),
+                          0 10px 30px rgba(var(--jarvis-accent-rgb), 0.18);
+  --jarvis-ease:          cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =====================================================================
+   2. CALLOUT [!card]  →  data-callout="card"
+   Card premium: superfície escura, borda sutil, raio 12px, sombra suave.
+   No hover sobe 2px e ganha glow ciano (sensação de elemento "vivo").
+   ===================================================================== */
+.callout[data-callout="card"] {
+  background: var(--jarvis-surface);
+  border: 1px solid var(--jarvis-border);
+  border-radius: var(--jarvis-radius);
+  padding: 16px 18px;
+  margin: 12px 0;
+  box-shadow: var(--jarvis-shadow);
+  color: var(--jarvis-text);
+  /* mix-blend desligado; transição suave de elevação e brilho */
+  transition: transform 180ms var(--jarvis-ease),
+              box-shadow 180ms var(--jarvis-ease),
+              border-color 180ms var(--jarvis-ease);
+}
+
+/* Realce no hover: translateY -2px + glow ciano */
+.callout[data-callout="card"]:hover {
+  transform: translateY(-2px);
+  border-color: var(--jarvis-border-strong);
+  box-shadow: var(--jarvis-glow);
+}
+
+/* Título do card: compacto, acento sutil no ícone */
+.callout[data-callout="card"] > .callout-title {
+  padding: 0;
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--jarvis-text);
+}
+.callout[data-callout="card"] > .callout-title .callout-icon svg {
+  color: var(--jarvis-accent);
+  stroke: var(--jarvis-accent);
+}
+.callout[data-callout="card"] > .callout-content {
+  color: var(--jarvis-text-muted);
+}
+.callout[data-callout="card"] > .callout-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================================================================
+   3. CALLOUT [!grid]  →  data-callout="grid"
+   Transforma os callouts FILHOS em grid responsivo.
+   O próprio [!grid] perde fundo, borda e ícone — vira só um container.
+   ===================================================================== */
+.callout[data-callout="grid"] {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 12px 0;
+}
+/* Esconde o título/ícone do container grid (quando vazio) */
+.callout[data-callout="grid"] > .callout-title:empty,
+.callout[data-callout="grid"] > .callout-title:has(.callout-title-inner:empty) {
+  display: none;
+}
+
+/* O conteúdo do grid vira a malha responsiva */
+.callout[data-callout="grid"] > .callout-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 0;
+}
+
+/* Callouts filhos dentro do grid: margem zerada (o gap cuida do espaço) */
+.callout[data-callout="grid"] > .callout-content > .callout {
+  margin: 0;
+  height: 100%;
+}
+
+/* =====================================================================
+   4. CALLOUT [!jarvis]  →  data-callout="jarvis"
+   Faixa de destaque com gradiente ciano sutil e barra esquerda accent.
+   Ideal para avisos do sistema, dicas do assistente, banners do dashboard.
+   ===================================================================== */
+.callout[data-callout="jarvis"] {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--jarvis-accent-rgb), 0.14) 0%,
+    rgba(var(--jarvis-accent-rgb), 0.04) 60%,
+    transparent 100%
+  );
+  border: 1px solid rgba(var(--jarvis-accent-rgb), 0.22);
+  border-left: 3px solid var(--jarvis-accent);
+  border-radius: var(--jarvis-radius);
+  padding: 14px 18px;
+  margin: 14px 0;
+  color: var(--jarvis-text);
+  box-shadow: 0 6px 20px rgba(var(--jarvis-accent-rgb), 0.08);
+}
+.callout[data-callout="jarvis"] > .callout-title {
+  color: var(--jarvis-accent);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.callout[data-callout="jarvis"] > .callout-title .callout-icon svg {
+  color: var(--jarvis-accent);
+  stroke: var(--jarvis-accent);
+}
+.callout[data-callout="jarvis"] > .callout-content {
+  color: var(--jarvis-text);
+}
+
+/* =====================================================================
+   4.1 CALLOUTS DE COR  →  [!cyan] e [!amber]
+   Variantes de destaque usadas nos MOCs (faixas ciano e âmbar).
+   ===================================================================== */
+.callout[data-callout="cyan"] {
+  --callout-color: var(--jarvis-accent-rgb);
+  --callout-icon: lucide-sparkles;
+  background: rgba(var(--jarvis-accent-rgb), 0.07);
+  border: 1px solid rgba(var(--jarvis-accent-rgb), 0.20);
+  border-left: 3px solid var(--jarvis-accent);
+  border-radius: var(--jarvis-radius);
+}
+.callout[data-callout="cyan"] > .callout-title { color: var(--jarvis-accent); }
+.callout[data-callout="cyan"] > .callout-title .callout-icon svg {
+  color: var(--jarvis-accent); stroke: var(--jarvis-accent);
+}
+.callout[data-callout="amber"] {
+  --callout-color: 245, 165, 36;
+  --callout-icon: lucide-alert-triangle;
+  background: rgba(245, 165, 36, 0.08);
+  border: 1px solid rgba(245, 165, 36, 0.25);
+  border-left: 3px solid var(--jarvis-amber);
+  border-radius: var(--jarvis-radius);
+}
+.callout[data-callout="amber"] > .callout-title { color: var(--jarvis-amber); }
+.callout[data-callout="amber"] > .callout-title .callout-icon svg {
+  color: var(--jarvis-amber); stroke: var(--jarvis-amber);
+}
+
+/* =====================================================================
+   5. METRIC CARDS  —  números grandes para a seção de estatísticas
+   Uso (HTML em callout/nota):
+     <div class="jarvis-metrics">
+       <div class="jarvis-metric"><span class="num">12</span><span class="label">Projetos ativos</span></div>
+       ...
+     </div>
+   Também funciona dentro de um [!grid] com [!card] filhos.
+   ===================================================================== */
+.jarvis-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+.jarvis-metric {
+  background: var(--jarvis-surface);
+  border: 1px solid var(--jarvis-border);
+  border-radius: var(--jarvis-radius);
+  padding: 16px 18px;
+  text-align: left;
+  box-shadow: var(--jarvis-shadow);
+  transition: transform 180ms var(--jarvis-ease),
+              box-shadow 180ms var(--jarvis-ease);
+}
+.jarvis-metric:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--jarvis-glow);
+}
+/* Número grande em ciano */
+.jarvis-metric .num {
+  display: block;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--jarvis-accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+/* Label menor e suave embaixo */
+.jarvis-metric .label {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--jarvis-text-muted);
+}
+/* Variantes de cor para a métrica (opcional) */
+.jarvis-metric.amber  .num { color: var(--jarvis-amber); }
+.jarvis-metric.green  .num { color: var(--jarvis-success); }
+.jarvis-metric.danger .num { color: var(--jarvis-danger); }
+
+/* =====================================================================
+   6. REFINAMENTOS GLOBAIS (seguros — usam variáveis nativas do tema)
+   Tipografia mais aerada, cantos arredondados e respiro. NÃO força cor
+   escura: respeita tema claro/escuro do usuário.
+   ===================================================================== */
+
+/* 6.1 Tipografia: linha mais aerada na área de leitura/edição */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-content {
+  line-height: 1.65;
+}
+.markdown-preview-view p,
+.markdown-rendered p {
+  margin-block: 0.7em;
+}
+
+/* 6.2 Cantos arredondados em imagens e blocos de código */
+.markdown-rendered img,
+.markdown-rendered pre,
+.markdown-source-view .HyperMD-codeblock {
+  border-radius: var(--jarvis-radius-sm);
+}
+
+/* =====================================================================
+   7. TABELAS DATAVIEW  —  header destacado + zebra
+   Aplica só às tabelas geradas pelo Dataview (.dataview / table.dataview).
+   ===================================================================== */
+.markdown-rendered table.dataview thead th,
+.block-language-dataview table thead th {
+  background: rgba(var(--jarvis-accent-rgb), 0.10);
+  color: var(--jarvis-accent);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid rgba(var(--jarvis-accent-rgb), 0.30);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+/* Zebra nas linhas pares */
+.block-language-dataview table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.025);
+}
+/* Hover de linha: leve realce ciano */
+.block-language-dataview table tbody tr:hover td {
+  background: rgba(var(--jarvis-accent-rgb), 0.06);
+}
+.block-language-dataview table td,
+.block-language-dataview table th {
+  border-color: var(--jarvis-border);
+}
+
+/* =====================================================================
+   8. CHECKBOXES DE TASKS (plugin Tasks)  —  estilizados e arredondados
+   ===================================================================== */
+.markdown-rendered input[type="checkbox"],
+.markdown-source-view input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.05em;
+  height: 1.05em;
+  border: 1.8px solid var(--jarvis-text-muted);
+  border-radius: 5px;
+  position: relative;
+  top: 0.05em;
+  cursor: pointer;
+  transition: border-color 140ms var(--jarvis-ease),
+              background-color 140ms var(--jarvis-ease),
+              box-shadow 140ms var(--jarvis-ease);
+}
+.markdown-rendered input[type="checkbox"]:hover,
+.markdown-source-view input[type="checkbox"]:hover {
+  border-color: var(--jarvis-accent);
+  box-shadow: 0 0 0 3px rgba(var(--jarvis-accent-rgb), 0.15);
+}
+/* Marcado: preenche ciano + check branco */
+.markdown-rendered input[type="checkbox"]:checked,
+.markdown-source-view input[type="checkbox"]:checked {
+  background-color: var(--jarvis-accent);
+  border-color: var(--jarvis-accent);
+}
+.markdown-rendered input[type="checkbox"]:checked::after,
+.markdown-source-view input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 0.30em;
+  top: 0.07em;
+  width: 0.28em;
+  height: 0.55em;
+  border: solid #0B0E14;
+  border-width: 0 2.2px 2.2px 0;
+  transform: rotate(45deg);
+}
+
+/* =====================================================================
+   9. SCROLLBAR FINO  —  discreto, estilo app nativo
+   ===================================================================== */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 152, 169, 0.30);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--jarvis-accent-rgb), 0.55);
+  background-clip: content-box;
+}
+
+/* =====================================================================
+   10. BOTÕES (plugin Buttons)  —  visual pill accent
+   Aplica ao botão renderizado pelo plugin Buttons (.button-default etc.).
+   ===================================================================== */
+button.button-default,
+.block-language-button button,
+.markdown-rendered .button-default {
+  background: linear-gradient(
+    135deg,
+    var(--jarvis-accent-soft) 0%,
+    var(--jarvis-accent) 100%
+  );
+  color: #06222B;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;           /* pill */
+  padding: 7px 18px;
+  box-shadow: 0 4px 14px rgba(var(--jarvis-accent-rgb), 0.30);
+  cursor: pointer;
+  transition: transform 140ms var(--jarvis-ease),
+              box-shadow 140ms var(--jarvis-ease),
+              filter 140ms var(--jarvis-ease);
+}
+button.button-default:hover,
+.block-language-button button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 6px 20px rgba(var(--jarvis-accent-rgb), 0.45);
+}
+button.button-default:active,
+.block-language-button button:active {
+  transform: translateY(0);
+  filter: brightness(0.96);
+}
+
+/* =====================================================================
+   11. POLIMENTO EXTRA (opcional, seguro)
+   Tags inline em formato pill e barra de progresso de tarefas suave.
+   ===================================================================== */
+.markdown-rendered a.tag {
+  background: rgba(var(--jarvis-accent-rgb), 0.10);
+  color: var(--jarvis-accent-soft);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 0.82em;
+  text-decoration: none;
+  border: 1px solid rgba(var(--jarvis-accent-rgb), 0.18);
+}
+.markdown-rendered a.tag:hover {
+  background: rgba(var(--jarvis-accent-rgb), 0.20);
+}
+
+/* Fim do snippet jarvis.css */
+
+/* =====================================================================
+   12. DASHBOARD DECISION-FIRST  —  .jarvis-dashboard
+   Hierarquia cognitiva: Ações → Riscos → Comercial → Hoje.
+   Reduz Time-To-Decision; estatísticas e inventário ficam muted/colapsados.
+   ===================================================================== */
+
+/* Superfície de decisão — respiro entre seções críticas */
+.jarvis-dashboard .jarvis-brief-surface {
+  margin-top: 0.5rem;
+}
+
+/* Tier 1: headings de ação — escaneáveis em <3s */
+.jarvis-dashboard .jarvis-brief-surface h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 1.75rem;
+  margin-bottom: 0.35rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid rgba(var(--jarvis-accent-rgb), 0.35);
+  color: var(--jarvis-text);
+}
+
+/* Top 3 — máximo destaque visual */
+.jarvis-dashboard .jarvis-brief-surface h2:first-of-type {
+  font-size: 1.5rem;
+  color: var(--jarvis-accent);
+  border-bottom-color: var(--jarvis-accent);
+}
+
+/* Riscos — accent âmbar no título (Prioridade 2) */
+.jarvis-dashboard .jarvis-brief-surface h2:nth-of-type(2) {
+  color: var(--jarvis-amber);
+  border-bottom-color: rgba(245, 165, 36, 0.45);
+}
+
+/* Comercial — sinal de receita visível sem scroll extra */
+.jarvis-dashboard .jarvis-brief-surface h2:nth-of-type(3) {
+  color: var(--jarvis-success);
+  border-bottom-color: rgba(34, 197, 94, 0.35);
+}
+
+/* Callouts decisórios compactos — menos padding = scan mais rápido */
+.jarvis-dashboard .jarvis-brief-surface .callout[data-callout="jarvis"] {
+  margin: 0.4rem 0 0.6rem;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  box-shadow: none;
+}
+
+.jarvis-dashboard .jarvis-brief-surface .callout[data-callout="jarvis"] > .callout-title {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Tasks na superfície — linhas mais densas, checkbox maior */
+.jarvis-dashboard .jarvis-brief-surface .task-list-item {
+  padding: 0.35rem 0;
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.jarvis-dashboard .jarvis-brief-surface .task-list-item input[type="checkbox"] {
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.45em;
+}
+
+/* Tabelas de risco/comercial — zebra mais contrastada na superfície */
+.jarvis-dashboard .jarvis-brief-surface .block-language-dataview table tbody tr:nth-child(odd) td {
+  background: rgba(var(--jarvis-accent-rgb), 0.04);
+}
+
+.jarvis-dashboard .jarvis-brief-surface .block-language-dataview table tbody tr:first-child td {
+  font-weight: 600;
+}
+
+/* Tier secundário — captura e navegação, menor peso visual */
+.jarvis-dashboard .jarvis-secondary {
+  opacity: 0.92;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--jarvis-border);
+}
+
+.jarvis-dashboard .jarvis-secondary h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--jarvis-text-muted);
+}
+
+/* Painéis colapsados — inventário e estatísticas */
+.jarvis-dashboard h2:nth-of-type(n+2):not(.jarvis-brief-surface h2) {
+  color: var(--jarvis-text-muted);
+  font-size: 1.05rem;
+}
+
+.jarvis-dashboard .callout[data-callout="note"].is-collapsed,
+.jarvis-dashboard details.callout[data-callout="note"] {
+  opacity: 0.85;
+}
+
+/* Métricas muted — referência, não decisão */
+.jarvis-metrics-muted .jarvis-metric {
+  opacity: 0.65;
+  transform: none;
+  box-shadow: none;
+}
+.jarvis-metrics-muted .jarvis-metric:hover {
+  transform: none;
+  box-shadow: none;
+}
+.jarvis-metrics-muted .jarvis-metric .num {
+  font-size: 1.5rem;
+  color: var(--jarvis-text-muted);
+}
+
+/* Esconder H1 decorativo duplicado quando já há faixa jarvis */
+.jarvis-dashboard > h1:first-child {
+  margin-bottom: 0.25rem;
+}
+
+/* Reduzir ruído: tags e metadados menores na superfície */
+.jarvis-dashboard .jarvis-brief-surface a.tag {
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+
+/* =====================================================================
+   12. HEALTH HUD — Saúde & Performance (CAMP 2026)
+   Escopo: .health-hud. Reusa tokens da marca; não afeta outras notas.
+   ===================================================================== */
+
+/* Faixa "Hoje": tabela de readiness/peso em destaque ciano */
+.health-hud .jarvis-brief-surface .callout[data-callout="cyan"] table tbody td {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--jarvis-accent);
+  text-align: center;
+}
+
+/* Grid de coaches — cards em colunas responsivas */
+.health-hud .callout[data-callout="grid"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0.6rem 0 1rem;
+}
+
+.health-hud .callout[data-callout="grid"] > .callout-title { display: none; }
+
+.health-hud .callout[data-callout="card"] {
+  background: var(--jarvis-surface);
+  border: 1px solid var(--jarvis-border);
+  border-radius: var(--jarvis-radius);
+  border-top: 2px solid rgba(var(--jarvis-accent-rgb), 0.55);
+  padding: 12px 14px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.health-hud .callout[data-callout="card"]:hover {
+  transform: translateY(-2px);
+  border-top-color: var(--jarvis-accent);
+}
+
+.health-hud .callout[data-callout="card"] > .callout-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--jarvis-text);
+}
+
+/* Títulos das seções de coach com peso de "database" */
+.health-hud h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--jarvis-border);
+  padding-bottom: 0.3rem;
+  margin-top: 1.4rem;
+}
+
+/* Mural de PRs / rumo à meta — destaque âmbar e sucesso */
+.health-hud .callout[data-callout="amber"] { border-left: 3px solid var(--jarvis-amber); }
+.health-hud .callout[data-callout="success"] strong { color: var(--jarvis-success); }

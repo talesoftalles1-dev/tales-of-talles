@@ -1,4 +1,5 @@
 ---
+dominio: jarvis
 tipo: output
 status: active
 titulo: Migration Report — Trilinear Refactoring

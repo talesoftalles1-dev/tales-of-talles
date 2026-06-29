@@ -1,4 +1,5 @@
 ---
+dominio: yalt
 aliases:
   - "Revenue Ops"
 tipo: chapter
