@@ -289,6 +289,13 @@ short mode
 > }
 > ```
 
+> [!note]- 🗂️ Todo o domínio JARVIS (`dominio = "jarvis"`)
+> ```dataview
+> TABLE WITHOUT ID file.link AS "Nota", tipo AS "Tipo", status AS "Status"
+> WHERE dominio = "jarvis"
+> SORT tipo ASC, file.name ASC
+> ```
+
 ---
 
 > [!jarvis]- 🔗 Sistema
