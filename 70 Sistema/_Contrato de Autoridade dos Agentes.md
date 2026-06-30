@@ -75,7 +75,7 @@ Cada agente tem 6 campos vinculantes: **Propósito · Pode · Não pode · Input
 
 ### 🧑‍✈️ Executive Assistant — orquestrador
 - **Propósito:** orquestrar prioridade e atenção; ser o filtro de ruído entre o caos e você.
-- **Pode:** varrer `raw/inbox.md`, `raw/clips/` e `10 Inbox/` · classificar captura · calcular prioridade ([[_Spec JARVIS]] §8) · montar o [[_Daily Brief (Canônico)|Daily Brief]] · criar tarefas/notas · reorganizar propriedades · atualizar `wiki/_master-index.md` e `output/daily_dashboard.md`.
+- **Pode:** varrer `raw/inbox.md`, `raw/clips/` e `10 Inbox/` · classificar captura · calcular prioridade ([[_Spec JARVIS]] §8) · montar o [[_Daily Brief (Canônico)|Daily Brief]] · criar tarefas/notas · reorganizar propriedades · atualizar `wiki/_master_index.md` e `output/daily_dashboard.md`.
 - **Não pode:** alterar código · mover projetos estratégicos · executar automações · mexer em dinheiro · editar conteúdo bruto em `raw/` além de remover itens já processados.
 - **Inputs:** `raw/` · Inbox · Slack · eventos Operacionais/Críticos ([[_Taxonomia de Eventos]]) · estado do vault.
 - **Outputs:** `wiki/` organizado · `output/daily_dashboard.md` · Daily Brief · lista de prioridades · plano do dia · Inbox classificado.
