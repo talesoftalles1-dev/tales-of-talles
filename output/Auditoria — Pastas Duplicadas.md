@@ -46,3 +46,6 @@ tags:
 
 ## Risco
 Baixo. Os arquivos únicos são preservados por `git mv` (não deletados); a única edição de conteúdo é alinhar o `_Spec §1.1` à Constituição (corrige drift, não muda semântica).
+
+> [!success] Atualização 2026-06-30
+> Par 1 e Par 2 já estavam consolidados antes desta revisão (executados em sessão anterior, fora desta nota). **Par 3 encontrado e resolvido agora:** `output/query-results.md` (hífen, stub sem conteúdo único) removido via `git rm`; `output/query_results.md` (underscore, com os 3 blocos Dataview reais) é o canônico. Zero wikilinks quebrados (confirmado antes da remoção). Item 4 (corrigir `_Spec JARVIS §1.1`) segue pendente — chega via sync da PR #15, que já ratificou o `_Spec` numa worktree separada (ver `jarvis-canon` na memória).
