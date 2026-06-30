@@ -95,7 +95,7 @@ function renderDashboard({ brief, inboxPending, vitals, today, criado, ranAt }) 
   L.push(`atualizado: ${today}`);
   L.push("relacionado:");
   L.push('  - "[[_Daily Brief (Canônico)]]"');
-  L.push('  - "[[_master-index]]"');
+  L.push('  - "[[_master_index]]"');
   L.push("tags:");
   L.push("  - tema/ia");
   L.push("---");
@@ -103,7 +103,7 @@ function renderDashboard({ brief, inboxPending, vitals, today, criado, ranAt }) 
   L.push("# Daily Dashboard");
   L.push("");
   L.push("> Arquivo de entrega gerada. Pode ser sobrescrito pelo Executive Assistant.");
-  L.push("> Fonte de verdade: propriedades nas notas do vault + `wiki/_master-index.md`. Este arquivo é visão, não memória.");
+  L.push("> Fonte de verdade: propriedades nas notas do vault + `wiki/_master_index.md`. Este arquivo é visão, não memória.");
   L.push(`> Última compilação: ${ranAt} · gerado por \`70 Sistema/Automacao/executive-assistant/dashboard.mjs\``);
   L.push("");
 
@@ -153,7 +153,7 @@ function renderDashboard({ brief, inboxPending, vitals, today, criado, ranAt }) 
   } else {
     L.push(`**${inboxPending}** ${inboxPending === 1 ? "captura aguarda" : "capturas aguardam"} triagem em \`raw/inbox.md\`.`);
     L.push("");
-    L.push("> Rode uma sessão interativa do **Executive Assistant** para materializar em `wiki/` e atualizar `wiki/_master-index.md`. A triagem de capturas livres exige raciocínio (LLM) e não roda no agendamento.");
+    L.push("> Rode uma sessão interativa do **Executive Assistant** para materializar em `wiki/` e atualizar `wiki/_master_index.md`. A triagem de capturas livres exige raciocínio (LLM) e não roda no agendamento.");
   }
   L.push("");
 
