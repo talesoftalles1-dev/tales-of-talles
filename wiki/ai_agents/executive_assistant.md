@@ -130,7 +130,7 @@ When the EA encounters domain-specific items, it dispatches to specialist agents
 
 ## Dependencies
 
-- `CONSTITUTION.md` — governance rules
+- `70 Sistema/_Spec JARVIS.md` — canon estrutural (governança §10–§13) · `_Contrato de Autoridade dos Agentes.md` — autoridade do EA
 - `wiki/_master_index.md` — navigation map
 - Priority formula weights — stored in EA config or frontmatter
 - Specialist agents — for dispatched routing

@@ -43,7 +43,7 @@ output/           entregas geradas
 
 - **Capturar** ideia/tarefa → dump novo vai para `raw/inbox.md`; captura estruturada legada pode continuar em `10 Inbox/` com `#captura`.
 - **Criar nota estruturada** → use o template correspondente em `70 Sistema/Templates/` e preencha as propriedades do contrato.
-- **Organizar por IA** → leia `raw/`, escreva em `wiki/`, atualize `wiki/_master-index.md`.
+- **Organizar por IA** → leia `raw/`, escreva em `wiki/`, atualize `wiki/_master_index.md`.
 - **Entregar visão** → escreva compilações em `output/`; não use `output/` como memória canônica.
 - **Responder consulta** → leia o Dashboard / MOC da área, depois as notas; filtre por propriedade.
 - **Navegação** é sempre via `00 JARVIS/🤖 JARVIS.md` (Dashboard) e MOCs de área — nunca dependa de abrir pastas.

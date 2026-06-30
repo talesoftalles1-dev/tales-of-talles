@@ -1,9 +1,10 @@
 ---
 tipo: governance
-status: canonico
-titulo: CONSTITUTION — JARVIS OS Trilinear Architecture
+status: arquivado
+superseded_por: "[[_Spec JARVIS]]"
+titulo: CONSTITUTION — JARVIS OS Trilinear Architecture (SUPERSEDED)
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-06-30
 aliases:
   - Constitution
   - Trilinear Constitution
@@ -15,13 +16,18 @@ tags:
   - trilinear
 ---
 
-# CONSTITUTION.md — JARVIS OS Governance
+# CONSTITUTION.md — JARVIS OS Governance ⛔ SUPERSEDED
 
-> This document supersedes and absorbs the structural governance previously
-> defined in `AGENTS.md`. The canonicity rules in `AGENTS.md` (C1 app, C2
-> Morning Brief) remain valid and are referenced here — not duplicated.
+> [!danger] Documento superseded (2026-06-30)
+> Este documento **não é mais canônico**. O canon estrutural do JARVIS é o [[_Spec JARVIS]] (PT-BR), complementado por [[_Contrato de Autoridade dos Agentes]], [[🪐 Constituição JARVIS]], [[_Arquitetura JARVIS]] e [[_Taxonomia de Eventos]]. Navegação: [[_master_index]].
+>
+> **Motivo:** este arquivo (inglês) duplicava a governança que o conjunto PT-BR já define, e seu modelo de dados (`contexto`) nunca foi adotado — o vault usa `area` + `dominio` (~137 notas). As 4 partes de valor único (nomenclatura, governança de migração, regras anti-bifurcação, tabela de canonicidade) foram **absorvidas** em [[_Spec JARVIS]] §10–§13.
+>
+> O conteúdo abaixo é mantido como **referência histórica** (regra de migração: não deletar).
 
 ---
+
+## Conteúdo histórico (não-canônico)
 
 ## Article I — Purpose
 

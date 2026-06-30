@@ -299,4 +299,4 @@ short mode
 ---
 
 > [!jarvis]- 🔗 Sistema
-> [[wiki/_master-index|🧭 Master Index]] · [[_Morning Brief — Spec]] · [[_Morning Brief — Runbook]] · [[_UX Decision Log]] · [[_Daily Brief (Canônico)]] · [[_Canal Daily (Contrato)]] · [[Ponte n8n ↔ JARVIS]] · [[📖 Guia do Sistema]] · [[🔁 Automacoes]] · [[✅ Central de Tarefas]]
+> [[wiki/_master_index|🧭 Master Index]] · [[_Morning Brief — Spec]] · [[_Morning Brief — Runbook]] · [[_UX Decision Log]] · [[_Daily Brief (Canônico)]] · [[_Canal Daily (Contrato)]] · [[Ponte n8n ↔ JARVIS]] · [[📖 Guia do Sistema]] · [[🔁 Automacoes]] · [[✅ Central de Tarefas]]

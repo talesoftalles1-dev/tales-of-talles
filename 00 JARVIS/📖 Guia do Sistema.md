@@ -34,7 +34,7 @@ Cada peça do sistema tem sua própria página de referência. Este guia é o í
 | [[🗺️ Mapa do Sistema]] | **Canvas visual** — todas as áreas conectadas, navegação por clique |
 | [[🪐 Constituição JARVIS]] | Identidade, valores e critérios de decisão — o nível acima dos objetivos |
 | [[_Spec JARVIS]] | **Contrato** — esquema de propriedades, tipos, tags (fonte da verdade) |
-| [[wiki/_master-index|🧭 Master Index]] | **Fluxo raw → wiki → output** — índice soberano da memória operacional da IA |
+| [[wiki/_master_index|🧭 Master Index]] | **Fluxo raw → wiki → output** — índice soberano da memória operacional da IA |
 | [[_Arquitetura JARVIS]] | **Camadas + Event Bus** — como Obsidian/n8n/Slack/Claude se orquestram |
 | [[_Daily Brief (Canônico)]] | A estrutura única que o Dashboard e o Slack #daily compartilham |
 | [[_Contrato de Autoridade dos Agentes]] | **Quem decide o quê** — poderes e limites por agente (Constituição Operacional) |
@@ -202,4 +202,4 @@ Em **Configurações → Plugins da comunidade → Procurar**, instale e ative (
 ---
 
 > [!jarvis]- 🔗 Voltar ao topo do sistema
-> [[🤖 JARVIS]] · [[wiki/_master-index|🧭 Master Index]] · [[_Spec JARVIS]] · [[🔌 Plugins]] · [[🎨 Tema e Visual]] · [[📊 Biblioteca Dataview]] · [[✅ Central de Tarefas]] · [[🔁 Automacoes]]
+> [[🤖 JARVIS]] · [[wiki/_master_index|🧭 Master Index]] · [[_Spec JARVIS]] · [[🔌 Plugins]] · [[🎨 Tema e Visual]] · [[📊 Biblioteca Dataview]] · [[✅ Central de Tarefas]] · [[🔁 Automacoes]]

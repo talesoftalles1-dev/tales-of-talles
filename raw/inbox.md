@@ -18,4 +18,4 @@ tags:
 
 ## Processado
 
-Itens só entram aqui depois que o Executive Assistant materializar a informação em `wiki/` e atualizar `wiki/_master-index.md`.
+Itens só entram aqui depois que o Executive Assistant materializar a informação em `wiki/` e atualizar `wiki/_master_index.md`.
