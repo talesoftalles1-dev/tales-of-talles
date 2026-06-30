@@ -6,7 +6,7 @@ criado: 2026-06-27
 atualizado: 2026-06-28
 relacionado:
   - "[[_Daily Brief (Canônico)]]"
-  - "[[_master-index]]"
+  - "[[_master_index]]"
 tags:
   - tema/ia
 ---
@@ -14,7 +14,7 @@ tags:
 # Daily Dashboard
 
 > Arquivo de entrega gerada. Pode ser sobrescrito pelo Executive Assistant.
-> Fonte de verdade: propriedades nas notas do vault + `wiki/_master-index.md`. Este arquivo é visão, não memória.
+> Fonte de verdade: propriedades nas notas do vault + `wiki/_master_index.md`. Este arquivo é visão, não memória.
 > Última compilação: 2026-06-28T10:00:29.041Z · gerado por `70 Sistema/Automacao/executive-assistant/dashboard.mjs`
 
 ## 🎯 Hoje
