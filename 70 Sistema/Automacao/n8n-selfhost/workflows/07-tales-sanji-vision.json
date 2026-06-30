@@ -1,0 +1,126 @@
+{
+  "name": "TALES · Sanji lê a nota (Vision)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "d65c2e9e-3525-43a2-97c9-326dbf8c2c57",
+      "name": "App → Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "ab0f11fd-02f8-4d10-b040-69e0e8c3fc1c",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-sanji-vision",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "6a307555-f8be-4eaa-a6e9-87c6d2e2b334",
+      "name": "Claude Vision",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "specifyHeaders": "keypair",
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ { model: 'claude-sonnet-4-20250514', max_tokens: 700, messages: [ { role: 'user', content: [ { type: 'text', text: 'Es o Sanji, chef e nutricionista de um atleta. Esta e a foto de um talao/nota de mercado (Portugal). Le os produtos alimentares comprados e devolve APENAS um objeto JSON valido com uma propriedade items que e uma lista de nomes simples e genericos em portugues (por exemplo frango, arroz, atum, ovos). Ignora precos, totais e itens nao alimentares. Sem texto fora do JSON.' }, { type: 'image', source: { type: 'base64', media_type: $json.body.media_type, data: $json.body.image_b64 } } ] } ] } }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          },
+          "timeout": 30000
+        }
+      },
+      "credentials": {
+        "httpHeaderAuth": {
+          "name": "Anthropic x-api-key"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000
+    },
+    {
+      "id": "7d6f0769-a7a2-4cb5-968d-b5119df3ea88",
+      "name": "Responder ao App",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App → Webhook": {
+      "main": [
+        [
+          {
+            "node": "Claude Vision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude Vision": {
+      "main": [
+        [
+          {
+            "node": "Responder ao App",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Foto da nota do mercado -> Claude (items). Requer credencial Header Auth \"Anthropic x-api-key\"."
+}

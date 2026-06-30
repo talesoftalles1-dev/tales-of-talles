@@ -1,0 +1,26 @@
+# n8n self-host (Docker) — TALES
+# Doc oficial: https://docs.n8n.io/hosting/
+# Uso:  docker compose up -d        (lê variáveis do ficheiro .env nesta pasta)
+#       docker compose exec n8n n8n import:workflow --separate --input=/workflows
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-Europe/Lisbon}
+      - TZ=${TZ:-Europe/Lisbon}
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      # URL público (túnel/reverse-proxy). Vazio = só webhooks locais.
+      - WEBHOOK_URL=${WEBHOOK_URL:-}
+      - N8N_PROXY_HOPS=${N8N_PROXY_HOPS:-0}
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+      - N8N_RUNNERS_ENABLED=true
+    volumes:
+      - ./n8n-data:/home/node/.n8n      # persistência (DB SQLite, chave, credenciais)
+      - ./workflows:/workflows:ro       # bundle de migração (import via CLI)

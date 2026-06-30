@@ -11,6 +11,10 @@ atualizado: 2026-06-27
 > [!warning] Documento canônico
 > Este arquivo é a **fonte da verdade** da arquitetura. Templates, Dashboard, MOCs e queries Dataview DEVEM seguir exatamente os nomes de propriedades, caminhos e convenções definidos aqui. Alterou aqui? Propague para os templates e queries.
 
+> [!jarvis] Hierarquia do canon
+> Este `_Spec` é o **canon estrutural** do JARVIS. Junto de [[_Contrato de Autoridade dos Agentes]] (autoridade dos agentes), [[🪐 Constituição JARVIS]] (valores do Operador), [[_Arquitetura JARVIS]] (Event Bus) e [[_Taxonomia de Eventos]] (eventos), forma o canon — todo em **PT-BR**. Navegação: [[_master_index]].
+> A antiga `CONSTITUTION.md` (inglês, raiz) foi **superseded** por este conjunto em 2026-06-30; o que ela tinha de único está absorvido em §10–§13.
+
 ## Princípio central
 
 > **Propriedades (frontmatter) são a fonte da verdade para consultas. Pastas são apenas armazenamento.**
@@ -31,7 +35,7 @@ raw/                      → o Operador manda: dump universal, captura bruta
   clips/                  → artigos, PDFs e materiais brutos
 
 wiki/                     → a IA organiza: domínio estruturado e auto-maintained
-  _master-index.md        → índice soberano da memória operacional
+  _master_index.md        → índice soberano da memória operacional
   ai_agents/              → prompts, contratos e rotinas dos agentes
   areas/                  → contextos perenes
   projects/               → iniciativas ativas e dependências
@@ -49,7 +53,7 @@ graph TD
     B --> C["output/ - Dashboards & Reports"]
 
     subgraph W["wiki/ - Domínio da IA"]
-        B --> B1["_master-index.md"]
+        B --> B1["_master_index.md"]
         B1 --> B2["ai_agents/"]
         B1 --> B3["projects/"]
         B1 --> B4["knowledge/"]
@@ -380,3 +384,59 @@ Nome de arquivo: `YYYY-MM-DD Corporal.md`.
 Perfil atual: **1,94 m · 77 kg → meta 84 kg** (welterweight). Metas-base (ajustáveis): `kcal ≥ 3000` · `proteina_g ≥ 165` · `agua_l ≥ 3` · `sono_h ≥ 7` · treino `meta_semanal 5` (ver hábito [[Exercicio]]).
 
 > Hub da área: [[🩺 Saúde & Performance]] · Contrato de sincronização: [[🔌 Ponte APEX ↔ JARVIS]] · Coaches são personas de dados, não novos agentes do [[_Contrato de Autoridade dos Agentes]].
+
+---
+
+## 10. Convenções de nomenclatura
+
+> Absorvido da antiga `CONSTITUTION.md` Art. XIII — foi a regra usada para resolver o drift hífen/underscore.
+
+- **Pastas:** `snake_case`, minúsculas. Ex.: `ai_agents/`, `slide_decks/`, `query_results.md`. **Nunca hífen em pasta.**
+- **Arquivos de conteúdo** (notas, projetos, clientes, reuniões): seguem a **Regra de nomeação** da §1.2 (Title Case; emoji para hubs/MOC; `YYYY-MM-DD` para datados).
+- **Arquivos de sistema novos** (specs, índices, contratos): `snake_case`. Chapters legados mantêm o nome até serem migrados.
+- **Propriedades (frontmatter):** chaves em `snake_case`.
+- **Tags:** minúsculas, separadas por hífen. Ex.: `#tema/ia`, `#crm-sync`.
+
+## 11. Governança de migração
+
+> Absorvido de `CONSTITUTION.md` Art. XI. Complementa a regra da §1.1 ("migração física só por dry-run aprovado").
+
+Mover notas entre pastas/camadas segue protocolo controlado:
+
+1. **Nunca deletar — mover.** O conteúdo é preservado (`git mv`), nunca apagado.
+2. **Stub de redirecionamento.** Quando um link pode quebrar, deixe uma nota-stub no local antigo apontando `[[novo local]]`.
+3. **Em lote, versionado.** Migrações acontecem em commits/PRs declarados, nunca ad-hoc no calor da operação.
+4. **Verificar backlinks.** Após mover, confirme que nenhum link, alias ou query quebrou.
+5. **Rede de segurança.** Tag de recuperação antes de qualquer lote (ex.: `jarvis/pre-<fase>-<data>`).
+
+## 12. Regras anti-bifurcação (para agentes)
+
+> Absorvido de `CONSTITUTION.md` Art. XII. É o que impede a volta do caos de SSOT duplicado (dois índices, duas constituições).
+
+1. Não criar arquivos variantes (`_2.md`, `_FINAL`, `_backup`, hífen-vs-underscore do mesmo conceito).
+2. **Uma fonte da verdade por conceito.** Não bifurcar specs nem índices.
+3. Sem segredos/credenciais no repositório.
+4. Mudanças no canon (este `_Spec`, o [[_Contrato de Autoridade dos Agentes]] ou a [[🪐 Constituição JARVIS]]) exigem **aprovação do Operador** — são constitucionais (cláusula de imutabilidade do Contrato).
+5. Não fabricar trabalho sobre arquivos que não existem: **verifique antes de referenciar.**
+
+## 13. Canonicidade & fonte da verdade
+
+> Absorvido de `CONSTITUTION.md` Art. IV (regras C1/C2 originam-se no `AGENTS.md`).
+
+| Artefato | Fonte da verdade | Onde editar |
+|---|---|---|
+| App (`index.html`) | este repo | via PR |
+| Specs JARVIS / Morning Brief | Vault / Obsidian | no Vault |
+| Docs de arquitetura do sistema | este repo (referência) | via PR |
+| Contratos de agente (`wiki/ai_agents/`) | este repo | via PR |
+| Segredos / credenciais | gerenciador de segredos | **nunca** no repo |
+
+**Hierarquia de documentos do canon (todos PT-BR):**
+
+- `_Spec JARVIS` — estrutura, propriedades, prioridade, nomenclatura, governança (este documento).
+- [[_Contrato de Autoridade dos Agentes]] — autoridade operacional dos agentes.
+- [[🪐 Constituição JARVIS]] — valores pessoais do Operador (decisão estratégica).
+- [[_Arquitetura JARVIS]] · [[_Taxonomia de Eventos]] — Event Bus e eventos.
+- Índice de navegação: [[_master_index]].
+
+> `CONSTITUTION.md` (inglês, raiz do repo) está **arquivada/superseded** desde 2026-06-30. Motivo: duplicava em inglês o que este conjunto PT-BR já define, e seu modelo de dados (`contexto`) nunca foi adotado — as ~137 notas do vault usam `area` + `dominio` (§2). Mantida como referência histórica, fora do canon.

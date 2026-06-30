@@ -1,0 +1,95 @@
+{
+  "name": "TALES · Cariani (Biomecânica)",
+  "active": false,
+  "nodes": [
+    {
+      "id": "2db2cf2a-ea3c-4cc7-8471-d62e260804a1",
+      "name": "App",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "e7068669-741a-4045-badc-aeff7ca81ac7",
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "tales-cariani",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      }
+    },
+    {
+      "id": "b840049d-da3b-4315-91f2-0afe0bfc6680",
+      "name": "Cariani",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "\nconst b = ($input.first() && $input.first().json && $input.first().json.body) || {};\nconst mus = b.mus || {};\nconst F = k => Number((mus[k] && (mus[k].f != null ? mus[k].f : mus[k])) || 0);\nconst names = { chest:'PEITO', shoulders:'OMBROS', back:'COSTAS', biceps:'BICEPS', triceps:'TRICEPS', core:'CORE', quads:'QUADRICEPS', hamstrings:'ISQUIO', glutes:'GLUTEOS', calves:'PANTURRILHA' };\nconst all = Object.keys(names).map(k => ({ k, f: F(k), n: names[k] }));\nconst top = all.sort((a, c) => c.f - a.f)[0] || { f: 0, n: '—' };\nconst push = (F('chest') + F('shoulders') + F('triceps')) / 3;\nconst pull = (F('back') + F('biceps')) / 2;\nlet flag = 'TECNICA', msg;\nif (top.f >= 70) { flag = 'CUIDADO'; msg = top.n + ' a ' + Math.round(top.f) + '% de fadiga — o ponto mais carregado agora. Deixa recuperar antes de voltar a stressa-la.'; }\nelse if (Math.abs(push - pull) > 15) { const d = push > pull ? 'puxar (Pull)' : 'empurrar (Push)'; msg = 'Desequilibrio: falta trabalho de ' + d + '. Corpo simetrico puxa mais forte e lesiona menos — corrige hoje.'; }\nelse { msg = 'Distribuicao equilibrada. Execucao limpa e carga progressiva — e onde o ganho aparece e a lesao nao.'; }\nreturn [{ json: { coach: 'CARIANI', flag, msg, topMuscle: top.n, topFat: Math.round(top.f) } }];\n"
+      }
+    },
+    {
+      "id": "99049d41-7b95-4f4c-a190-cd8f7a4ca3d6",
+      "name": "Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        448,
+        0
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "App": {
+      "main": [
+        [
+          {
+            "node": "Cariani",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cariani": {
+      "main": [
+        [
+          {
+            "node": "Responder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {},
+  "tags": [],
+  "description": "Agente Cariani: biomecanica/equilibrio. Sem credenciais."
+}
