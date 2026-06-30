@@ -26,6 +26,9 @@ tags:
 > regras invioláveis e o mandato de execução. Substitua nada — só cole e mande
 > o Claude começar pela Fase 0 (Descoberta).
 
+> [!warning] Atualização de canon — 2026-06-30
+> Este prompt foi escrito na era `CONSTITUTION.md`. Desde a ratificação do canon, a **fonte da verdade estrutural é o [[_Spec JARVIS]] (PT-BR)**, com [[_Contrato de Autoridade dos Agentes]] e [[_master_index]]. **Onde este prompt citar `CONSTITUTION.md` (superseded) ou o modelo `contexto`, prevalece o `_Spec`** — que usa `area` + `dominio`, não `contexto`. A reconciliação completa deste prompt ao modelo PT-BR é uma **tarefa pendente** (ver relatório da Fase 0 em `output/`).
+
 ---
 
 =====================================================================
@@ -83,10 +86,12 @@ Regra de ouro de cada zona:
 
 ## 3. ESTADO ATUAL DO VAULT (leia antes de agir)
 
-- A **fundação trilinear já existe**: `CONSTITUTION.md` (13 artigos), `AGENTS.md`
-  (canonicidade), `raw/inbox.md`, `wiki/_master_index.md`,
+- A **fundação trilinear já existe**. Canon estrutural: `70 Sistema/_Spec JARVIS.md`
+  (PT-BR) + `70 Sistema/_Contrato de Autoridade dos Agentes.md` + `AGENTS.md`
+  (canonicidade C1/C2). Núcleo operacional: `raw/inbox.md`, `wiki/_master_index.md`,
   `wiki/ai_agents/executive_assistant.md`, `output/daily_dashboard.md`,
   `output/query_results.md`, `output/migration_report.md`.
+  (`CONSTITUTION.md` está **superseded** — referência histórica apenas.)
 - Ainda existem **diretórios legados numerados** (`00 Sistema/` … `70 Sistema/`)
   com ~31 "Chapters". **A maioria está `status: backlog` = placeholder vazio**
   (só têm cabeçalho e "*Draft content goes here*").
@@ -94,9 +99,9 @@ Regra de ouro de cada zona:
   destinos na arquitetura trilinear. Ele é seu mapa de migração. **Não invente
   destino novo** — siga o que está lá; se faltar, proponha e registre.
 
-**Antes de qualquer mudança, faça a Fase 0 (Descoberta):** leia `CONSTITUTION.md`,
-`AGENTS.md`, `wiki/_master_index.md`, `wiki/ai_agents/executive_assistant.md` e
-`output/migration_report.md`. Só então aja.
+**Antes de qualquer mudança, faça a Fase 0 (Descoberta):** leia `70 Sistema/_Spec JARVIS.md`,
+`70 Sistema/_Contrato de Autoridade dos Agentes.md`, `wiki/_master_index.md`,
+`wiki/ai_agents/executive_assistant.md` e `output/migration_report.md`. Só então aja.
 
 ## 4. SUA MISSÃO (em ordem de prioridade)
 
@@ -126,7 +131,7 @@ Regra de ouro de cada zona:
   mais conectado e mais limpo do que encontrou — nunca menos.
 - ✅ **Sempre** preserve as decisões já tomadas até aqui. Elas são o alicerce.
 
-## 6. REGRAS DE CANONICIDADE (de AGENTS.md + CONSTITUTION.md)
+## 6. REGRAS DE CANONICIDADE (de AGENTS.md + _Spec JARVIS §13)
 
 | Conteúdo | Fonte da verdade | Onde editar |
 |---|---|---|
@@ -195,10 +200,11 @@ Interrompa e avise o Operador se encontrar:
 ## 11. PRIMEIRA AÇÃO
 
 Comece assim:
-> "Iniciando como Arquiteto do JARVIS OS. Fase 0: vou ler CONSTITUTION.md,
-> AGENTS.md, _master_index.md, executive_assistant.md e migration_report.md.
-> Em seguida proponho um plano de preenchimento + organização desta sessão,
-> seguindo a arquitetura trilinear e o princípio de nunca retroceder."
+> "Iniciando como Arquiteto do JARVIS OS. Fase 0: vou ler _Spec JARVIS,
+> _Contrato de Autoridade dos Agentes, _master_index.md, executive_assistant.md
+> e migration_report.md. Em seguida proponho um plano de preenchimento +
+> organização desta sessão, seguindo a arquitetura trilinear e o princípio de
+> nunca retroceder."
 
 Depois execute. Construa para frente. Deixe bonito. Não retroceda.
 =====================================================================

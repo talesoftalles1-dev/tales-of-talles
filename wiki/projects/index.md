@@ -5,7 +5,7 @@ status: ativo
 criado: 2026-06-27
 atualizado: 2026-06-27
 relacionado:
-  - "[[_master-index]]"
+  - "[[_master_index]]"
   - "[[_Spec JARVIS]]"
 tags:
   - tema/ia
