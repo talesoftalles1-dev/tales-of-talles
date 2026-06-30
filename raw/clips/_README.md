@@ -34,7 +34,7 @@ To prevent AI data from messing with human input, the Obsidian Vault is strictly
    └── 📁 clips/                # Unorganized web clippings, raw articles, and reference PDFs.
 
 2. 📁 wiki/ (AI DOMAIN - Auto-Maintained Knowledge Core)
-   ├── 📄 _master-index.md      # The central ledger of everything in the system.
+   ├── 📄 _master_index.md      # The central ledger of everything in the system.
    ├── 📁 ai-agents/            # Prompts, roles, and state tracking files for the AI specialists.
    ├── 📁 areas/                # Continuous lifecycle structures (Work, Health, Finances, Family) using a hybrid PARA + Zettelkasten model.
    ├── 📁 projects/             # Finite initiatives with explicit deadlines and tracking.
