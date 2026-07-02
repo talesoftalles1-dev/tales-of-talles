@@ -3,7 +3,7 @@ dominio: jarvis
 tipo: sistema
 status: ativo
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-02
 relacionado:
   - "[[_master_index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
@@ -11,7 +11,7 @@ tags:
   - tema/ia
 ---
 
-# AI Agents
+# Agentes IA
 
 Contratos, rotinas e prompts operacionais dos agentes JARVIS.
 

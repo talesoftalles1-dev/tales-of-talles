@@ -1,47 +1,55 @@
 ---
 dominio: jarvis
 tipo: output
-status: active
-titulo: Query Results — Dataview Compilations
-contexto: sistema
+status: ativo
+titulo: Resultados de Queries — Compilações Dataview
+area: sistema
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-02
 tags:
   - output
   - dataview
   - query
 ---
 
-# Query Results
+# Resultados de Queries
 
-> Auto-generated Dataview compilations. Regenerated on each system run.
+> Compilações automáticas Dataview. Regeneradas a cada execução do sistema. Arquivo descartável — não é fonte de verdade.
 
 ---
 
-## All Active Tasks
+## Tarefas Ativas
 
 ```dataview
-TABLE titulo AS "Task", contexto AS "Context", status AS "Status"
+TABLE titulo AS "Tarefa", area AS "Área", status AS "Status"
 FROM "wiki/projects" OR "wiki/areas"
-WHERE status = "active"
+WHERE status = "ativo" OR status = "ativa"
 SORT criado DESC
 ```
 
-## Inbox Backlog
+## Backlog do Inbox
 
 ```dataview
 LIST
 FROM "raw"
-WHERE tipo = "inbox"
+WHERE tipo = "nota" OR tipo = "inbox"
 SORT criado DESC
 ```
 
-## Recently Updated
+## Atualizados Recentemente
 
 ```dataview
-TABLE atualizado AS "Updated", tipo AS "Type"
+TABLE atualizado AS "Atualizado", tipo AS "Tipo", dominio AS "Domínio"
 FROM "wiki"
 WHERE atualizado >= date(today) - dur(7 days)
 SORT atualizado DESC
 LIMIT 20
+```
+
+## Projetos Ativos
+
+```dataview
+TABLE titulo AS "Projeto", area AS "Área", prazo AS "Prazo", progresso AS "%"
+WHERE tipo = "projeto" AND status = "ativo"
+SORT prazo ASC
 ```
