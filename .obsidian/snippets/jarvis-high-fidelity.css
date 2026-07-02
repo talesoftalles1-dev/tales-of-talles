@@ -1,0 +1,214 @@
+/* 
+   =====================================================================
+   JARVIS OS — HIGH-FIDELITY HUD SNIPPET (v2.0)
+   Inspirado na estética "Luke Builds AI" / Sci-Fi Operating Systems.
+   Autor: Manus (CTO & Lead Dev)
+   ===================================================================== 
+*/
+
+:root {
+  /* Tokens de Cor — Neon Emerald & Deep Space */
+  --jarvis-bg: #0a0c10;
+  --jarvis-surface: rgba(16, 20, 26, 0.7);
+  --jarvis-accent: #00ff9d;
+  --jarvis-accent-rgb: 0, 255, 157;
+  --jarvis-accent-dim: rgba(0, 255, 157, 0.15);
+  --jarvis-blue: #00d4ff;
+  --jarvis-blue-rgb: 0, 212, 255;
+  --jarvis-amber: #ffaa00;
+  --jarvis-red: #ff4b4b;
+  --jarvis-text: #e0e6ed;
+  --jarvis-text-muted: #8b9bb4;
+  --jarvis-border: rgba(0, 255, 157, 0.2);
+  --jarvis-border-glow: 0 0 8px rgba(0, 255, 157, 0.3);
+  --jarvis-radius: 4px;
+  --jarvis-font: 'Inter', 'Segoe UI', Roboto, -apple-system, sans-serif;
+  --jarvis-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* 1. Efeito Glassmorphism & Neon HUD */
+.jarvis-hud-container {
+  background: var(--jarvis-bg);
+  color: var(--jarvis-text);
+  font-family: var(--jarvis-font);
+  padding: 20px;
+}
+
+.jarvis-card {
+  background: var(--jarvis-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--jarvis-border);
+  border-radius: var(--jarvis-radius);
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: var(--jarvis-border-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.jarvis-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--jarvis-accent);
+}
+
+/* 2. Cabeçalhos HUD */
+.jarvis-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--jarvis-border);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--jarvis-font-mono);
+  font-size: 0.9rem;
+  color: var(--jarvis-accent);
+}
+
+.jarvis-hud-header .time {
+  color: var(--jarvis-blue);
+}
+
+/* 3. Grid de Agentes (replicando a imagem) */
+.jarvis-agent-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.jarvis-lane {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jarvis-lane-title {
+  font-family: var(--jarvis-font-mono);
+  font-size: 0.75rem;
+  color: var(--jarvis-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  text-align: center;
+  border: 1px solid var(--jarvis-border);
+  padding: 4px;
+}
+
+/* 4. Agent & Connection Items */
+.jarvis-item {
+  background: rgba(var(--jarvis-accent-rgb), 0.05);
+  border: 1px solid var(--jarvis-border);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.jarvis-item:hover {
+  background: rgba(var(--jarvis-accent-rgb), 0.15);
+  border-color: var(--jarvis-accent);
+  box-shadow: 0 0 10px rgba(var(--jarvis-accent-rgb), 0.2);
+}
+
+.jarvis-item.active {
+  border-left: 3px solid var(--jarvis-accent);
+}
+
+.jarvis-item .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--jarvis-accent);
+  box-shadow: 0 0 5px var(--jarvis-accent);
+}
+
+.jarvis-item .label {
+  font-family: var(--jarvis-font-mono);
+  font-weight: 600;
+}
+
+.jarvis-item .sub-label {
+  font-size: 0.7rem;
+  color: var(--jarvis-text-muted);
+}
+
+/* 5. Widgets de Progresso / Gauges */
+.jarvis-gauge-container {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.jarvis-gauge {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+}
+
+.jarvis-gauge-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--jarvis-accent);
+  box-shadow: 0 0 8px var(--jarvis-accent);
+}
+
+/* 6. Typography & UI Tweaks */
+.jarvis-dashboard-v2 h1, .jarvis-dashboard-v2 h2, .jarvis-dashboard-v2 h3 {
+  font-family: var(--jarvis-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.jarvis-dashboard-v2 .dataview.table-view-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.jarvis-dashboard-v2 .dataview.table-view-table thead th {
+  border-bottom: 1px solid var(--jarvis-border);
+  color: var(--jarvis-accent);
+  font-family: var(--jarvis-font-mono);
+  font-size: 0.75rem;
+}
+
+.jarvis-dashboard-v2 .dataview.table-view-table tbody td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px;
+}
+
+/* 7. Scanlines effect (opcional, para vibe retro-futurista) */
+.jarvis-scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.02),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+}
