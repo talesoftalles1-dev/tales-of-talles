@@ -2,12 +2,21 @@
 dominio: jarvis
 
 tipo: spec
-status: ativo
+status: arquivado
+superseded_por: "[[_Morning Brief — Spec]]"
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-02
 ---
 
-# 📄 Morning Brief Specification
+# 📄 Morning Brief Specification ⛔ SUPERSEDED
+
+> [!danger] Spec superseded (2026-07-02)
+> Esta spec está desatualizada e **não é mais canônica**. A fonte da verdade é **[[_Morning Brief — Spec]]** em `70 Sistema/Automacao/`. Esta versão descreve uma arquitetura antiga (n8n como executor + `Obsidian-Skills`) que foi substituída pelo script local `generate.mjs` (Path 2). Mantida como referência histórica — não editar.
+
+---
+
+## Conteúdo histórico (não-canônico)
+
 
 ## Onde roda
 - **Local**: Executado no computador do usuário via Obsidian‑Skills (Node.js) on a daily cron.

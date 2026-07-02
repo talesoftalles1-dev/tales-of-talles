@@ -4,7 +4,7 @@ tipo: index
 status: canonico
 titulo: Master Index — Registro Central do JARVIS OS
 criado: 2026-06-27
-atualizado: 2026-06-30
+atualizado: 2026-07-02
 aliases:
   - Master Index
   - Índice Mestre
@@ -94,4 +94,12 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 - [ ] Gerar mapa dry-run: nota atual → destino sugerido no fluxo `raw/wiki/output`.
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
 - [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
-- [ ] Resolver o split `00 Sistema/` (Chapters 01–06) vs `70 Sistema/` (Chapters 27–31) — adiado da Fase 0.
+- [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Ver [[00 Sistema/_Index]].
+
+## Pendências da Fase 1 (2026-07-02) — concluídas
+
+- [x] **Reconciliar scaffold inglês da `wiki/`**: `contexto:` substituído por `area:` em `executive_assistant.md`, `prompt_arquiteto_vault.md`, `T - Checklist.md` e `output/query_results.md`.
+- [x] **Depreciar `70 Sistema/Specs/Morning Brief.md`**: banner de arquivamento adicionado, apontando para `Automacao/_Morning Brief — Spec`.
+- [x] **Resolver duplicata `query-results.md` vs `query_results.md`**: `query-results.md` convertido em stub de depreciação; `query_results.md` é o canônico.
+- [x] **Áudio na raiz**: `Recording 20260627141753.m4a` movido para `raw/clips/`.
+- [x] **Prompt de organização**: movido de `00 Sistema/` para `70 Sistema/` (lar natural dos docs de sistema).
