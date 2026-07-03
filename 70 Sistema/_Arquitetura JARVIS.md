@@ -58,7 +58,7 @@ Mesmo que **inicialmente conceitual**, o Event Bus é o vocabulário que as 4 ca
   "event": "LeadQualified",
   "ts": "2026-06-27T14:30:00Z",
   "source": "n8n:Yalt Prospector",
-  "entity": { "tipo": "cliente", "ref": "Acme Corp", "id": "..." },
+  "entity": { "tipo": "cliente", "ref": "Cliente Exemplo", "id": "..." },
   "payload": { "fit_score": 78, "arr_estimado": 12000 },
   "targets": ["slack:#daily", "obsidian:40 CRM"]
 }

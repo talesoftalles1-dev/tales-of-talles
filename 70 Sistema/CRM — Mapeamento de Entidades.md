@@ -62,7 +62,7 @@ Exemplo de payload (POST /leads)
 --------------------------------
 {
   "external_id": "sha256:abc123...",
-  "name": "João Silva",
+  "name": "Nome do Cliente",
   "email": "joao@exemplo.com",
   "phone": "+5511999999999",
   "company": "ACME Ltda",

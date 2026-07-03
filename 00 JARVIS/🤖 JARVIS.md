@@ -69,7 +69,7 @@ tags:
       <span class="status-dot" style="background: var(--jarvis-amber); box-shadow: 0 0 5px var(--jarvis-amber);"></span>
     </div>
     <div style="font-size: 0.8rem; color: var(--jarvis-text-muted); margin-bottom: 10px;">
-      Aguardando resposta do lead Acme Corp.
+      Aguardando resposta de lead em negociação.
     </div>
   </div>
 </div>
