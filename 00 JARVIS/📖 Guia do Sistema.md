@@ -145,7 +145,7 @@ Em **Configurações → Plugins da comunidade → Procurar**, instale e ative (
 
 ### 4. Primeiro voo
 - Abra o Dashboard [[🤖 JARVIS]] (deve abrir sozinho no startup).
-- Os dados de exemplo (Acme Corp, Lançamento do Novo Site, etc.) já fazem os painéis "acenderem".
+- Conforme você cria notas reais (clientes, projetos, reuniões, lançamentos), os painéis vão "acendendo" automaticamente via Dataview.
 - Crie sua primeira nota real: `Ctrl/Cmd+P` → *QuickAdd* → ou insira um template via Templater.
 
 ---

@@ -5,7 +5,6 @@ status: publicado
 categoria: operacoes
 relacionado:
   - "[[SOP - Fechar Venda]]"
-  - "[[CRM API]]"
 criado: 2026-06-12
 atualizado: 2026-06-27
 tags:
@@ -24,13 +23,13 @@ Padronizar a recepção de novos clientes para que cada um tenha: contrato em di
 
 ## 🧭 Quando se aplica
 
-Logo após o "ganho" registrado no [[SOP - Fechar Venda]]. Exemplo recente: [[CRM API]], onboarding concluído com o [[2026-06-27 Kickoff Acme]].
+Logo após o "ganho" registrado no [[SOP - Fechar Venda]]: a partir daí, todo cliente novo entra por este fluxo, começando pela reunião de kickoff.
 
 ## 🔁 Etapas do onboarding
 
 ### 1. Formalização (D+0 a D+1)
 - Enviar contrato e coletar assinatura.
-- Emitir a nota da primeira parcela e registrar o recebimento (ex.: [[2026-06-27 Recebimento Acme]]).
+- Emitir a nota da primeira parcela e registrar o recebimento em `50 Financeiro/Empresa`.
 - Criar a nota do cliente em `40 CRM/Clientes` com `status: ativo`.
 
 ### 2. Coleta de informações (D+1 a D+3)
@@ -66,5 +65,3 @@ Logo após o "ganho" registrado no [[SOP - Fechar Venda]]. Exemplo recente: [[CR
 ## 🔗 Relacionados
 
 - [[SOP - Fechar Venda]]
-- [[CRM API]]
-- [[2026-06-27 Kickoff Acme]]

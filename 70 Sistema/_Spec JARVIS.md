@@ -107,8 +107,8 @@ graph TD
 
 **Regra de nomeação de arquivos:**
 - Notas-hub (MOC) e dashboards: prefixo emoji + nome — ex.: `🤖 JARVIS.md`, `🌱 Pessoal.md`.
-- Projetos / clientes / docs: nome descritivo em Title Case — ex.: `Reformulação do Site.md`, `Acme Corp.md`.
-- Reuniões: `YYYY-MM-DD Assunto.md` — ex.: `2026-06-27 Kickoff Acme.md`.
+- Projetos / clientes / docs: nome descritivo em Title Case — ex.: `Reformulação do Site.md`, `Cliente Exemplo.md`.
+- Reuniões: `YYYY-MM-DD Assunto.md` — ex.: `2026-06-27 Kickoff Cliente.md`.
 - Diário: `YYYY-MM-DD.md`. Semanal: `YYYY-[W]ww.md` — ex.: `2026-W26.md`.
 - Lançamentos financeiros: `YYYY-MM-DD Descrição.md`.
 
