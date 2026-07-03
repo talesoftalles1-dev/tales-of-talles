@@ -48,25 +48,17 @@ runbooks, contratos de integração (CRM/MCP/n8n) e os capítulos de operação.
 
 - [[Rotate_CRM_Key]] — rotação segura da chave do CRM Yalt e atualização das credenciais n8n.
 
-## Capítulos de operação (rascunho — `status: backlog`)
-
-- [[Chapter 27 — Automations & n8n Bridge]]
-- [[Chapter 28 — Security & Secrets Runbook]]
-- [[Chapter 29 — Agent Roster & Authority]]
-- [[Chapter 30 — Monitoring & Alerts]]
-- [[Chapter 31 — Bootstrap & Maintenance]]
-
 ## SSOT no Vault (não está neste repo — por design)
 
 - `Automacao/_Morning Brief — Spec` **(Vault-side)** — especificação canônica de implementação do Morning Brief. Vive no Obsidian Vault, não no repo (ver `AGENTS.md` C2). Referências `[[Automacao/_Morning Brief — Spec]]` em outros docs são intencionais e apontam para o Vault.
 
-## Artefatos regeneráveis / pendentes de publicação
+## Artefatos regeneráveis
 
-- `[[TALES OF TALLES OS — Master Evolution Report]]` **(regenerável — ausente no repo)** — referenciado por 4 docs de CRM/Brief e pelo arquivo de auditoria arquivado, mas **ainda não publicado** em `output/`. Não foi fabricado aqui (ver `AGENTS.md` regra 5). Ver §Red flags no PR. Quando publicado, deve viver em `output/`.
+- `[[TALES OF TALLES OS — Master Evolution Report]]` **(regenerável)** — publicado em `output/`.
 - `output/archived/Auditoria_TALLES_OS_2026-06-27-ARCHIVED.md` — auditoria anterior, já arquivada (absorvida pelo Master Evolution Report).
 
 ## Relacionados no repo
 
 - `index.html` — app canônico (C1).
-- `00 Sistema/` — capítulos de fundação ([[00 Sistema/_Index|índice]]).
+- [[00 Sistema/_Index|00 Sistema]] — arquivado em 2026-07-02 (Chapters 01–06 em `90 Arquivo/`); scaffold EN restante (Chapters 07–31) arquivado em 2026-07-03 → [[90 Arquivo/scaffold_en/_Index|scaffold_en]].
 - `output/` — entregáveis regeneráveis do Brief.
