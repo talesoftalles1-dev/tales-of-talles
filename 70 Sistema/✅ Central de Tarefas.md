@@ -29,7 +29,7 @@ tags:
 > | `🔼` | Prioridade média | priority medium |
 > | `🔽` | Prioridade baixa | priority low |
 >
-> **Exemplo:** `- [ ] Enviar proposta para a Acme 🔼 📅 2026-06-30`
+> **Exemplo:** `- [ ] Enviar proposta para o Cliente 🔼 📅 2026-06-30`
 > Sem nenhum emoji de prioridade, a tarefa é tratada como prioridade normal (fica entre média e baixa na ordenação).
 
 > [!tip] Como ler esta página

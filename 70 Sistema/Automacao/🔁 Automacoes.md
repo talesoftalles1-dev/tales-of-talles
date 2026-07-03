@@ -393,8 +393,8 @@ SORT data DESC
 > - Stack definida: Next.js + Supabase.
 >
 > ## ✅ Ações
-> - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  [[João Silva]]
-> - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  [[Maria Souza]]
+> - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  (Responsável)
+> - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  (Responsável)
 > ```
 
 > [!tip] Atalho de captura da transcrição

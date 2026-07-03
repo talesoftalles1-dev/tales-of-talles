@@ -61,20 +61,20 @@ Cinco blocos decisórios. Inventário (ideias, estatísticas, delta) fica em "�
 📆 27/06 · 2026-06-27
 
 🎯 Top 3 Actions
-1. Enviar resumo do kickoff p/ Acme  📅 27/06
-2. Sessão deep work — wireframes
+1. Enviar proposta para o cliente  📅 27/06
+2. Sessão deep work — entregável do projeto
 3. Treino (corrida)
 
 ⚠ Risks & Blockers
 • — nada travado —
 
 💼 Commercial Signals
-• CRM API — próximo contacto 02/07
+• Cliente Exemplo — próximo contacto 02/07
 
 🏗 Projects Requiring Attention
-• Lancamento do Novo Site · 45% · prazo 15/08 (score 55)
+• Projeto Exemplo · 45% · prazo 15/08 (score 55)
 
 📅 Today
-• Kickoff Acme · CRM API
-• Enviar resumo do kickoff…
+• Kickoff · Cliente Exemplo
+• Enviar proposta ao cliente…
 ```
