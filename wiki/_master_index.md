@@ -95,6 +95,7 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
 - [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
 - [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Ver [[00 Sistema/_Index]].
+- [x] **Arquivar scaffold EN restante (Chapters 07–31 + `_Index.md` genéricos)** — concluído em 2026-07-03 (F0 Higiene, aprovada pelo Operador): 25 placeholders movidos para `90 Arquivo/scaffold_en/`; 6 index shells sem backlinks removidos. Ver [[90 Arquivo/scaffold_en/_Index]]. Tag de segurança: `jarvis/pre-f0-limpeza-20260703`.
 
 ## Pendências da Fase 1 (2026-07-02) — concluídas
 
