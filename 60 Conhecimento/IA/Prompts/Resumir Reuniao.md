@@ -59,5 +59,5 @@ Transcrição/anotações:
 ## 💡 Dicas de uso
 
 - Cole a transcrição no lugar de `{{COLE AQUI A TRANSCRIÇÃO}}`.
-- O bloco de Ações já sai no formato pronto para a seção `## 🚀 Ações` de uma nota de reunião — ex.: [[2026-06-27 Kickoff Acme]].
+- O bloco de Ações já sai no formato pronto para a seção `## 🚀 Ações` de uma nota de reunião — ex.: uma nota de reunião de kickoff.
 - Ajuste os emojis de prioridade conforme o contexto do cliente.
