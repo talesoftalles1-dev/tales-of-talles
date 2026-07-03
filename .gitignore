@@ -1,2 +1,5 @@
-# Ignore local config for Morning Brief
+# Config local do Morning Brief (contém caminhos/segredos da máquina)
 70 Sistema/Automacao/morning-brief/config.json
+
+# Logs de runtime dos geradores (regeneráveis, específicos da máquina)
+logs/*.log

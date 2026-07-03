@@ -23,7 +23,7 @@ Garantir que toda venda siga o mesmo fluxo — proposta clara, follow-up discipl
 
 - Lead qualificado e registrado no CRM (`tipo: cliente`, `status: lead`).
 - Necessidade e orçamento minimamente entendidos.
-- Decisor identificado (ex.: [[Joao Silva]] na [[CRM API]]).
+- Decisor identificado (ex.: [[João Silva]] na [[CRM API]]).
 
 ## 🔢 Passo a passo
 
