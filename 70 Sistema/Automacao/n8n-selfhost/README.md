@@ -7,7 +7,7 @@ criado: 2026-06-29
 atualizado: 2026-06-29
 relacionado:
   - "[[n8n Audit Report — 2026-06-29]]"
-  - "[[Chapter 27 — Automations & n8n Bridge]]"
+  - "[[Ponte n8n ↔ JARVIS]]"
 tags: [n8n, self-host, migracao]
 ---
 

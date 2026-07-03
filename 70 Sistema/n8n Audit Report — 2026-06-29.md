@@ -6,7 +6,7 @@ area: 70 Sistema
 criado: 2026-06-29
 atualizado: 2026-06-29
 relacionado:
-  - "[[Chapter 27 — Automations & n8n Bridge]]"
+  - "[[Ponte n8n ↔ JARVIS]]"
   - "[[CRM n8n Workflows — README]]"
 tags:
   - n8n
