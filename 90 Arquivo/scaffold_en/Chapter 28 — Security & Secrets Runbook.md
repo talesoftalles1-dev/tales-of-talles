@@ -3,7 +3,7 @@ dominio: jarvis
 aliases:
   - "Security & Secrets Runbook"
 tipo: chapter
-status: backlog
+status: arquivado
 area: 70 Sistema
 title: Security & Secrets Runbook
 created: 2026-06-27T18:24:00Z

@@ -1,20 +1,16 @@
 ---
 dominio: jarvis
-tipo: index
-status: referenciado
-area: 10 Inbox
-title: 10 Inbox — Índice
-created: 2026-06-27
-updated: 2026-06-27
+aliases:
+  - "Monitoring & Alerts"
+tipo: chapter
+status: arquivado
+area: 70 Sistema
+title: Monitoring & Alerts
+created: 2026-06-27T18:24:00Z
 ---
 
 <!-- canonicity-banner -->
 > **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
+# Monitoring & Alerts
 
-# 10 Inbox — Índice
-
-> Índice de navegação gerado para esta seção. Fonte da verdade e regras: ver `AGENTS.md`.
-
-## Documentos
-- [[Chapter 07 — Capture & Triage]] — _backlog_
-- [[Chapter 08 — Processing Rules]] — _backlog_
+*Placeholder content — to be drafted.*
