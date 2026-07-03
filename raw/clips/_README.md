@@ -42,7 +42,7 @@ To prevent AI data from messing with human input, the Obsidian Vault is strictly
 
 3. 📁 output/ (DELIVERY DOMAIN - System Compiled State)
    ├── 📄 daily_dashboard.md    # The ultra-clean cockpit shown to the user every morning.
-   └── 📄 query-results.md      # Dynamic Dataview reports and metrics aggregation.
+   └── 📄 query_results.md      # Dynamic Dataview reports and metrics aggregation.
 
 ---
 
