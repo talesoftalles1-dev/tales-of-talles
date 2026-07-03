@@ -26,5 +26,22 @@ Este arquivo centraliza o status operacional de todos os agentes do JARVIS OS. O
 
 ---
 
+## 👥 Estagiários (camada de execução)
+
+Subagentes spawnáveis sob orquestração do Jarvis. Contrato: [[estagiarios]] · Protocolo: [[protocolo_orquestracao_jarvis]].
+
+| Estagiário | Codinome | Status | Autoridade |
+|---|---|---|---|
+| E1 · Organização | ORGANIZER | ⚪ Standby | vinculado (EA) |
+| E2 · Documentação | WRITING | ⚪ Standby | vinculado |
+| E3 · Pesquisa | RESEARCH | ⚪ Standby | vinculado |
+| E4 · Programação | TOR | ⚪ Standby | vinculado |
+| E5 · Revisão | REVIEWER | ⚪ Standby | 🆕 ratificar |
+| E6 · Automações | AUTOMATOR | ⚪ Standby | 🆕 ratificar |
+| E7 · Conhecimento | KNOWLEDGE | ⚪ Standby | vinculado |
+| E8 · Planejamento | PLANNER | ⚪ Standby | 🆕 ratificar |
+
+---
+
 ## Contratos de Autoridade
-Ver [[_Contrato de Autoridade dos Agentes]] para permissões.
+Ver [[_Contrato de Autoridade dos Agentes]] para permissões. Camada de execução: [[estagiarios]].
