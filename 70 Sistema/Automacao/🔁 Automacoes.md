@@ -5,12 +5,14 @@ status: publicado
 area: empresa
 categoria: sistema
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-03
 relacionado:
   - "[[_Spec JARVIS]]"
   - "[[🔌 Plugins]]"
   - "[[🤖 JARVIS]]"
   - "[[💰 Financeiro]]"
+  - "[[protocolo_orquestracao_jarvis]]"
+  - "[[estagiarios]]"
 tags:
   - tema/ia
 ---
@@ -595,6 +597,42 @@ SORT atualizado ASC
 ```
 
 - Padrão de revisão: páginas com `atualizado` há mais de 90 dias entram na fila de revisão da Wiki.
+
+---
+
+## 10. Automações orquestradas por agentes (FASE 4)
+
+> [!jarvis] Camada de execução, não só de plugin
+> As automações §1–§9 vivem na **Camada 1 (Obsidian/plugins)**. Esta seção cobre as automações que rodam na **Camada 2 (n8n)** e **Camada 3 (subagentes Claude Code)** — orquestradas pelo [[protocolo_orquestracao_jarvis|Jarvis]] e executadas pelos [[estagiarios|Estagiários]]. Regra de ouro **default-deny**: nada externo/irreversível (enviar e-mail, mover dinheiro, ativar workflow em produção) roda sem aprovação do Operador.
+
+### 10a. Já existe (inventário)
+
+| Processo | Gatilho | Dono | Mecanismo | Estado |
+|---|---|---|---|---|
+| Daily Dashboard / Executive Assistant | 07:00 (Task Scheduler) | Jarvis/EA | script local `dashboard.mjs` → `output/daily_dashboard.md` | ✅ ativo |
+| Morning Brief → #daily | 09:00 (Task Scheduler) + webhook | Jarvis/EA | script local + n8n `gCpvNjBzZ6ZTXg5I` | ⚠️ geração ok; entrega Slack pendente (OAuth) |
+| Import de leads (CRM) | webhook `POST /yalt-import-leads` | BOBBY / E6 | n8n `HPXb8NSusymFGS9I` | ✅ ativo |
+| CRM Status Sync (pipeline→CRM) | cron 4h | BOBBY / E6 | n8n `3Yx6Je5MtsrKcO2P` | 🔧 wired esta sessão; credencial a conectar na UI |
+| Briefing Diário SDR | 08:30 | BOBBY | n8n `Sq71PU4KyTtqB033` | ✅ ativo |
+| Lembretes de Follow-up | cron | BOBBY | n8n `LcsSLCkf4oJOnM5g` | ✅ ativo |
+| Critical Alerts → #daily | 3x/dia | Jarvis/EA | n8n `nCG0dfGEzyBLhxLv` | ✅ ativo (silencioso quando nada crítico) |
+
+### 10b. Backlog FASE 4 (ordenado: baixo risco + alto ganho primeiro)
+
+| Processo repetitivo | Dono (Estagiário) | Mecanismo | Aprovação humana? | Estado |
+|---|---|---|---|---|
+| Manutenção de backlinks / índices órfãos | E7 KNOWLEDGE | subagente | não (reversível) | implementável agora |
+| Revisão automática de conformidade ao `_Spec` (frontmatter/nomenclatura) | E5 REVIEWER | subagente | não | implementável agora |
+| Triagem/classificação automática do `raw/` | E1 ORGANIZER | subagente | não | implementável agora |
+| Geração automática de MOCs por área/`dominio` | E7 KNOWLEDGE | subagente | não | propor |
+| Criação automática de links (nota↔entidade) | E7 KNOWLEDGE | subagente | não | propor |
+| Geração de resumos (reunião/pesquisa/semana) | E2 WRITING + E3 RESEARCH | subagente | não (rascunho) | implementável agora |
+| Limpeza automática de `output/` (regenerável) | E1 ORGANIZER | script/subagente | não | implementável agora |
+| Sincronização entre áreas (projeto↔objetivo↔CRM) | E6 AUTOMATOR | n8n | não (leitura); escrita externa ⚠️ | propor |
+| Novos workflows n8n (aditivos) | E6 AUTOMATOR | n8n | **sim** para ativar em produção | conforme demanda |
+
+> [!warning] Fronteira de aprovação
+> Construir/validar automação é autônomo. **Ativar** qualquer coisa com efeito externo (Slack, e-mail, CRM em produção, dinheiro) é decisão do Operador — o Estagiário 6 entrega o workflow **inativo**, pronto para você ligar. Ver [[_Contrato de Autoridade dos Agentes]].
 
 ---
 
