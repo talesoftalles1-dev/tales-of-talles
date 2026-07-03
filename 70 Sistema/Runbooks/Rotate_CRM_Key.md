@@ -1,7 +1,7 @@
 ---
 dominio: jarvis
 tipo: runbook
-status: draft
+status: rascunho
 categoria: operations
 area: security
 criado: 2026-06-27
