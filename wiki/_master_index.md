@@ -42,11 +42,24 @@ O canon do JARVIS é um conjunto de documentos **PT-BR**. Toda dúvida estrutura
 
 > A antiga `CONSTITUTION.md` (inglês) foi **superseded** por este conjunto em 2026-06-30 — ver [[_Spec JARVIS]] §13.
 
+## Arquitetura multiagente (Jarvis orquestrador + Estagiários)
+
+Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada em 2026-07-03:
+
+| Documento | Responsabilidade |
+|---|---|
+| [[protocolo_orquestracao_jarvis]] | Como o **Jarvis** decompõe → prioriza → delega → paraleliza → consolida → valida (FASE 1 + 3) |
+| [[estagiarios]] | Cartas de autoridade dos 8 **Estagiários** (camada de execução, FASE 2) |
+| [[adr_ruflo_vs_subagentes_nativos]] | Decisão: subagentes nativos do Claude Code; Ruflo diferido |
+| [[🔁 Automacoes]] §10 | Automações orquestradas por agentes (FASE 4) |
+
+> Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduzem linhas novas na matriz de autoridade — **pendentes de ratificação do Operador** (merge do PR = aprovação, [[_Contrato de Autoridade dos Agentes]] cláusula de imutabilidade).
+
 ## Índices principais (`wiki/`)
 
 | Área | Função | Entrada |
 |---|---|---|
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Executive Assistant, TOR, BOBBY, KNOWLEDGE |
+| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Jarvis (orquestrador), Estagiários E1–E8, TOR, BOBBY, KNOWLEDGE |
 | [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
