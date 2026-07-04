@@ -131,10 +131,13 @@ tags:
     const pages = dv.pages().where(p => !p.file.folder.includes("Templates"));
     const hoje = dv.luxon.DateTime.now().toISODate();
     const tarefasHoje = dv.pages().file.tasks.where(t => !t.completed && t.due && t.due.toISODate() <= hoje).length;
+    const lastCorporal = dv.pages('"20 Pessoal/Saude/Corporal"').sort(p => p.data, 'desc').first();
+    const readiness = lastCorporal ? lastCorporal.readiness : 85;
     
     dv.paragraph(`**Projetos Ativos:** ${pages.where(p => p.tipo == "projeto" && p.status == "ativo").length}`);
     dv.paragraph(`**Tarefas Atrasadas:** ${tarefasHoje}`);
-    dv.paragraph(`**Saúde (Readiness):** 85%`);
+    dv.paragraph(`**Readiness (MUZY):** ${readiness}%`);
+    dv.paragraph(`**Status TOR:** 🛡️ Sentinel Active`);
     ```
   </div>
 </div>
