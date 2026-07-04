@@ -1,6 +1,8 @@
 {
   "baseFontSize": 23,
   "enabledCssSnippets": [
-    "jarvis"
+    "jarvis",
+    "jarvis-high-fidelity",
+    "jarvis-performance"
   ]
 }
