@@ -1,0 +1,45 @@
+/* 
+   =====================================================================
+   JARVIS PERFORMANCE HEATMAP — IDENTITY OS (v1.0)
+   Visualização de progressão atlética e readiness.
+   ===================================================================== 
+*/
+
+.health-hud .dataview.table-view-table {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--jarvis-border);
+}
+
+/* Efeito de Heatmap nas células de Readiness */
+.health-hud td:contains("/100") {
+  font-weight: bold;
+  color: var(--jarvis-accent);
+}
+
+/* Barra de Progresso do Peso (77kg -> 84kg) */
+.weight-progress-container {
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border: 1px solid var(--jarvis-border);
+  position: relative;
+  margin: 10px 0;
+}
+
+.weight-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--jarvis-blue), var(--jarvis-accent));
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--jarvis-accent-dim);
+  transition: width 0.5s ease;
+}
+
+/* Card de Coach Estilizado */
+.coach-card {
+  background: var(--jarvis-surface);
+  border-left: 4px solid var(--jarvis-accent);
+  padding: 10px;
+  margin-bottom: 10px;
+}
