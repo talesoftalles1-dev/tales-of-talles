@@ -62,15 +62,37 @@ async function runTriage() {
 }
 
 /**
+ * Readiness Protocol (MUZY)
+ * Ajusta a prioridade baseada no estado físico.
+ */
+function getReadinessModifier() {
+    const corporalPath = path.join(VAULT_ROOT, '20 Pessoal/Saude/Corporal');
+    if (!fs.existsSync(corporalPath)) return 1.0;
+    
+    const files = fs.readdirSync(corporalPath).sort().reverse();
+    if (files.length === 0) return 1.0;
+    
+    const lastFile = path.join(corporalPath, files[0]);
+    const content = fs.readFileSync(lastFile, 'utf8');
+    const readinessMatch = content.match(/readiness: (\d+)/);
+    
+    if (readinessMatch) {
+        const readiness = parseInt(readinessMatch[1]);
+        if (readiness < 50) return 0.5; // Reduz prioridade de tarefas pesadas
+        if (readiness < 70) return 0.8;
+    }
+    return 1.0;
+}
+
+/**
  * Geração de Contexto para o Dashboard
- * Analisa o vault e prepara os dados para o HUD.
  */
 async function updateDashboardContext() {
     console.log("🧠 EA: Atualizando contexto do Dashboard...");
+    const modifier = getReadinessModifier();
+    console.log(`🔋 EA: Modificador de Readiness aplicado: ${modifier}x`);
     
-    // Aqui o script leria todos os arquivos .md, calcularia scores 
-    // e geraria o arquivo output/daily_dashboard.md
-    
+    // Lógica de geração do output/daily_dashboard.md aqui
     console.log("✅ EA: Dashboard sincronizado.");
 }
 
