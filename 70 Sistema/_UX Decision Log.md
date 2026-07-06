@@ -65,6 +65,18 @@ tags:
 - Paleta de marca (`_Spec JARVIS` §7)
 - Path 1 n8n Critical Alerts
 
+## 2026-07-06 — Transformação OS (higiene visual do HUD v2)
+
+| Antes | Depois | Por quê |
+|---|---|---|
+| `jarvis-high-fidelity.css` redefinia `--jarvis-*` em `:root` | Tokens escopados a `.jarvis-dashboard-v2`/`.jarvis-hud-container` | O neon emerald vazava para o vault inteiro e tornava falsa a paleta ciano documentada (`_Spec` §7). Agora: neon só no HUD, ciano no resto — as docs voltam a ser verdade |
+| HUD com telemetria decorativa ("Deploy do PWA concluído", conexões Notion/Stripe, cargas %) | Cards e integrações refletem estado real ([[agent_roster]]) | Dashboard que mente vira ruído; regra nova: **nenhum status fake no HUD** |
+| Rótulos de UI em inglês (Channels, Core Agents, System Vitals…) | PT-BR (Canais, Agentes, Vitais do Sistema…) | Padrão de idioma do vault |
+| Vitais com fallback inventado (`readiness : 85`) | "— (sem registro)" quando não há dado | Honestidade de dados > estética |
+| `jarvis-performance.css` com `td:contains()` (jQuery, inválido) | Classe `.jarvis-metric-hot` documentada | A regra era ignorada silenciosamente pelo navegador |
+
+> **Pendente do Operador:** `baseFontSize: 23` em `appearance.json` vs 16px recomendado em [[🎨 Tema e Visual]] §5 — preferência de leitura, não defeito; decidir e alinhar doc ou config.
+
 ## Verificação
 
 | Critério | Como validar |
