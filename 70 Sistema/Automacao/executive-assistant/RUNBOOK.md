@@ -1,3 +1,14 @@
+---
+dominio: jarvis
+tipo: doc
+status: publicado
+categoria: automacao
+criado: 2026-06-27
+atualizado: 2026-07-06
+tags:
+  - tema/ia
+---
+
 # Executive Assistant — Daily Dashboard · Runbook
 
 ## Resumo

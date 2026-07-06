@@ -28,5 +28,6 @@ Cada Estagiário mantém uma **memória local** aqui — contexto persistente en
 | E6 · Automações | `estagiario_6_automacoes.md` |
 | E7 · Conhecimento | `estagiario_7_conhecimento.md` |
 | E8 · Planejamento | `estagiario_8_planejamento.md` |
+| E9 · Comercial | `estagiario_9_comercial.md` |
 
 > Convenção: cada arquivo é criado pelo próprio Estagiário na primeira vez que precisar registrar memória. Formato livre, PT-BR, com datas em `YYYY-MM-DD`. Isto **não** é a memória vetorial do Ruflo (diferido — ver [[adr_ruflo_vs_subagentes_nativos]]); é memória markdown simples, deliberadamente.

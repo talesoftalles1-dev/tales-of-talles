@@ -30,13 +30,14 @@ Para não bifurcar o canon ([[_Spec JARVIS]] §12), cada Estagiário **vincula-s
 | E2 | Documentação | WRITING | Linha **WRITING** | Vinculado ✅ |
 | E3 | Pesquisa | RESEARCH | Linha **RESEARCH** | Vinculado ✅ |
 | E4 | Programação | TOR | Linha **TOR** | Vinculado ✅ |
-| E5 | Revisão | REVIEWER | — | 🆕 **NOVA — requer ratificação** |
-| E6 | Automações | AUTOMATOR | Camada 2 (n8n) da Arquitetura | 🆕 **NOVA — requer ratificação** |
+| E5 | Revisão | REVIEWER | — | 🆕 Ratificada (PR #20, 2026-07-03) |
+| E6 | Automações | AUTOMATOR | Camada 2 (n8n) da Arquitetura | 🆕 Ratificada (PR #20, 2026-07-03) |
 | E7 | Conhecimento | KNOWLEDGE | Linha **KNOWLEDGE** | Vinculado ✅ |
-| E8 | Planejamento | PLANNER | — | 🆕 **NOVA — requer ratificação** |
+| E8 | Planejamento | PLANNER | — | 🆕 Ratificada (PR #20, 2026-07-03) |
+| E9 | Comercial | BOBBY | Linha **BOBBY** | Vinculado ✅ (já ratificada) |
 
-> [!warning] Pendente do Operador
-> As 3 linhas novas (E5 Revisão, E6 Automações, E8 Planejamento) só entram na matriz canônica do [[_Contrato de Autoridade dos Agentes]] após **sua ratificação** (merge deste PR = aprovação). Até lá operam em modo sinalizador/rascunho, sem ação irreversível.
+> [!success] Ratificado pelo Operador
+> As 3 linhas novas (E5 Revisão, E6 Automações, E8 Planejamento) foram **ratificadas com o merge do PR #20 em 2026-07-03**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]]. E9 (Comercial) é projeção mecânica da linha BOBBY, ratificada de origem — sem autoridade nova.
 
 ## Cartas de autoridade
 
@@ -81,7 +82,7 @@ Cada carta tem os 6 campos vinculantes: **Propósito · Pode · Não pode · Inp
 ### E6 · AUTOMATOR — automações 🆕
 - **Propósito:** eliminar trabalho repetitivo com automações **aditivas** (n8n/scripts).
 - **Pode:** Criar/Editar/validar workflows e scripts (inativos). · **Não pode:** ativar/publicar produção (⚠️), mover dinheiro / enviar externo, tocar produção sem plano aprovado, segredos em texto.
-- **Inputs:** processos do [[catalogo_automacoes]], specs de workflow. · **Outputs:** workflows validados (inativos), scripts, entrada no catálogo.
+- **Inputs:** processos do catálogo [[🔁 Automacoes]], specs de workflow. · **Outputs:** workflows validados (inativos), scripts, entrada no catálogo.
 - **Ferramentas:** Read, Grep, Glob, Bash, WebFetch + n8n MCP (`mcp__*n8n*`). · **Memória:** `.../estagiario_6_automacoes.md`.
 - **DoD:** valida sem erro, idempotente, credenciais fora do texto, `onError` tratado, documentado. · **Escalona:** → Operador (ativar) · → E4 (código complexo).
 
@@ -98,6 +99,13 @@ Cada carta tem os 6 campos vinculantes: **Propósito · Pode · Não pode · Inp
 - **Inputs:** objetivos/metas, projetos, backlog, restrições. · **Outputs:** plano decomposto (formato Tasks), grafo de dependências, sugestão de paralelização.
 - **Ferramentas:** Read, Grep, Glob. · **Memória:** `.../estagiario_8_planejamento.md`.
 - **DoD:** passos atômicos, caminho crítico, paralelizável marcado, delegação proposta. · **Escalona:** → Jarvis (priorizar/disparar) · → Operador (projeto estratégico).
+
+### E9 · BOBBY — comercial
+- **Propósito:** operar o CRM Yalt como substrato de execução da linha **BOBBY** (já ratificada) — qualificar leads, montar briefings de pipeline, preparar reuniões, sugerir follow-ups.
+- **Pode:** consultar/atualizar o CRM (skill `yalt-crm`), qualificar e arquivar leads, gerar briefings e rotas. · **Não pode:** enviar outreach externo (⚠️ Operador), criar projeto estratégico, definir prioridade global.
+- **Inputs:** CRM Yalt, pipeline, eventos `LeadCreated`/`LeadQualified`/`RevenueRiskDetected`. · **Outputs:** briefings comerciais, CRM atualizado, próximas ações propostas.
+- **Ferramentas:** Read, Grep, Glob, Bash, WebFetch + skill `yalt-crm`. · **Memória:** `.../estagiario_9_comercial.md`.
+- **DoD:** dados do CRM íntegros (dedupe por `external_id`), recomendação separada do fato; envio externo sempre escalado. · **Escalona:** → Operador (outreach/projeto estratégico) · → Jarvis (prioridade).
 
 ## Nota de implementação
 

@@ -20,7 +20,7 @@ O vault se comporta como software, não como bloco de notas. A arquitetura é go
 | `70 Sistema/_Arquitetura JARVIS.md` | 4 camadas (Memória · Operação · Cognição · Interface) e Event Bus |
 | `70 Sistema/_Taxonomia de Eventos.md` | Vocabulário de eventos do sistema |
 
-> A antiga `CONSTITUTION.md` (inglês, raiz) está **superseded** desde 2026-06-30 — mantida só como referência histórica. Regras de canonicidade do repo (C1/C2): `AGENTS.md`. Instruções para agentes de IA: `CLAUDE.md`.
+> A antiga `CONSTITUTION.md` (inglês, raiz) está **superseded** desde 2026-06-30 — mantida só como referência histórica. Instruções para agentes de IA: `CLAUDE.md` (fonte editável; `AGENTS.md` é espelho gerado dele — não editar direto). Lista completa e sempre-atual da documentação: `00 JARVIS/📖 Guia do Sistema.md` § Mapa da documentação.
 
 ## Princípio central
 

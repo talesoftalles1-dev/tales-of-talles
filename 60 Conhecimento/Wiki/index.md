@@ -1,19 +1,22 @@
-# Index
+# Índice
 
-Catalog of every page in the wiki. Updated on every ingest. When answering a query, read this first to find relevant pages before drilling in.
+Catálogo de todas as páginas da wiki. Atualizado a cada ingest. Ao responder uma consulta, leia isto primeiro para achar as páginas relevantes antes de aprofundar.
 
-## Overview
+> [!note] Fronteira com `wiki/knowledge/` (decisão de 2026-07-06)
+> Este sub-sistema (LLM-wiki) é o lar de **conhecimento compilado a partir de fontes curadas** (ingest → páginas interligadas). A memória **operacional** do sistema (projetos, áreas, agentes) vive em `wiki/` na raiz do vault. Manual: [[_Wiki — Como Manter]].
 
-*(no overview page yet — created once there's enough synthesized content to summarize)*
+## Visão Geral
 
-## Sources
+*(ainda sem página de visão geral — criada quando houver conteúdo sintetizado suficiente para resumir)*
 
-*(one page per ingested source — created on first ingest)*
+## Fontes
 
-## Entities
+*(uma página por fonte ingerida — criada no primeiro ingest)*
 
-*(people, organizations, places, things — created as they accumulate enough mentions to deserve their own page)*
+## Entidades
 
-## Concepts
+*(pessoas, organizações, lugares, coisas — criadas conforme acumulam menções suficientes para merecer página própria)*
 
-*(topics, themes, ideas that recur across sources — created as patterns emerge)*
+## Conceitos
+
+*(tópicos, temas e ideias recorrentes entre fontes — criados conforme padrões emergem)*

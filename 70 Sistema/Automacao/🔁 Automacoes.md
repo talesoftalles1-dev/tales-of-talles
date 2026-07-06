@@ -338,7 +338,7 @@ tags:
 ````markdown
 ```dataviewjs
 const mes = dv.luxon.DateTime.now().toFormat("yyyy-MM");
-const lanc = dv.pages('"50 Financeiro"').where(p => p.tipo === "lancamento" && p.data && p.data.toFormat("yyyy-MM") === mes);
+const lanc = dv.pages().where(p => p.tipo === "lancamento" && p.data && p.data.toFormat("yyyy-MM") === mes);
 const receita = lanc.where(p => p.mov === "receita").array().reduce((s,p)=>s+(p.valor||0),0);
 const despesa = lanc.where(p => p.mov === "despesa").array().reduce((s,p)=>s+(p.valor||0),0);
 dv.paragraph(`**Mês ${mes}** — Receita: R$ ${receita.toFixed(2)} · Despesa: R$ ${despesa.toFixed(2)} · **Saldo: R$ ${(receita-despesa).toFixed(2)}**`);
@@ -549,7 +549,7 @@ tags
 
 **Plugin:** Periodic Notes (Weekly Note) + Tasks. A nota semanal `YYYY-[W]ww` (tipo `semanal`) carrega o ritual.
 
-- Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Link de referência: [[2026-W26]] (a semanal vigente).
+- Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Nome de arquivo esperado: `2026-W26.md` (padrão `YYYY-[W]ww` — ainda não instanciado; crie a primeira Weekly Note via T - Weekly Note para ativar o ritual).
 
 ````markdown
 ## 🔁 Revisão semanal
@@ -616,13 +616,14 @@ SORT atualizado ASC
 | Briefing Diário SDR | 08:30 | BOBBY | n8n `Sq71PU4KyTtqB033` | ✅ ativo |
 | Lembretes de Follow-up | cron | BOBBY | n8n `LcsSLCkf4oJOnM5g` | ✅ ativo |
 | Critical Alerts → #daily | 3x/dia | Jarvis/EA | n8n `nCG0dfGEzyBLhxLv` | ✅ ativo (silencioso quando nada crítico) |
+| Vault Lint (frontmatter + links + espelho) | manual; tarefa 06:50 opcional | E5 critério / E1 correção | script local `vault-lint/lint.mjs` → `output/vault_lint.md` | ✅ construído 2026-07-06 (agendar = Operador) |
 
 ### 10b. Backlog FASE 4 (ordenado: baixo risco + alto ganho primeiro)
 
 | Processo repetitivo | Dono (Estagiário) | Mecanismo | Aprovação humana? | Estado |
 |---|---|---|---|---|
 | Manutenção de backlinks / índices órfãos | E7 KNOWLEDGE | subagente | não (reversível) | implementável agora |
-| Revisão automática de conformidade ao `_Spec` (frontmatter/nomenclatura) | E5 REVIEWER | subagente | não | implementável agora |
+| Revisão automática de conformidade ao `_Spec` (frontmatter/nomenclatura) | E5 REVIEWER | ✅ feito: `vault-lint` (ver 10a) | não | **entregue 2026-07-06** |
 | Triagem/classificação automática do `raw/` | E1 ORGANIZER | subagente | não | implementável agora |
 | Geração automática de MOCs por área/`dominio` | E7 KNOWLEDGE | subagente | não | propor |
 | Criação automática de links (nota↔entidade) | E7 KNOWLEDGE | subagente | não | propor |

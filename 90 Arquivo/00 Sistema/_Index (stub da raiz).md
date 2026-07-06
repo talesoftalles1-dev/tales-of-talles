@@ -3,7 +3,6 @@ dominio: jarvis
 tipo: index
 status: arquivado
 superseded_por: "[[_Spec JARVIS]]"
-area: sistema
 titulo: 00 Sistema — Índice (arquivado)
 criado: 2026-06-27
 atualizado: 2026-07-02
@@ -11,10 +10,7 @@ aliases:
   - 00 Sistema — Índice
   - Foundation Index
   - MOC Fundação
-tags:
-  - index
-  - arquivado
-  - sistema
+tags: []
 ---
 
 # 00 Sistema — Índice ⛔ ARQUIVADO
