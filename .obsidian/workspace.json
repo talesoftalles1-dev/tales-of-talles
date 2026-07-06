@@ -4,20 +4,119 @@
     "type": "split",
     "children": [
       {
-        "id": "5a31a9dbf0f7388c",
+        "id": "d4619c735f631112",
         "type": "tabs",
         "children": [
           {
-            "id": "24232bf4f5cb2e75",
+            "id": "264c4811e00113e0",
             "type": "leaf",
             "state": {
-              "type": "graph",
+              "type": "markdown",
+              "state": {
+                "file": "AGENTS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AGENTS"
+            }
+          },
+          {
+            "id": "2147fbe1990f852c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "00 JARVIS/🤖 JARVIS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "🤖 JARVIS"
+            }
+          },
+          {
+            "id": "2de21dba5b65c4e3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "70 Sistema/_Arquitetura JARVIS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_Arquitetura JARVIS"
+            }
+          },
+          {
+            "id": "cf0cc50c2752ea84",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CLAUDE.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CLAUDE"
+            }
+          },
+          {
+            "id": "3e6eb7c2054f4b77",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "60 Conhecimento/IA/Agentes JARVIS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Agentes JARVIS"
+            }
+          },
+          {
+            "id": "820335c325e6ca96",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
               "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Visualização em gráfico"
+              "icon": "lucide-file",
+              "title": "Nova aba"
+            }
+          },
+          {
+            "id": "1bc872b591723adc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "60 Conhecimento/Wiki/_Wiki — Como Manter.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_Wiki — Como Manter"
+            }
+          },
+          {
+            "id": "66ccbd72cd4ac2de",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "70 Sistema/_Arquitetura JARVIS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "_Arquitetura JARVIS"
             }
           }
-        ]
+        ],
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -49,7 +148,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "wiki",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -70,12 +169,12 @@
               "title": "Marcadores"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "beb38b7cba0d4ce1",
@@ -193,52 +292,56 @@
       "markdown-importer:Abrir importador Markdown": false,
       "audio-recorder:Começar/parar a gravação de áudio": false,
       "random-note:Abrir nota aleatória": false,
-      "publish:Publicar mudanças": false
+      "publish:Publicar mudanças": false,
+      "realclaudian:Open Claudian": false,
+      "claude-sidebar:New Claude Tab": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-importer:Open Importer": false
     }
   },
-  "active": "24232bf4f5cb2e75",
+  "active": "66ccbd72cd4ac2de",
   "lastOpenFiles": [
-    "output/Auditoria — Pastas Duplicadas.md",
-    "output/Auditoria — Pastas Duplicadas.md.tmp.36136.4b2eb83f1d17",
-    "raw/clips/_README.md",
-    "output/Plano Dry-Run — Organizacao em 3 Pilares.md",
-    "output/Plano Dry-Run — Organizacao em 3 Pilares.md.tmp.36136.0b8cca1b0d4a",
-    "40 CRM/Chapter 19 — Outreach & ESP Strategy.md",
-    "40 CRM/Chapter 18 — Sync & MCP Contracts.md",
-    "40 CRM/Chapter 17 — CRM Data Model.md",
-    "40 CRM/🤝 CRM.md",
-    "Sem título.base",
-    "Sem título.md",
-    "Sem título 1",
-    "Sem título",
-    "raw/inbox.md",
-    "70 Sistema/🔌 Plugins.md",
-    "Recording 20260627141753.m4a",
+    "60 Conhecimento/Wiki/_Wiki — Como Manter.md",
     "CLAUDE.md",
-    "60 Conhecimento/IA/Prompts/Resumir Reuniao.md",
     "60 Conhecimento/IA/Agentes JARVIS.md",
-    "30 Empresa/Chapter 15 — Partnerships & Legal.md",
-    "30 Empresa/Chapter 14 — Commercial Ops (Yalt).md",
-    "30 Empresa/Chapter 13 — Projects & Releases.md",
-    "30 Empresa/🏢 Yalt.md",
+    "60 Conhecimento/🧠 Conhecimento.md",
     "00 JARVIS/🤖 JARVIS.md",
-    "70 Sistema/Automacao/🔌 Ponte APEX ↔ JARVIS.md",
-    "20 Pessoal/🩺 Saúde & Performance.md",
+    "70 Sistema/_Arquitetura JARVIS.md",
+    "00 JARVIS/🪐 Constituição JARVIS.md",
     "AGENTS.md",
-    "wiki/ai_agents/prompt_arquiteto_vault.md",
-    "wiki/ai_agents/executive_assistant.md",
-    "wiki/_master_index.md",
-    "output/query_results.md",
-    "output/migration_report.md",
-    "70 Sistema/Automacao/executive-assistant/run.ps1",
-    "70 Sistema/Automacao/executive-assistant/logs/2026-06-28.log",
-    "70 Sistema/Automacao/executive-assistant/logs",
-    "70 Sistema/Automacao/executive-assistant/dashboard.mjs",
-    "00 JARVIS/🗺️ Mapa do Sistema.canvas",
-    "Sem título 1.canvas",
+    "raw/inbox.md",
+    "yalt-revenue-os-estado.md",
+    "70 Sistema/Automacao/morning-brief/logs/2026-07-01.log",
+    "70 Sistema/Automacao/morning-brief/output/2026-07-01-morning-brief.txt",
+    "70 Sistema/Automacao/executive-assistant/logs/2026-07-01.log",
+    "output/TALES OF TALLES OS — Master Evolution Report.md",
+    "Sem título 1.base",
+    "2026-06-30.md",
     "Sem título 3.canvas",
+    "10 Inbox/📥 Inbox.md",
+    "output/Trabalho Restante — 2026-06-30 (Auto Mode).md.tmp.33984.e50e67c8cea4",
+    "70 Sistema/Automacao/_Plano de Sincronizacao — Vault Root.md",
+    "30 Empresa/🏢 Yalt.md",
     "Sem título 2.canvas",
-    "Sem título 4.canvas",
-    "Sem título.canvas"
+    "output/Trabalho Restante — 2026-06-30 (Auto Mode).md",
+    "70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md",
+    "output/Validacao Operacional — 2026-06-30.md",
+    "70 Sistema/Checklists/Validacao Operacional JARVIS.md",
+    "40 CRM/🤝 CRM.md",
+    "Sem título 1.canvas",
+    "Sem título.md",
+    "Sem título.canvas",
+    "Sem título.base",
+    "Recording 20260627141753.m4a",
+    "70 Sistema/Automacao/morning-brief/logs/2026-06-30.log",
+    "70 Sistema/Automacao/morning-brief/output/2026-06-30-morning-brief.txt",
+    "70 Sistema/Automacao/executive-assistant/logs/2026-06-30.log",
+    "70 Sistema/_Roadmap JARVIS OS.md",
+    "README.md",
+    "wiki/ai_agents/index.md",
+    "output/slide_decks/_README.md",
+    "2026-06-29.md",
+    "00 JARVIS/🗺️ Mapa do Sistema.canvas",
+    "Sem título 4.canvas"
   ]
 }

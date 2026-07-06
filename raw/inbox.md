@@ -7,6 +7,7 @@ atualizado: 2026-06-27
 tags:
   - captura
 ---
+![[yalt-revenue-os-estado]]
 
 # 📥 Inbox Bruto
 
