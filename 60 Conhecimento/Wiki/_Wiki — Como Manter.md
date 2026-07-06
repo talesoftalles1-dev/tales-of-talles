@@ -1,9 +1,10 @@
 ---
 dominio: jarvis
 tipo: doc
-status: ativo
+status: publicado
 area: pessoal
 criado: 2026-06-27
+atualizado: 2026-07-06
 tags:
   - tema/ia
 ---
