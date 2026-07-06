@@ -51,4 +51,3 @@ Progresso em **30%**. Já reorganizei os horários de sono e voltei a treinar de
 
 - Hub de saúde: [[🩺 Saúde & Performance]] — treinos, nutrição e métricas corporais (CAMP 2026)
 - Hábito: [[Exercicio]]
-- Diário: [[2026-06-27]]

@@ -7,7 +7,7 @@ atualizado: 2026-06-27
 relacionado:
   - "[[_Arquitetura JARVIS]]"
   - "[[_Stack de Ferramentas (Arsenal)]]"
-  - "[[_Daily Brief — Revisão]]"
+  - "[[_UX Decision Log]]"
   - "[[🤖 JARVIS]]"
   - "[[_Morning Brief — Spec]]"
   - "[[Ponte n8n ↔ JARVIS]]"
