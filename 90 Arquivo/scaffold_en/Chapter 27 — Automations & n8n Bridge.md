@@ -3,7 +3,7 @@ dominio: jarvis
 aliases:
   - "Automations & n8n Bridge"
 tipo: chapter
-status: ativo
+status: arquivado
 area: 70 Sistema
 title: Automations & n8n Bridge
 created: 2026-06-27T18:24:00Z

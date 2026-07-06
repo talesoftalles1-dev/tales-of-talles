@@ -15,7 +15,6 @@ relacionado:
   - "[[_Contrato de Autoridade dos Agentes]]"
   - "[[🤖 JARVIS]]"
 tags:
-  - index
   - moc
   - tema/ia
 ---
@@ -49,11 +48,11 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 | Documento | Responsabilidade |
 |---|---|
 | [[protocolo_orquestracao_jarvis]] | Como o **Jarvis** decompõe → prioriza → delega → paraleliza → consolida → valida (FASE 1 + 3) |
-| [[estagiarios]] | Cartas de autoridade dos 8 **Estagiários** (camada de execução, FASE 2) |
+| [[estagiarios]] | Cartas de autoridade dos 9 **Estagiários** (camada de execução, FASE 2; E9 = BOBBY, linha já ratificada) |
 | [[adr_ruflo_vs_subagentes_nativos]] | Decisão: subagentes nativos do Claude Code; Ruflo diferido |
 | [[🔁 Automacoes]] §10 | Automações orquestradas por agentes (FASE 4) |
 
-> Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduzem linhas novas na matriz de autoridade — **pendentes de ratificação do Operador** (merge do PR = aprovação, [[_Contrato de Autoridade dos Agentes]] cláusula de imutabilidade).
+> Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduziram linhas novas na matriz de autoridade — **ratificadas pelo Operador com o merge do PR #20 (2026-07-03)**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]].
 
 ## Índices principais (`wiki/`)
 
@@ -106,8 +105,8 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 
 - [ ] Gerar mapa dry-run: nota atual → destino sugerido no fluxo `raw/wiki/output`.
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
-- [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
-- [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Ver [[00 Sistema/_Index]].
+- [x] **Decidir `60 Conhecimento/Wiki/` vs `wiki/knowledge/`** — resolvido em 2026-07-06 (recomendação do Relatório de Arquitetura): o LLM-wiki **permanece** como sub-sistema especializado de fontes; `wiki/knowledge/` fica com a memória operacional. Fronteira documentada nos índices dos dois lados.
+- [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Stub da raiz arquivado em 2026-07-06 → [[90 Arquivo/00 Sistema/_Index (stub da raiz)|00 Sistema — Índice (arquivado)]].
 - [x] **Arquivar scaffold EN restante (Chapters 07–31 + `_Index.md` genéricos)** — concluído em 2026-07-03 (F0 Higiene, aprovada pelo Operador): 25 placeholders movidos para `90 Arquivo/scaffold_en/`; 6 index shells sem backlinks removidos. Ver [[90 Arquivo/scaffold_en/_Index]]. Tag de segurança: `jarvis/pre-f0-limpeza-20260703`.
 
 ## Pendências da Fase 1 (2026-07-02) — concluídas
