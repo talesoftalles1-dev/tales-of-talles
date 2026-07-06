@@ -1,9 +1,9 @@
 ---
 dominio: jarvis
 tipo: doc
-status: canonico
+status: publicado
 categoria: sistema
-area: 00 Sistema
+area: sistema
 criado: 2026-06-27
 atualizado: 2026-06-27
 aliases:
@@ -11,8 +11,8 @@ aliases:
   - Vault Organization Prompt
   - Claude Obsidian Prompt
 relacionado:
-  - "[[00 Sistema/_Index]]"
-  - "[[Morning Brief — Canonicidade e Sincronizacao]]"
+  - "[[90 Arquivo/00 Sistema/_Index (stub da raiz)|00 Sistema — Índice (arquivado)]]"
+  - "[[_Morning Brief — Spec]]"
 tags:
   - governanca
   - canonicidade

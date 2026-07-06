@@ -11,7 +11,6 @@ aliases:
   - JARVIS Knowledge Architect Prompt
   - Prompt Claude do Trabalho
 tags:
-  - agent
   - prompt
   - governanca
   - vault
