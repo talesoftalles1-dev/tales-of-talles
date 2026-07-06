@@ -123,13 +123,15 @@ Toda nota de conteúdo carrega a **base comum** + as específicas do `tipo`.
 |---|---|---|
 | `tipo` | text | discriminador — ver tabela abaixo |
 | `status` | text | depende do tipo |
-| `area` | text | `pessoal` \| `empresa` (quando aplicável) |
+| `area` | text | `pessoal` \| `empresa` \| `sistema` (quando aplicável; `sistema` = infraestrutura do próprio JARVIS — índices, contratos de agente, automação) |
 | `dominio` | text | `jarvis` \| `yalt` \| `talles` — pilar do vault (sistema / empresa / pessoal); fonte dos MOCs e dos grupos de cor do graph. Default por pasta, override por nota. |
 | `criado` | date | `YYYY-MM-DD` |
 | `atualizado` | date | `YYYY-MM-DD` |
 | `tags` | list | temas transversais (ver taxonomia) |
 
-**Valores de `tipo`:** `projeto`, `reuniao`, `cliente`, `contato`, `doc`, `objetivo`, `habito`, `estudo`, `ideia`, `sop`, `checklist`, `lancamento`, `prompt`, `nota`, `diario`, `semanal`, `sistema`.
+**Valores de `tipo`:** `projeto`, `reuniao`, `cliente`, `contato`, `doc`, `objetivo`, `habito`, `estudo`, `ideia`, `sop`, `checklist`, `lancamento`, `prompt`, `nota`, `diario`, `semanal`, `sistema` — mais os tipos de saúde da §9 (`treino`, `nutricao`, `corporal`) e os meta-tipos da extensão abaixo (`index`, `output`, `agent`, `runbook`).
+
+**Regra de estado terminal:** todo tipo aceita `status: arquivado` como estado terminal (é a convenção de `90 Arquivo/`), mesmo quando não listado no enum do tipo.
 
 ### Propriedades por tipo
 
@@ -211,6 +213,18 @@ Toda nota de conteúdo carrega a **base comum** + as específicas do `tipo`.
 **diario** — `data` (date); `humor` (number 1–5); `energia` (number 1–5).
 **semanal** — `semana` (text, ex. `2026-W26`).
 
+### Meta-tipos (extensão de 2026-07-06)
+
+> [!warning] Extensão aditiva (ratificada com o merge do PR da transformação OS)
+> Estes 4 valores de `tipo` já eram usados organicamente por ~14 notas do vault (drift apontado pelo Relatório de Arquitetura 2026-07-03 e confirmado pela auditoria de 2026-07-04). Em vez de re-tipar as notas para valores que não as descrevem, o contrato os absorve. São **meta-tipos**: descrevem notas do sistema sobre o sistema, não conteúdo de vida/negócio.
+
+| tipo | para quê | `status` |
+|---|---|---|
+| `index` | índices/MOCs de navegação (`_master_index`, `_Index` de pasta) | `ativo` \| `canonico` \| `arquivado` |
+| `output` | entregas geradas na camada `output/` (regeneráveis) | `ativo` \| `gerado` \| `arquivado` |
+| `agent` | contratos/rotinas de agente em `wiki/ai_agents/` | `ativo` \| `canonico` \| `rascunho` |
+| `runbook` | procedimentos operacionais passo a passo (`70 Sistema/Runbooks/`, automação) | `rascunho` \| `ativo` \| `revisao` |
+
 ---
 
 ## 3. Taxonomia de tags
@@ -260,7 +274,7 @@ hide task count
 
 ## 6. Plugins (consolidados)
 
-Templater, Dataview, Tasks, QuickAdd, Calendar, Periodic Notes, Homepage, Style Settings, Iconize, Linter, Auto Note Mover, Buttons. Tema: **Minimal** (kepano) + Style Settings + snippet `jarvis.css`. Detalhes e config em `🔌 Plugins`.
+**Instalados de fato (2026-07-06):** Dataview, Tasks, Claudian (realclaudian), Claude Sidebar, Obsidian Git, Importer, MCP Tools, Open in Terminal, Vault as MCP. **Planejados (backlog de instalação, ver 📖 Guia do Sistema §1):** Templater, QuickAdd, Calendar, Periodic Notes, Homepage, Style Settings, Iconize, Linter, Auto Note Mover, Buttons. Tema: **Minimal** (kepano) + snippets `jarvis.css`/`jarvis-high-fidelity.css`/`jarvis-performance.css`. Detalhes e config em `🔌 Plugins`. A lista de plugins da comunidade é mantida **na doc** (`community-plugins.json` não é versionado — decisão anti-corrupção de sync OneDrive).
 
 ---
 

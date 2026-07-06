@@ -14,52 +14,24 @@
         "collapse-color-groups": false,
         "colorGroups": [
           {
-            "query": "line:(yalt)",
+            "query": "[\"dominio\":jarvis]",
             "color": {
               "a": 1,
-              "rgb": 3001736
+              "rgb": 2282478
             }
           },
           {
-            "query": "line:(talles)",
+            "query": "[\"dominio\":yalt]",
             "color": {
               "a": 1,
-              "rgb": 7282814
+              "rgb": 16098596
             }
           },
           {
-            "query": "section:(jarvis)",
+            "query": "[\"dominio\":talles]",
             "color": {
               "a": 1,
-              "rgb": 3052543
-            }
-          },
-          {
-            "query": "section:(yalt)",
-            "color": {
-              "a": 1,
-              "rgb": 2352931
-            }
-          },
-          {
-            "query": "section:(talles)",
-            "color": {
-              "a": 1,
-              "rgb": 6098535
-            }
-          },
-          {
-            "query": "line:(jarvis)",
-            "color": {
-              "a": 1,
-              "rgb": 5419488
-            }
-          },
-          {
-            "query": "tag:tales of talles",
-            "color": {
-              "a": 1,
-              "rgb": 14711890
+              "rgb": 2278750
             }
           }
         ],

@@ -3,7 +3,7 @@ dominio: jarvis
 tipo: checklist
 status: ativo
 area: <% tp.system.prompt("Área (pessoal/empresa/sistema)", "empresa") %>
-uso: <% tp.system.prompt("Contexto de uso (ex: onboarding cliente, viagem, publicação)") %>
+contexto: <% tp.system.prompt("Contexto de uso (ex: onboarding cliente, viagem, publicação)") %>
 criado: <% tp.date.now("YYYY-MM-DD") %>
 atualizado: <% tp.date.now("YYYY-MM-DD") %>
 tags:
@@ -20,7 +20,7 @@ tags:
 > [!abstract] Quando aplicar
 > Em que situação esta checklist deve ser usada e qual resultado ela garante.
 
-- **Uso:** `= this.uso`
+- **Contexto:** `= this.contexto`
 - **Quem usa:** 
 - **Frequência:** 
 

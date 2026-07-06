@@ -39,7 +39,7 @@ Cada peça do sistema tem sua própria página de referência. Este guia é o í
 | [[_Daily Brief (Canônico)]] | A estrutura única que o Dashboard e o Slack #daily compartilham |
 | [[_Contrato de Autoridade dos Agentes]] | **Quem decide o quê** — poderes e limites por agente (Constituição Operacional) |
 | [[_Taxonomia de Eventos]] | Eventos Informacional / Operacional / Crítico e roteamento (Constituição Operacional) |
-| [[_Daily Brief — Revisão]] | Relatório: o que manter / simplificar / remover no brief (recomendações P3) |
+| [[_UX Decision Log]] | Decisões de UX do Brief/Dashboard: o que manter / simplificar / remover |
 | [[_Canal Daily (Contrato)]] | Contrato do canal Slack #daily — Morning Brief (09h) + Critical Alerts |
 | [[🔌 Plugins]] | Quais plugins, por quê e como configurar cada um |
 | [[🎨 Tema e Visual]] | Tema, CSS premium e callouts de design |
@@ -89,7 +89,7 @@ output/           📤 Dashboards e relatórios gerados
 - **90 Arquivo** — acervo consultável fora do caminho do dia a dia.
 
 ### Fase 2 — Templates e propriedades
-15 templates Templater em `70 Sistema/Templates/`, cada um com o frontmatter exato do [[_Spec JARVIS]]. Toda nota nasce com as propriedades certas — é isso que faz as queries funcionarem.
+Templates Templater em `70 Sistema/Templates/` (um por `tipo` do contrato), cada um com o frontmatter exato do [[_Spec JARVIS]]. Toda nota nasce com as propriedades certas — é isso que faz as queries funcionarem.
 
 ### Fase 3 — Dashboard JARVIS
 A página [[🤖 JARVIS]] com captura rápida, agenda do dia, buckets de tarefas, projetos ativos, objetivos, CRM em foco, últimas notas e estatísticas ao vivo — tudo em cards estilo software.

@@ -2,35 +2,32 @@
 dominio: jarvis
 tipo: runbook
 status: rascunho
-categoria: operations
-area: security
+categoria: operacao
+area: empresa
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-06
 relacionado:
   - "[[70 Sistema/_Index]]"
-  - "[[CRM n8n Workflows — README]]"
-  - "[[CRM Unification — Plan]]"
+  - "[[_Contrato de Autoridade dos Agentes]]"
 tags:
-  - runbook
-  - crm
-  - security
+  - tema/dev
 ---
 
-<!-- canonicity-banner -->
-> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
+# Runbook: Rotacionar Chave CRM (Yalt)
 
-# Runbook: Rotate CRM Key (yalt)
+**Objetivo:** rotacionar com segurança a chave CRM exposta e garantir que todas as integrações usem a nova credencial.
 
-Purpose: Safely rotate the exposed CRM key and ensure all integrations use the new credential.
+## Passos
 
-Steps:
-1. Generate a new API key in the CRM (scope to leads create/update). Name: `yalt-integ-n8n-YYYYMMDD`.
-2. Store the new key in the chosen secret manager (n8n credentials recommended).
-3. Update the n8n credential `yalt_api_key` in staging workflows to use the new key.
-4. Run the PoC import workflow (`yalt_sync_import_seed`) with 10 test leads.
-5. Verify leads appear in CRM with correct `external_id` and no duplicates.
-6. If OK, update production workflows to the new credential and revoke the old key.
-7. Remove any occurrences of the old key from the Vault and commit the removal with message: `chore(secrets): remove exposed CRM key (rotated)`.
-8. Record rotation event in the security log: who, when, new_key_id, old_key_revoked.
+1. Gerar uma nova chave de API no CRM (escopo: criar/atualizar leads). Nome: `yalt-integ-n8n-YYYYMMDD`.
+2. Guardar a nova chave no gestor de segredos escolhido (credenciais do n8n recomendadas).
+3. Atualizar a credencial `yalt_api_key` do n8n nos workflows de staging para usar a nova chave.
+4. Rodar o workflow de importação PoC (`yalt_sync_import_seed`) com 10 leads de teste.
+5. Verificar que os leads aparecem no CRM com `external_id` correto e sem duplicatas.
+6. Se estiver OK, atualizar os workflows de produção para a nova credencial e revogar a chave antiga.
+7. Remover qualquer ocorrência da chave antiga do Vault e commitar a remoção com a mensagem: `chore(secrets): remove exposed CRM key (rotated)`.
+8. Registrar o evento de rotação no log de segurança: quem, quando, `new_key_id`, `old_key_revoked`.
 
-Rollback: If critical issues occur, restore previous key temporarily and investigate; revoke restored key after fix.
+## Reversão
+
+Se ocorrerem problemas críticos, restaurar temporariamente a chave anterior e investigar; revogar a chave restaurada após a correção.
