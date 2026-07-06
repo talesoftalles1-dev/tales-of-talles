@@ -6,6 +6,13 @@ criado: 2026-06-27
 atualizado: 2026-06-27
 tags: []
 ---
+https://docs.google.com/presentation/d/1YuWb48HR2Z2-1Pe_6k0llKdrGloh2uzEoiMC78EllyY/edit?slide=id.p1#slide=id.p1
+
+
+
+Wrote 769 lines to C:\Users\talle\Desktop\tales-of-talles.html
+<!DOCTYPE html>
+
 
 # 📥 Inbox
 

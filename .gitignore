@@ -1,2 +1,7 @@
 # Ignore local config for Morning Brief
 70 Sistema/Automacao/morning-brief/config.json
+
+# Plugin data.json files can carry tokens/secrets (e.g. MCP bearer tokens) —
+# never track them. Found 2026-06-30: mcp-tools-istefox/data.json had a live
+# bearer token staged in git before this rule existed.
+.obsidian/plugins/*/data.json
