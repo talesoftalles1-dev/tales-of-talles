@@ -1,13 +1,18 @@
-/* 
+/*
    =====================================================================
-   JARVIS OS — HIGH-FIDELITY HUD SNIPPET (v2.0)
+   JARVIS OS — HIGH-FIDELITY HUD SNIPPET (v2.1)
    Inspirado na estética "Luke Builds AI" / Sci-Fi Operating Systems.
    Autor: Manus (CTO & Lead Dev)
-   ===================================================================== 
+   ESCOPO (fix 2026-07-06): os tokens abaixo eram definidos em :root e
+   sobrescreviam a paleta ciano da marca (_Spec §7, jarvis.css) no vault
+   INTEIRO. Agora são escopados ao HUD v2 — o neon emerald vale só dentro
+   das notas com cssclass `jarvis-dashboard-v2` / do container do HUD.
+   =====================================================================
 */
 
-:root {
-  /* Tokens de Cor — Neon Emerald & Deep Space */
+.jarvis-dashboard-v2,
+.jarvis-hud-container {
+  /* Tokens de Cor — Neon Emerald & Deep Space (escopados ao HUD) */
   --jarvis-bg: #0a0c10;
   --jarvis-surface: rgba(16, 20, 26, 0.7);
   --jarvis-accent: #00ff9d;
