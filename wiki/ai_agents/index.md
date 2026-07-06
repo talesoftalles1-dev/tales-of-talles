@@ -35,8 +35,9 @@ Contrato consolidado: [[estagiarios]]. Arquivos funcionais em `.claude/agents/es
 | E6 | Automações 🆕 | AUTOMATOR |
 | E7 | Conhecimento | KNOWLEDGE |
 | E8 | Planejamento 🆕 | PLANNER |
+| E9 | Comercial | BOBBY |
 
-🆕 = nova linha de autoridade, pendente de ratificação do Operador ([[_Contrato de Autoridade dos Agentes]]).
+🆕 = linha de autoridade nova, **ratificada pelo Operador com o merge do PR #20 (2026-07-03)**. E9 = projeção da linha BOBBY, já ratificada de origem ([[_Contrato de Autoridade dos Agentes]]).
 
 ## 🏛️ Agentes de domínio (roster canônico)
 

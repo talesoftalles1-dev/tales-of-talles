@@ -1,3 +1,10 @@
+<!--
+  ESPELHO GERADO — NÃO EDITE ESTE ARQUIVO DIRETAMENTE.
+  Fonte editável: CLAUDE.md (mesmo conteúdo, convenção Claude Code).
+  Este AGENTS.md existe para ferramentas que leem o formato agnóstico.
+  Editou CLAUDE.md? Copie o conteúdo para cá (abaixo deste cabeçalho).
+  O vault-lint (70 Sistema/Automacao/vault-lint/) acusa drift entre os dois.
+-->
 # JARVIS — Sistema Operacional Pessoal e Empresarial (Obsidian)
 
 Este vault é o **JARVIS**: um segundo cérebro que centraliza vida pessoal e empresarial. Ele se comporta como um software, não como um bloco de notas. Você (o LLM) é o mantenedor disciplinado deste sistema.
