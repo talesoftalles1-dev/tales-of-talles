@@ -16,7 +16,7 @@ tags:
 > Operador aprovou explicitamente o resultado da estabilização e deu a ordem de entrar em **Operational Mode**. Esta nota é, a partir de agora, o contrato vigente até 2026-07-06 (ou até o fechamento formal na seção final).
 
 > [!info] Propósito
-> A fundação foi endurecida (canon ratificado — [[70 Sistema/_Spec JARVIS|Spec JARVIS]] / [PR #15](https://github.com/talesoftalles1-dev/tales-of-talles/pull/15), MERGED 2026-06-30 — e validação operacional rodada). Antes de avançar pra Fase 1 (Decision Engine) ou qualquer outra construção, **observe o sistema em uso real por 7 dias**. Esta janela não é passiva: é um instrumento de decisão — ela diz se o sistema está pronto pra mais complexidade ou se ainda precisa de mais endurecimento.
+> A fundação foi endurecida (canon ratificado — [[_Spec JARVIS|Spec JARVIS]] / [PR #15](https://github.com/talesoftalles1-dev/tales-of-talles/pull/15), MERGED 2026-06-30 — e validação operacional rodada). Antes de avançar pra Fase 1 (Decision Engine) ou qualquer outra construção, **observe o sistema em uso real por 7 dias**. Esta janela não é passiva: é um instrumento de decisão — ela diz se o sistema está pronto pra mais complexidade ou se ainda precisa de mais endurecimento.
 >
 > **Objetivo único da semana:** provar que o JARVIS melhora a tomada de decisão diária em uso real. Nada além disso importa esta semana.
 

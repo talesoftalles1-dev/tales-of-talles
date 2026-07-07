@@ -27,7 +27,7 @@ tags: []
 > | Chapter 05 — Decision Surface & Dashboard | [[🤖 JARVIS]] + `output/daily_dashboard.md` |
 > | Chapter 06 — Contracts & Taxonomy | [[_Spec JARVIS]] §2–§6 + [[_Taxonomia de Eventos]] |
 >
-> O prompt de organização foi movido para [[70 Sistema/Claude Obsidian — Prompt de Organização]].
+> O prompt de organização foi movido para [[Claude Obsidian — Prompt de Organização]].
 
 ## Navegação canônica
 
@@ -35,4 +35,4 @@ tags: []
 - **Autoridade dos agentes:** [[_Contrato de Autoridade dos Agentes]]
 - **Dashboard:** [[🤖 JARVIS]]
 - **Índice mestre:** [[_master_index]]
-- **Sistema operacional:** [[70 Sistema/_Index|70 Sistema — Índice]]
+- **Sistema operacional:** [[_Index|70 Sistema — Índice]]

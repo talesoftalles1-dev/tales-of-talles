@@ -27,7 +27,7 @@ tags:
 | 07–08 | Capture & Triage / Processing | [[_Spec JARVIS]] §1.1 (raw→wiki→output) + [[_master_index]] (rotina do EA) |
 | 09–12 | Health / Goals / Training / Nutrition | [[_Spec JARVIS]] §9 + [[🩺 Saúde & Performance]] + [[🔌 Ponte APEX ↔ JARVIS]] |
 | 13–16 | Projects / Commercial / Legal / Marketing | [[🏢 Yalt]] + [[_Contrato de Autoridade dos Agentes]] (BOBBY) |
-| 17–19 | CRM Data Model / Sync / Outreach | [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]] + [[CRM MCP — Contract & Scaffold]] + [[CRM Unification — Plan]] |
+| 17–19 | CRM Data Model / Sync / Outreach | [[CRM — Mapeamento de Entidades|Mapeamento de Entidades]] + [[CRM MCP — Contract & Scaffold]] + [[CRM Unification — Plan]] |
 | 20–22 | Revenue / Billing / Budgets | [[💰 Financeiro]] + [[_Spec JARVIS]] §2 (`lancamento`) |
 | 23–26 | Vault Structure / Templates / Archives / Search | [[_Spec JARVIS]] §1–§6 + [[📊 Biblioteca Dataview]] |
 | 27–31 | Automations / Security / Agents / Monitoring / Bootstrap | [[Ponte n8n ↔ JARVIS]] + [[_Contrato de Autoridade dos Agentes]] + [[_Arquitetura JARVIS]] |

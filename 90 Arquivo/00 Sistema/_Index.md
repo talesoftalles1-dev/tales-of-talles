@@ -77,6 +77,6 @@ superfície de decisão e a taxonomia de contratos. Todos os capítulos estão e
 ## Relacionados
 
 - [`AGENTS.md`](/AGENTS.md) — fonte da verdade do repositório.
-- [[70 Sistema/_Index|70 Sistema — Índice]] — runbooks operacionais, CRM/MCP e canonicidade do Morning Brief.
+- [[_Index|70 Sistema — Índice]] — runbooks operacionais, CRM/MCP e canonicidade do Morning Brief.
 - `index.html` — app canônico (C1).
 >>>>>>> reconcile/vault-merge-20260628

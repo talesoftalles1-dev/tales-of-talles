@@ -12,7 +12,7 @@ area: sistema
 criado: 2026-06-27
 atualizado: 2026-07-06
 relacionado:
-  - "[[70 Sistema/_Index]]"
+  - "[[_Index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
 tags:
 <<<<<<< HEAD
