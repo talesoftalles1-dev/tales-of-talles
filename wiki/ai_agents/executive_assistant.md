@@ -11,7 +11,6 @@ aliases:
   - EA Agent
   - EA Contract
 tags:
-  - agent
   - executive-assistant
   - triage
   - priority

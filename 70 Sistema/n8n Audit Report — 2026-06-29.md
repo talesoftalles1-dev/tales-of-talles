@@ -1,8 +1,8 @@
 ---
 tipo: doc
-status: ativo
+status: publicado
 categoria: sistema
-area: 70 Sistema
+area: sistema
 criado: 2026-06-29
 atualizado: 2026-06-29
 relacionado:

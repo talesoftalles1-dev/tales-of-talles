@@ -1,11 +1,11 @@
 ---
 dominio: yalt
 tipo: index
-status: referenciado
-area: 50 Financeiro
-title: 50 Financeiro — Índice
-created: 2026-06-27
-updated: 2026-06-27
+status: ativo
+area: empresa
+titulo: 50 Financeiro — Índice
+criado: 2026-06-27
+atualizado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

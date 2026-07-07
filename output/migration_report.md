@@ -1,9 +1,8 @@
 ---
 dominio: jarvis
 tipo: output
-status: active
+status: gerado
 titulo: Migration Report — Trilinear Refactoring
-contexto: sistema
 criado: 2026-06-27
 atualizado: 2026-06-27
 tags:

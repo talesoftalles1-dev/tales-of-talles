@@ -4,9 +4,9 @@ aliases:
   - "Marketing & Growth"
 tipo: chapter
 status: backlog
-area: 30 Empresa
-title: Marketing & Growth
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Marketing & Growth
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

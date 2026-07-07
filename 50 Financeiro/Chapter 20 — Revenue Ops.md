@@ -4,9 +4,9 @@ aliases:
   - "Revenue Ops"
 tipo: chapter
 status: backlog
-area: 50 Financeiro
-title: Revenue Ops
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Revenue Ops
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

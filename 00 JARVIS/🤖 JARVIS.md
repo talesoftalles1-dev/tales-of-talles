@@ -7,7 +7,7 @@ atualizado: 2026-06-27
 cssclasses:
   - jarvis-dashboard
 tags:
-  - sistema
+  - tema/sistema
 ---
 
 # 🤖 JARVIS

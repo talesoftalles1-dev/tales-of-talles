@@ -8,7 +8,7 @@ atualizado: 2026-06-27
 tags: []
 ---
 
-![[Recording 20260627141753.m4a]]
+!Gravação de Voz
 
 # 🌱 Pessoal
 

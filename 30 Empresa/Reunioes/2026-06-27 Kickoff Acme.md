@@ -4,7 +4,7 @@ tipo: reuniao
 status: realizada
 data: 2026-06-27
 participantes:
-  - "[[Joao Silva]]"
+  - "Joao Silva"
 cliente: "[[CRM API]]"
 projeto: "[[Lancamento do Novo Site]]"
 criado: 2026-06-27
@@ -18,7 +18,7 @@ tags:
 > [!info] Contexto
 > Reunião de abertura do projeto [[Lancamento do Novo Site]] com a [[CRM API]]. Objetivo: alinhar escopo, expectativas, cronograma e canais de comunicação. Duração: 1h. Modalidade: videochamada.
 
-**Participantes:** [[Joao Silva]] (Diretor de Marketing, Acme), Talles Soares (responsável pelo projeto).
+**Participantes:** Joao Silva (Diretor de Marketing, Acme), Talles Soares (responsável pelo projeto).
 
 ## 📋 Pauta
 
@@ -31,7 +31,7 @@ tags:
 ## ✔️ Decisões
 
 - Prazo de go-live confirmado para **15/08/2026**.
-- Aprovações concentradas em [[Joao Silva]]; resposta em até 48h.
+- Aprovações concentradas em Joao Silva; resposta em até 48h.
 - Cadência: atualização semanal toda sexta-feira por e-mail.
 - Acme enviará logo em vetor e textos atuais até 30/06.
 - Mantida a estrutura de 5 páginas; sem alterações de escopo.
@@ -47,4 +47,4 @@ tags:
 
 - Cliente: [[CRM API]]
 - Projeto: [[Lancamento do Novo Site]]
-- Contato: [[Joao Silva]]
+- Contato: Joao Silva

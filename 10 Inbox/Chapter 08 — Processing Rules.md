@@ -4,9 +4,9 @@ aliases:
   - "Processing Rules"
 tipo: chapter
 status: backlog
-area: 10 Inbox
-title: Processing Rules
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Processing Rules
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

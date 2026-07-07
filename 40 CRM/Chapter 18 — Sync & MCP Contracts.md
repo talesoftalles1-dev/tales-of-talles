@@ -4,10 +4,10 @@ aliases:
   - "Sync & MCP Contracts"
 tipo: chapter
 status: ativo
-area: 40 CRM
-title: Sync & MCP Contracts
-created: 2026-06-27T18:24:00Z
-updated: 2026-07-03T00:00:00Z
+area: empresa
+titulo: Sync & MCP Contracts
+criado: 2026-06-27
+atualizado: 2026-07-03
 relacionado:
   - "[[CRM MCP — Contract & Scaffold]]"
   - "[[CRM — Mapeamento de Entidades]]"

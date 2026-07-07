@@ -1,13 +1,11 @@
 ---
 dominio: jarvis
 tipo: output
-status: active
+status: gerado
 titulo: Query Results — Dataview Compilations
-contexto: sistema
 criado: 2026-06-27
 atualizado: 2026-06-27
 tags:
-  - output
   - dataview
   - query
 ---

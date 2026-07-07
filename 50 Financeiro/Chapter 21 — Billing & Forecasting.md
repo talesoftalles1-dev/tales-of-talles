@@ -4,9 +4,9 @@ aliases:
   - "Billing & Forecasting"
 tipo: chapter
 status: backlog
-area: 50 Financeiro
-title: Billing & Forecasting
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Billing & Forecasting
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

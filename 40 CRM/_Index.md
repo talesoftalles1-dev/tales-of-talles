@@ -1,11 +1,11 @@
 ---
 dominio: yalt
 tipo: index
-status: referenciado
-area: 40 CRM
-title: 40 CRM — Índice
-created: 2026-06-27
-updated: 2026-06-27
+status: ativo
+area: empresa
+titulo: 40 CRM — Índice
+criado: 2026-06-27
+atualizado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

@@ -1,11 +1,11 @@
 ---
 dominio: talles
 tipo: index
-status: referenciado
-area: 20 Pessoal
-title: 20 Pessoal — Índice
-created: 2026-06-27
-updated: 2026-06-27
+status: ativo
+area: pessoal
+titulo: 20 Pessoal — Índice
+criado: 2026-06-27
+atualizado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

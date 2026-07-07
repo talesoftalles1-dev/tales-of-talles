@@ -4,9 +4,9 @@ aliases:
   - "Goals & Progress"
 tipo: chapter
 status: backlog
-area: 20 Pessoal
-title: Goals & Progress
-created: 2026-06-27T18:24:00Z
+area: pessoal
+titulo: Goals & Progress
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

@@ -17,7 +17,7 @@ tags:
 
 # CRM API
 
-> Cliente ativo — contrato de site institucional (R$ 12.000). Contato-chave: [[Joao Silva]].
+> Cliente ativo — contrato de site institucional (R$ 12.000). Contato-chave: Joao Silva.
 
 ## 📂 Projetos
 

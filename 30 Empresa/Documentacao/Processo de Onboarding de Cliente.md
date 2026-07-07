@@ -31,7 +31,7 @@ Logo após o "ganho" registrado no [[SOP - Fechar Venda]]. Exemplo recente: [[CR
 ### 1. Formalização (D+0 a D+1)
 - Enviar contrato e coletar assinatura.
 - Emitir a nota da primeira parcela e registrar o recebimento (ex.: [[2026-06-27 Recebimento Acme]]).
-- Criar a nota do cliente em `40 CRM/Clientes` com `status: ativo`.
+- Criar a nota do cliente em `40 CRM/Clientes` com `status: publicado`.
 
 ### 2. Coleta de informações (D+1 a D+3)
 - Briefing preenchido pelo cliente.

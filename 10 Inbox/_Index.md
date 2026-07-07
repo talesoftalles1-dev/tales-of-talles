@@ -1,11 +1,11 @@
 ---
 dominio: jarvis
 tipo: index
-status: referenciado
-area: 10 Inbox
-title: 10 Inbox — Índice
-created: 2026-06-27
-updated: 2026-06-27
+status: ativo
+area: sistema
+titulo: 10 Inbox — Índice
+criado: 2026-06-27
+atualizado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

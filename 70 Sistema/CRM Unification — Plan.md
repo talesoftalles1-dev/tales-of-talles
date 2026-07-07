@@ -1,6 +1,6 @@
 ---
 dominio: jarvis
-tipo: plano
+tipo: doc
 status: rascunho
 categoria: sistema
 area: empresa

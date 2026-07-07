@@ -4,9 +4,9 @@ aliases:
   - "Nutrition & Body"
 tipo: chapter
 status: backlog
-area: 20 Pessoal
-title: Nutrition & Body
-created: 2026-06-27T18:24:00Z
+area: pessoal
+titulo: Nutrition & Body
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

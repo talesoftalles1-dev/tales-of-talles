@@ -4,9 +4,9 @@ aliases:
   - "Budgets & KPIs"
 tipo: chapter
 status: backlog
-area: 50 Financeiro
-title: Budgets & KPIs
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Budgets & KPIs
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->
