@@ -21,7 +21,7 @@
 :root{
   --bg:#030304;--bg2:#070709;
   --s1:rgba(28,10,10,.72);--s2:rgba(38,14,14,.66);--s3:rgba(48,18,18,.6);
-  --blue:#1E40AF;--blue2:#3B82F6;--blu-a:rgba(30,64,175,.12);--blu-b:rgba(59,130,246,.2);
+  --blue:#9A7A12;--blue2:#E3B341;--blu-a:rgba(154,122,18,.12);--blu-b:rgba(227,179,65,.2);
   --gold:#B8960C;--gold2:#D4AF37;--gld-a:rgba(184,150,12,.12);--gld-b:rgba(212,175,55,.22);
   /* ── Ouro metálico (premium): brilho → ouro → âmbar profundo ── */
   --gold-metal:linear-gradient(160deg,#FBE89A 0%,#F0CE63 22%,#D4AF37 48%,#A87C16 75%,#7A5A0E 100%);
@@ -29,8 +29,8 @@
   --gold-edge:rgba(245,215,110,.5);
   --green:#15803D;--grn2:#22C55E;--grn-a:rgba(21,128,61,.12);
   --red:#B91C1C;--red2:#EF4444;--red-a:rgba(185,28,28,.1);
-  /* ── Sistema de cor dos coaches ── Ilia: vermelho+dourado · Cariani: verde · Muzy: roxo · Sanji: azul */
-  --purple:#7C3AED;--purple2:#A78BFA;--prp-a:rgba(124,58,237,.12);--prp-b:rgba(167,139,250,.28);
+  /* ── Paleta vermelho-sangue + dourado ── acento primário → dourado · energia/alerta → vermelho · positivo → verde */
+  --purple:#8B1A1A;--purple2:#E24A4A;--prp-a:rgba(139,26,26,.12);--prp-b:rgba(226,74,74,.28);
   --white:#F8FAFC;--muted:#8A97A8;--dim:rgba(248,250,252,.6);
   --b0:rgba(255,255,255,.05);--b1:rgba(255,255,255,.09);--b2:rgba(255,255,255,.14);
   --r:11px;--rl:16px;
@@ -40,10 +40,10 @@
   --sh:0 6px 24px rgba(0,0,0,.42),0 1px 2px rgba(0,0,0,.5);
   --sh-lg:0 16px 48px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.4);
   --hair:inset 0 1px 0 rgba(255,255,255,.08);
-  --glow-blue:0 0 32px rgba(59,130,246,.28),inset 0 0 30px rgba(59,130,246,.05);
+  --glow-blue:0 0 32px rgba(227,179,65,.28),inset 0 0 30px rgba(227,179,65,.05);
   --glow-gold:0 0 34px rgba(212,175,55,.32),inset 0 0 32px rgba(212,175,55,.07);
   --glow-grn:0 0 32px rgba(34,197,94,.28),inset 0 0 30px rgba(34,197,94,.05);
-  --glow-prp:0 0 32px rgba(167,139,250,.28),inset 0 0 30px rgba(167,139,250,.05);
+  --glow-prp:0 0 32px rgba(226,74,74,.28),inset 0 0 30px rgba(226,74,74,.05);
   --glow-red:0 0 32px rgba(239,68,68,.26),inset 0 0 30px rgba(239,68,68,.05);
   --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
   --sl:env(safe-area-inset-left,0px);--sr:env(safe-area-inset-right,0px);
@@ -217,7 +217,7 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.4);cursor:poi
 .t1{background:var(--grn-a);border:1px solid rgba(34,197,94,.25);color:var(--grn2)}
 .t2{background:var(--blu-a);border:1px solid var(--blu-b);color:var(--blue2)}
 .t3{background:var(--gld-a);border:1px solid var(--gld-b);color:var(--gold2)}
-.t4{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#A78BFA}
+.t4{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:#E24A4A}
 .t5{background:var(--gld-a);border:1px solid var(--gold2);color:var(--gold2)}
 .t5.active{animation:cgl 4.5s ease-in-out infinite;font-size:13px;padding:5px 15px;
   letter-spacing:2.5px;border:1.5px solid var(--gold2);
@@ -427,7 +427,7 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.4);cursor:poi
 .lc-g{color:var(--grn2);border-color:rgba(34,197,94,.3)}
 .lc-au{color:var(--gold2);border-color:rgba(212,175,55,.3)}
 .lc-r{color:var(--red2);border-color:rgba(239,68,68,.3)}
-.lc-v{color:#A78BFA;border-color:rgba(167,139,250,.3)}
+.lc-v{color:#E24A4A;border-color:rgba(226,74,74,.3)}
 
 /* ═══════ ROUTINE ═══════ */
 .week-tag{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
@@ -454,7 +454,7 @@ input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.4);cursor:poi
   gap:4px;transition:all .15s;text-transform:uppercase}
 .l-ico{font-size:18px;line-height:1}
 .lb-sc{background:var(--blu-a);border-color:var(--blu-b);color:var(--blue2)}
-.lb-sc:hover{background:rgba(30,64,175,.2);transform:translateY(-1px)}
+.lb-sc:hover{background:rgba(154,122,18,.2);transform:translateY(-1px)}
 .lb-sp{background:var(--red-a);border-color:rgba(185,28,28,.25);color:var(--red2)}
 .lb-sp:hover{background:rgba(185,28,28,.18);transform:translateY(-1px)}
 .l-btn:active{transform:scale(.97)}
@@ -587,13 +587,13 @@ body.is-champion .f-badge{border-color:var(--gold2);
 .equip-btn{flex:1;padding:10px 8px;border-radius:var(--r);border:1px solid var(--b2);
   background:var(--s3);color:var(--muted);font-family:'Barlow Condensed',sans-serif;
   font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .2s;cursor:pointer}
-.equip-btn.on{background:rgba(30,64,175,.18);border-color:var(--blue2);color:var(--white);
+.equip-btn.on{background:rgba(154,122,18,.18);border-color:var(--blue2);color:var(--white);
   box-shadow:0 0 0 1px var(--blue2)}
 .equip-note{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1px}
 .combo-grid{display:flex;flex-direction:column;gap:7px}
 .combo-card{display:flex;align-items:center;gap:10px;padding:10px 12px;
   background:var(--s3);border:1px solid var(--b2);border-radius:var(--r);cursor:pointer;transition:all .2s}
-.combo-card:hover{border-color:var(--blue2);background:rgba(30,64,175,.08)}
+.combo-card:hover{border-color:var(--blue2);background:rgba(154,122,18,.08)}
 .combo-nm{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
   color:var(--white);letter-spacing:.5px;flex:1}
 .combo-desc{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:.5px}
@@ -613,11 +613,11 @@ body.is-champion .f-badge{border-color:var(--gold2);
 .mc-st-s{font-size:10px;letter-spacing:.5px}
 .mc-xp-s{font-family:'Share Tech Mono',monospace;font-size:7px;color:var(--muted)}
 .btn-drill-s{display:block;width:100%;margin-top:5px;padding:4px;
-  background:rgba(30,64,175,.1);border:1px solid var(--blu-b);
+  background:rgba(154,122,18,.1);border:1px solid var(--blu-b);
   color:var(--blue2);font-family:'Barlow Condensed',sans-serif;
   font-size:10px;font-weight:700;letter-spacing:2px;border-radius:5px;
   transition:all .2s;text-transform:uppercase}
-.btn-drill-s:hover{background:rgba(30,64,175,.22)}
+.btn-drill-s:hover{background:rgba(154,122,18,.22)}
 .btn-meal{width:100%;padding:7px;margin-top:8px;background:rgba(21,128,61,.1);
   border:1px solid rgba(34,197,94,.25);color:var(--grn2);border-radius:var(--r);
   font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
@@ -630,7 +630,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
   background:var(--s2);border:1px solid var(--b2);font-size:20px;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 4px 16px rgba(0,0,0,.5);transition:all .2s}
-.fab:hover{background:rgba(30,64,175,.2);border-color:var(--blue2)}
+.fab:hover{background:rgba(154,122,18,.2);border-color:var(--blue2)}
 .fab.active-timer{background:rgba(185,28,28,.2);border-color:var(--red2);animation:fabPulse 1s infinite}
 @keyframes fabPulse{0%,100%{box-shadow:0 0 0 0 rgba(185,28,28,.3)}50%{box-shadow:0 0 0 8px rgba(185,28,28,0)}}
 
@@ -647,7 +647,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
   border-radius:var(--r);font-family:'Barlow Condensed',sans-serif;font-size:13px;
   font-weight:700;letter-spacing:2px;color:var(--muted);cursor:pointer;
   text-transform:uppercase;transition:all .2s}
-.tm-mode.on{background:rgba(30,64,175,.18);border-color:var(--blue2);color:var(--white)}
+.tm-mode.on{background:rgba(154,122,18,.18);border-color:var(--blue2);color:var(--white)}
 .tm-display{text-align:center;margin:12px 0}
 .tm-count{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;
   color:var(--white);letter-spacing:2px;line-height:1;display:block}
@@ -846,7 +846,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
 .tl-block{position:relative;margin-bottom:10px;background:var(--s2);
   border:1px solid var(--b1);border-radius:var(--r);padding:11px 13px;transition:border-color .2s}
 .tl-block.mand{border-left:3px solid var(--gold2)}
-.tl-block.train{border-left:3px solid var(--blue2);background:rgba(30,64,175,.06)}
+.tl-block.train{border-left:3px solid var(--blue2);background:rgba(154,122,18,.06)}
 .tl-block.act{background:transparent;border-style:dashed;opacity:.75}
 .tl-block::before{content:'';position:absolute;left:-18px;top:14px;width:9px;height:9px;
   border-radius:50%;background:var(--s0);border:2px solid var(--b2)}
@@ -956,7 +956,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
 .hm-vbtn{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;
   padding:5px 12px;border-radius:5px;background:var(--s3);border:1px solid var(--b1);
   color:var(--muted);cursor:pointer;transition:all .2s}
-.hm-vbtn.on{background:rgba(30,64,175,.15);border-color:var(--blue2);color:var(--white)}
+.hm-vbtn.on{background:rgba(154,122,18,.15);border-color:var(--blue2);color:var(--white)}
 .hm-detail{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
 .hm-mrow{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;
   font-size:8px;padding:3px 6px;background:var(--s3);border-radius:4px}
@@ -1017,7 +1017,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
 .tt-step:hover{border-color:#8B5CF6;color:var(--white)}
 .tt-step:disabled{opacity:.3;cursor:not-allowed}
 .tt-pos{text-align:center;font-family:'Share Tech Mono',monospace;font-size:8px;
-  color:#A78BFA;letter-spacing:1px;margin-top:6px}
+  color:#E24A4A;letter-spacing:1px;margin-top:6px}
 
 /* ═══ CAMP LOG: summary ═══ */
 .log-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}
@@ -1028,7 +1028,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
   letter-spacing:1.5px;padding:8px 0 4px;border-bottom:1px solid var(--b0);margin-bottom:4px}
 
 /* ═══ HEATMAP UFC5 v2 ═══ */
-#hm-canvas{border:1px solid rgba(30,64,175,.18);border-radius:var(--r);background:#010306;display:block;max-width:100%}
+#hm-canvas{border:1px solid rgba(154,122,18,.18);border-radius:var(--r);background:#010306;display:block;max-width:100%}
 .hmap-w{display:flex;justify-content:center;margin:8px 0;position:relative}
 
 /* ═══ SET LOG / CARGA ═══ */
@@ -1070,7 +1070,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
   color:var(--blue2);border-radius:var(--r);font-family:'Barlow Condensed',sans-serif;
   font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;
   transition:all .15s;text-transform:uppercase;margin-bottom:10px}
-.setlog-add-btn:hover{background:rgba(59,130,246,.2)}
+.setlog-add-btn:hover{background:rgba(227,179,65,.2)}
 .setlog-save-btn{width:100%;padding:17px;min-height:52px;background:linear-gradient(135deg,var(--green),rgba(21,128,61,.7));
   border:1px solid rgba(34,197,94,.35);color:#fff;border-radius:var(--r);
   font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;
@@ -1200,7 +1200,7 @@ body.is-champion .f-badge{border-color:var(--gold2);
   color:var(--blue2);font-family:'Barlow Condensed',sans-serif;
   font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;
   text-transform:uppercase;transition:all .15s}
-.btn-empty-cta:hover{background:rgba(59,130,246,.2)}
+.btn-empty-cta:hover{background:rgba(227,179,65,.2)}
 
 /* ═══════ PREMIUM POLISH LAYER ═══════ */
 /* Card section labels: refined with accent dot */
@@ -1224,7 +1224,7 @@ body.is-champion{background:
   radial-gradient(900px 500px at 88% 8%,rgba(212,175,55,.05),transparent 55%),
   linear-gradient(180deg,#0B0A05 0%,var(--bg) 320px)}
 /* Inputs: premium focus ring */
-input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(227,179,65,.12)}
 /* Respect reduced motion */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
@@ -1330,9 +1330,9 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12
 .cc-v.cc-ilia.lead .cc-v-nm{color:var(--red2)}
 .cc-v.cc-cariani.lead{border-color:rgba(34,197,94,.42);box-shadow:var(--glow-grn)}
 .cc-v.cc-cariani.lead .cc-v-nm{color:var(--grn2)}
-.cc-v.cc-muzy.lead{border-color:rgba(167,139,250,.42);box-shadow:var(--glow-prp)}
+.cc-v.cc-muzy.lead{border-color:rgba(226,74,74,.42);box-shadow:var(--glow-prp)}
 .cc-v.cc-muzy.lead .cc-v-nm{color:var(--purple2)}
-.cc-v.cc-sanji.lead{border-color:rgba(59,130,246,.42);box-shadow:var(--glow-blue)}
+.cc-v.cc-sanji.lead{border-color:rgba(227,179,65,.42);box-shadow:var(--glow-blue)}
 .cc-v.cc-sanji.lead .cc-v-nm{color:var(--blue2)}
 
 /* ══ READINESS GAUGE ══ */
@@ -1421,13 +1421,13 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12
   background:var(--_rdc,transparent);opacity:.9;transition:background .45s}
 
 /* ══ SANJI MEAL CAM · diário alimentar por foto ══ */
-.meal-confirm{margin-top:12px;padding:12px;border:1px solid var(--b1);border-radius:12px;background:rgba(59,130,246,.05)}
+.meal-confirm{margin-top:12px;padding:12px;border:1px solid var(--b1);border-radius:12px;background:rgba(227,179,65,.05)}
 .meal-confirm-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);margin-bottom:8px}
 .meal-slots{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .meal-slotchip{flex:1;min-width:50px;padding:8px 4px;background:var(--s3);border:1px solid var(--b1);color:var(--muted);
   border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:.5px;cursor:pointer;
   transition:background .2s,border-color .2s,color .2s}
-.meal-slotchip.on{background:rgba(59,130,246,.16);border-color:var(--blue2);color:var(--blue2)}
+.meal-slotchip.on{background:rgba(227,179,65,.16);border-color:var(--blue2);color:var(--blue2)}
 .meal-food-input{width:100%;padding:10px;background:var(--b0);border:1px solid var(--b1);border-radius:8px;color:var(--white);
   font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;margin-bottom:8px}
 .meal-food-input::placeholder{color:var(--muted)}
@@ -1534,9 +1534,9 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12
   line-height:1.55;margin-top:7px;padding-top:7px;border-top:1px solid var(--gld-b)}
 
 /* ══ SANJI · ESTÉTICA NAVIO (P2) ══ */
-.sanji-ship{background:linear-gradient(150deg,rgba(30,64,175,.16) 0%,rgba(100,60,0,.14) 40%,rgba(8,10,16,.92) 100%);
-  border-color:var(--blu-b);box-shadow:0 0 32px rgba(30,64,175,.12),var(--sh)}
-.sanji-ship .sanji-av-col{background:linear-gradient(160deg,rgba(30,64,175,.14),rgba(100,60,0,.08));
+.sanji-ship{background:linear-gradient(150deg,rgba(154,122,18,.16) 0%,rgba(100,60,0,.14) 40%,rgba(8,10,16,.92) 100%);
+  border-color:var(--blu-b);box-shadow:0 0 32px rgba(154,122,18,.12),var(--sh)}
+.sanji-ship .sanji-av-col{background:linear-gradient(160deg,rgba(154,122,18,.14),rgba(100,60,0,.08));
   border-right:1px solid var(--blu-b)}
 .sanji-crest{position:absolute;top:10px;right:10px;z-index:1;opacity:.9;
   filter:drop-shadow(0 0 10px rgba(212,175,55,.35));animation:crestFloat 4s ease-in-out infinite}
@@ -1615,7 +1615,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12
 
 /* ══ MUSCLE MAP SVG ══ */
 #mmap-host{display:flex;justify-content:center;margin:6px 0;padding:10px 4px;
-  background:radial-gradient(ellipse at 50% 40%,rgba(30,64,175,.06),transparent 70%);
+  background:radial-gradient(ellipse at 50% 40%,rgba(154,122,18,.06),transparent 70%);
   border:1px solid var(--b1);border-radius:var(--rl)}
 #mmap-svg{width:100%;max-width:420px;height:auto}
 #mmap-svg [data-mus]{transition:fill .5s ease, filter .5s ease;cursor:pointer}
@@ -1628,7 +1628,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(59,130,246,.12
   opacity:0;transition:opacity .15s ease;top:0;left:0}
 .mmap-tooltip.show{opacity:1}
 .mmap-tooltip .mt-nm{font-weight:700}
-.mmap-tooltip .mt-tall{color:#A78BFA;margin-left:4px}
+.mmap-tooltip .mt-tall{color:#E24A4A;margin-left:4px}
 .mmap-tooltip .mt-vals{color:var(--muted);margin-left:6px}
 
 /* ══ ARSENAL SUMMARY (auto-progression) ══ */
@@ -1838,7 +1838,7 @@ textarea:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,
 
 /* ═══════ CALMA VISUAL (#6) — menos brilho concorrente, ouro só onde importa ═══════ */
 :root{
-  --glow-blue:0 0 14px rgba(59,130,246,.09);
+  --glow-blue:0 0 14px rgba(227,179,65,.09);
   --glow-grn:0 0 14px rgba(34,197,94,.09);
   --glow-gold:0 0 18px rgba(212,175,55,.16);
 }
@@ -1957,8 +1957,8 @@ textarea:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible,
 /* ═══════ LIGAÇÕES (n8n) ═══════ */
 .conn-lbl{display:block;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px}
 .conn-inp{width:100%;background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:11px 13px;color:var(--white);font-family:'Inter',sans-serif;font-size:12px;outline:none;transition:border-color .2s}
-.conn-inp:focus{border-color:#A78BFA}
-.conn-save{margin-top:10px;width:100%;padding:11px;border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.1);color:#A78BFA;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;cursor:pointer;transition:transform .15s,background .2s}
+.conn-inp:focus{border-color:#E24A4A}
+.conn-save{margin-top:10px;width:100%;padding:11px;border:1px solid rgba(226,74,74,.4);background:rgba(226,74,74,.1);color:#E24A4A;border-radius:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;cursor:pointer;transition:transform .15s,background .2s}
 .conn-save:active{transform:scale(.98)}
 .conn-hint{margin-top:9px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:.5px;color:var(--muted);word-break:break-all}
 
@@ -2841,7 +2841,7 @@ const COACHES = {
   SANJI:  {nm:'SANJI',   emoji:'🧑🏼‍🍳', cor:'#D4AF37', role:'NUTRIÇÃO'},
   ILIA:   {nm:'TOPURIA', emoji:'🥊',           cor:'#22C55E', role:'STRIKING'},
   CARIANI:{nm:'CARIANI', emoji:'🦾',           cor:'#38BDF8', role:'S&C'},
-  MUZY:   {nm:'MUZY',    emoji:'🩺',           cor:'#A78BFA', role:'CIÊNCIA'},
+  MUZY:   {nm:'MUZY',    emoji:'🩺',           cor:'#E24A4A', role:'CIÊNCIA'},
 };
 const CO = k => COACHES[k] || COACHES.ILIA;
 
@@ -2931,8 +2931,8 @@ const COMBOS = [
 ];
 
 // ── Gym, rotation, routine ────────────────────────────────────────────────────
-const R_COL = {Push:'#3B82F6',Pull:'#22C55E',Upper:'#D4AF37',Lower:'#38BDF8',
-  'Calist+Boxe':'#EF4444',Descanso:'#334155','Rec Ativa':'#0D7A6A',Costas:'#22C55E',Peito:'#3B82F6',Pernas:'#38BDF8',Potencia:'#D4AF37',Recup:'#0D7A6A',
+const R_COL = {Push:'#E3B341',Pull:'#22C55E',Upper:'#D4AF37',Lower:'#38BDF8',
+  'Calist+Boxe':'#EF4444',Descanso:'#334155','Rec Ativa':'#0D7A6A',Costas:'#22C55E',Peito:'#E3B341',Pernas:'#38BDF8',Potencia:'#D4AF37',Recup:'#0D7A6A',
   A:'#B91C1C',B:'#D4AF37',C:'#EF4444',D:'#F59E0B'};
 const DIA_GYM = {Push:'push',Pull:'pull',Upper:'upper',Lower:'lower',
   'Calist+Boxe':'calisthenics',Descanso:'rest','Rec Ativa':'core',Costas:'pull',Peito:'push',Pernas:'lower',Potencia:'power',Recup:'core',FullBody:'fullbody',
@@ -3680,6 +3680,13 @@ let _lastEvents=[];
 // DONE_EX agora deriva do estado persistente (LIVE.exDone) — nada vive solto em memória
 function exIsDone(key){return !!(LIVE.exDone&&LIVE.exDone[key]);}
 let EX_EXPANDED=false;
+// Expand/collapse the day's training purely via CSS (no full rCamp re-render) — keeps the open fluid.
+function toggleTrainingReveal(){
+  EX_EXPANDED=!EX_EXPANDED;
+  document.querySelector('.mission-card')?.classList.toggle('exp-open',EX_EXPANDED);
+  const be=document.getElementById('btn-expand-all');
+  if(be)be.textContent=EX_EXPANDED?'▴ OCULTAR TREINO':'▾ VER TREINO';
+}
 
 // ══ CRÍTICO #2 — COORDENAÇÃO MULTI-ABA ════════════════════════════════════════
 // Não há SharedWorker, mas a integridade está garantida por duas decisões:
@@ -4481,8 +4488,8 @@ function rWeightChart(state){
   ctx.restore();
   // area fill
   const grad=ctx.createLinearGradient(0,pad.t,0,H-pad.b);
-  grad.addColorStop(0,'rgba(59,130,246,.28)');
-  grad.addColorStop(1,'rgba(59,130,246,.02)');
+  grad.addColorStop(0,'rgba(227,179,65,.28)');
+  grad.addColorStop(1,'rgba(227,179,65,.02)');
   ctx.beginPath();ctx.moveTo(xAt(0),H-pad.b);
   scans.forEach((s,i)=>ctx.lineTo(xAt(i),yAt(s.kg)));
   ctx.lineTo(xAt(scans.length-1),H-pad.b);ctx.closePath();
@@ -4490,13 +4497,13 @@ function rWeightChart(state){
   // line
   ctx.beginPath();
   scans.forEach((s,i)=>{const x=xAt(i),y=yAt(s.kg);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
-  ctx.strokeStyle='#3B82F6';ctx.lineWidth=2;ctx.lineJoin='round';
-  ctx.shadowColor='#3B82F6';ctx.shadowBlur=8;ctx.stroke();ctx.shadowBlur=0;
+  ctx.strokeStyle='#E3B341';ctx.lineWidth=2;ctx.lineJoin='round';
+  ctx.shadowColor='#E3B341';ctx.shadowBlur=8;ctx.stroke();ctx.shadowBlur=0;
   // points + last label
   scans.forEach((s,i)=>{
     const x=xAt(i),y=yAt(s.kg);const last=i===scans.length-1;
     ctx.beginPath();ctx.arc(x,y,last?4:2.5,0,Math.PI*2);
-    ctx.fillStyle=last?'#D4AF37':'#3B82F6';ctx.fill();
+    ctx.fillStyle=last?'#D4AF37':'#E3B341';ctx.fill();
     if(last){
       ctx.fillStyle='#D4AF37';ctx.font='700 10px "Barlow Condensed",sans-serif';
       ctx.textAlign='center';ctx.textBaseline='bottom';
@@ -5613,12 +5620,12 @@ function muscleFill(fat, act){
 }
 function muscleGlow(fat, act, tall){
   if(fat>=65) return tall
-    ? 'drop-shadow(0 0 10px rgba(239,68,68,.8)) drop-shadow(0 0 18px rgba(167,139,250,.45))'
+    ? 'drop-shadow(0 0 10px rgba(239,68,68,.8)) drop-shadow(0 0 18px rgba(226,74,74,.45))'
     : 'drop-shadow(0 0 6px rgba(239,68,68,.5))';
   if(act>=40||fat>=35) return tall
-    ? 'drop-shadow(0 0 8px rgba(212,175,55,.6)) drop-shadow(0 0 14px rgba(167,139,250,.35))'
+    ? 'drop-shadow(0 0 8px rgba(212,175,55,.6)) drop-shadow(0 0 14px rgba(226,74,74,.35))'
     : 'drop-shadow(0 0 5px rgba(212,175,55,.4))';
-  if(tall) return 'drop-shadow(0 0 4px rgba(167,139,250,.3))';
+  if(tall) return 'drop-shadow(0 0 4px rgba(226,74,74,.3))';
   return 'none';
 }
 
@@ -6785,9 +6792,9 @@ function setupEventListeners(){
   const sl=document.getElementById('tt-slider');if(sl)sl.addEventListener('input',onTTSlide);
   document.getElementById('tt-prev')?.addEventListener('click',()=>ttStep(-1));
   document.getElementById('tt-next')?.addEventListener('click',()=>ttStep(1));
-  document.getElementById('btn-expand-all')?.addEventListener('click',()=>{EX_EXPANDED=!EX_EXPANDED;rCamp(LIVE,pront(LIVE));});
+  document.getElementById('btn-expand-all')?.addEventListener('click',()=>{toggleTrainingReveal();});
   // Missão do dia clicável — toca no título para revelar/esconder os exercícios
-  document.getElementById('sess-label')?.addEventListener('click',()=>{EX_EXPANDED=!EX_EXPANDED;rCamp(LIVE,pront(LIVE));vibrate&&vibrate(10);});
+  document.getElementById('sess-label')?.addEventListener('click',()=>{toggleTrainingReveal();vibrate&&vibrate(10);});
   // Scan date default
   const sd=document.getElementById('scan-dt');if(sd)sd.value=new Date().toISOString().slice(0,10);
   // Timer
