@@ -54,6 +54,19 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 
 > Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduziram linhas novas na matriz de autoridade — **ratificadas pelo Operador com o merge do PR #20 (2026-07-03)**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]].
 
+## Mapas de auditoria (`output/`, regeneráveis)
+
+Auditoria completa do repositório em 2026-07-07 (base `origin/main`). São compilações — a fonte de verdade continua no canon:
+
+| Mapa | Conteúdo |
+|---|---|
+| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo (tri-cópia) |
+| [[mapa_automacao]] | Pipelines locais, duas instâncias n8n, credenciais |
+| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
+| [[mapa_integracoes]] | Superfícies do Event Bus e fluxo de dados |
+| [[divida_tecnica]] | Dívida remanescente D1–D11 (pós-transformação 2026-07-06) |
+| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+
 ## Índices principais (`wiki/`)
 
 | Área | Função | Entrada |
