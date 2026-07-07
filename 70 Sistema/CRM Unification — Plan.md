@@ -7,12 +7,12 @@ area: empresa
 criado: 2026-06-27
 atualizado: 2026-06-27
 relacionado:
-  - "[[70 Sistema/_Index]]"
-  - "[[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]"
+  - "[[_Index]]"
+  - "[[CRM — Mapeamento de Entidades|Mapeamento de Entidades]]"
   - "[[CRM MCP — Contract & Scaffold]]"
-  - "[[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]"
+  - "[[CRM n8n Workflows — README|n8n Workflows]]"
   - "[[Rotate_CRM_Key]]"
-  - "[[output/TALES OF TALLES OS — Master Evolution Report|Evolution Report]]"
+  - "[[TALES OF TALLES OS — Master Evolution Report|Evolution Report]]"
 tags:
   - crm
   - vault
