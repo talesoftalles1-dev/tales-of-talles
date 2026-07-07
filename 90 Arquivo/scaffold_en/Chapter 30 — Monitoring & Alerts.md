@@ -3,10 +3,17 @@ dominio: jarvis
 aliases:
   - "Monitoring & Alerts"
 tipo: chapter
+<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 30 — Monitoring & Alerts.md
 status: arquivado
 area: 70 Sistema
 title: Monitoring & Alerts
 created: 2026-06-27T18:24:00Z
+=======
+status: backlog
+area: sistema
+titulo: Monitoring & Alerts
+criado: 2026-06-27
+>>>>>>> reconcile/vault-merge-20260628:70 Sistema/Chapter 30 — Monitoring & Alerts.md
 ---
 
 <!-- canonicity-banner -->

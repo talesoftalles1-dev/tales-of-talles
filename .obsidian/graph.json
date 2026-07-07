@@ -1,10 +1,11 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
-  "showTags": true,
+  "showTags": false,
   "showAttachments": true,
-  "hideUnresolved": true,
+  "hideUnresolved": false,
   "showOrphans": true,
+<<<<<<< HEAD
   "collapse-color-groups": true,
   "colorGroups": [
     {
@@ -29,16 +30,26 @@
       }
     }
   ],
+=======
+  "collapse-color-groups": false,
+  "colorGroups": [],
+>>>>>>> reconcile/vault-merge-20260628
   "collapse-display": false,
   "showArrow": true,
   "textFadeMultiplier": -0.6,
-  "nodeSizeMultiplier": 0.838565488565489,
-  "lineSizeMultiplier": 0.981185031185031,
+  "nodeSizeMultiplier": 0.94043659043659,
+  "lineSizeMultiplier": 1.93877338877339,
   "collapse-forces": false,
-  "centerStrength": 0.749134948096886,
-  "repelStrength": 10,
+  "centerStrength": 0.182291666666667,
+  "repelStrength": 5.59251559251559,
   "linkStrength": 0.267151767151767,
   "linkDistance": 216,
+<<<<<<< HEAD
   "scale": 0.22920135941748956,
   "close": false
 }
+=======
+  "scale": 0.060683240532841035,
+  "close": true
+}
+>>>>>>> reconcile/vault-merge-20260628

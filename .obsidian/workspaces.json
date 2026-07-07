@@ -1,0 +1,435 @@
+{
+  "workspaces": {
+    "Yalt": {
+      "main": {
+        "id": "86d60cd7aa449131",
+        "type": "split",
+        "children": [
+          {
+            "id": "ad53f22776895c0a",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "b1908d749a586e09",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "30 Empresa/🏢 Yalt.md",
+                    "mode": "preview",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "🏢 Yalt"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "bf2e8c9c782b6405",
+        "type": "split",
+        "children": [
+          {
+            "id": "478d7323c1c609c5",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c44f872f4336de73",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": true
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "Explorador de arquivos"
+                }
+              },
+              {
+                "id": "0c7def7dab678a8e",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "Procurar"
+                }
+              },
+              {
+                "id": "d83cf5037b3b7632",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "Marcadores"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "right": {
+        "id": "beb38b7cba0d4ce1",
+        "type": "split",
+        "children": [
+          {
+            "id": "641ea8855118d225",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "48e174118d2621dc",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "Links inversos para 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "1c295f71e6235936",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "Links de saída para 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "035766c4717c4613",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "Etiquetas"
+                }
+              },
+              {
+                "id": "96e7d5ecd4822ce0",
+                "type": "leaf",
+                "state": {
+                  "type": "all-properties",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-archive",
+                  "title": "Todas as propriedades"
+                }
+              },
+              {
+                "id": "958ac3b8ae4f9c34",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "Sumário de 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "4a8a1965154061d4",
+                "type": "leaf",
+                "state": {
+                  "type": "footnotes",
+                  "state": {},
+                  "icon": "lucide-file-signature",
+                  "title": "Notas de rodapé"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "switcher:Abrir a troca rápida": false,
+          "graph:Abrir visualização em gráfico": false,
+          "canvas:Criar novo canvas": false,
+          "daily-notes:Abrir a nota de hoje": false,
+          "templates:Inserir modelo": false,
+          "command-palette:Abrir paleta de comandos": false,
+          "bases:Criar nova base": false,
+          "workspaces:Gerenciar leiautes da área de trabalho": false,
+          "zk-prefixer:Criar nova nota única": false,
+          "markdown-importer:Abrir importador Markdown": false,
+          "audio-recorder:Começar/parar a gravação de áudio": false,
+          "random-note:Abrir nota aleatória": false,
+          "publish:Publicar mudanças": false
+        }
+      },
+      "active": "b1908d749a586e09",
+      "mtime": "2026-06-29T17:41:53+01:00"
+    },
+    "Tales of Talles": {
+      "main": {
+        "id": "86d60cd7aa449131",
+        "type": "split",
+        "children": [
+          {
+            "id": "ad53f22776895c0a",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "b1908d749a586e09",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "AGENTS.md",
+                    "mode": "preview",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "AGENTS"
+                }
+              }
+            ]
+          },
+          {
+            "id": "e7899dd6749d94e8",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "1764f81228d10f72",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "README.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "README"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical"
+      },
+      "left": {
+        "id": "bf2e8c9c782b6405",
+        "type": "split",
+        "children": [
+          {
+            "id": "478d7323c1c609c5",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "c44f872f4336de73",
+                "type": "leaf",
+                "state": {
+                  "type": "file-explorer",
+                  "state": {
+                    "sortOrder": "alphabetical",
+                    "autoReveal": true
+                  },
+                  "icon": "lucide-folder-closed",
+                  "title": "Explorador de arquivos"
+                }
+              },
+              {
+                "id": "0c7def7dab678a8e",
+                "type": "leaf",
+                "state": {
+                  "type": "search",
+                  "state": {
+                    "query": "",
+                    "matchingCase": false,
+                    "explainSearch": false,
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical"
+                  },
+                  "icon": "lucide-search",
+                  "title": "Procurar"
+                }
+              },
+              {
+                "id": "d83cf5037b3b7632",
+                "type": "leaf",
+                "state": {
+                  "type": "bookmarks",
+                  "state": {},
+                  "icon": "lucide-bookmark",
+                  "title": "Marcadores"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "right": {
+        "id": "beb38b7cba0d4ce1",
+        "type": "split",
+        "children": [
+          {
+            "id": "641ea8855118d225",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "48e174118d2621dc",
+                "type": "leaf",
+                "state": {
+                  "type": "backlink",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "collapseAll": false,
+                    "extraContext": false,
+                    "sortOrder": "alphabetical",
+                    "showSearch": false,
+                    "searchQuery": "",
+                    "backlinkCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-coming-in",
+                  "title": "Links inversos para 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "1c295f71e6235936",
+                "type": "leaf",
+                "state": {
+                  "type": "outgoing-link",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "linksCollapsed": false,
+                    "unlinkedCollapsed": true
+                  },
+                  "icon": "links-going-out",
+                  "title": "Links de saída para 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "035766c4717c4613",
+                "type": "leaf",
+                "state": {
+                  "type": "tag",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "useHierarchy": true,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-tags",
+                  "title": "Etiquetas"
+                }
+              },
+              {
+                "id": "96e7d5ecd4822ce0",
+                "type": "leaf",
+                "state": {
+                  "type": "all-properties",
+                  "state": {
+                    "sortOrder": "frequency",
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-archive",
+                  "title": "Todas as propriedades"
+                }
+              },
+              {
+                "id": "958ac3b8ae4f9c34",
+                "type": "leaf",
+                "state": {
+                  "type": "outline",
+                  "state": {
+                    "file": "00 JARVIS/🤖 JARVIS.md",
+                    "followCursor": false,
+                    "showSearch": false,
+                    "searchQuery": ""
+                  },
+                  "icon": "lucide-list",
+                  "title": "Sumário de 🤖 JARVIS"
+                }
+              },
+              {
+                "id": "4a8a1965154061d4",
+                "type": "leaf",
+                "state": {
+                  "type": "footnotes",
+                  "state": {},
+                  "icon": "lucide-file-signature",
+                  "title": "Notas de rodapé"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "horizontal",
+        "width": 300,
+        "collapsed": true
+      },
+      "left-ribbon": {
+        "hiddenItems": {
+          "switcher:Abrir a troca rápida": false,
+          "graph:Abrir visualização em gráfico": false,
+          "canvas:Criar novo canvas": false,
+          "daily-notes:Abrir a nota de hoje": false,
+          "templates:Inserir modelo": false,
+          "command-palette:Abrir paleta de comandos": false,
+          "bases:Criar nova base": false,
+          "workspaces:Gerenciar leiautes da área de trabalho": false,
+          "zk-prefixer:Criar nova nota única": false,
+          "markdown-importer:Abrir importador Markdown": false,
+          "audio-recorder:Começar/parar a gravação de áudio": false,
+          "random-note:Abrir nota aleatória": false,
+          "publish:Publicar mudanças": false
+        }
+      },
+      "active": "1764f81228d10f72",
+      "mtime": "2026-06-29T17:39:37+01:00"
+    }
+  },
+  "active": "Tales of Talles"
+}

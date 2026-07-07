@@ -3,10 +3,17 @@ dominio: talles
 aliases:
   - "Nutrition & Body"
 tipo: chapter
+<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 12 — Nutrition & Body.md
 status: arquivado
 area: 20 Pessoal
 title: Nutrition & Body
 created: 2026-06-27T18:24:00Z
+=======
+status: backlog
+area: pessoal
+titulo: Nutrition & Body
+criado: 2026-06-27
+>>>>>>> reconcile/vault-merge-20260628:20 Pessoal/Chapter 12 — Nutrition & Body.md
 ---
 
 <!-- canonicity-banner -->

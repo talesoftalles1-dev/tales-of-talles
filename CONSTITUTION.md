@@ -160,7 +160,6 @@ Every note in `wiki/` must have:
 ---
 tipo: <area | project | task | note | agent | index>
 status: <backlog | active | done | archived | canonico>
-contexto: <pessoal | empresa | financeiro | crm | sistema | conhecimento>
 titulo: <human-readable title>
 criado: <ISO 8601>
 atualizado: <ISO 8601>

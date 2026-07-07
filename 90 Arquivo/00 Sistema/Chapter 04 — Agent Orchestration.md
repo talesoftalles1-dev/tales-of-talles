@@ -3,10 +3,11 @@ dominio: jarvis
 aliases:
   - "Agent Orchestration"
 tipo: chapter
-status: backlog
+status: arquivado
 area: 00 Sistema
-title: Agent Orchestration
-created: 2026-06-27T18:24:00Z
+titulo: Agent Orchestration
+criado: 2026-06-27
+arquivado_em: 2026-07-03
 ---
 
 <!-- canonicity-banner -->

@@ -3,10 +3,17 @@ dominio: jarvis
 aliases:
   - "Automations & n8n Bridge"
 tipo: chapter
+<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 27 — Automations & n8n Bridge.md
 status: arquivado
 area: 70 Sistema
 title: Automations & n8n Bridge
 created: 2026-06-27T18:24:00Z
+=======
+status: ativo
+area: sistema
+titulo: Automations & n8n Bridge
+criado: 2026-06-27
+>>>>>>> reconcile/vault-merge-20260628:70 Sistema/Chapter 27 — Automations & n8n Bridge.md
 atualizado: 2026-06-29
 ---
 
