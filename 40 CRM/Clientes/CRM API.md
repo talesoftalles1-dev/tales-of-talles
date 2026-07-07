@@ -31,7 +31,7 @@ tags:
 
 ## 💰 Financeiro
 
-- [[2026-06-27 Recebimento Acme]] — entrada da primeira parcela (R$ 6.000).
+- 2026-06-27 Recebimento Acme — entrada da primeira parcela (R$ 6.000).
 
 ## 📝 Observações
 

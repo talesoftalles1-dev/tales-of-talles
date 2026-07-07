@@ -7,7 +7,7 @@ criado: 2026-06-29
 atualizado: 2026-06-29
 relacionado:
   - "[[Chapter 27 — Automations & n8n Bridge]]"
-  - "[[CRM n8n Workflows — README]]"
+  - "[[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]"
 tags:
   - n8n
   - auditoria
