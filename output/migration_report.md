@@ -16,6 +16,7 @@ tags:
 
 > Generated: 2026-06-27
 > Status: Phase 1 Complete (Directory Structure + Foundational Documents)
+> **Nota 2026-07-03:** a migração completa (mover todos os 43 arquivos legados para `wiki/`) proposta abaixo **nunca foi aprovada** — o `_Spec JARVIS.md` §1.1 formalizou a decisão real: manter `raw/wiki/output` como camada **aditiva**, sem mover a estrutura numerada existente. Este documento continua útil como mapa de referência (§3), mas não é um plano ativo. `00 Sistema/` já foi arquivado separadamente em `90 Arquivo/2026-07-03_limpeza/` (era 100% backlog vazio, não seguiu o mapeamento abaixo).
 
 ---
 

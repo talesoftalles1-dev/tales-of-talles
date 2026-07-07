@@ -17,5 +17,8 @@ updated: 2026-06-27
 
 ## Documentos
 - [[Chapter 17 — CRM Data Model]] — _backlog_
-- [[Chapter 18 — Sync & MCP Contracts]] — _backlog_
+- [[Chapter 18 — Sync & MCP Contracts]] — _ativo_ — contrato real da skill `yalt-crm` (2026-07-03)
 - [[Chapter 19 — Outreach & ESP Strategy]] — _backlog_
+
+## Agentes
+- Estagiário E9 · BOBBY (comercial) consome este CRM via skill `yalt-crm` — carta completa em [[estagiarios]], arquivo funcional `.claude/agents/estagiario-9-comercial.md`.

@@ -17,6 +17,10 @@ updated: 2026-06-27
 
 ## Documentos
 - [[Chapter 13 — Projects & Releases]] — _backlog_
-- [[Chapter 14 — Commercial Ops (Yalt)]] — _backlog_
+- [[Chapter 14 — Commercial Ops (Yalt)]] — _ativo_
 - [[Chapter 15 — Partnerships & Legal]] — _backlog_
 - [[Chapter 16 — Marketing & Growth]] — _backlog_
+
+## Yalt — comercial
+- [[Automacao Comercial Yalt]] — projeto ativo, tarefas e prioridade
+- [[Plano de Testes de Email Yalt]] — doc, rascunho

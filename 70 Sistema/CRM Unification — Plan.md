@@ -19,6 +19,9 @@ tags:
   - unificação
 ---
 
+> [!info] Atualização 2026-07-03
+> A skill `yalt-crm` foi instalada no Cowork — **parte do Sprint B ("MCP minimal") já está coberta**: autenticação por API key e endpoints GET/POST para leads (e muito mais — leads, logs, atividades, stats, e-mail, rotas) já funcionam via skill, sem precisar construir um MCP próprio do zero. O que falta do Sprint B: resolver o bloqueio de rede do sandbox Cowork (ver [[Chapter 18 — Sync & MCP Contracts]]) e decidir se a sincronização **Vault → CRM** (metadados de notas indo pro CRM, este documento) ainda é necessária dado que a skill já cobre CRM → Claude. Sprint A (rotação de chave) e Sprint C (bidirecional) continuam pendentes como descrito abaixo.
+
 <!-- canonicity-banner -->
 > **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
 

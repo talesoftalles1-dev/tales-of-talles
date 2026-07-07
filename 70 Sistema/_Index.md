@@ -37,24 +37,31 @@ runbooks, contratos de integração (CRM/MCP/n8n) e os capítulos de operação.
 - [[Morning Brief — Canonicidade e Sincronizacao]] — nota canônica que aponta para a SSOT do Brief no Vault e descreve o fluxo de sincronização Vault ↔ Repo.
 - [`AGENTS.md`](/AGENTS.md) — fonte da verdade do repositório (C1 app, C2 Morning Brief, regras para agentes).
 
-## CRM / Integração (rascunhos em revisão)
+## CRM / Integração
 
+- [[Chapter 18 — Sync & MCP Contracts]] **(40 CRM, `status: ativo`)** — contrato real do conector: skill `yalt-crm`, endpoints, auth, caveats de dado, achado do bloqueio de rede (2026-07-03). **Fonte da verdade atual** — supera o scaffold abaixo.
 - [[CRM Unification — Plan]] — plano geral de unificação Vault ↔ CRM Yalt (escopo, sprints, riscos, critérios de sucesso).
 - [[CRM — Mapeamento de Entidades]] — mapeamento de frontmatter do Vault para campos do CRM + chave de deduplicação (`external_id`).
-- [[CRM MCP — Contract & Scaffold]] — contrato mínimo do conector MCP (endpoints, auth, idempotência, retries).
+- [[CRM MCP — Contract & Scaffold]] — rascunho especulativo pré-skill; **superado por** [[Chapter 18 — Sync & MCP Contracts]].
 - [[CRM n8n Workflows — README]] — workflows PoC do n8n para sincronizar notas do Vault com o CRM.
+
+## Agentes
+
+- [[estagiarios]] **(wiki/ai_agents, `status: ativo`)** — cartas de autoridade dos 9 Estagiários (E1–E9), incluindo E9/BOBBY (comercial, consome [[Chapter 18 — Sync & MCP Contracts]]).
+- [[protocolo_orquestracao_jarvis]] — como o Jarvis decompõe, prioriza e delega aos Estagiários.
+- [[adr_ruflo_vs_subagentes_nativos]] — por que subagentes nativos do Claude Code, não Ruflo.
 
 ## Runbooks
 
 - [[Rotate_CRM_Key]] — rotação segura da chave do CRM Yalt e atualização das credenciais n8n.
 
-## Capítulos de operação (rascunho — `status: backlog`)
+## Capítulos de operação
 
-- [[Chapter 27 — Automations & n8n Bridge]]
-- [[Chapter 28 — Security & Secrets Runbook]]
-- [[Chapter 29 — Agent Roster & Authority]]
-- [[Chapter 30 — Monitoring & Alerts]]
-- [[Chapter 31 — Bootstrap & Maintenance]]
+- [[Chapter 27 — Automations & n8n Bridge]] — `status: backlog`
+- [[Chapter 28 — Security & Secrets Runbook]] — `status: backlog`
+- [[Chapter 29 — Agent Roster & Authority]] — `status: ativo` (ponteiro para o canon em `wiki/ai_agents/`)
+- [[Chapter 30 — Monitoring & Alerts]] — `status: backlog`
+- [[Chapter 31 — Bootstrap & Maintenance]] — `status: backlog`
 
 ## SSOT no Vault (não está neste repo — por design)
 
@@ -68,5 +75,5 @@ runbooks, contratos de integração (CRM/MCP/n8n) e os capítulos de operação.
 ## Relacionados no repo
 
 - `index.html` — app canônico (C1).
-- `00 Sistema/` — capítulos de fundação ([[00 Sistema/_Index|índice]]).
+- `00 Sistema/` — **arquivado 2026-07-03** (`90 Arquivo/2026-07-03_limpeza/`): eram capítulos `status: backlog` nunca redigidos, superados por `_Spec JARVIS.md` + [[_Contrato de Autoridade dos Agentes]] + [[protocolo_orquestracao_jarvis]].
 - `output/` — entregáveis regeneráveis do Brief.

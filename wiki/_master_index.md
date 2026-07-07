@@ -4,7 +4,7 @@ tipo: index
 status: canonico
 titulo: Master Index — Registro Central do JARVIS OS
 criado: 2026-06-27
-atualizado: 2026-06-30
+atualizado: 2026-07-03
 aliases:
   - Master Index
   - Índice Mestre
@@ -46,7 +46,7 @@ O canon do JARVIS é um conjunto de documentos **PT-BR**. Toda dúvida estrutura
 
 | Área | Função | Entrada |
 |---|---|---|
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Executive Assistant, TOR, BOBBY, KNOWLEDGE |
+| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Orquestrador Jarvis + 9 Estagiários (E1–E9, ver [[estagiarios]]) + agentes de domínio (BOBBY, TOR, KNOWLEDGE…) |
 | [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
@@ -94,4 +94,4 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 - [ ] Gerar mapa dry-run: nota atual → destino sugerido no fluxo `raw/wiki/output`.
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
 - [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
-- [ ] Resolver o split `00 Sistema/` (Chapters 01–06) vs `70 Sistema/` (Chapters 27–31) — adiado da Fase 0.
+- [x] Resolver o split `00 Sistema/` (Chapters 01–06) vs `70 Sistema/` (Chapters 27–31) — **resolvido 2026-07-03**: `00 Sistema/` era 100% `status: backlog` (placeholder vazio, nunca redigido) + 1 doc `canonico` já superado por [[prompt_arquiteto_vault]]. Arquivado em `90 Arquivo/2026-07-03_limpeza/`. `70 Sistema/` permanece como pasta viva (specs/contratos ativos).

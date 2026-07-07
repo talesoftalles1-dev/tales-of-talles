@@ -2,5 +2,6 @@
   "baseFontSize": 23,
   "enabledCssSnippets": [
     "jarvis"
-  ]
+  ],
+  "nativeMenus": true
 }

@@ -4,119 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "d4619c735f631112",
+        "id": "5cac12dbfeb13f45",
         "type": "tabs",
         "children": [
           {
-            "id": "264c4811e00113e0",
+            "id": "8faa73181ceef703",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "AGENTS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "AGENTS"
-            }
-          },
-          {
-            "id": "2147fbe1990f852c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "00 JARVIS/🤖 JARVIS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "🤖 JARVIS"
-            }
-          },
-          {
-            "id": "2de21dba5b65c4e3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "70 Sistema/_Arquitetura JARVIS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "_Arquitetura JARVIS"
-            }
-          },
-          {
-            "id": "cf0cc50c2752ea84",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CLAUDE.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "CLAUDE"
-            }
-          },
-          {
-            "id": "3e6eb7c2054f4b77",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "60 Conhecimento/IA/Agentes JARVIS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Agentes JARVIS"
-            }
-          },
-          {
-            "id": "820335c325e6ca96",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Nova aba"
-            }
-          },
-          {
-            "id": "1bc872b591723adc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "60 Conhecimento/Wiki/_Wiki — Como Manter.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "_Wiki — Como Manter"
-            }
-          },
-          {
-            "id": "66ccbd72cd4ac2de",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "70 Sistema/_Arquitetura JARVIS.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "_Arquitetura JARVIS"
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
             }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "vertical"
@@ -148,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "wiki",
+                "query": "llm",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -174,7 +75,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "beb38b7cba0d4ce1",
@@ -270,16 +172,61 @@
               "icon": "lucide-file-signature",
               "title": "Notas de rodapé"
             }
+          },
+          {
+            "id": "ec7ae9c59fd5494c",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          },
+          {
+            "id": "5c3104f89ec089d8",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          },
+          {
+            "id": "87f959c54522b75f",
+            "type": "leaf",
+            "state": {
+              "type": "vault-terminal",
+              "state": {},
+              "icon": "bot",
+              "title": "Claude"
+            }
+          },
+          {
+            "id": "dcd5d8e3afecf566",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "copilot:Open Copilot Chat": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "templater-obsidian:Templater": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Abrir a troca rápida": false,
       "graph:Abrir visualização em gráfico": false,
       "canvas:Criar novo canvas": false,
@@ -299,49 +246,55 @@
       "obsidian-importer:Open Importer": false
     }
   },
-  "active": "66ccbd72cd4ac2de",
+  "active": "8faa73181ceef703",
   "lastOpenFiles": [
-    "60 Conhecimento/Wiki/_Wiki — Como Manter.md",
-    "CLAUDE.md",
-    "60 Conhecimento/IA/Agentes JARVIS.md",
-    "60 Conhecimento/🧠 Conhecimento.md",
-    "00 JARVIS/🤖 JARVIS.md",
+    "hooks/lib/gsd-graphify-rebuild.sh",
+    "hooks/lib/git-cmd.js",
+    "hooks/lib",
+    "hooks/managed-hooks-registry.cjs",
+    "hooks/gsd-worktree-path-guard.js",
+    "hooks/gsd-workflow-guard.js",
+    "hooks/gsd-validate-commit.sh",
+    "hooks/gsd-update-banner.js",
+    "hooks/gsd-statusline.js",
+    "hooks/gsd-session-state.sh",
+    "hooks/gsd-read-injection-scanner.js",
+    "TALES OF TALLES — IDENTITY OS - Copia/PATCH_MODO_HOJE.md",
+    "TALES OF TALLES — IDENTITY OS - Copia/GUIA_LIGACOES_n8n.md",
+    "TALES OF TALLES — IDENTITY OS - Copia/gettyimages-1283621184-612x612.jpg",
+    "TALES OF TALLES — IDENTITY OS - Copia/AGENTS.md",
+    "TALES OF TALLES — IDENTITY OS/PATCH_MODO_HOJE.md",
+    "TALES OF TALLES — IDENTITY OS/GUIA_LIGACOES_n8n.md",
+    "TALES OF TALLES — IDENTITY OS/gettyimages-1283621184-612x612.jpg",
+    "TALES OF TALLES — IDENTITY OS/AGENTS.md",
     "70 Sistema/_Arquitetura JARVIS.md",
-    "00 JARVIS/🪐 Constituição JARVIS.md",
-    "AGENTS.md",
-    "raw/inbox.md",
-    "yalt-revenue-os-estado.md",
-    "70 Sistema/Automacao/morning-brief/logs/2026-07-01.log",
-    "70 Sistema/Automacao/morning-brief/output/2026-07-01-morning-brief.txt",
-    "70 Sistema/Automacao/executive-assistant/logs/2026-07-01.log",
-    "output/TALES OF TALLES OS — Master Evolution Report.md",
-    "Sem título 1.base",
-    "2026-06-30.md",
+    "20 Pessoal/Saude/Treinos/2026-06-27 Boxe Tecnica.md",
+    "70 Sistema/SOPs/SOP - Fechar Venda.md",
+    "90 Arquivo/2026-07-03_limpeza/Auditoria TALLES OS — Relatorio Priorizado.md",
+    "90 Arquivo/2026-07-03_limpeza/Relatorio de Sync — 2026-06-30.md",
+    "90 Arquivo/2026-07-03_limpeza/Validacao Operacional — 2026-06-30.md",
+    "90 Arquivo/2026-07-03_limpeza/Trabalho Restante — 2026-06-30 (Auto Mode).md",
+    "90 Arquivo/2026-07-03_limpeza/Auditoria — Pastas Duplicadas.md",
+    "90 Arquivo/2026-07-03_limpeza/Plano Dry-Run — Organizacao em 3 Pilares.md",
+    "90 Arquivo/2026-07-03_limpeza/Fase 0 — Ratificacao do Canon.md",
+    "90 Arquivo/2026-07-03_limpeza/yalt-revenue-os-estado (snapshot 2026-06-29, superado por Chapter 14).md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/_Index.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Claude Obsidian — Prompt de Organização.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 06 — Contracts & Taxonomy.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 05 — Decision Surface & Dashboard.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 04 — Agent Orchestration.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 03 — Adaptive Agenda.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 02 — Prioritization Formula.md",
+    "90 Arquivo/2026-07-03_limpeza/00 Sistema (legado, backlog vazio)/Chapter 01 — Executive Assistant.md",
+    "90 Arquivo/2026-07-03_limpeza/lixo_root/Sem título 4.canvas",
+    "90 Arquivo/2026-07-03_limpeza/lixo_root/Sem título 3.canvas",
+    "90 Arquivo/2026-07-03_limpeza/lixo_root/Sem título 2.canvas",
+    "90 Arquivo/2026-07-03_limpeza/lixo_root/Sem título 1.canvas",
+    "90 Arquivo/2026-07-03_limpeza/lixo_root/Sem título.canvas",
+    "Sem título 4.canvas",
     "Sem título 3.canvas",
-    "10 Inbox/📥 Inbox.md",
-    "output/Trabalho Restante — 2026-06-30 (Auto Mode).md.tmp.33984.e50e67c8cea4",
-    "70 Sistema/Automacao/_Plano de Sincronizacao — Vault Root.md",
-    "30 Empresa/🏢 Yalt.md",
     "Sem título 2.canvas",
-    "output/Trabalho Restante — 2026-06-30 (Auto Mode).md",
-    "70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md",
-    "output/Validacao Operacional — 2026-06-30.md",
-    "70 Sistema/Checklists/Validacao Operacional JARVIS.md",
-    "40 CRM/🤝 CRM.md",
     "Sem título 1.canvas",
-    "Sem título.md",
-    "Sem título.canvas",
-    "Sem título.base",
-    "Recording 20260627141753.m4a",
-    "70 Sistema/Automacao/morning-brief/logs/2026-06-30.log",
-    "70 Sistema/Automacao/morning-brief/output/2026-06-30-morning-brief.txt",
-    "70 Sistema/Automacao/executive-assistant/logs/2026-06-30.log",
-    "70 Sistema/_Roadmap JARVIS OS.md",
-    "README.md",
-    "wiki/ai_agents/index.md",
-    "output/slide_decks/_README.md",
-    "2026-06-29.md",
-    "00 JARVIS/🗺️ Mapa do Sistema.canvas",
-    "Sem título 4.canvas"
+    "Sem título.canvas"
   ]
 }

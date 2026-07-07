@@ -92,9 +92,11 @@ Regra de ouro de cada zona:
   `wiki/ai_agents/executive_assistant.md`, `output/daily_dashboard.md`,
   `output/query_results.md`, `output/migration_report.md`.
   (`CONSTITUTION.md` está **superseded** — referência histórica apenas.)
-- Ainda existem **diretórios legados numerados** (`00 Sistema/` … `70 Sistema/`)
+- Ainda existem **diretórios legados numerados** (`10 Inbox/` … `70 Sistema/`)
   com ~31 "Chapters". **A maioria está `status: backlog` = placeholder vazio**
-  (só têm cabeçalho e "*Draft content goes here*").
+  (só têm cabeçalho e "*Draft content goes here*"). `00 Sistema/` (Chapters 01–06,
+  100% backlog) já foi arquivado em `90 Arquivo/2026-07-03_limpeza/` — não repetir
+  esse trabalho.
 - `output/migration_report.md` **já mapeia os 43 arquivos legados** para seus
   destinos na arquitetura trilinear. Ele é seu mapa de migração. **Não invente
   destino novo** — siga o que está lá; se faltar, proponha e registre.
