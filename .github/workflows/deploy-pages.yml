@@ -2,7 +2,7 @@ name: Deploy app to GitHub Pages
 
 on:
   push:
-    branches: ["main", "claude/tales-of-talles-latest-h550ei"]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
