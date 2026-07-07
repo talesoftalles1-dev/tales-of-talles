@@ -1,0 +1,21 @@
+---
+dominio: yalt
+tipo: index
+status: ativo
+area: empresa
+titulo: 50 Financeiro — Índice
+criado: 2026-06-27
+atualizado: 2026-06-27
+---
+
+<!-- canonicity-banner -->
+> **Canonicidade:** App canônico (C1) = `index.html`. Fonte da verdade e regras para agentes em [`AGENTS.md`](/AGENTS.md). SSOT do Morning Brief vive no Vault/Obsidian — ver `70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md`. Não criar variantes `_2.html`/`_FINAL.html` nem bifurcar specs.
+
+# 50 Financeiro — Índice
+
+> Índice de navegação gerado para esta seção. Fonte da verdade e regras: ver `AGENTS.md`.
+
+## Documentos
+- [[Chapter 20 — Revenue Ops]] — _backlog_
+- [[Chapter 21 — Billing & Forecasting]] — _backlog_
+- [[Chapter 22 — Budgets & KPIs]] — _backlog_

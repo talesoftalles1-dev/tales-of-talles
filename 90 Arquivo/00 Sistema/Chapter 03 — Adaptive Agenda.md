@@ -3,10 +3,11 @@ dominio: jarvis
 aliases:
   - "Adaptive Agenda"
 tipo: chapter
-status: backlog
+status: arquivado
 area: 00 Sistema
-title: Adaptive Agenda
-created: 2026-06-27T18:24:00Z
+titulo: Adaptive Agenda
+criado: 2026-06-27
+arquivado_em: 2026-07-03
 ---
 
 <!-- canonicity-banner -->

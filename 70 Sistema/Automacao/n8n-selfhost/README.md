@@ -1,7 +1,12 @@
 ---
 tipo: doc
+<<<<<<< HEAD
 status: ativo
 categoria: automacao
+=======
+status: publicado
+categoria: sistema
+>>>>>>> reconcile/vault-merge-20260628
 area: sistema
 criado: 2026-06-29
 atualizado: 2026-07-07

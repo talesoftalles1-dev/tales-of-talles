@@ -2,10 +2,17 @@
 dominio: jarvis
 tipo: agent
 status: canonico
+<<<<<<< HEAD
 titulo: Executive Assistant — Contrato do Agente
 area: sistema
 criado: 2026-06-27
 atualizado: 2026-07-06
+=======
+titulo: Executive Assistant — Agent Contract
+area: sistema
+criado: 2026-06-27
+atualizado: 2026-07-03
+>>>>>>> reconcile/vault-merge-20260628
 aliases:
   - Executive Assistant
   - EA Agent

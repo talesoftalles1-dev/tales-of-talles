@@ -3,7 +3,10 @@ dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Prompt do Arquiteto do Vault — JARVIS OS
+<<<<<<< HEAD
 area: sistema
+=======
+>>>>>>> reconcile/vault-merge-20260628
 criado: 2026-06-27
 atualizado: 2026-07-02
 aliases:
@@ -91,9 +94,11 @@ Regra de ouro de cada zona:
   `wiki/ai_agents/executive_assistant.md`, `output/daily_dashboard.md`,
   `output/query_results.md`, `output/migration_report.md`.
   (`CONSTITUTION.md` está **superseded** — referência histórica apenas.)
-- Ainda existem **diretórios legados numerados** (`00 Sistema/` … `70 Sistema/`)
+- Ainda existem **diretórios legados numerados** (`10 Inbox/` … `70 Sistema/`)
   com ~31 "Chapters". **A maioria está `status: backlog` = placeholder vazio**
-  (só têm cabeçalho e "*Draft content goes here*").
+  (só têm cabeçalho e "*Draft content goes here*"). `00 Sistema/` (Chapters 01–06,
+  100% backlog) já foi arquivado em `90 Arquivo/2026-07-03_limpeza/` — não repetir
+  esse trabalho.
 - `output/migration_report.md` **já mapeia os 43 arquivos legados** para seus
   destinos na arquitetura trilinear. Ele é seu mapa de migração. **Não invente
   destino novo** — siga o que está lá; se faltar, proponha e registre.
@@ -149,10 +154,15 @@ Regra de ouro de cada zona:
 **Frontmatter obrigatório em `wiki/`:**
 ```yaml
 ---
+<<<<<<< HEAD
 dominio: <jarvis | yalt | talles>
 tipo: <agent | sistema | nota | index | doc | projeto | ...>
 status: <backlog | ativo | concluido | arquivado | canonico>
 area: <pessoal | empresa | sistema | conhecimento>
+=======
+tipo: <area | project | task | note | agent | index>
+status: <backlog | active | done | archived | canonico>
+>>>>>>> reconcile/vault-merge-20260628
 titulo: <título legível>
 criado: <YYYY-MM-DD>
 atualizado: <YYYY-MM-DD>

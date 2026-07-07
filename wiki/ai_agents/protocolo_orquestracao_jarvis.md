@@ -71,8 +71,14 @@ graph LR
 | Construir/validar automação (n8n, script) | E6 | AUTOMATOR |
 | Indexar, manter wiki, ligar backlinks | E7 | KNOWLEDGE |
 | Decompor objetivo, sequenciar, montar roadmap | E8 | PLANNER |
+<<<<<<< HEAD
 
 Domínios de negócio permanecem com os agentes nomeados do [[_Contrato de Autoridade dos Agentes]]: **BOBBY** (comercial/CRM), **FINANCE** (registro financeiro), **CALENDAR** (agenda), **HEALTH** (hábitos/treino). Os Estagiários são o substrato de execução; não substituem esses donos de domínio.
+=======
+| Consultar/atualizar o CRM Yalt, qualificar leads, briefing comercial | E9 | BOBBY |
+
+Domínios de negócio permanecem com os agentes nomeados do [[_Contrato de Autoridade dos Agentes]]: **BOBBY** (comercial/CRM, executado por E9), **FINANCE** (registro financeiro), **CALENDAR** (agenda), **HEALTH** (hábitos/treino). Os Estagiários são o substrato de execução; não substituem esses donos de domínio — E9 é o primeiro caso em que um Estagiário e um agente de domínio nomeado coincidem 1:1 (mesma linha de autoridade, projeção mecânica).
+>>>>>>> reconcile/vault-merge-20260628
 
 ## Regras de paralelização (FASE 3)
 
@@ -91,3 +97,21 @@ Domínios de negócio permanecem com os agentes nomeados do [[_Contrato de Autor
 ## Substrato técnico
 
 Os Estagiários são **subagentes nativos do Claude Code** (`.claude/agents/estagiario-*.md`), disparados pela ferramenta Agent. Decisão de não adotar o Ruflo agora: [[adr_ruflo_vs_subagentes_nativos]]. Cartas de autoridade detalhadas: [[estagiarios]].
+<<<<<<< HEAD
+=======
+
+## Hierarquia de documentos desta camada (para não bifurcar)
+
+Este protocolo descreve **processo** (como o Jarvis decompõe/prioriza/delega), não autoridade. Quatro documentos cobrem a camada de agentes — cada um com um papel único, sem sobreposição:
+
+| Documento | Papel | Tipo |
+|---|---|---|
+| [[estagiarios]] | **Canon de autoridade** — cartas Pode/Não pode/Inputs/Outputs de cada Estagiário | Fonte da verdade |
+| [[protocolo_orquestracao_jarvis]] (este arquivo) | **Canon de processo** — como o Jarvis decide, decompõe, delega, consolida | Fonte da verdade |
+| [[agent_roster]] | Status operacional em tempo real (online/idle/carga) | Derivado — painel, não autoridade |
+| [[Chapter 29 — Agent Roster & Authority]] | Ponteiro de navegação (repo-side) para os dois canônicos acima | Derivado — não duplica conteúdo |
+
+Dúvida sobre "o que um agente pode fazer" → [[estagiarios]]. Dúvida sobre "como o trabalho flui entre eles" → este arquivo. Nenhum outro documento deve redefinir autoridade ou processo — só apontar para estes dois.
+
+> **Nota de proveniência (2026-07-03):** este protocolo e o contrato [[estagiarios]] foram desenhados numa sessão anterior em worktree isolado (`claude/zen-mclaren-ab1c72`) e materializados aqui no vault principal numa sessão de continuidade que também adicionou o E9/BOBBY (skill `yalt-crm` recém-instalada). Ver [[Chapter 18 — Sync & MCP Contracts]] para o contrato técnico do CRM.
+>>>>>>> reconcile/vault-merge-20260628

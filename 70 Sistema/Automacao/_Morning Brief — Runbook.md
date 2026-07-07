@@ -18,11 +18,13 @@ tags:
 > [!warning] Para future-you
 > Se esqueceu tudo, comece aqui. O brief roda **local**, posta no **#daily**, e nunca depende do n8n para priorização.
 
-> [!success] Status em 2026-06-27
-> - ✅ Pipeline local rodando (Node v26). Tarefa agendada **"JARVIS Morning Brief"** criada (09:00 diário).
-> - ✅ Workflow de entrega n8n criado **INATIVO**: `gCpvNjBzZ6ZTXg5I` — https://n8n.enyo.cc/workflow/gCpvNjBzZ6ZTXg5I (webhook `POST /webhook/jarvis-morning-brief`, já apontado por `config.json`).
-> - ✅ Primeiro brief postado no #daily (validação manual).
-> - ⏳ **Falta só ativar a entrega automática:** abrir o workflow → atribuir a credencial Slack "Slack account" ao nó *Post to #daily* → confirmar o bot no #daily → **ativar** o toggle. Enquanto inativo, o run das 09:00 gera+salva local (exit 2 = entrega pendente, esperado).
+> [!success] Status em 2026-06-30 (atualizado — ver histórico abaixo)
+> - ✅ Pipeline local rodando (Node v26). Tarefa agendada **"JARVIS Morning Brief"** rodando diariamente às 09:00, sem falhas no lado local (gera + salva sempre).
+> - ✅ Workflow de entrega n8n **ATIVO/Published**: `gCpvNjBzZ6ZTXg5I` — https://n8n.enyo.cc/workflow/gCpvNjBzZ6ZTXg5I (webhook `POST /webhook/jarvis-morning-brief`, apontado por `config.json`). O nó "Post to #daily" já tem a credencial Slack atribuída corretamente (Channel ID `C0BDLUFCRB3`, texto via `{{ $json.body.text }}`).
+> - ✅ Primeiro brief postado no #daily (validação manual, 27/06).
+> - 🔴 **Bloqueio atual (desde 28/06, confirmado ainda ativo em 30/06): NÃO é mais "ativar o toggle"** — isso já foi feito. O webhook retorna **HTTP 500 "Error in workflow"**; o log de execução no n8n mostra a causa exata: **"Unable to sign without access token"** — a credencial Slack OAuth2 "Slack account" tem token morto/expirado (a UI mostra "Account connected" mas é estado obsoleto).
+> - **Fix real:** no n8n (`enyo.cc`) → nó "Post to #daily" → ✏️ na credencial "Slack account" → **Reconnect** → completar o **Allow** na janela do Slack que abrir. São 2 cliques humanos; não é automatizável com segurança (popup OAuth foge do fluxo normal de abas, e ferramentas de automação de navegador bloqueiam — corretamente — manipulação de fluxo OAuth em produção). Depois de reconectar, o próximo run das 09:00 (ou um `.\run.ps1 -Force`) deve postar com sucesso.
+> - **Histórico do bloqueio** (não confundir as duas causas): 27–28/06 cedo → erro 404 "workflow must be active" (workflow realmente inativo). 28/06 tarde em diante → workflow ativado, mas erro virou 500 "Error in workflow" / token morto (causa atual). Enquanto bloqueado, o run das 09:00 sempre gera+salva local (exit 2 = entrega pendente, comportamento esperado e seguro).
 
 ## Pré-requisitos
 

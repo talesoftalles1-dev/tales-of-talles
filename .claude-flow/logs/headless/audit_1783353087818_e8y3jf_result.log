@@ -1,0 +1,84 @@
+[2026-07-06T15:52:25.427Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "Based on my analysis of the provided codebase, I've identified several security vulnerabilities. Here's my JSON report:\n\n```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"high\",\n      \"file\": \"memory/jarvis-stabilization.md (documented issue)\",\n      \"line\": 0,\n      \"description\": \"MCP bearer token leaked and staged in git history. Token exposure allows unauthorized API access to the MCP bridge connecting this vault to external systems.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"file\": \".obsidian/plugins/mcp-tools-istefox/main.js\",\n      \"line\": 4916,\n      \"description\": \"Bearer token passed in Authorization header without input validation. If token contains special characters or comes from user input, could be misused or leaked in logs/errors.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"file\": \"memory/jarvis-stabilization.md (documented issue)\",\n      \"line\": 0,\n      \"description\": \"Claudian plugin running in 'yolo/no-confirm mode' — executes code/commands without authorization checks, creating privilege escalation and arbitrary code execution risk.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".obsidian/plugins/copilot/main.js\",\n      \"line\": 0,\n      \"description\": \"Hardcoded API endpoints (api.brevilabs.com, models.brevilabs.com) visible in minified code. While not secrets themselves, they expose architecture and could be targeted for MITM attacks. No visible HTTPS enforcement.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".claude/agents/estagiario-9-comercial.md\",\n      \"line\": 8,\n      \"description\": \"API key handling guidance exists but actual API keys could be accidentally committed. CLAUDE.md §12 rule requires no secrets in files, but no pre-commit hook enforces this.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".obsidian/plugins/mcp-tools-istefox/main.js\",\n      \"line\": 4926,\n      \"description\": \"Auto-write feature for claude_desktop_config.json when bearer token rotates. File writing without validation could overwrite config with malformed tokens or be exploited if token source is compromised.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 52,\n      \"description\": \"Path operations use process.cwd() and path.join(). While path.resolve() is used correctly, missing input validation on volumeDir could allow directory traversal if this were exposed as an API.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \".obsidian/plugins/calendar/main.js\",\n      \"line\": 0,\n      \"description\": \"DOM manipulation for accessibility tree without visible HTML escaping. If user-controlled vault note titles are injected unescaped into aria-live regions, could enable stored XSS.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 0,\n      \"description\": \"Truncates SHA-256 hash to 12 characters for external_id. While unlikely, collision probability increases. No validation that notePath is within vault bounds (though used locally only).\"\n    }\n  ],\n  \"riskScore\": 72,\n  \"recommendations\": [\n    \"URGENT: Run git secret scan across entire history (use 'git log -p' with secret patterns or tool like truffleHog). Remove leaked MCP bearer token from all commits using git filter-branch or BFG Repo-Cleaner, then force-push.\",\n    \"URGENT: Disable 'yolo/no-confirm mode' in Claudian plugin. Implement confirmation dialog for all code/command execution in .claude/agents/estagiario-*.md instructions.\",\n    \"HIGH: Add pre-commit hook that blocks commits containing patterns like 'api_key', 'bearer', 'password', 'token\\\\s*=' in code files (except docs). Use git-secrets or similar.\",\n    \"HIGH: Add HTTPS enforcement and certificate pinning for API endpoints (api.brevilabs.com, models.brevilabs.com). Enforce via Node.js module like `https-pinning`.\",\n    \"HIGH: Require explicit approval before writing to claude_desktop_config.json. Add validation schema and sanitization for token values before file write.\",\n    \"MEDIUM: Audit Obsidian plugins for DOM-based XSS. Use textContent instead of innerHTML when rendering user-controlled vault titles in accessibility tree and calendar views.\",\n    \"MEDIUM: Document and enforce API key rotation policy. Store all API keys in system keychain (Windows Credential Manager) instead of vault files. Use environment variables with .env.local (gitignored).\",\n    \"MEDIUM: Increase external_id hash truncation from 12 to 20 characters, or use full SHA-256. Add collision detection in wiki indexing.\",\n    \"MEDIUM: Add input validation to bootstrap_jarvis_os.js: validate volumeDir against whitelist of expected directories; add bounds check on notePath.\",\n    \"LOW: Add Content Security Policy (CSP) headers to Obsidian plugin manifests to restrict script sources and prevent inline execution.\",\n    \"LOW: Audit .claude/skills/yalt-crm/SKILL.md for auth bypass. Verify API key is never logged, cached unencrypted, or transmitted over HTTP.\"\n  ]\n}\n```\n\n**Key Findings:**\n\n1. **Critical token leak** in git (already documented in your memory) — this is your highest priority.\n2. **No-confirm mode** in Claudian plugin is a privilege escalation vector.\n3. **Bearer token handling** in MCP plugin lacks input sanitization.\n4. **Hardcoded API endpoints** are exposed in minified code (low risk but architectural concern).\n5. **No pre-commit hooks** to prevent accidental credential commits.\n\n**Immediate Actions:**\n- Rotate the leaked MCP bearer token immediately\n- Scrub git history to remove the token\n- Add a `.gitignore` rule for `.env*` and credential files\n- Enable branch protection rules to require reviews before commits to main\n\nWould you like me to help set up a pre-commit hook to prevent secret leaks going forward?\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "high",
+        "file": "memory/jarvis-stabilization.md (documented issue)",
+        "line": 0,
+        "description": "MCP bearer token leaked and staged in git history. Token exposure allows unauthorized API access to the MCP bridge connecting this vault to external systems."
+      },
+      {
+        "severity": "high",
+        "file": ".obsidian/plugins/mcp-tools-istefox/main.js",
+        "line": 4916,
+        "description": "Bearer token passed in Authorization header without input validation. If token contains special characters or comes from user input, could be misused or leaked in logs/errors."
+      },
+      {
+        "severity": "high",
+        "file": "memory/jarvis-stabilization.md (documented issue)",
+        "line": 0,
+        "description": "Claudian plugin running in 'yolo/no-confirm mode' — executes code/commands without authorization checks, creating privilege escalation and arbitrary code execution risk."
+      },
+      {
+        "severity": "medium",
+        "file": ".obsidian/plugins/copilot/main.js",
+        "line": 0,
+        "description": "Hardcoded API endpoints (api.brevilabs.com, models.brevilabs.com) visible in minified code. While not secrets themselves, they expose architecture and could be targeted for MITM attacks. No visible HTTPS enforcement."
+      },
+      {
+        "severity": "medium",
+        "file": ".claude/agents/estagiario-9-comercial.md",
+        "line": 8,
+        "description": "API key handling guidance exists but actual API keys could be accidentally committed. CLAUDE.md §12 rule requires no secrets in files, but no pre-commit hook enforces this."
+      },
+      {
+        "severity": "medium",
+        "file": ".obsidian/plugins/mcp-tools-istefox/main.js",
+        "line": 4926,
+        "description": "Auto-write feature for claude_desktop_config.json when bearer token rotates. File writing without validation could overwrite config with malformed tokens or be exploited if token source is compromised."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 52,
+        "description": "Path operations use process.cwd() and path.join(). While path.resolve() is used correctly, missing input validation on volumeDir could allow directory traversal if this were exposed as an API."
+      },
+      {
+        "severity": "low",
+        "file": ".obsidian/plugins/calendar/main.js",
+        "line": 0,
+        "description": "DOM manipulation for accessibility tree without visible HTML escaping. If user-controlled vault note titles are injected unescaped into aria-live regions, could enable stored XSS."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 0,
+        "description": "Truncates SHA-256 hash to 12 characters for external_id. While unlikely, collision probability increases. No validation that notePath is within vault bounds (though used locally only)."
+      }
+    ],
+    "riskScore": 72,
+    "recommendations": [
+      "URGENT: Run git secret scan across entire history (use 'git log -p' with secret patterns or tool like truffleHog). Remove leaked MCP bearer token from all commits using git filter-branch or BFG Repo-Cleaner, then force-push.",
+      "URGENT: Disable 'yolo/no-confirm mode' in Claudian plugin. Implement confirmation dialog for all code/command execution in .claude/agents/estagiario-*.md instructions.",
+      "HIGH: Add pre-commit hook that blocks commits containing patterns like 'api_key', 'bearer', 'password', 'token\\s*=' in code files (except docs). Use git-secrets or similar.",
+      "HIGH: Add HTTPS enforcement and certificate pinning for API endpoints (api.brevilabs.com, models.brevilabs.com). Enforce via Node.js module like `https-pinning`.",
+      "HIGH: Require explicit approval before writing to claude_desktop_config.json. Add validation schema and sanitization for token values before file write.",
+      "MEDIUM: Audit Obsidian plugins for DOM-based XSS. Use textContent instead of innerHTML when rendering user-controlled vault titles in accessibility tree and calendar views.",
+      "MEDIUM: Document and enforce API key rotation policy. Store all API keys in system keychain (Windows Credential Manager) instead of vault files. Use environment variables with .env.local (gitignored).",
+      "MEDIUM: Increase external_id hash truncation from 12 to 20 characters, or use full SHA-256. Add collision detection in wiki indexing.",
+      "MEDIUM: Add input validation to bootstrap_jarvis_os.js: validate volumeDir against whitelist of expected directories; add bounds check on notePath.",
+      "LOW: Add Content Security Policy (CSP) headers to Obsidian plugin manifests to restrict script sources and prevent inline execution.",
+      "LOW: Audit .claude/skills/yalt-crm/SKILL.md for auth bypass. Verify API key is never logged, cached unencrypted, or transmitted over HTTP."
+    ]
+  },
+  "durationMs": 57609,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-06T15:52:25.427Z",
+  "executionId": "audit_1783353087818_e8y3jf"
+}
