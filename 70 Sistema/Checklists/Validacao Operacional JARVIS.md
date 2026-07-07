@@ -2,7 +2,6 @@
 dominio: jarvis
 tipo: checklist
 status: ativo
-contexto: validação de saúde operacional do sistema
 area: empresa
 criado: 2026-06-30
 atualizado: 2026-06-30

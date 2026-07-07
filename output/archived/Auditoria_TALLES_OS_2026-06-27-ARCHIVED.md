@@ -10,7 +10,6 @@ relacionado:
   - "[[TALES OF TALLES OS — Master Evolution Report]]"
 tags:
   - auditoria
-  - arquivado
 ---
 
 # Auditoria TALLES OS — ARCHIVADA (2026-06-27)

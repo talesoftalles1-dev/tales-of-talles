@@ -4,9 +4,9 @@ aliases:
   - "Commercial Ops (Yalt)"
 tipo: chapter
 status: ativo
-area: 30 Empresa
-title: Commercial Ops (Yalt)
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Commercial Ops (Yalt)
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->
@@ -89,7 +89,7 @@ SPF/DKIM/DMARC configurados (ver [[Plano de Testes de Email Yalt]] para detalhe)
 
 ## Navegação
 
-- Hub: [[🏢 Yalt]] · Índice: [[30 Empresa — Índice]]
+- Hub: [[🏢 Yalt]] · Índice: [[30 Empresa/_Index|30 Empresa — Índice]]
 - Acompanhamento acionável (tarefas, prioridade): [[Automacao Comercial Yalt]]
 - Integração JARVIS ↔ Yalt: [[_Integracoes Yalt]]
 - Modelo de dados / contratos de sync do CRM: [[Chapter 17 — CRM Data Model]] · [[Chapter 18 — Sync & MCP Contracts]]

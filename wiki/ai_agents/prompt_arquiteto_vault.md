@@ -3,7 +3,6 @@ dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Prompt do Arquiteto do Vault — JARVIS OS
-contexto: sistema
 criado: 2026-06-27
 atualizado: 2026-06-27
 aliases:
@@ -11,7 +10,6 @@ aliases:
   - JARVIS Knowledge Architect Prompt
   - Prompt Claude do Trabalho
 tags:
-  - agent
   - prompt
   - governanca
   - vault
@@ -154,7 +152,6 @@ Regra de ouro de cada zona:
 ---
 tipo: <area | project | task | note | agent | index>
 status: <backlog | active | done | archived | canonico>
-contexto: <pessoal | empresa | financeiro | crm | sistema | conhecimento>
 titulo: <título legível>
 criado: <ISO 8601>
 atualizado: <ISO 8601>

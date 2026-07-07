@@ -22,7 +22,7 @@ tags:
 Duas rotas possíveis daqui pra frente, nenhuma testada ainda:
 1. Rodar via **Claude Code CLI local** (não o sandbox Cowork) — provavelmente sem o mesmo allowlist, mas não confirmado.
 2. Pedir ao Operador para liberar `portal.sales-crm.yalt.co` no allowlist do Cowork (Admin Settings → Capabilities, se for workspace Team/Enterprise).
-3. Continuar usando a ponte n8n já existente ([[yalt-revenue-os]] memória externa ao vault) — que já sincroniza status de lead para o CRM, mas está **inativa** por falta da credencial `CRM Yalt API` (httpBearerAuth).
+3. Continuar usando a ponte n8n já existente (Yalt Revenue OS memória externa ao vault) — que já sincroniza status de lead para o CRM, mas está **inativa** por falta da credencial `CRM Yalt API` (httpBearerAuth).
 
 **Como aplicar:** antes de prometer dados "ao vivo" do CRM numa sessão Cowork, testar `GET /v1/health` primeiro — se vier 403 `blocked-by-allowlist`, não insistir em variações de curl/web_fetch (regra do sistema: não tentar contornar bloqueio de rede). Reportar o bloqueio e sugerir as 3 rotas acima.
 

@@ -4,9 +4,9 @@ aliases:
   - "Capture & Triage"
 tipo: chapter
 status: backlog
-area: 10 Inbox
-title: Capture & Triage
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Capture & Triage
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

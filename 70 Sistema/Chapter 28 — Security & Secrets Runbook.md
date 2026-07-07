@@ -4,9 +4,9 @@ aliases:
   - "Security & Secrets Runbook"
 tipo: chapter
 status: backlog
-area: 70 Sistema
-title: Security & Secrets Runbook
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Security & Secrets Runbook
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

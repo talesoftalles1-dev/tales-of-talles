@@ -4,9 +4,9 @@ aliases:
   - "Archives & Migration"
 tipo: chapter
 status: backlog
-area: 60 Conhecimento
-title: Archives & Migration
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Archives & Migration
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

@@ -4,9 +4,9 @@ aliases:
   - "Bootstrap & Maintenance"
 tipo: chapter
 status: backlog
-area: 70 Sistema
-title: Bootstrap & Maintenance
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Bootstrap & Maintenance
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

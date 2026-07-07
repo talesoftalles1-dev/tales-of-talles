@@ -1,7 +1,7 @@
 ---
 dominio: jarvis
 tipo: sistema
-status: ativo
+status: publicado
 criado: 2026-06-27
 atualizado: 2026-06-27
 ---

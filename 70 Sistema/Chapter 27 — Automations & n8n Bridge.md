@@ -4,9 +4,9 @@ aliases:
   - "Automations & n8n Bridge"
 tipo: chapter
 status: ativo
-area: 70 Sistema
-title: Automations & n8n Bridge
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Automations & n8n Bridge
+criado: 2026-06-27
 atualizado: 2026-06-29
 ---
 

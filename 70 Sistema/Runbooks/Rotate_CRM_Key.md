@@ -1,9 +1,9 @@
 ---
 dominio: jarvis
 tipo: runbook
-status: draft
+status: rascunho
 categoria: operations
-area: security
+area: sistema
 criado: 2026-06-27
 atualizado: 2026-06-27
 relacionado:
@@ -11,7 +11,6 @@ relacionado:
   - "[[CRM n8n Workflows — README]]"
   - "[[CRM Unification — Plan]]"
 tags:
-  - runbook
   - crm
   - security
 ---

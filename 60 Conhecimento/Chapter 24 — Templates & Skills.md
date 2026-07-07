@@ -4,9 +4,9 @@ aliases:
   - "Templates & Skills"
 tipo: chapter
 status: backlog
-area: 60 Conhecimento
-title: Templates & Skills
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Templates & Skills
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

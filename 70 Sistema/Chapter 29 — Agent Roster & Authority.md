@@ -4,10 +4,10 @@ aliases:
   - "Agent Roster & Authority"
 tipo: chapter
 status: ativo
-area: 70 Sistema
-title: Agent Roster & Authority
-created: 2026-06-27T18:24:00Z
-updated: 2026-07-03T00:00:00Z
+area: sistema
+titulo: Agent Roster & Authority
+criado: 2026-06-27
+atualizado: 2026-07-03
 relacionado:
   - "[[estagiarios]]"
   - "[[protocolo_orquestracao_jarvis]]"

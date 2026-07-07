@@ -4,9 +4,9 @@ aliases:
   - "Outreach & ESP Strategy"
 tipo: chapter
 status: backlog
-area: 40 CRM
-title: Outreach & ESP Strategy
-created: 2026-06-27T18:24:00Z
+area: empresa
+titulo: Outreach & ESP Strategy
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

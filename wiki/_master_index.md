@@ -15,7 +15,6 @@ relacionado:
   - "[[_Contrato de Autoridade dos Agentes]]"
   - "[[🤖 JARVIS]]"
 tags:
-  - index
   - moc
   - tema/ia
 ---

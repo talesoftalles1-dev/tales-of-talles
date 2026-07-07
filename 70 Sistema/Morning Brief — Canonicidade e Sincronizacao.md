@@ -1,7 +1,7 @@
 ---
 dominio: jarvis
 tipo: doc
-status: referenciado
+status: publicado
 categoria: sistema
 area: empresa
 criado: 2026-06-27

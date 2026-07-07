@@ -173,7 +173,7 @@ const prazo = await tp.system.prompt("Prazo (YYYY-MM-DD ou vazio)");
 -%>
 ---
 tipo: projeto
-status: ativo
+status: publicado
 area: <% area %>
 prioridade: <% prioridade %>
 inicio: <% tp.date.now("YYYY-MM-DD") %>
@@ -197,7 +197,7 @@ tags: []
 ```
 
 > [!warning] Pasta é só armazenamento
-> A pasta é definida por conveniência; o que faz o projeto aparecer no Dashboard é `tipo: projeto` + `status: ativo`. Mover a pasta depois **não quebra** nada.
+> A pasta é definida por conveniência; o que faz o projeto aparecer no Dashboard é `tipo: projeto` + `status: publicado`. Mover a pasta depois **não quebra** nada.
 
 ---
 
@@ -393,8 +393,8 @@ SORT data DESC
 > - Stack definida: Next.js + Supabase.
 >
 > ## ✅ Ações
-> - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  [[João Silva]]
-> - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  [[Maria Souza]]
+> - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  João Silva
+> - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  Maria Souza
 > ```
 
 > [!tip] Atalho de captura da transcrição
@@ -547,7 +547,7 @@ tags
 
 **Plugin:** Periodic Notes (Weekly Note) + Tasks. A nota semanal `YYYY-[W]ww` (tipo `semanal`) carrega o ritual.
 
-- Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Link de referência: [[2026-W26]] (a semanal vigente).
+- Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Link de referência: 2026-W26 (a semanal vigente).
 
 ````markdown
 ## 🔁 Revisão semanal

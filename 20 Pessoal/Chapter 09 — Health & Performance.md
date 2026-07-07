@@ -4,9 +4,9 @@ aliases:
   - "Health & Performance"
 tipo: chapter
 status: backlog
-area: 20 Pessoal
-title: Health & Performance
-created: 2026-06-27T18:24:00Z
+area: pessoal
+titulo: Health & Performance
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

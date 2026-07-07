@@ -44,7 +44,7 @@ Progresso em **45%**. Kickoff realizado (ver [[2026-06-27 Kickoff Acme]]), escop
 ## ✅ Tarefas
 
 - [ ] Finalizar wireframes das 5 páginas principais 🔺 📅 2026-07-01
-- [ ] Enviar wireframes para aprovação de [[Joao Silva]] 🔼 📅 2026-07-02
+- [ ] Enviar wireframes para aprovação de Joao Silva 🔼 📅 2026-07-02
 - [ ] Definir paleta e tipografia da nova identidade 🔼 📅 2026-07-08
 - [ ] Configurar ambiente de staging 📅 2026-07-10
 - [ ] Integrar formulário de leads ao CRM 📅 2026-07-25
@@ -63,5 +63,5 @@ Progresso em **45%**. Kickoff realizado (ver [[2026-06-27 Kickoff Acme]]), escop
 - Cliente: [[CRM API]]
 - Objetivo: [[Crescer Faturamento 2026]]
 - Reunião: [[2026-06-27 Kickoff Acme]]
-- Contato-chave: [[Joao Silva]]
+- Contato-chave: Joao Silva
 - Recebimento: [[2026-06-27 Recebimento Acme]]

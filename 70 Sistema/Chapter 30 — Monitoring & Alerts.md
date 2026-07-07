@@ -4,9 +4,9 @@ aliases:
   - "Monitoring & Alerts"
 tipo: chapter
 status: backlog
-area: 70 Sistema
-title: Monitoring & Alerts
-created: 2026-06-27T18:24:00Z
+area: sistema
+titulo: Monitoring & Alerts
+criado: 2026-06-27
 ---
 
 <!-- canonicity-banner -->

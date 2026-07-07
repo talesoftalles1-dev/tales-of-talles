@@ -56,7 +56,7 @@ Mesmo que **inicialmente conceitual**, o Event Bus é o vocabulário que as 4 ca
 ```json
 {
   "event": "LeadQualified",
-  "ts": "2026-06-27T14:30:00Z",
+  "ts": "2026-06-27",
   "source": "n8n:Yalt Prospector",
   "entity": { "tipo": "cliente", "ref": "Acme Corp", "id": "..." },
   "payload": { "fit_score": 78, "arr_estimado": 12000 },

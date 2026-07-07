@@ -35,7 +35,7 @@ Script de teste webhook
 - curl:
   curl -X POST "https://seu-n8n.exemplo/webhook/morning-brief" \
     -H "Content-Type: application/json" \
-    -d '{"test":"morning-brief","timestamp":"2026-06-27T09:00:00Z"}'
+    -d '{"test":"morning-brief","timestamp":"2026-06-27"}'
 - PowerShell:
   $body = @{ test = "morning-brief"; timestamp = (Get-Date).ToString("o") } | ConvertTo-Json
   Invoke-RestMethod -Uri "https://seu-n8n.exemplo/webhook/morning-brief" -Method Post -Body $body -ContentType "application/json"
