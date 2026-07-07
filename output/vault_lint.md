@@ -11,32 +11,27 @@ tags:
 
 # 🧹 Vault Lint — Relatório de Conformidade
 
-<<<<<<< HEAD
-> Gerado em 2026-07-07 11:02 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
+> Gerado em 2026-07-07 11:56 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
 
-**Notas varridas:** 83 · **Erros:** 0 · **Avisos:** 0
-
-## ✅ Vault 100% conforme o contrato
-=======
-> Gerado em 2026-07-07 11:55 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
-
-**Notas varridas:** 129 · **Erros:** 7 · **Avisos:** 2
+**Notas varridas:** 106 · **Erros:** 15 · **Avisos:** 0
 
 ## ❌ Erros (violam o contrato)
 
-- 70 Sistema/Automacao/_Plano de Sincronizacao — Vault Root.md — wikilink quebrado (frontmatter): [[70 Sistema/_Spec JARVIS|Spec JARVIS]]
-- 70 Sistema/Automacao/🔁 Automacoes.md — wikilink quebrado : 2026-W26
-- 70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md — wikilink quebrado : [[70 Sistema/_Spec JARVIS|Spec JARVIS]]
-- 70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md — wikilink quebrado : [[20 Pessoal/Ideias/_Index|Ideias]]
-- 70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md — wikilink quebrado : Validação Operacional
-- 70 Sistema/Checklists/Observacao 7 Dias — Pos Fase 0.md — wikilink quebrado : Validação Operacional
-- wiki/ai_agents/memoria/estagiario_9_comercial.md — wikilink quebrado : Yalt Revenue OS
-
-## ⚠️ Avisos
-
-- 70 Sistema/Automacao/executive-assistant/RUNBOOK.md — sem frontmatter (nota de conteúdo deveria ter o bloco do contrato §2)
-- 70 Sistema/Automacao/morning-brief/RUNBOOK.md — sem frontmatter (nota de conteúdo deveria ter o bloco do contrato §2)
->>>>>>> reconcile/vault-merge-20260628
+- 20 Pessoal/Diario/2026-06-27.md — wikilink quebrado : 2026-06-27 Recebimento Acme
+- 30 Empresa/Documentacao/Processo de Onboarding de Cliente.md — wikilink quebrado : 2026-06-27 Recebimento Acme
+- 30 Empresa/Projetos/Lancamento do Novo Site.md — wikilink quebrado : 2026-06-27 Recebimento Acme
+- 40 CRM/Clientes/CRM API.md — wikilink quebrado : 2026-06-27 Recebimento Acme
+- 70 Sistema/CRM MCP — Contract & Scaffold.md — wikilink quebrado (frontmatter): [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]
+- 70 Sistema/CRM MCP — Contract & Scaffold.md — wikilink quebrado (frontmatter): [[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]
+- 70 Sistema/CRM Unification — Plan.md — wikilink quebrado (frontmatter): [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]
+- 70 Sistema/CRM Unification — Plan.md — wikilink quebrado (frontmatter): [[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]
+- 70 Sistema/CRM Unification — Plan.md — wikilink quebrado (frontmatter): [[output/TALES OF TALLES OS — Master Evolution Report|Evolution Report]]
+- 70 Sistema/Morning Brief — Canonicidade e Sincronizacao.md — wikilink quebrado (frontmatter): [[output/TALES OF TALLES OS — Master Evolution Report|Evolution Report]]
+- 70 Sistema/_Index.md — wikilink quebrado : [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]
+- 70 Sistema/_Index.md — wikilink quebrado : [[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]
+- 70 Sistema/n8n Audit Report — 2026-06-29.md — wikilink quebrado (frontmatter): [[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]
+- output/relatorio_transformacao_os_2026-07-06.md — wikilink quebrado : Relatório de Arquitetura
+- output/relatorio_transformacao_os_2026-07-06.md — wikilink quebrado (frontmatter): Relatório de Arquitetura
 
 ---
 

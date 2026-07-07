@@ -64,4 +64,4 @@ Progresso em **45%**. Kickoff realizado (ver [[2026-06-27 Kickoff Acme]]), escop
 - Objetivo: [[Crescer Faturamento 2026]]
 - Reunião: [[2026-06-27 Kickoff Acme]]
 - Contato-chave: Joao Silva
-- Recebimento: [[2026-06-27 Recebimento Acme]]
+- Recebimento: 2026-06-27 Recebimento Acme

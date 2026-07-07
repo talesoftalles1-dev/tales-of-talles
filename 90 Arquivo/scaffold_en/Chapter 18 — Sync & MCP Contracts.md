@@ -16,7 +16,7 @@ criado: 2026-06-27
 atualizado: 2026-07-03
 relacionado:
   - "[[CRM MCP — Contract & Scaffold]]"
-  - "[[CRM — Mapeamento de Entidades]]"
+  - "[[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]"
   - "[[estagiarios]]"
   - "[[Chapter 14 — Commercial Ops (Yalt)]]"
 >>>>>>> reconcile/vault-merge-20260628:40 CRM/Chapter 18 — Sync & MCP Contracts.md
@@ -81,7 +81,7 @@ O subagente **E9 · BOBBY** ([[estagiarios]], arquivo funcional `.claude/agents/
 
 ## Relação com o plano de unificação Vault↔CRM
 
-O [[CRM Unification — Plan]] (Sprint B: "MCP minimal") tratava a existência de um conector como trabalho futuro. Com a skill `yalt-crm` instalada, **parte do Sprint B já está coberta** — falta apenas resolver o bloqueio de rede acima e, se aplicável, a sincronização Vault→CRM descrita em [[CRM — Mapeamento de Entidades]] (que continua sendo trabalho novo, não coberto pela skill).
+O [[CRM Unification — Plan]] (Sprint B: "MCP minimal") tratava a existência de um conector como trabalho futuro. Com a skill `yalt-crm` instalada, **parte do Sprint B já está coberta** — falta apenas resolver o bloqueio de rede acima e, se aplicável, a sincronização Vault→CRM descrita em [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]] (que continua sendo trabalho novo, não coberto pela skill).
 
 ## Navegação
 - Modelo de dados: [[Chapter 17 — CRM Data Model]]

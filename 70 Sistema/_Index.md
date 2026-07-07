@@ -55,9 +55,9 @@ Mapa de conteúdo da "engenharia" do JARVIS: canon, templates, runbooks e automa
 
 - [[Chapter 18 — Sync & MCP Contracts]] **(40 CRM, `status: ativo`)** — contrato real do conector: skill `yalt-crm`, endpoints, auth, caveats de dado, achado do bloqueio de rede (2026-07-03). **Fonte da verdade atual** — supera o scaffold abaixo.
 - [[CRM Unification — Plan]] — plano geral de unificação Vault ↔ CRM Yalt (escopo, sprints, riscos, critérios de sucesso).
-- [[CRM — Mapeamento de Entidades]] — mapeamento de frontmatter do Vault para campos do CRM + chave de deduplicação (`external_id`).
+- [[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]] — mapeamento de frontmatter do Vault para campos do CRM + chave de deduplicação (`external_id`).
 - [[CRM MCP — Contract & Scaffold]] — rascunho especulativo pré-skill; **superado por** [[Chapter 18 — Sync & MCP Contracts]].
-- [[CRM n8n Workflows — README]] — workflows PoC do n8n para sincronizar notas do Vault com o CRM.
+- [[70 Sistema/CRM n8n Workflows — README|n8n Workflows]] — workflows PoC do n8n para sincronizar notas do Vault com o CRM.
 
 ## Agentes
 
@@ -96,7 +96,7 @@ Mapa de conteúdo da "engenharia" do JARVIS: canon, templates, runbooks e automa
 
 ## Artefatos regeneráveis / pendentes de publicação
 
-- `[[TALES OF TALLES OS — Master Evolution Report]]` **(regenerável — ausente no repo)** — referenciado por 4 docs de CRM/Brief e pelo arquivo de auditoria arquivado, mas **ainda não publicado** em `output/`. Não foi fabricado aqui (ver `AGENTS.md` regra 5). Ver §Red flags no PR. Quando publicado, deve viver em `output/`.
+- `[[output/TALES OF TALLES OS — Master Evolution Report|Evolution Report]]` **(regenerável — ausente no repo)** — referenciado por 4 docs de CRM/Brief e pelo arquivo de auditoria arquivado, mas **ainda não publicado** em `output/`. Não foi fabricado aqui (ver `AGENTS.md` regra 5). Ver §Red flags no PR. Quando publicado, deve viver em `output/`.
 - `output/archived/Auditoria_TALLES_OS_2026-06-27-ARCHIVED.md` — auditoria anterior, já arquivada (absorvida pelo Master Evolution Report).
 
 ## Relacionados no repo

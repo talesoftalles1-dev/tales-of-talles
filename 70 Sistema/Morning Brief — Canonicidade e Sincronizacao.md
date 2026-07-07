@@ -12,7 +12,7 @@ aliases:
   - Morning Brief Sync
 relacionado:
   - "[[70 Sistema/_Index]]"
-  - "[[TALES OF TALLES OS — Master Evolution Report]]"
+  - "[[output/TALES OF TALLES OS — Master Evolution Report|Evolution Report]]"
 tags:
   - brief
   - ssot

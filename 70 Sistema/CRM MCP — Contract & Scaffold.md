@@ -8,9 +8,9 @@ criado: 2026-06-27
 atualizado: 2026-07-03
 relacionado:
   - "[[70 Sistema/_Index]]"
-  - "[[CRM — Mapeamento de Entidades]]"
+  - "[[70 Sistema/CRM — Mapeamento de Entidades|Mapeamento de Entidades]]"
   - "[[CRM Unification — Plan]]"
-  - "[[CRM n8n Workflows — README]]"
+  - "[[70 Sistema/CRM n8n Workflows — README|n8n Workflows]]"
   - "[[Chapter 18 — Sync & MCP Contracts]]"
 tags:
   - crm

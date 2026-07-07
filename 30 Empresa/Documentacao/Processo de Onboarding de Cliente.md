@@ -33,7 +33,7 @@ Logo após o "ganho" registrado no [[SOP - Fechar Venda]]: a partir daí, todo c
 - Emitir a nota da primeira parcela e registrar o recebimento em `50 Financeiro/Empresa`.
 - Criar a nota do cliente em `40 CRM/Clientes` com `status: ativo`.
 =======
-- Emitir a nota da primeira parcela e registrar o recebimento (ex.: [[2026-06-27 Recebimento Acme]]).
+- Emitir a nota da primeira parcela e registrar o recebimento (ex.: 2026-06-27 Recebimento Acme).
 - Criar a nota do cliente em `40 CRM/Clientes` com `status: publicado`.
 >>>>>>> reconcile/vault-merge-20260628
 
