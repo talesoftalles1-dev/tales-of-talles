@@ -1,7 +1,15 @@
-# Ignore local config for Morning Brief
+# Config local do Morning Brief (contém caminhos/segredos da máquina)
 70 Sistema/Automacao/morning-brief/config.json
 
-# Plugin data.json files can carry tokens/secrets (e.g. MCP bearer tokens) —
-# never track them. Found 2026-06-30: mcp-tools-istefox/data.json had a live
-# bearer token staged in git before this rule existed.
+# Logs de runtime dos geradores (regeneráveis, específicos da máquina)
+logs/*.log
+
+# data.json de plugins pode carregar tokens/segredos (ex.: bearer de MCP) —
+# nunca rastrear. Incidente registrado em 2026-06-30 (mcp-tools-istefox).
 .obsidian/plugins/*/data.json
+
+# Estado volátil de layout do Obsidian (abas/splits da sessão) — churn sem valor
+.obsidian/workspace.json
+
+# Credenciais do kit n8n self-host — NUNCA versionar (granada de mão viva)
+70 Sistema/Automacao/n8n-selfhost/CREDENTIALS.md

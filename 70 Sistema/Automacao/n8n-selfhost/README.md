@@ -1,14 +1,15 @@
 ---
 tipo: doc
 status: ativo
-categoria: sistema
-area: 70 Sistema
+categoria: automacao
+area: sistema
 criado: 2026-06-29
-atualizado: 2026-06-29
+atualizado: 2026-07-07
 relacionado:
   - "[[n8n Audit Report — 2026-06-29]]"
-  - "[[Chapter 27 — Automations & n8n Bridge]]"
-tags: [n8n, self-host, migracao]
+  - "[[Ponte n8n ↔ JARVIS]]"
+tags:
+  - tema/dev
 ---
 
 # Migração n8n Cloud → Self-Hosted (TALES)

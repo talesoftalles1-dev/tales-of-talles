@@ -4,7 +4,7 @@ tipo: index
 status: canonico
 titulo: Master Index — Registro Central do JARVIS OS
 criado: 2026-06-27
-atualizado: 2026-07-03
+atualizado: 2026-07-02
 aliases:
   - Master Index
   - Índice Mestre
@@ -15,7 +15,6 @@ relacionado:
   - "[[_Contrato de Autoridade dos Agentes]]"
   - "[[🤖 JARVIS]]"
 tags:
-  - index
   - moc
   - tema/ia
 ---
@@ -42,11 +41,37 @@ O canon do JARVIS é um conjunto de documentos **PT-BR**. Toda dúvida estrutura
 
 > A antiga `CONSTITUTION.md` (inglês) foi **superseded** por este conjunto em 2026-06-30 — ver [[_Spec JARVIS]] §13.
 
+## Arquitetura multiagente (Jarvis orquestrador + Estagiários)
+
+Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada em 2026-07-03:
+
+| Documento | Responsabilidade |
+|---|---|
+| [[protocolo_orquestracao_jarvis]] | Como o **Jarvis** decompõe → prioriza → delega → paraleliza → consolida → valida (FASE 1 + 3) |
+| [[estagiarios]] | Cartas de autoridade dos 9 **Estagiários** (camada de execução, FASE 2; E9 = BOBBY, linha já ratificada) |
+| [[adr_ruflo_vs_subagentes_nativos]] | Decisão: subagentes nativos do Claude Code; Ruflo diferido |
+| [[🔁 Automacoes]] §10 | Automações orquestradas por agentes (FASE 4) |
+
+> Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduziram linhas novas na matriz de autoridade — **ratificadas pelo Operador com o merge do PR #20 (2026-07-03)**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]].
+
+## Mapas de auditoria (`output/`, regeneráveis)
+
+Auditoria completa do repositório em 2026-07-07 (base `origin/main`). São compilações — a fonte de verdade continua no canon:
+
+| Mapa | Conteúdo |
+|---|---|
+| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo (tri-cópia) |
+| [[mapa_automacao]] | Pipelines locais, duas instâncias n8n, credenciais |
+| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
+| [[mapa_integracoes]] | Superfícies do Event Bus e fluxo de dados |
+| [[divida_tecnica]] | Dívida remanescente D1–D11 (pós-transformação 2026-07-06) |
+| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+
 ## Índices principais (`wiki/`)
 
 | Área | Função | Entrada |
 |---|---|---|
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Orquestrador Jarvis + 9 Estagiários (E1–E9, ver [[estagiarios]]) + agentes de domínio (BOBBY, TOR, KNOWLEDGE…) |
+| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Jarvis (orquestrador), Estagiários E1–E8, TOR, BOBBY, KNOWLEDGE |
 | [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
@@ -93,5 +118,14 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 
 - [ ] Gerar mapa dry-run: nota atual → destino sugerido no fluxo `raw/wiki/output`.
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
-- [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
-- [x] Resolver o split `00 Sistema/` (Chapters 01–06) vs `70 Sistema/` (Chapters 27–31) — **resolvido 2026-07-03**: `00 Sistema/` era 100% `status: backlog` (placeholder vazio, nunca redigido) + 1 doc `canonico` já superado por [[prompt_arquiteto_vault]]. Arquivado em `90 Arquivo/2026-07-03_limpeza/`. `70 Sistema/` permanece como pasta viva (specs/contratos ativos).
+- [x] **Decidir `60 Conhecimento/Wiki/` vs `wiki/knowledge/`** — resolvido em 2026-07-06 (recomendação do Relatório de Arquitetura): o LLM-wiki **permanece** como sub-sistema especializado de fontes; `wiki/knowledge/` fica com a memória operacional. Fronteira documentada nos índices dos dois lados.
+- [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Stub da raiz arquivado em 2026-07-06 → [[90 Arquivo/00 Sistema/_Index (stub da raiz)|00 Sistema — Índice (arquivado)]].
+- [x] **Arquivar scaffold EN restante (Chapters 07–31 + `_Index.md` genéricos)** — concluído em 2026-07-03 (F0 Higiene, aprovada pelo Operador): 25 placeholders movidos para `90 Arquivo/scaffold_en/`; 6 index shells sem backlinks removidos. Ver [[90 Arquivo/scaffold_en/_Index]]. Tag de segurança: `jarvis/pre-f0-limpeza-20260703`.
+
+## Pendências da Fase 1 (2026-07-02) — concluídas
+
+- [x] **Reconciliar scaffold inglês da `wiki/`**: `contexto:` substituído por `area:` em `executive_assistant.md`, `prompt_arquiteto_vault.md`, `T - Checklist.md` e `output/query_results.md`.
+- [x] **Depreciar `70 Sistema/Specs/Morning Brief.md`**: banner de arquivamento adicionado, apontando para `Automacao/_Morning Brief — Spec`.
+- [x] **Resolver duplicata `query-results.md` vs `query_results.md`**: `query-results.md` convertido em stub de depreciação; `query_results.md` é o canônico.
+- [x] **Áudio na raiz**: `Recording 20260627141753.m4a` movido para `raw/clips/`.
+- [x] **Prompt de organização**: movido de `00 Sistema/` para `70 Sistema/` (lar natural dos docs de sistema).

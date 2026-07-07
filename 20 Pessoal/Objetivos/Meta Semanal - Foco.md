@@ -17,13 +17,13 @@ tags:
 # 🎯 Meta Semanal - Foco
 
 > [!info] Meta da semana (2026-W26)
-> Proteger o tempo de trabalho profundo no projeto [[Lancamento do Novo Site]] e nas frentes de prospecção. **Métrica:** completar 5 sessões de deep work (blocos de 90 min, sem notificações) até domingo.
+> Proteger o tempo de trabalho profundo nos projetos de cliente e nas frentes de prospecção. **Métrica:** completar 5 sessões de deep work (blocos de 90 min, sem notificações) até domingo.
 
 ## 📊 Placar da semana
 
 **Métrica:** 5 sessões de deep work · **Realizado:** 3 de 5 (60%)
 
-- [x] Sessão 1 — Wireframe Home Acme ✅ 2026-06-23
+- [x] Sessão 1 — Wireframe Home (projeto cliente) ✅ 2026-06-23
 - [x] Sessão 2 — Estrutura de conteúdo do site ✅ 2026-06-24
 - [x] Sessão 3 — Prospecção (lista + abordagens) ✅ 2026-06-26
 - [ ] Sessão 4 — Wireframes páginas internas 📅 2026-06-27
@@ -38,4 +38,3 @@ tags:
 ## 🔗 Relacionados
 
 - Objetivo anual: [[Crescer Faturamento 2026]]
-- Projeto: [[Lancamento do Novo Site]]

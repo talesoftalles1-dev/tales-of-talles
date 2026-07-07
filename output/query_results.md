@@ -1,47 +1,52 @@
 ---
 dominio: jarvis
 tipo: output
-status: active
-titulo: Query Results — Dataview Compilations
-contexto: sistema
+status: ativo
+titulo: Resultados de Queries — Compilações Dataview
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-06
 tags:
-  - output
   - dataview
   - query
 ---
 
-# Query Results
+# Resultados de Queries
 
-> Auto-generated Dataview compilations. Regenerated on each system run.
+> Compilações automáticas Dataview. Regeneradas a cada execução do sistema. Arquivo descartável — não é fonte de verdade. Todas as queries filtram por **propriedade** (`tipo`/`status`/`area`/`dominio`), nunca por caminho de pasta ([[_Spec JARVIS]] §1).
 
 ---
 
-## All Active Tasks
+## Ativos por tipo
 
 ```dataview
-TABLE titulo AS "Task", contexto AS "Context", status AS "Status"
-FROM "wiki/projects" OR "wiki/areas"
-WHERE status = "active"
-SORT criado DESC
+TABLE tipo AS "Tipo", area AS "Área", dominio AS "Domínio"
+WHERE status = "ativo" AND tipo
+SORT tipo ASC, file.name ASC
 ```
 
-## Inbox Backlog
+## Backlog do Inbox
 
-```dataview
-LIST
-FROM "raw"
-WHERE tipo = "inbox"
-SORT criado DESC
+```dataviewjs
+const bruto = await dv.io.load("raw/inbox.md");
+const itens = bruto ? bruto.split("\n").filter(l => l.trim().startsWith("- ") || l.trim().startsWith("* ")).length : 0;
+dv.paragraph(itens === 0
+  ? "✅ `raw/inbox.md` está vazio — nada aguardando triagem."
+  : `📥 **${itens}** captura(s) aguardando triagem em \`raw/inbox.md\` (Executive Assistant processa → \`wiki/\`).`);
 ```
 
-## Recently Updated
+## Atualizados recentemente (7 dias)
 
 ```dataview
-TABLE atualizado AS "Updated", tipo AS "Type"
-FROM "wiki"
+TABLE atualizado AS "Atualizado", tipo AS "Tipo", dominio AS "Domínio"
 WHERE atualizado >= date(today) - dur(7 days)
 SORT atualizado DESC
 LIMIT 20
+```
+
+## Projetos ativos
+
+```dataview
+TABLE area AS "Área", prazo AS "Prazo", progresso AS "%"
+WHERE tipo = "projeto" AND status = "ativo"
+SORT prazo ASC
 ```

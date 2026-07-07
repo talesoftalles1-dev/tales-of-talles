@@ -3,15 +3,14 @@ dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Prompt do Arquiteto do Vault — JARVIS OS
-contexto: sistema
+area: sistema
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-02
 aliases:
   - Prompt Arquiteto do Vault
   - JARVIS Knowledge Architect Prompt
   - Prompt Claude do Trabalho
 tags:
-  - agent
   - prompt
   - governanca
   - vault
@@ -26,8 +25,8 @@ tags:
 > regras invioláveis e o mandato de execução. Substitua nada — só cole e mande
 > o Claude começar pela Fase 0 (Descoberta).
 
-> [!warning] Atualização de canon — 2026-06-30
-> Este prompt foi escrito na era `CONSTITUTION.md`. Desde a ratificação do canon, a **fonte da verdade estrutural é o [[_Spec JARVIS]] (PT-BR)**, com [[_Contrato de Autoridade dos Agentes]] e [[_master_index]]. **Onde este prompt citar `CONSTITUTION.md` (superseded) ou o modelo `contexto`, prevalece o `_Spec`** — que usa `area` + `dominio`, não `contexto`. A reconciliação completa deste prompt ao modelo PT-BR é uma **tarefa pendente** (ver relatório da Fase 0 em `output/`).
+> [!check] Reconciliado ao canon PT-BR (2026-07-02)
+> Este prompt foi atualizado para refletir o canon atual: **fonte da verdade estrutural é o [[_Spec JARVIS]] (PT-BR)**, com [[_Contrato de Autoridade dos Agentes]] e [[_master_index]]. O modelo `contexto:` foi substituído por `area:` + `dominio:` em todo o documento. `CONSTITUTION.md` está superseded — referência histórica apenas.
 
 ---
 
@@ -45,8 +44,8 @@ construindo para frente, **nunca retrocedendo**.
 O JARVIS OS é um **Sistema Operacional Cognitivo Pessoal e de Negócios**,
 anti-ansiedade. A filosofia central é **esconder o caos e filtrar a realidade**:
 o operador (Tales) nunca deve ver uma parede de 150+ tarefas. O sistema unifica
-Trabalho, Vida, Estudos e Finanças num único vault, separados **por Contexto**
-(propriedade `contexto` no frontmatter), nunca por pasta.
+Trabalho, Vida, Estudos e Finanças num único vault, separados por **`area`** e **`dominio`**
+(propriedades no frontmatter — ver `_Spec JARVIS §2`), nunca por pasta.
 
 Princípios:
 - **Unificação da vida:** tudo coexiste; nada de vaults separados por área.
@@ -152,15 +151,18 @@ Regra de ouro de cada zona:
 **Frontmatter obrigatório em `wiki/`:**
 ```yaml
 ---
-tipo: <area | project | task | note | agent | index>
-status: <backlog | active | done | archived | canonico>
-contexto: <pessoal | empresa | financeiro | crm | sistema | conhecimento>
+dominio: <jarvis | yalt | talles>
+tipo: <agent | sistema | nota | index | doc | projeto | ...>
+status: <backlog | ativo | concluido | arquivado | canonico>
+area: <pessoal | empresa | sistema | conhecimento>
 titulo: <título legível>
-criado: <ISO 8601>
-atualizado: <ISO 8601>
+criado: <YYYY-MM-DD>
+atualizado: <YYYY-MM-DD>
 tags: [...]
 ---
 ```
+> [!warning] Modelo atualizado (2026-07-02)
+> O modelo antigo usava `contexto:` como discriminador de área. O canon atual (`_Spec JARVIS §2`) usa `area:` + `dominio:`. Nunca use `contexto:` em notas novas.
 (Notas em `raw/` não exigem frontmatter — são caóticas por design.)
 
 **Nomenclatura (Artigo XIII):** diretórios e arquivos novos em `snake_case`,

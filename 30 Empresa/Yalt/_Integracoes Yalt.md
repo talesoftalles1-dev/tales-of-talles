@@ -2,7 +2,7 @@
 dominio: yalt
 tipo: doc
 status: rascunho
-area: 30 Empresa
+area: empresa
 criado: 2026-07-02
 atualizado: 2026-07-02
 relacionado:

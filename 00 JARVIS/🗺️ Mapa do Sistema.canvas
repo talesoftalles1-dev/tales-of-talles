@@ -1,26 +1,35 @@
 {
 	"nodes":[
-		{"id":"title","type":"text","text":"# 🗺️ Mapa do Sistema JARVIS\nClique em qualquer cartão para abrir a área. As linhas mostram como tudo se conecta ao Dashboard.","x":-940,"y":-440,"width":1240,"height":100},
-		{"id":"hub","type":"file","file":"00 JARVIS/🤖 JARVIS.md","x":-160,"y":-60,"width":320,"height":120,"color":"#22D3EE"},
-		{"id":"constituicao","type":"file","file":"00 JARVIS/🪐 Constituição JARVIS.md","x":-160,"y":-260,"width":320,"height":100,"color":"6"},
-		{"id":"pessoal","type":"file","file":"20 Pessoal/🌱 Pessoal.md","x":-940,"y":-260,"width":260,"height":100,"color":"4"},
-		{"id":"empresa","type":"file","file":"30 Empresa/🏢 Yalt.md","x":-640,"y":-260,"width":260,"height":100,"color":"4"},
-		{"id":"crm","type":"file","file":"40 CRM/🤝 CRM.md","x":240,"y":-260,"width":260,"height":100,"color":"5"},
-		{"id":"financeiro","type":"file","file":"50 Financeiro/💰 Financeiro.md","x":540,"y":-260,"width":260,"height":100,"color":"5"},
-		{"id":"conhecimento","type":"file","file":"60 Conhecimento/🧠 Conhecimento.md","x":-940,"y":160,"width":260,"height":100,"color":"5"},
-		{"id":"sistema","type":"file","file":"70 Sistema/_Spec JARVIS.md","x":-640,"y":160,"width":260,"height":100,"color":"2"},
-		{"id":"inbox","type":"file","file":"10 Inbox/📥 Inbox.md","x":240,"y":160,"width":260,"height":100,"color":"3"},
-		{"id":"arquivo","type":"file","file":"90 Arquivo/🗄️ Arquivo.md","x":540,"y":160,"width":260,"height":100,"color":"6"}
+		{"id":"title","type":"text","text":"# 🗺️ JARVIS OS // SYSTEM TOPOLOGY\nVisualização de alta fidelidade dos canais, agentes e conexões do sistema.","x":-400,"y":-600,"width":800,"height":100},
+		
+		{"id":"lane-channels","type":"text","text":"### CHANNELS","x":-800,"y":-450,"width":300,"height":50},
+		{"id":"slack","type":"text","text":"**SLACK**\nStatus: Online","x":-800,"y":-380,"width":300,"height":80,"color":"#00ff9d"},
+		{"id":"whatsapp","type":"text","text":"**WHATSAPP**\nStatus: Online","x":-800,"y":-280,"width":300,"height":80,"color":"#00ff9d"},
+		{"id":"email","type":"text","text":"**EMAIL**\nStatus: Syncing","x":-800,"y":-180,"width":300,"height":80,"color":"#00d4ff"},
+
+		{"id":"lane-agents","type":"text","text":"### CORE AGENTS","x":-150,"y":-450,"width":300,"height":50},
+		{"id":"ea","type":"file","file":"wiki/ai_agents/executive_assistant.md","x":-150,"y":-380,"width":300,"height":120,"color":"#00ff9d"},
+		{"id":"tor","type":"text","text":"**TOR // DEVELOPER**\nStatus: Idle","x":-150,"y":-240,"width":300,"height":100,"color":"#00d4ff"},
+		{"id":"bobby","type":"text","text":"**BOBBY // SALES**\nStatus: Monitoring","x":-150,"y":-120,"width":300,"height":100,"color":"#ffaa00"},
+
+		{"id":"lane-connections","type":"text","text":"### CONNECTIONS","x":500,"y":-450,"width":300,"height":50},
+		{"id":"github","type":"text","text":"**GITHUB**\nCI/CD Active","x":500,"y":-380,"width":300,"height":80,"color":"#00ff9d"},
+		{"id":"notion","type":"text","text":"**NOTION**\nDatabase Sync","x":500,"y":-280,"width":300,"height":80,"color":"#00ff9d"},
+		{"id":"stripe","type":"text","text":"**STRIPE**\nRevenue Monitor","x":500,"y":-180,"width":300,"height":80,"color":"#00ff9d"},
+		{"id":"n8n","type":"text","text":"**N8N**\nEngine Online","x":500,"y":-80,"width":300,"height":80,"color":"#00ff9d"},
+
+		{"id":"dashboard-link","type":"file","file":"00 JARVIS/🤖 JARVIS.md","x":-150,"y":100,"width":300,"height":100,"color":"#00ff9d"}
 	],
 	"edges":[
-		{"id":"e-const","fromNode":"hub","fromSide":"top","toNode":"constituicao","toSide":"bottom"},
-		{"id":"e-pessoal","fromNode":"hub","fromSide":"top","toNode":"pessoal","toSide":"bottom"},
-		{"id":"e-empresa","fromNode":"hub","fromSide":"top","toNode":"empresa","toSide":"bottom"},
-		{"id":"e-crm","fromNode":"hub","fromSide":"top","toNode":"crm","toSide":"bottom"},
-		{"id":"e-financeiro","fromNode":"hub","fromSide":"top","toNode":"financeiro","toSide":"bottom"},
-		{"id":"e-conhecimento","fromNode":"hub","fromSide":"bottom","toNode":"conhecimento","toSide":"top"},
-		{"id":"e-sistema","fromNode":"hub","fromSide":"bottom","toNode":"sistema","toSide":"top"},
-		{"id":"e-inbox","fromNode":"hub","fromSide":"bottom","toNode":"inbox","toSide":"top"},
-		{"id":"e-arquivo","fromNode":"hub","fromSide":"bottom","toNode":"arquivo","toSide":"top"}
+		{"id":"e1","fromNode":"slack","fromSide":"right","toNode":"ea","toSide":"left"},
+		{"id":"e2","fromNode":"whatsapp","fromSide":"right","toNode":"ea","toSide":"left"},
+		{"id":"e3","fromNode":"email","fromSide":"right","toNode":"ea","toSide":"left"},
+		{"id":"e4","fromNode":"ea","fromSide":"right","toNode":"github","toSide":"left"},
+		{"id":"e5","fromNode":"ea","fromSide":"right","toNode":"notion","toSide":"left"},
+		{"id":"e6","fromNode":"ea","fromSide":"bottom","toNode":"dashboard-link","toSide":"top"},
+		{"id":"e7","fromNode":"tor","fromSide":"right","toNode":"github","toSide":"left"},
+		{"id":"e8","fromNode":"bobby","fromSide":"right","toNode":"stripe","toSide":"left"},
+		{"id":"e9","fromNode":"ea","fromSide":"bottom","toNode":"tor","toSide":"top"},
+		{"id":"e10","fromNode":"ea","fromSide":"bottom","toNode":"bobby","toSide":"top"}
 	]
 }

@@ -22,7 +22,7 @@ tags:
 
 ## 📊 Onde estou
 
-Progresso em **40%**. Metade do ano percorrida, com pipeline aquecido e novos contratos como o da [[CRM API]]. O ritmo precisa acelerar no segundo semestre para fechar o ano na meta.
+Progresso em **40%**. Metade do ano percorrida, com pipeline aquecido e novos contratos entrando. O ritmo precisa acelerar no segundo semestre para fechar o ano na meta.
 
 | Indicador | Meta 2026 | Atual (jun) |
 |---|---|---|
@@ -38,9 +38,9 @@ Progresso em **40%**. Metade do ano percorrida, com pipeline aquecido e novos co
 
 ## 🔗 Projetos vinculados
 
-- [[Lancamento do Novo Site]] — receita do projeto + potencial de manutenção recorrente.
+- _(vincule aqui os projetos de cliente que geram receita para esta meta)_
 
 ## 🗒️ Revisões
 
-- **2026-06-27** — Acme fechada e em execução; pipeline com 3 oportunidades quentes.
+- **2026-06-27** — Novo contrato fechado e em execução; pipeline com 3 oportunidades quentes.
 - **2026-03-31** — Q1 abaixo do esperado; reforço em prospecção definido.

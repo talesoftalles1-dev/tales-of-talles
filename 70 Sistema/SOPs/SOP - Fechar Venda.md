@@ -23,7 +23,7 @@ Garantir que toda venda siga o mesmo fluxo — proposta clara, follow-up discipl
 
 - Lead qualificado e registrado no CRM (`tipo: cliente`, `status: lead`).
 - Necessidade e orçamento minimamente entendidos.
-- Decisor identificado (ex.: [[Joao Silva]] na [[CRM API]]).
+- Decisor identificado (ex.: o decisor de compra na conta do cliente).
 
 ## 🔢 Passo a passo
 
@@ -69,4 +69,4 @@ Lançar a primeira parcela no financeiro. Acionar o [[Processo de Onboarding de 
 ## 🔗 Relacionados
 
 - [[Processo de Onboarding de Cliente]]
-- Exemplo aplicado: [[CRM API]] / [[Lancamento do Novo Site]]
+- Exemplo aplicado: conta do cliente / projeto contratado

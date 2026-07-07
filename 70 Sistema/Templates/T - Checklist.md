@@ -2,8 +2,8 @@
 dominio: jarvis
 tipo: checklist
 status: ativo
+area: <% tp.system.prompt("Área (pessoal/empresa/sistema)", "empresa") %>
 contexto: <% tp.system.prompt("Contexto de uso (ex: onboarding cliente, viagem, publicação)") %>
-area: <% tp.system.prompt("Área (pessoal/empresa)", "empresa") %>
 criado: <% tp.date.now("YYYY-MM-DD") %>
 atualizado: <% tp.date.now("YYYY-MM-DD") %>
 tags:

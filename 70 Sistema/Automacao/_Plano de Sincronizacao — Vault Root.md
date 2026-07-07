@@ -7,7 +7,7 @@ area: empresa
 criado: 2026-06-30
 atualizado: 2026-06-30
 relacionado:
-  - "[[jarvis-canon]]"
+  - "[[Fase 0 — Ratificacao do Canon]]"
   - "[[Observacao 7 Dias — Pos Fase 0]]"
 tags:
   - tema/ia
