@@ -3,9 +3,9 @@ dominio: jarvis
 tipo: agent
 status: canonico
 titulo: Executive Assistant — Agent Contract
-contexto: sistema
+area: sistema
 criado: 2026-06-27
-atualizado: 2026-06-27
+atualizado: 2026-07-03
 aliases:
   - Executive Assistant
   - EA Agent

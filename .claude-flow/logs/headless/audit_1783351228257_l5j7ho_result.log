@@ -1,0 +1,65 @@
+[2026-07-06T15:21:01.876Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"high\",\n      \"file\": \"[GIT HISTORY]\",\n      \"line\": -1,\n      \"description\": \"MCP bearer token staged in git. According to project memory (jarvis-stabilization.md, 2026-06-30), a leaked MCP bearer token is currently in the git index. This must be revoked immediately and removed from history.\"\n    },\n    {\n      \"severity\": \"high\",\n      \"file\": \".obsidian/plugins/realclaudian/main.js\",\n      \"line\": -1,\n      \"description\": \"Claudian plugin running in 'yolo/no-confirm' mode per memory notes. This allows AI actions without user confirmation, creating security and authorization risks. Requires explicit confirmation workflow for all actions.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".claude/worktrees/*/sample/scripts/external_id.js\",\n      \"line\": 14,\n      \"description\": \"Path Traversal Risk: The function accepts a user-supplied 'notePath' parameter and resolves it with path.resolve(). No validation of path traversal attempts (../, etc.). An attacker could pass '../../../sensitive/file' to hash unintended paths.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".obsidian/plugins/copilot/main.js\",\n      \"line\": -1,\n      \"description\": \"Vault Content Rendering Risk: Copilot plugin processes user vault content and generates responses. Minified code makes security audit difficult, but if vault markdown/content is rendered as HTML without sanitization, could enable XSS via malicious note content.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \".obsidian/plugins/dataview/main.js\",\n      \"line\": -1,\n      \"description\": \"Dataview Query Execution: Dataview plugin executes queries over vault data. No visible query sanitization in provided snippet. Risk if user input flows into query execution without validation.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \".claude/worktrees/*/scripts/bootstrap_jarvis_os.js\",\n      \"line\": 26,\n      \"description\": \"Insecure File Permissions: Files written with fs.writeFileSync() use default permissions (0o666 mask by umask). No explicit mode set. Sensitive frontmatter could be readable by other local users.\"\n    }\n  ],\n  \"riskScore\": 72,\n  \"recommendations\": [\n    \"URGENT: Revoke the MCP bearer token immediately and remove it from all git history using git-filter-repo or BFG Repo-Cleaner. Rotate all dependent credentials.\",\n    \"Disable 'yolo/no-confirm' mode in Claudian plugin. Implement explicit user confirmation for all AI-triggered actions, especially file writes and vault modifications.\",\n    \"Add path validation to external_id.js: reject any notePath containing '..' or absolute paths. Use path.relative() to ensure notePath stays within repo bounds.\",\n    \"Audit and sanitize all vault content before rendering in Copilot plugin. Use a markdown sanitizer (e.g., marked + DOMPurify) to prevent XSS from malicious note syntax.\",\n    \"Validate all Dataview query inputs. If user input reaches query execution, sandbox via a allowlist of safe operations.\",\n    \"Set explicit file permissions when writing sensitive files: fs.writeFileSync(filePath, content, {mode: 0o600}).\",\n    \"Run npm audit on all dependencies (Obsidian plugins, node_modules) and update to patch known vulnerabilities. Package.json not provided—verify no outdated versions in use.\",\n    \"Review and restrict permissions on .obsidian/ plugin directory. Plugins have file system access—ensure only trusted plugins are installed.\",\n    \"Implement rate limiting on external API calls (api.brevilabs.com) to prevent credential enumeration or brute-force attacks.\",\n    \"Enable git hooks to prevent future secret commits: install husky + detect-secrets to scan for patterns (API keys, tokens) before each commit.\"\n  ]\n}\n```\n\n---\n\n## Key Findings\n\n**Critical issue identified**: Your memory notes flag a **leaked MCP bearer token in git** (jarvis-stabilization.md, 2026-06-30). This is the highest-priority fix — the token must be revoked immediately and purged from git history, as it grants API access to anyone with repository access.\n\n**Secondary issue**: The Claudian plugin is in \"yolo/no-confirm\" mode, bypassing user authorization. This is a compliance/control risk in a personal OS that handles sensitive data (financial, CRM, personal).\n\nThe scripts themselves (external_id.js, bootstrap_jarvis_os.js) are relatively low-risk — they're local utilities with minimal attack surface. The higher risk lies in the **Obsidian plugins** (copilot, dataview) which process vault content and execute queries, plus the **staged secret in git**.\n\nWould you like me to help you remediate the token leak or audit the plugin code in more detail?\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "high",
+        "file": "[GIT HISTORY]",
+        "line": -1,
+        "description": "MCP bearer token staged in git. According to project memory (jarvis-stabilization.md, 2026-06-30), a leaked MCP bearer token is currently in the git index. This must be revoked immediately and removed from history."
+      },
+      {
+        "severity": "high",
+        "file": ".obsidian/plugins/realclaudian/main.js",
+        "line": -1,
+        "description": "Claudian plugin running in 'yolo/no-confirm' mode per memory notes. This allows AI actions without user confirmation, creating security and authorization risks. Requires explicit confirmation workflow for all actions."
+      },
+      {
+        "severity": "medium",
+        "file": ".claude/worktrees/*/sample/scripts/external_id.js",
+        "line": 14,
+        "description": "Path Traversal Risk: The function accepts a user-supplied 'notePath' parameter and resolves it with path.resolve(). No validation of path traversal attempts (../, etc.). An attacker could pass '../../../sensitive/file' to hash unintended paths."
+      },
+      {
+        "severity": "medium",
+        "file": ".obsidian/plugins/copilot/main.js",
+        "line": -1,
+        "description": "Vault Content Rendering Risk: Copilot plugin processes user vault content and generates responses. Minified code makes security audit difficult, but if vault markdown/content is rendered as HTML without sanitization, could enable XSS via malicious note content."
+      },
+      {
+        "severity": "medium",
+        "file": ".obsidian/plugins/dataview/main.js",
+        "line": -1,
+        "description": "Dataview Query Execution: Dataview plugin executes queries over vault data. No visible query sanitization in provided snippet. Risk if user input flows into query execution without validation."
+      },
+      {
+        "severity": "low",
+        "file": ".claude/worktrees/*/scripts/bootstrap_jarvis_os.js",
+        "line": 26,
+        "description": "Insecure File Permissions: Files written with fs.writeFileSync() use default permissions (0o666 mask by umask). No explicit mode set. Sensitive frontmatter could be readable by other local users."
+      }
+    ],
+    "riskScore": 72,
+    "recommendations": [
+      "URGENT: Revoke the MCP bearer token immediately and remove it from all git history using git-filter-repo or BFG Repo-Cleaner. Rotate all dependent credentials.",
+      "Disable 'yolo/no-confirm' mode in Claudian plugin. Implement explicit user confirmation for all AI-triggered actions, especially file writes and vault modifications.",
+      "Add path validation to external_id.js: reject any notePath containing '..' or absolute paths. Use path.relative() to ensure notePath stays within repo bounds.",
+      "Audit and sanitize all vault content before rendering in Copilot plugin. Use a markdown sanitizer (e.g., marked + DOMPurify) to prevent XSS from malicious note syntax.",
+      "Validate all Dataview query inputs. If user input reaches query execution, sandbox via a allowlist of safe operations.",
+      "Set explicit file permissions when writing sensitive files: fs.writeFileSync(filePath, content, {mode: 0o600}).",
+      "Run npm audit on all dependencies (Obsidian plugins, node_modules) and update to patch known vulnerabilities. Package.json not provided—verify no outdated versions in use.",
+      "Review and restrict permissions on .obsidian/ plugin directory. Plugins have file system access—ensure only trusted plugins are installed.",
+      "Implement rate limiting on external API calls (api.brevilabs.com) to prevent credential enumeration or brute-force attacks.",
+      "Enable git hooks to prevent future secret commits: install husky + detect-secrets to scan for patterns (API keys, tokens) before each commit."
+    ]
+  },
+  "durationMs": 33619,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-06T15:21:01.876Z",
+  "executionId": "audit_1783351228257_l5j7ho"
+}

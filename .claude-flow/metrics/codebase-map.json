@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-06T17:48:28.539Z",
+  "projectRoot": "C:\\Users\\talle\\OneDrive\\Documents\\Jarvis",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1783360108539
+}

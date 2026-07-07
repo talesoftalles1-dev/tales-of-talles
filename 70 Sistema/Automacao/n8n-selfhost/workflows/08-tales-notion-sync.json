@@ -1,5 +1,5 @@
 {
-  "name": "TALES · Sync Notion (Diário do Camp)",
+  "name": "TALES · Sync Notion + Vault (Diário do Camp)",
   "active": false,
   "nodes": [
     {
@@ -7,29 +7,22 @@
       "name": "App",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "webhookId": "50ba04b9-9dcc-41d6-b963-a79ef3eb7de0",
       "parameters": {
         "httpMethod": "POST",
         "path": "tales-notion-sync",
         "responseMode": "responseNode",
-        "options": {
-          "allowedOrigins": "*"
-        }
-      }
+        "options": { "allowedOrigins": "*" }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "id": "e2620870-ce58-4fae-9c25-19b08313ba82",
       "name": "Diário do Camp",
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        224,
-        0
-      ],
+      "position": [240, -200],
       "parameters": {
         "resource": "databasePage",
         "operation": "create",
@@ -42,91 +35,76 @@
         "title": "=Dia {{ $json.body.dia || 1 }} · {{ $json.body.workout || \"Treino\" }}",
         "propertiesUi": {
           "propertyValues": [
-            {
-              "key": "Destaque|rich_text",
-              "type": "rich_text",
-              "richText": false,
-              "textContent": "={{ $json.body.destaque || \"\" }}"
-            },
-            {
-              "key": "Data|date",
-              "type": "date",
-              "range": false,
-              "includeTime": false,
-              "date": "={{ $json.body.data || $now.toISODate() }}"
-            },
-            {
-              "key": "Readiness|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.readiness) || 0 }}"
-            },
-            {
-              "key": "Streak|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.streak) || 0 }}"
-            },
-            {
-              "key": "XP|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.xp) || 0 }}"
-            },
-            {
-              "key": "Exercícios|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.exercicios) || 0 }}"
-            },
-            {
-              "key": "Séries|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.series) || 0 }}"
-            },
-            {
-              "key": "Volume (kg)|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.volume) || 0 }}"
-            },
-            {
-              "key": "Refeições|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.refeicoes) || 0 }}"
-            },
-            {
-              "key": "Peso (kg)|number",
-              "type": "number",
-              "numberValue": "={{ Number($json.body.peso) || 0 }}"
-            }
+            { "key": "Destaque|rich_text", "type": "rich_text", "richText": false, "textContent": "={{ $json.body.destaque || \"\" }}" },
+            { "key": "Data|date", "type": "date", "range": false, "includeTime": false, "date": "={{ $json.body.data || $now.toISODate() }}" },
+            { "key": "Readiness|number", "type": "number", "numberValue": "={{ Number($json.body.readiness) || 0 }}" },
+            { "key": "Streak|number", "type": "number", "numberValue": "={{ Number($json.body.streak) || 0 }}" },
+            { "key": "XP|number", "type": "number", "numberValue": "={{ Number($json.body.xp) || 0 }}" },
+            { "key": "Exercícios|number", "type": "number", "numberValue": "={{ Number($json.body.exercicios) || 0 }}" },
+            { "key": "Séries|number", "type": "number", "numberValue": "={{ Number($json.body.series) || 0 }}" },
+            { "key": "Volume (kg)|number", "type": "number", "numberValue": "={{ Number($json.body.volume) || 0 }}" },
+            { "key": "Refeições|number", "type": "number", "numberValue": "={{ Number($json.body.refeicoes) || 0 }}" },
+            { "key": "Peso (kg)|number", "type": "number", "numberValue": "={{ Number($json.body.peso) || 0 }}" }
           ]
         }
       },
-      "credentials": {
-        "notionApi": {
-          "name": "Notion API"
-        }
-      },
+      "credentials": { "notionApi": { "name": "Notion API" } },
       "retryOnFail": true,
       "maxTries": 3,
       "waitBetweenTries": 2000
+    },
+    {
+      "id": "b3e4f5a6-c7d8-4901-b234-c5d6e7f80001",
+      "name": "Projeção Vault",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 200],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const b = $input.first().json.body;\nconst today = b.data || new Date().toISOString().slice(0, 10);\nconst wName = (b.workout || 'Treino').trim();\nconst isBoxe = /box|ilia/i.test(wName);\n\nconst treinoFm = [\n  'tipo: treino', 'status: feito', `data: ${today}`,\n  `modalidade: ${isBoxe ? 'boxe' : 'musculacao'}`,\n  `coach: ${isBoxe ? 'ilia' : 'cariani'}`,\n  `volume_kg: ${Number(b.volume) || 0}`,\n  'rpe: 0', 'duracao_min: 0',\n  'area: pessoal', 'fonte: apex',\n  `criado: ${today}`, `atualizado: ${today}`,\n  'tags:\\n  - tema/saude',\n].join('\\n');\n\nconst nutricaoFm = [\n  'tipo: nutricao', 'status: parcial', `data: ${today}`,\n  `refeicoes: ${Number(b.refeicoes) || 0}`,\n  'kcal: 0', 'proteina_g: 0', 'carbo_g: 0', 'gordura_g: 0', 'agua_l: 0', 'aderencia: 0',\n  'area: pessoal', 'fonte: apex',\n  `criado: ${today}`, `atualizado: ${today}`,\n  'tags:\\n  - tema/saude',\n].join('\\n');\n\nconst corporalFm = [\n  'tipo: corporal', `data: ${today}`,\n  `peso_kg: ${Number(b.peso) || 0}`,\n  `readiness: ${Number(b.readiness) || 0}`,\n  'gordura_pct: 0', 'sono_h: 0', 'fadiga: 0',\n  'area: pessoal', 'fonte: apex',\n  `criado: ${today}`, `atualizado: ${today}`,\n  'tags:\\n  - tema/saude',\n].join('\\n');\n\nreturn [\n  {\n    json: {\n      fileName: `${today} ${wName}.md`,\n      parentId: 'PREENCHER_ID_ONEDRIVE_TREINOS',\n      fileContent: `---\\n${treinoFm}\\n---\\n\\n# 🥋 ${today} ${wName}\\nDia ${b.dia || '?'} · ${b.exercicios || 0} ex · ${b.series || 0} séries · ${b.volume || 0} kg · Streak ${b.streak || 0}d · XP ${b.xp || 0}${b.destaque ? '\\n\\n**Destaque:** ' + b.destaque : ''}\\n`,\n    }\n  },\n  {\n    json: {\n      fileName: `${today} Nutricao.md`,\n      parentId: 'PREENCHER_ID_ONEDRIVE_NUTRICAO',\n      fileContent: `---\\n${nutricaoFm}\\n---\\n\\n# 🍽️ ${today} Nutricao\\n> Projeção APEX. Macros indisponíveis — preencher via Sanji.\\n\\nRefeições: ${b.refeicoes || 0}\\n`,\n    }\n  },\n  {\n    json: {\n      fileName: `${today} Corporal.md`,\n      parentId: 'PREENCHER_ID_ONEDRIVE_CORPORAL',\n      fileContent: `---\\n${corporalFm}\\n---\\n\\n# 🩺 ${today} Corporal\\nPeso: ${b.peso || 0} kg · Readiness: ${b.readiness || 0}%\\n`,\n    }\n  },\n];"
+      }
+    },
+    {
+      "id": "c4d5e6f7-a8b9-4012-c345-d6e7f8091002",
+      "name": "Vault OneDrive",
+      "type": "n8n-nodes-base.microsoftOneDrive",
+      "typeVersion": 1.1,
+      "position": [480, 200],
+      "parameters": {
+        "resource": "file",
+        "operation": "upload",
+        "fileName": "={{ $json.fileName }}",
+        "parentId": "={{ $json.parentId }}",
+        "binaryData": false,
+        "fileContent": "={{ $json.fileContent }}"
+      },
+      "credentials": {
+        "microsoftOneDriveOAuth2Api": { "name": "Microsoft OneDrive" }
+      }
+    },
+    {
+      "id": "d5e6f7a8-b9c0-4123-d456-e7f809102003",
+      "name": "Merge Final",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [720, 0],
+      "parameters": {
+        "mode": "append",
+        "options": {}
+      }
     },
     {
       "id": "97efcdac-e2db-46ff-ad68-99b6a9f6cb7f",
       "name": "Responder",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
-      "position": [
-        448,
-        0
-      ],
+      "position": [960, 0],
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ { ok: true, url: $json.url } }}",
+        "responseBody": "={{ { ok: true } }}",
         "options": {
           "responseHeaders": {
-            "entries": [
-              {
-                "name": "Access-Control-Allow-Origin",
-                "value": "*"
-              }
-            ]
+            "entries": [{ "name": "Access-Control-Allow-Origin", "value": "*" }]
           }
         }
       }
@@ -134,33 +112,27 @@
   ],
   "connections": {
     "App": {
-      "main": [
-        [
-          {
-            "node": "Diário do Camp",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[
+        { "node": "Diário do Camp", "type": "main", "index": 0 },
+        { "node": "Projeção Vault", "type": "main", "index": 0 }
+      ]]
     },
     "Diário do Camp": {
-      "main": [
-        [
-          {
-            "node": "Responder",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{ "node": "Merge Final", "type": "main", "index": 0 }]]
+    },
+    "Projeção Vault": {
+      "main": [[{ "node": "Vault OneDrive", "type": "main", "index": 0 }]]
+    },
+    "Vault OneDrive": {
+      "main": [[{ "node": "Merge Final", "type": "main", "index": 1 }]]
+    },
+    "Merge Final": {
+      "main": [[{ "node": "Responder", "type": "main", "index": 0 }]]
     }
   },
-  "settings": {
-    "executionOrder": "v1"
-  },
+  "settings": { "executionOrder": "v1" },
   "pinData": {},
   "meta": {},
   "tags": [],
-  "description": "Resumo do dia -> cria pagina no Notion. Requer credencial \"Notion API\"."
+  "description": "Resumo APEX → Notion (Diário do Camp) + 3 notas Obsidian via OneDrive (treino/nutricao/corporal). Requer: Notion API, Microsoft OneDrive OAuth2."
 }
