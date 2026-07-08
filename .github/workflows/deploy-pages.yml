@@ -33,13 +33,9 @@ jobs:
           cp index.html _dist/404.html
           touch _dist/.nojekyll
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        timeout-minutes: 2
         with:
           path: _dist
 
