@@ -1,8 +1,9 @@
+
 ---
 tipo: sistema
 status: ativo
-criado: 2026-06-27
-atualizado: 2026-07-07
+criado: 2026-07-08
+atualizado: 2026-07-08
 relacionado:
   - "[[_Daily Brief (Canônico)]]"
   - "[[_master_index]]"
@@ -14,7 +15,7 @@ tags:
 
 > Arquivo de entrega gerada. Pode ser sobrescrito pelo Executive Assistant.
 > Fonte de verdade: propriedades nas notas do vault + `wiki/_master_index.md`. Este arquivo é visão, não memória.
-> Última compilação: 2026-07-07T14:44:47.142Z · gerado por `70 Sistema/Automacao/executive-assistant/dashboard.mjs`
+> Última compilação: 2026-07-08T09:39:42.434Z · gerado por `70 Sistema/Automacao/executive-assistant/dashboard.mjs`
 
 ## 🎯 Hoje
 
@@ -47,4 +48,6 @@ _Inbox limpo — nada aguardando triagem._
 | Tarefas atrasadas | 8 |
 | Projetos ativos | 1 |
 | Notas no vault | 86 |
-| Última execução EA | 2026-07-07T14:44:47.142Z |
+| Última execução EA | 2026-07-08T09:39:42.434Z |
+
+

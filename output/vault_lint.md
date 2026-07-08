@@ -3,15 +3,15 @@ dominio: jarvis
 tipo: output
 status: gerado
 titulo: Vault Lint — Relatório de Conformidade
-criado: 2026-07-07
-atualizado: 2026-07-07
+criado: 2026-07-08
+atualizado: 2026-07-08
 tags:
   - dataview
 ---
 
 # 🧹 Vault Lint — Relatório de Conformidade
 
-> Gerado em 2026-07-07 14:42 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
+> Gerado em 2026-07-08 09:36 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
 
 **Notas varridas:** 83 · **Erros:** 0 · **Avisos:** 0
 
