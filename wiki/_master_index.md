@@ -57,19 +57,17 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 | [[🔁 Automacoes]] §10 | Automações orquestradas por agentes (FASE 4) |
 
 > Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduziram linhas novas na matriz de autoridade — **ratificadas pelo Operador com o merge do PR #20 (2026-07-03)**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]].
-
 ## Mapas de auditoria (`output/`, regeneráveis)
 
-Auditoria completa do repositório em 2026-07-07 (base `origin/main`). São compilações — a fonte de verdade continua no canon:
-
-| Mapa | Conteúdo |
+|| Mapa | Conteúdo |
 |---|---|
-| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo (tri-cópia) |
-| [[mapa_automacao]] | Pipelines locais, duas instâncias n8n, credenciais |
-| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
-| [[mapa_integracoes]] | Superfícies do Event Bus e fluxo de dados |
-| [[divida_tecnica]] | Dívida remanescente D1–D11 (pós-transformação 2026-07-06) |
-| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+|| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo e checkpoints pós-transform |
+|| [[mapa_automacao]] | Pipelines locais validadas (`vault-lint`, EA 07:00, Brief 09:00), duas instâncias n8n, credenciais |
+|| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
+|| [[mapa_integracoes]] | Superfícies do Event Bus, rotas e healthchecks locais |
+|| [[divida_tecnica]] | Dívida remanescente pós-aplicação das melhorias próximas |
+|| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+|| [[vault_lint]] | Último relatório de conformidade do vault (`0 erros / 0 avisos` na validação atual) |
 
 ## Índices principais (`wiki/`)
 
@@ -94,7 +92,14 @@ graph TD
     B --> E["wiki/knowledge/"]
     B --> F["wiki/ai_agents/"]
     B --> G["output/daily_dashboard.md"]
+    G --> H["output/2026-07-08-morning-brief.txt"]
 ```
+
+## Rotina de geração e verificação
+1. `vault-lint` valida contrato/links/espelho.
+2. `WindowsHealthcheck.ps1` valida Docker/n8n self-host.
+3. `executive-assistant/dashboard.mjs` gera `output/daily_dashboard.md`.
+4. `morning-brief/generate.mjs` gera o brief local e publica via Slack quando disponível.
 
 ## Ponte com a estrutura numerada
 
