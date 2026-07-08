@@ -1,0 +1,54 @@
+name: Site Maintenance — dashboard/brief/lint
+
+on:
+  schedule:
+    - cron: "30 11 * * *"
+    - cron: "30 6 * * *"
+    - cron: "0 8 * * *"
+    - cron: "50 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  site-maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate PWA + static files
+        run: |
+          if [ ! -f "index.html" ]; then
+            echo "FAIL:index.html_missing"
+            exit 1
+          fi
+          if ! grep -q '"manifest"' index.html; then
+            echo "FAIL:manifest_link_missing"
+            exit 1
+          fi
+          if ! grep -q 'serviceWorker' index.html; then
+            echo "FAIL:serviceworker_missing"
+            exit 1
+          fi
+          if [ ! -f "sw.js" ]; then
+            echo "FAIL:sw_js_missing"
+            exit 1
+          fi
+
+      - name: Generate maintenance bundle
+        run: |
+          git rev-parse --short HEAD > _dist/HEAD.txt
+          node -e "console.log('maintenance bundle ok')"
+
+      - name: Upload bundle
+        uses: actions/upload-pages-artifact@v3
+        timeout-minutes: 2
+        with:
+          path: _dist
+          retention-days: 1
