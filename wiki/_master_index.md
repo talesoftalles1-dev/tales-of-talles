@@ -67,7 +67,8 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 || [[mapa_integracoes]] | Superfícies do Event Bus, rotas e healthchecks locais |
 || [[divida_tecnica]] | Dívida remanescente pós-aplicação das melhorias próximas |
 || [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
-|| [[vault_lint]] | Último relatório de conformidade do vault (`0 erros / 0 avisos` na validação atual) |
+||||
+|| `output/vault_lint.md` | Último relatório de conformidade do vault na validação atual |
 
 ## Índices principais (`wiki/`)
 
