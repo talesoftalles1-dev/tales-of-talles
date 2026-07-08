@@ -1,6 +1,6 @@
 ---
 dominio: jarvis
-tipo: operacao
+tipo: sistema
 status: ativo
 titulo: Hermes Session 2026-07-08 — Pipeline Recovery
 criado: 2026-07-08
