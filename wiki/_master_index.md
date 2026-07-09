@@ -4,11 +4,7 @@ tipo: index
 status: canonico
 titulo: Master Index — Registro Central do JARVIS OS
 criado: 2026-06-27
-<<<<<<< HEAD
-atualizado: 2026-07-02
-=======
 atualizado: 2026-07-03
->>>>>>> reconcile/vault-merge-20260628
 aliases:
   - Master Index
   - Índice Mestre
@@ -67,6 +63,7 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 || [[mapa_integracoes]] | Superfícies do Event Bus, rotas e healthchecks locais |
 || [[divida_tecnica]] | Dívida remanescente pós-aplicação das melhorias próximas |
 || [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+|| [[wiki/ai_agents/pixel-agents-agent-mapping\|Pixel Agents — Mapeamento canônico]] | Roster + slots + referência do PR #30 |
 ||||
 || `output/vault_lint.md` | Último relatório de conformidade do vault na validação atual |
 
@@ -74,12 +71,8 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 
 | Área | Função | Entrada |
 |---|---|---|
-<<<<<<< HEAD
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Jarvis (orquestrador), Estagiários E1–E8, TOR, BOBBY, KNOWLEDGE |
-=======
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Orquestrador Jarvis + 9 Estagiários (E1–E9, ver [[estagiarios]]) + agentes de domínio (BOBBY, TOR, KNOWLEDGE…) |
->>>>>>> reconcile/vault-merge-20260628
-| [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
+|| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Orquestrador Jarvis + 9 Estagiários (E1–E9, ver [[estagiarios]]) + agentes de domínio (BOBBY, TOR, KNOWLEDGE…) |
+|| [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
 
@@ -132,7 +125,6 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 
 - [ ] Gerar mapa dry-run: nota atual → destino sugerido no fluxo `raw/wiki/output`.
 - [ ] Validar links, aliases e queries antes de qualquer movimentação física.
-<<<<<<< HEAD
 - [x] **Decidir `60 Conhecimento/Wiki/` vs `wiki/knowledge/`** — resolvido em 2026-07-06 (recomendação do Relatório de Arquitetura): o LLM-wiki **permanece** como sub-sistema especializado de fontes; `wiki/knowledge/` fica com a memória operacional. Fronteira documentada nos índices dos dois lados.
 - [x] **Resolver o split `00 Sistema/` (Chapters 01–06)** — concluído em 2026-07-02: Chapters arquivados em `90 Arquivo/00 Sistema/`; conteúdo real já vivia nos docs canônicos. Stub da raiz arquivado em 2026-07-06 → [[90 Arquivo/00 Sistema/_Index (stub da raiz)|00 Sistema — Índice (arquivado)]].
 - [x] **Arquivar scaffold EN restante (Chapters 07–31 + `_Index.md` genéricos)** — concluído em 2026-07-03 (F0 Higiene, aprovada pelo Operador): 25 placeholders movidos para `90 Arquivo/scaffold_en/`; 6 index shells sem backlinks removidos. Ver [[90 Arquivo/scaffold_en/_Index]]. Tag de segurança: `jarvis/pre-f0-limpeza-20260703`.
@@ -144,7 +136,7 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 - [x] **Resolver duplicata `query-results.md` vs `query_results.md`**: `query-results.md` convertido em stub de depreciação; `query_results.md` é o canônico.
 - [x] **Áudio na raiz**: `Recording 20260627141753.m4a` movido para `raw/clips/`.
 - [x] **Prompt de organização**: movido de `00 Sistema/` para `70 Sistema/` (lar natural dos docs de sistema).
-=======
+
+## Pendências da Fase 2
+
 - [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.
-- [x] Resolver o split `00 Sistema/` (Chapters 01–06) vs `70 Sistema/` (Chapters 27–31) — **resolvido 2026-07-03**: `00 Sistema/` era 100% `status: backlog` (placeholder vazio, nunca redigido) + 1 doc `canonico` já superado por [[prompt_arquiteto_vault]]. Arquivado em `90 Arquivo/2026-07-03_limpeza/`. `70 Sistema/` permanece como pasta viva (specs/contratos ativos).
->>>>>>> reconcile/vault-merge-20260628
