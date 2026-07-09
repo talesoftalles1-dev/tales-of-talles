@@ -6,6 +6,11 @@ on:
   push:
     branches: ["feature/*", "fix/*", "manus/*", "auditoria/*", "claude/*"]
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   vault-lint:
     runs-on: ubuntu-latest
@@ -22,8 +27,10 @@ jobs:
         run: node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
 
       # Roda também quando o lint FALHA — é quando o comentário mais importa.
+      # continue-on-error: restrição de token no comentário não pode reprovar o lint.
       - name: Comment PR with lint summary
         if: always() && github.event_name == 'pull_request'
+        continue-on-error: true
         uses: actions/github-script@v8
         with:
           script: |
