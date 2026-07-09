@@ -46,6 +46,13 @@ output/           entregas geradas e sobrescrevíveis (dashboards, relatórios)
 - **Morning Brief** — `70 Sistema/Automacao/morning-brief/` · tarefa Windows 09:00 (entrega Slack pendente de credencial)
 - **n8n self-host** — kit pronto em `70 Sistema/Automacao/n8n-selfhost/` (Docker Compose + 8 workflows exportados)
 
+## CI (GitHub Actions)
+
+- **Vault Lint** (`vault-lint.yml`) — roda em todo PR para `main` e em branches de trabalho; valida frontmatter contra o `_Spec`, wikilinks e o espelho `CLAUDE.md` ↔ `AGENTS.md`. Comenta o resultado no PR (inclusive quando falha).
+- **Deploy Pages** (`deploy-pages.yml`) — publica o PWA (`index.html` + `sw.js`) no GitHub Pages a cada push no `main`.
+- **Site Maintenance** (`site-maintenance.yml`) — diário 06:50 UTC: valida os estáticos do PWA (incl. sincronia de versão do Service Worker) e roda o vault-lint, publicando o relatório como artifact.
+- Runbook de entrega: `70 Sistema/Runbooks/MERGE_RUNBOOK.md`.
+
 ## App APEX — TALES OF TALLES · IDENTITY OS
 
 PWA offline-first de evolução atlética (atleta 1,94 m · 77 kg → 84 kg, MMA/boxe): arsenal de striking estilo UFC (★1–★5), heatmap muscular com fadiga/recuperação, readiness diário, body scan e 4 coaches IA (Sanji · Ilia · Cariani · Muzy, protocolo ≤140 caracteres). Integração com o vault é **por dados, não por código**: os treinos/nutrição/corporal viram notas tipadas — contrato em `_Spec JARVIS` §9 e `70 Sistema/Automacao/🔌 Ponte APEX ↔ JARVIS.md`.

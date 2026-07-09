@@ -1,3 +1,41 @@
-# local pixel-agents runtime
+# ============================================================
+# JARVIS — .gitignore
+# Regra: estado de runtime, caches e segredos NUNCA são versionados.
+# Conteúdo do vault, canon, templates e automação SÃO versionados.
+# ============================================================
+
+# --- Segredos (anti-bifurcação §12: sem credenciais no repo) ---
+.env
+.env.*
+!.env.example
+CREDENTIALS.md
+*.pem
+*.key
+
+# --- Runtime de agentes IA (claude-flow / claudian / pixel-agents) ---
+.claude-flow/
+.claudian/sessions/
 .pixel-agents/layout.json
 .pixel-agents/config.json
+.swarm/
+
+# --- Obsidian: estado de sessão local (churn por máquina) ---
+.obsidian/workspace.json
+.obsidian/workspaces.json
+.obsidian/graph.json
+# Decisão anti-corrupção de sync OneDrive (_Spec §6):
+.obsidian/community-plugins.json
+.obsidian/plugins/*/data.json
+.trash/
+
+# --- Node / builds ---
+node_modules/
+_dist/
+_site/
+
+# --- Logs e temporários ---
+logs/*.log
+*.log
+*.tmp
+Thumbs.db
+.DS_Store

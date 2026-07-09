@@ -31,6 +31,7 @@ jobs:
           mkdir -p _dist
           cp index.html _dist/index.html
           cp index.html _dist/404.html
+          cp sw.js _dist/sw.js
           touch _dist/.nojekyll
 
       - name: Upload artifact
