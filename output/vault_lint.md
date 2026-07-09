@@ -11,9 +11,9 @@ tags:
 
 # 🧹 Vault Lint — Relatório de Conformidade
 
-> Gerado em 2026-07-09 01:57 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
+> Gerado em 2026-07-09 21:20 por `70 Sistema/Automacao/vault-lint/lint.mjs`. Arquivo regenerável — não é fonte de verdade. Contrato: [[_Spec JARVIS]] §2/§3/§10.
 
-**Notas varridas:** 115 · **Erros:** 0 · **Avisos:** 0
+**Notas varridas:** 120 · **Erros:** 0 · **Avisos:** 0
 
 ## ✅ Vault 100% conforme o contrato
 

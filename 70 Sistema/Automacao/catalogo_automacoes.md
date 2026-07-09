@@ -32,6 +32,16 @@ Entrada de referência para o **E6 · AUTOMATOR** ([[estagiarios]]) antes de cri
 | AgentMail Backlog Drafts | `EWgOiQ3Kg0BEB4j5` | ⛔ Inativo — decisão pendente (esta OU a próxima) | Sim |
 | Export Drafts → Slack (Bypass Gmail) | `NkVxv3kQRZc2K7dM` | ⛔ Inativo — decisão pendente (esta OU a anterior) | Sim |
 
+## Automações locais (Node, sem n8n)
+
+| Automação | Pasta | Estado | Aprovação humana? |
+|---|---|---|---|
+| Briefing Comercial (gerente diário do CRM) | `briefing-comercial/` | ✅ Pronto — requer `YALT_API_KEY` | Não (só lê o CRM) |
+| Fila de e-mails pré-cold-call | `briefing-comercial/send-approved.mjs` | ✅ Pronto | **Sim — todo envio** (`aprovacao: aprovado` na fila) |
+| Enriquecimento CRM (Lusha via CRM) | `enriquecimento-crm/` | ✅ Pronto — Lusha configurada no CRM | Validação das sugestões; `--max` limita créditos |
+
+> Contrato dos três: [[_Briefing Comercial — Spec]]. Substituem, em versão local-first, os papéis dos workflows n8n "Briefing Diário SDR", "Apollo Enrichment" e "AgentMail Backlog Drafts" acima — que permanecem congelados (aditivo, nada foi tocado).
+
 ## Regra para o E6 · AUTOMATOR
 
 Antes de propor um workflow novo: (1) checar esta tabela — se já existe algo próximo, editar/desbloquear em vez de criar; (2) todo workflow novo nasce **inativo**; (3) credenciais nunca em texto — sempre via credential store do n8n; (4) registrar aqui ao criar/alterar, com Estado e "Aprovação humana?".
