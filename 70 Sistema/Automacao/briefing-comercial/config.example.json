@@ -1,0 +1,19 @@
+{
+  "diasEsfriando": 14,
+  "remetente": {
+    "nome": "Talles Oliveira",
+    "empresa": "Yalt",
+    "telefone": "+55 ...",
+    "proposta": "descreva em 1 frase o que a Yalt vende (usado pelo Ollama para personalizar)"
+  },
+  "template": {
+    "assunto": "{{empresa}} — ideia rápida de {{remetente_empresa}}",
+    "paragrafo_contexto_padrao": "Trabalhamos com empresas como a {{empresa}} e acredito que vale uma conversa curta sobre como podemos ajudar no comercial de vocês."
+  },
+  "ollama": {
+    "enabled": true,
+    "model": "gemma4",
+    "host": "localhost",
+    "port": 11437
+  }
+}
