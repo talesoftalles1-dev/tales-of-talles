@@ -1,3 +1,12 @@
+---
+dominio: jarvis
+tipo: output
+status: gerado
+titulo: CI Status — Deploy GitHub Pages
+criado: 2026-07-08
+atualizado: 2026-07-09
+---
+
 # output/ci_status.md
 
 > Últimos 10 runs do workflow `Deploy app to GitHub Pages`.

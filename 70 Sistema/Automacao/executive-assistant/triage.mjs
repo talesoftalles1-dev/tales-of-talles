@@ -9,41 +9,18 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
 
 import { checkOllama, generateWithOllama } from "../morning-brief/lib/ollama.mjs";
 
 // CONFIGURAÇÕES DO SISTEMA
-const VAULT_ROOT = process.cwd();
+// executive-assistant → Automacao → 70 Sistema → <vault root> (mesmo padrão do dashboard.mjs)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const VAULT_ROOT = process.env.JARVIS_VAULT_ROOT || path.resolve(__dirname, "..", "..", "..");
 const INBOX_PATH = path.join(VAULT_ROOT, 'raw/inbox.md');
-const DASHBOARD_PATH = path.join(VAULT_ROOT, '00 JARVIS/🤖 JARVIS.md');
 
-/**
- * Fórmula de Priorização (§8)
- * score = importancia * 10 + urgência(prazo) + valor_estrategico * 8 + bônus_energia
- */
-function calculateScore(item) {
-    let score = (item.importancia || 1) * 10;
-    
-    // Urgência (Prazo)
-    if (item.prazo) {
-        const today = new Date();
-        const deadline = new Date(item.prazo);
-        const diffDays = Math.ceil((deadline - today) / (1000 * 60 * 60 * 24));
-        
-        if (diffDays <= 0) score += 12; // Vencido ou Hoje
-        else if (diffDays <= 3) score += 8;
-        else if (diffDays <= 7) score += 5;
-        else if (diffDays <= 30) score += 2;
-    }
-    
-    score += (item.valor_estrategico || 1) * 8;
-    
-    // Bônus Energia
-    if (item.energia === 'baixa') score += 2;
-    else if (item.energia === 'media') score += 1;
-    
-    return score;
-}
+// Prioridade §8: usar SEMPRE `../morning-brief/lib/priority.mjs` (projectScore).
+// Não reimplementar a fórmula aqui — é o contrato único de todos os agentes.
 
 /** Dados estruturados retornados pela triagem cognitiva. */
 export class TriageSuggestion {
@@ -64,8 +41,7 @@ export async function suggestLocalTriage(inboxPath, opts = {}) {
  const {
    model = opts.ollama?.model || "gemma4",
    host = opts.ollama?.host || "localhost",
-   port = opts.ollama?.port !== undefined ? Number(opts.ollama.port) :
-     (String(opts.ollama?.model || "") === "x" ? 11434 : 11434),
+   port = opts.ollama?.port !== undefined ? Number(opts.ollama.port) : 11434,
    maxItems = Number(opts.ollama?.maxItems || 20),
  } = opts;
 
@@ -176,7 +152,6 @@ async function runTriage() {
    return;
  }
 
- const content = fs.readFileSync(INBOX_PATH, 'utf8');
  console.log("🧾 EA: inbox carregado. Usando modo simulado v1.0 com reforço local opcional.");
 
  const local = await suggestLocalTriage(INBOX_PATH);
@@ -222,25 +197,24 @@ function getReadinessModifier() {
 }
 
 /**
- * Geração de Contexto para o Dashboard
+ * Contexto de readiness para o operador.
+ * A geração do dashboard em si é do dashboard.mjs — aqui só reportamos o
+ * modificador MUZY calculado (sem fingir sincronização que não acontece).
  */
-async function updateDashboardContext() {
-    console.log("🧠 EA: Atualizando contexto do Dashboard...");
+function reportReadinessContext() {
     const modifier = getReadinessModifier();
-    console.log(`🔋 EA: Modificador de Readiness aplicado: ${modifier}x`);
-    
-    // Lógica de geração do output/daily_dashboard.md aqui
-    console.log("✅ EA: Dashboard sincronizado.");
+    console.log(`🔋 EA: Modificador de Readiness (MUZY): ${modifier}x — dashboard é gerado por dashboard.mjs`);
 }
 
 // EXECUÇÃO PRINCIPAL
 async function main() {
     try {
         await runTriage();
-        await updateDashboardContext();
+        reportReadinessContext();
         console.log("🚀 JARVIS: Cognição EA operando em regime normal.");
     } catch (err) {
         console.error("❌ ERRO NO EA:", err);
+        process.exitCode = 1;
     }
 }
 

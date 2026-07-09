@@ -14,7 +14,6 @@ relacionado:
   - "[[executive_assistant]]"
 tags:
   - pixel-agents
-  - agent
   - integracao
 ---
 

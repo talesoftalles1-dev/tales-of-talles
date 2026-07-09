@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: ["main"]
   push:
-    branches: ["feature/*", "manus/*", "auditoria/*"]
+    branches: ["feature/*", "fix/*", "manus/*", "auditoria/*", "claude/*"]
 
 jobs:
   vault-lint:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -21,15 +19,11 @@ jobs:
           node-version: 20
 
       - name: Run vault-lint
-        id: lint
-        run: |
-          REPO_ROOT="$GITHUB_WORKSPACE"
-          VAULT_ROOT="$REPO_ROOT"
-          node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
-          echo "lint_exit=$?" >> "$GITHUB_OUTPUT"
+        run: node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
 
+      # Roda também quando o lint FALHA — é quando o comentário mais importa.
       - name: Comment PR with lint summary
-        if: github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v8
         with:
           script: |
@@ -38,7 +32,7 @@ jobs:
             let body = '## Vault-lint\n';
             if (fs.existsSync(reportPath)) {
               const text = fs.readFileSync(reportPath, 'utf8').split('\n').slice(0, 40).join('\n');
-              body += '```' + text + '```\n';
+              body += '```\n' + text + '\n```\n';
             } else {
               body += '_Relatório não encontrado._\n';
             }
