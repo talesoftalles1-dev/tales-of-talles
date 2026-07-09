@@ -1,3 +1,13 @@
+---
+dominio: jarvis
+tipo: runbook
+status: ativo
+titulo: Merge Runbook — Entrega Segura no main
+area: sistema
+criado: 2026-07-08
+atualizado: 2026-07-09
+---
+
 # MERGE_RUNBOOK
 
 Checklist e regras para abrir/entregar mudanças no `main` deste vault.
