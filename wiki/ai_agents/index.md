@@ -3,11 +3,7 @@ dominio: jarvis
 tipo: sistema
 status: ativo
 criado: 2026-06-27
-<<<<<<< HEAD
-atualizado: 2026-07-02
-=======
-atualizado: 2026-07-03
->>>>>>> reconcile/vault-merge-20260628
+atualizado: 2026-07-08
 relacionado:
   - "[[_master_index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
@@ -35,25 +31,22 @@ Contrato consolidado: [[estagiarios]]. Arquivos funcionais em `.claude/agents/es
 | E2 | Documentação | WRITING |
 | E3 | Pesquisa | RESEARCH |
 | E4 | Programação | TOR |
-| E5 | Revisão 🆕 | REVIEWER |
-| E6 | Automações 🆕 | AUTOMATOR |
+| E5 | Revisão | REVIEWER |
+| E6 | Automações | AUTOMATOR |
 | E7 | Conhecimento | KNOWLEDGE |
-| E8 | Planejamento 🆕 | PLANNER |
+| E8 | Planejamento | PLANNER |
 | E9 | Comercial | BOBBY |
 
-<<<<<<< HEAD
-🆕 = linha de autoridade nova, **ratificada pelo Operador com o merge do PR #20 (2026-07-03)**. E9 = projeção da linha BOBBY, já ratificada de origem ([[_Contrato de Autoridade dos Agentes]]).
-
-## 🏛️ Agentes de domínio (roster canônico)
-
-Executive Assistant (orquestrador), TOR (dev), BOBBY (comercial), RESEARCH, WRITING, FINANCE, CALENDAR, KNOWLEDGE, HEALTH — matriz de autoridade em [[_Contrato de Autoridade dos Agentes]]. Status em tempo real: [[agent_roster]].
-=======
-🆕 = nova linha de autoridade, pendente de ratificação do Operador ([[_Contrato de Autoridade dos Agentes]]). E9 não é nova — projeta a linha **BOBBY** já ratificada.
+Linhas novas ratificadas pelo Operador com o merge do PR #20 (2026-07-03). E9 = projeção da linha BOBBY, já ratificada de origem ([[_Contrato de Autoridade dos Agentes]]).
 
 ## 🏛️ Agentes de domínio (roster canônico)
 
 Executive Assistant (orquestrador), TOR (dev), BOBBY (comercial — executado por E9, contrato técnico em [[Chapter 18 — Sync & MCP Contracts]]), RESEARCH, WRITING, FINANCE, CALENDAR, KNOWLEDGE, HEALTH — matriz de autoridade em [[_Contrato de Autoridade dos Agentes]]. Status em tempo real: [[agent_roster]].
->>>>>>> reconcile/vault-merge-20260628
+
+## Pixel Agents
+
+- Mapeamento canônico: [[pixel-agents-agent-mapping]]
+- Referência oficial: PR #30 merged em `main` (https://github.com/talesoftalles1-dev/tales-of-talles/pull/30)
 
 ## Regras
 
