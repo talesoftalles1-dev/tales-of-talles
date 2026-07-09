@@ -10,7 +10,8 @@ relacionado:
   - "[[protocolo_orquestracao_jarvis]]"
   - "[[estagiarios]]"
 tags:
-  - tema/ia
+  - pixel-agents
+  - integracao
 ---
 
 # Mapeamento Canônico — Pixel Agents

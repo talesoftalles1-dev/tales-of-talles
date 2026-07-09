@@ -1,11 +1,8 @@
-name: Site Maintenance — dashboard/brief/lint
+name: Site Maintenance — validação PWA + vault-lint
 
 on:
   schedule:
-    - cron: "30 11 * * *"
-    - cron: "30 6 * * *"
-    - cron: "0 8 * * *"
-    - cron: "50 6 * * *"
+    - cron: "50 6 * * *" # diário 06:50 UTC (rotina do RUNBOOK vault-lint)
   workflow_dispatch:
 
 jobs:
@@ -14,41 +11,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Validate PWA + static files
+      - name: Validate PWA static files
         run: |
-          if [ ! -f "index.html" ]; then
-            echo "FAIL:index.html_missing"
-            exit 1
-          fi
-          if ! grep -q '"manifest"' index.html; then
-            echo "FAIL:manifest_link_missing"
-            exit 1
-          fi
-          if ! grep -q 'serviceWorker' index.html; then
-            echo "FAIL:serviceworker_missing"
-            exit 1
-          fi
-          if [ ! -f "sw.js" ]; then
-            echo "FAIL:sw_js_missing"
-            exit 1
-          fi
+          fail() { echo "FAIL:$1"; exit 1; }
+          [ -f "index.html" ] || fail "index.html_missing"
+          [ -f "sw.js" ] || fail "sw_js_missing"
+          grep -q '"manifest"' index.html || fail "manifest_link_missing"
+          grep -q 'serviceWorker' index.html || fail "serviceworker_missing"
+          # sw.js e index.html devem apontar para a mesma versão de cache:
+          SW_HTML=$(grep -o "SW_VERSION='[^']*'" index.html | head -1 | cut -d"'" -f2)
+          SW_FILE=$(grep -o "CACHE = '[^']*'" sw.js | head -1 | cut -d"'" -f2)
+          [ "$SW_HTML" = "$SW_FILE" ] || fail "sw_version_drift(${SW_HTML}!=${SW_FILE})"
+          echo "PWA ok (SW $SW_FILE)"
 
-      - name: Generate maintenance bundle
-        run: |
-          git rev-parse --short HEAD > _dist/HEAD.txt
-          node -e "console.log('maintenance bundle ok')"
+      - name: Run vault-lint
+        run: node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
 
-      - name: Upload bundle
-        uses: actions/upload-pages-artifact@v3
-        timeout-minutes: 2
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          path: _dist
-          retention-days: 1
+          name: vault-lint-report
+          path: output/vault_lint.md
+          retention-days: 14
