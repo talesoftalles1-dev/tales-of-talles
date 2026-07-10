@@ -11,13 +11,17 @@
 CREDENTIALS.md
 *.pem
 *.key
+.secrets/
 
 # --- Runtime de agentes IA (claude-flow / claudian / pixel-agents) ---
 .claude-flow/
 .claudian/sessions/
+.claudian/opencode/
 .pixel-agents/layout.json
 .pixel-agents/config.json
 .swarm/
+# pixel-agents/ é workspace com repo git próprio — não versionar dentro do vault
+pixel-agents/
 
 # --- Obsidian: estado de sessão local (churn por máquina) ---
 .obsidian/workspace.json
@@ -26,6 +30,10 @@ CREDENTIALS.md
 # Decisão anti-corrupção de sync OneDrive (_Spec §6):
 .obsidian/community-plugins.json
 .obsidian/plugins/*/data.json
+.obsidian/plugins/
+.obsidian/themes/
+.obsidian/hotkeys.json
+.obsidian/text-generator.json
 .trash/
 
 # --- Node / builds ---
@@ -40,10 +48,24 @@ logs/*.log
 Thumbs.db
 .DS_Store
 
+# --- Tooling / artefatos regeneráveis na raiz (não são conteúdo do vault) ---
+hooks/
+*.zip
+*.html
+install.cmd
+/SKILL.md
+*.base
+
 # --- Automações locais (config com dados pessoais, estado e saídas de execução) ---
 70 Sistema/Automacao/*/config.json
 70 Sistema/Automacao/*/state/
 70 Sistema/Automacao/*/logs/
+
+# --- Outputs regeneráveis dos agentes (EXEMPT no lint — não são fonte de verdade) ---
+output/bobby_comercial.md
+output/ea_briefing_executivo.md
+output/organizer_log.md
+output/comercial/
 
 # --- Duplicata do vault (sync OneDrive caiu dentro do repo Desktop) ---
 # NÃO é o vault canônico; está em C:\Users\talle\OneDrive\Documents\Jarvis.
