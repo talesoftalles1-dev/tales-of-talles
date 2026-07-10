@@ -1,0 +1,17 @@
+[2026-07-07T22:38:18.505Z] RESULT
+============================================================
+{
+  "success": false,
+  "output": "You've hit your session limit · resets 1:50am (Europe/London)\n",
+  "parsedOutput": {
+    "parseError": true,
+    "rawOutput": "You've hit your session limit · resets 1:50am (Europe/London)\n"
+  },
+  "durationMs": 2854,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T22:38:18.505Z",
+  "executionId": "audit_1783463895651_j51849",
+  "error": "Process exited with code 1"
+}

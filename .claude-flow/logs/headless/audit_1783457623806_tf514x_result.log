@@ -1,0 +1,49 @@
+[2026-07-07T20:54:07.280Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 45,\n      \"description\": \"Unhandled file system errors. fs.writeFileSync() can fail silently if directory lacks write permissions. No try-catch or error handling for mkdirSync/writeFileSync operations.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 41,\n      \"description\": \"Race condition (TOCTOU): Check for file existence at line 41 followed by write at line 42. Another process could create the file between check and write. Use fs.writeFileSync with flag 'wx' or handle EEXIST error instead.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 14,\n      \"description\": \"Hash truncation to 12 characters reduces collision resistance from 2^256 to ~2^48. While acknowledged as acceptable for current scale, monitor if collision risk increases. Document reasoning in code comment.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 2,\n      \"description\": \"No validation that N8N_ENCRYPTION_KEY is actually set before runtime. Add startup check to ensure encryption key exists and meets minimum entropy requirements (at least 32 bytes).\"\n    }\n  ],\n  \"riskScore\": 12,\n  \"recommendations\": [\n    \"Add error handling to bootstrap_jarvis_os.js: wrap fs operations in try-catch and log/exit on failure\",\n    \"Replace TOCTOU pattern: use fs.writeFileSync with {flag: 'wx'} or handle EEXIST explicitly\",\n    \"Document the 12-char hash truncation reasoning in external_id.js code comment\",\n    \"Add environment variable validation: verify N8N_ENCRYPTION_KEY is set and is hex-encoded 48+ characters before n8n starts\",\n    \"No SQL injection, XSS, or hardcoded secrets detected — codebase follows secure practices for utility scripts\",\n    \"Ensure .env files are never committed (verify .gitignore includes .env, but not .env.example)\"\n  ]\n}\n```\n\n**Summary:** This codebase has **minimal security risk**. No hardcoded secrets, SQL injection, XSS, or authentication bypass issues found. The three utility scripts are defensive-focused (path resolution, file generation, configuration templates). The only findings are low-severity file system resilience issues: missing error handling in bootstrap operations and a minor race condition that's unlikely to impact this use case. The `.env.example` encryption key setup is sound but would benefit from runtime validation.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 45,
+        "description": "Unhandled file system errors. fs.writeFileSync() can fail silently if directory lacks write permissions. No try-catch or error handling for mkdirSync/writeFileSync operations."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 41,
+        "description": "Race condition (TOCTOU): Check for file existence at line 41 followed by write at line 42. Another process could create the file between check and write. Use fs.writeFileSync with flag 'wx' or handle EEXIST error instead."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 14,
+        "description": "Hash truncation to 12 characters reduces collision resistance from 2^256 to ~2^48. While acknowledged as acceptable for current scale, monitor if collision risk increases. Document reasoning in code comment."
+      },
+      {
+        "severity": "low",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 2,
+        "description": "No validation that N8N_ENCRYPTION_KEY is actually set before runtime. Add startup check to ensure encryption key exists and meets minimum entropy requirements (at least 32 bytes)."
+      }
+    ],
+    "riskScore": 12,
+    "recommendations": [
+      "Add error handling to bootstrap_jarvis_os.js: wrap fs operations in try-catch and log/exit on failure",
+      "Replace TOCTOU pattern: use fs.writeFileSync with {flag: 'wx'} or handle EEXIST explicitly",
+      "Document the 12-char hash truncation reasoning in external_id.js code comment",
+      "Add environment variable validation: verify N8N_ENCRYPTION_KEY is set and is hex-encoded 48+ characters before n8n starts",
+      "No SQL injection, XSS, or hardcoded secrets detected — codebase follows secure practices for utility scripts",
+      "Ensure .env files are never committed (verify .gitignore includes .env, but not .env.example)"
+    ]
+  },
+  "durationMs": 23474,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T20:54:07.280Z",
+  "executionId": "audit_1783457623806_tf514x"
+}

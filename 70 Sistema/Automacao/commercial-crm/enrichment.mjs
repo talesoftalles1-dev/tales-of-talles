@@ -18,7 +18,6 @@ import {
   getLeadContacts,
   enrichContact,
 } from "./lib/yalt.mjs";
-import { enrichWebDecisor } from "./lib/firecrawl.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -38,6 +37,7 @@ function loadConfig() {
   const raw = JSON.parse(fs.readFileSync(cfgPath, "utf8"));
   return {
     apiKey: process.env.YALT_API_KEY || defaults.apiKey,
+    apiKey: raw.apiKey || defaults.apiKey,
     scope: raw.scope || defaults.scope,
     limit: raw.limit || defaults.limit,
     tryEnrich: raw.tryEnrich === true || defaults.tryEnrich,
@@ -96,6 +96,16 @@ async function main() {
     let bestDecision = null;
     for (const c of contacts) {
       if (isDecisionRole(c)) {
+
+  for (const lead of leads) {
+    const contacts = await getLeadContacts(config.apiKey, lead.id);
+    if (contacts.length) withContacts++;
+    let bestDecision = null;
+    for (const c of contacts) {
+      if (hasEmail(c)) withEmail++;
+      if (hasLinkedin(c)) withLinkedin++;
+      if (isDecisionRole(c)) {
+        withDecision++;
         if (!bestDecision) bestDecision = c;
       }
       // Lacuna: contacto sem email E sem linkedin -> tenta enrich (se ativado)
@@ -108,29 +118,8 @@ async function main() {
     // Decisor também pode vir do salesData do próprio lead
     const sd = lead.salesData || {};
     const sdDecision = sd.decisionMaker ? { name: sd.decisionMaker, title: sd.decisionMakerTitle } : null;
-    const hasDecision = !!(bestDecision || sdDecision);
 
-    // Web-enrich (Firecrawl) p/ lacunas: só se não tem decisor E não tem linkedin, e a flag está on.
-    let webDecision = null, webLinkedin = null, webEnriched = false;
-    if (config.tryEnrichWeb && !hasDecision && !leadHasLinkedin && process.env.FIRECRAWL_API_KEY && webEnrichedCount < config.webEnrichLimit) {
-      try {
-        const w = await enrichWebDecisor(process.env.FIRECRAWL_API_KEY, lead);
-        if (w.ok) {
-          webDecision = w.decisionName ? { name: w.decisionName, title: w.decisionTitle } : null;
-          webLinkedin = w.linkedin || null;
-          webEnriched = !!(webDecision || webLinkedin);
-        }
-      } catch { /* web falhou — ignora, pipeline não quebra */ }
-    }
-
-    // contadores por-lead
-    if (leadHasContacts) withContacts++;
-    if (hasDecision || webDecision) withDecision++;
-    if (leadHasEmail || hasEmail(lead)) withEmail++;
-    if (leadHasLinkedin) withLinkedin++;
-
-    // lacuna: sem contactos, OU sem decisor conhecido, OU sem nenhum email
-    const gap = !leadHasContacts || !(hasDecision || webDecision) || (!leadHasEmail && !hasEmail(lead));
+    const gap = contacts.length === 0 || (!bestDecision && !sdDecision) || (!withEmailContact(contacts) && !hasEmail(lead));
     if (gap) gaps++;
 
     rows.push({
@@ -150,6 +139,14 @@ async function main() {
       linkedin: firstLinkedin(contacts) || webLinkedin || null,
     });
     if (webEnriched) webEnrichedCount++;
+      hasDecision: !!(bestDecision || sdDecision),
+      hasEmail: withEmailContact(contacts) || hasEmail(lead),
+      hasLinkedin: withLinkedinContact(contacts),
+      decisionName: bestDecision ? `${bestDecision.first_name} ${bestDecision.last_name}`.trim() : sdDecision?.name || null,
+      decisionTitle: bestDecision?.position || sdDecision?.title || null,
+      email: firstEmail(contacts) || (hasEmail(lead) ? lead.email : null),
+      linkedin: firstLinkedin(contacts),
+    });
   }
 
   const report = {
