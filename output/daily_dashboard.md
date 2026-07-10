@@ -2,7 +2,7 @@
 tipo: sistema
 status: ativo
 criado: 2026-06-27
-atualizado: 2026-07-08
+atualizado: 2026-07-09
 relacionado:
   - "[[_Daily Brief (Canônico)]]"
   - "[[_master_index]]"
@@ -14,7 +14,7 @@ tags:
 
 > Arquivo de entrega gerada. Pode ser sobrescrito pelo Executive Assistant.
 > Fonte de verdade: propriedades nas notas do vault + `wiki/_master_index.md`. Este arquivo é visão, não memória.
-> Última compilação: 2026-07-08T06:00:04.120Z · gerado por `70 Sistema/Automacao/executive-assistant/dashboard.mjs`
+> Última compilação: 2026-07-09T09:53:12.381Z · gerado por `70 Sistema/Automacao/executive-assistant/dashboard.mjs`
 
 ## 🎯 Hoje
 
@@ -29,7 +29,7 @@ tags:
 
 ## ⚠ Bloqueios
 
-- Automacao Comercial Yalt — 50% com prazo em 2d
+- Automacao Comercial Yalt — 50% com prazo em 1d
 - Tarefa atrasada: Religar Slack OAuth no n8n (Credentials → Slack → reauth) (04/07)
 - Tarefa atrasada: Religar Gmail OAuth no n8n (04/07)
 - Tarefa atrasada: Criar credencial `CRM Yalt API` (Bearer token) (04/07)
@@ -48,5 +48,5 @@ _Inbox limpo — nada aguardando triagem._
 | Tarefas para hoje | 0 |
 | Tarefas atrasadas | 15 |
 | Projetos ativos | 2 |
-| Notas no vault | 106 |
-| Última execução EA | 2026-07-08T06:00:04.120Z |
+| Notas no vault | 3473 |
+| Última execução EA | 2026-07-09T09:53:12.381Z |

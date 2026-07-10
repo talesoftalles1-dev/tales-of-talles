@@ -13,3 +13,6 @@ logs/*.log
 
 # Credenciais do kit n8n self-host — NUNCA versionar (granada de mão viva)
 70 Sistema/Automacao/n8n-selfhost/CREDENTIALS.md
+
+# Segredos locais das tarefas programadas (chave do Yalt CRM etc.) — NUNCA versionar
+.secrets/

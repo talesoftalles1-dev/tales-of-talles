@@ -63,10 +63,10 @@ const CHAVES_PROIBIDAS = {
 };
 const DATA_RE = /^\d{4}-\d{2}-\d{2}$/;
 
-const SKIP_FOLDERS = ["90 Arquivo", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".git", "node_modules", "raw", "logs"];
-const SEM_FRONTMATTER_OK = ["AGENTS.md", "CLAUDE.md", "README.md", "60 Conhecimento/Wiki/index.md", "60 Conhecimento/Wiki/log.md"];
+const SKIP_FOLDERS = ["90 Arquivo", ".trash", "Excalidraw", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".claudian", ".hermes", ".git", "node_modules", "raw", "logs", "pixel-agents", "Jarvis", "output/comercial"];
+const SEM_FRONTMATTER_OK = ["AGENTS.md", "CLAUDE.md", "HERMES.md", "README.md", "60 Conhecimento/Wiki/index.md", "60 Conhecimento/Wiki/log.md", "output/daily_dashboard.md"];
 // Fora do lint por design: histórico superseded + o próprio relatório (auto-referência):
-const EXEMPT = ["CONSTITUTION.md", "output/vault_lint.md"];
+const EXEMPT = ["CONSTITUTION.md", "output/vault_lint.md", "output/bobby_comercial.md", "output/ea_briefing_executivo.md", "output/organizer_log.md"];
 
 // ---------------------------------------------------------------------------
 // Parser mínimo (mesmo padrão de morning-brief/lib/vault.mjs — CRLF → LF)
@@ -83,7 +83,10 @@ function walkMd(dir, vaultRoot, out, skip = SKIP_FOLDERS, extensoes = [".md"]) {
     const full = path.join(dir, ent.name);
     const rel = path.relative(vaultRoot, full).replace(/\\/g, "/");
     if (ent.isDirectory()) {
-      if (skip.some((s) => rel === s || rel.startsWith(`${s}/`))) continue;
+      const segs = rel.split("/");
+      const blockedByPrefix = skip.some((s) => rel === s || rel.startsWith(`${s}/`));
+      const blockedBySegment = skip.some((s) => !s.includes("/") && segs.includes(s));
+      if (blockedByPrefix || blockedBySegment) continue;
       walkMd(full, vaultRoot, out, skip, extensoes);
       continue;
     }
