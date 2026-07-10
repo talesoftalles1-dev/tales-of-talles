@@ -1,0 +1,16 @@
+[2026-07-07T20:25:09.133Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "**Key findings:**\n\n- **No hardcoded secrets** detected (the .env.example is properly templated)\n- **No SQL injection or XSS risks** (backend utility scripts, no database/web framework code)\n- **Path traversal vulnerability** in `external_id.js:20` — the `notePath` parameter allows `../` sequences to escape the intended `repoRoot` directory\n- **Insufficient input validation** on CLI arguments across both scripts\n- **Unguarded file operations** in `bootstrap_jarvis_os.js` that assume safe working directory context\n\nThe codebase is relatively low-risk for a personal vault system but should add defensive path checks before any file I/O operations. The 38/100 score reflects manageable vulnerabilities suitable for local/personal use, though tighter input validation is recommended if these scripts are ever exposed to untrusted input.\n",
+  "parsedOutput": {
+    "parseError": true,
+    "rawOutput": "**Key findings:**\n\n- **No hardcoded secrets** detected (the .env.example is properly templated)\n- **No SQL injection or XSS risks** (backend utility scripts, no database/web framework code)\n- **Path traversal vulnerability** in `external_id.js:20` — the `notePath` parameter allows `../` sequences to escape the intended `repoRoot` directory\n- **Insufficient input validation** on CLI arguments across both scripts\n- **Unguarded file operations** in `bootstrap_jarvis_os.js` that assume safe working directory context\n\nThe codebase is relatively low-risk for a personal vault system but should add defensive path checks before any file I/O operations. The 38/100 score reflects manageable vulnerabilities suitable for local/personal use, though tighter input validation is recommended if these scripts are ever exposed to untrusted input.\n"
+  },
+  "durationMs": 28986,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T20:25:09.133Z",
+  "executionId": "audit_1783455880147_z91nwy"
+}

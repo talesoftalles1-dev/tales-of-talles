@@ -1,0 +1,56 @@
+[2026-07-07T15:39:43.649Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"medium\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 12,\n      \"description\": \"Path Traversal Risk: path.resolve() accepts relative paths with traversal sequences (e.g., '../../'). If notePath is user-controlled, an attacker could hash arbitrary system paths. No input validation prevents this.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 8,\n      \"description\": \"Information Disclosure: Absolute file paths are hashed and returned. If external_id is shared externally or logged, it could leak system path structure. Shortened 12-char hashes may be reversible for known paths.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 44,\n      \"description\": \"Missing File Permissions: fs.writeFileSync() creates files with default permissions (often world-readable on Unix). No explicit mode parameter restricts access to sensitive content.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 37,\n      \"description\": \"No Error Handling: File system operations lack try-catch blocks. Failures (permission denied, disk full) crash silently without user feedback.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 3,\n      \"description\": \"Secrets Template Exposure: While this is .env.example (not .env), ensure actual .env is in .gitignore. Instructions hint users to place real secrets here; misconfiguration could commit N8N_ENCRYPTION_KEY to version control.\"\n    }\n  ],\n  \"riskScore\": 32,\n  \"recommendations\": [\n    \"Add path normalization & validation in external_id.js: reject traversal sequences (notePath must not contain '..' or resolve outside repoRoot)\",\n    \"Consider using file basename + hash instead of absolute path to avoid leaking directory structure\",\n    \"Set explicit file permissions in bootstrap_jarvis_os.js: fs.writeFileSync(filePath, content, {mode: 0o600}) for sensitive files\",\n    \"Wrap fs operations in try-catch; log errors instead of crashing\",\n    \"Verify .env and .env.local are in .gitignore; add a pre-commit hook to prevent secret commits\",\n    \"Add input validation for environment variables (e.g., N8N_ENCRYPTION_KEY length/format)\",\n    \"Consider using a secrets manager (e.g., Vault, 1Password) instead of .env files for production\"\n  ]\n}\n```\n\n## Summary\n\nThe codebase has **low-to-medium security risk** (score: 32/100). No hardcoded secrets or SQL injection found. Main concerns:\n\n1. **Path Traversal in external_id.js** — User-supplied paths aren't validated; `../` sequences could hash unintended files.\n2. **Information Disclosure** — Absolute path hashes leak directory structure.\n3. **Weak File Permissions** — Bootstrap creates files without restricting access.\n4. **Secrets Management** — `.env` template could lead to accidental secret commits if not properly gitignored.\n\nThe scripts are utility/bootstrap tools (not web-facing), reducing attack surface, but adding input validation and explicit file permissions would harden them.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "medium",
+        "file": "sample/scripts/external_id.js",
+        "line": 12,
+        "description": "Path Traversal Risk: path.resolve() accepts relative paths with traversal sequences (e.g., '../../'). If notePath is user-controlled, an attacker could hash arbitrary system paths. No input validation prevents this."
+      },
+      {
+        "severity": "medium",
+        "file": "sample/scripts/external_id.js",
+        "line": 8,
+        "description": "Information Disclosure: Absolute file paths are hashed and returned. If external_id is shared externally or logged, it could leak system path structure. Shortened 12-char hashes may be reversible for known paths."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 44,
+        "description": "Missing File Permissions: fs.writeFileSync() creates files with default permissions (often world-readable on Unix). No explicit mode parameter restricts access to sensitive content."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 37,
+        "description": "No Error Handling: File system operations lack try-catch blocks. Failures (permission denied, disk full) crash silently without user feedback."
+      },
+      {
+        "severity": "low",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 3,
+        "description": "Secrets Template Exposure: While this is .env.example (not .env), ensure actual .env is in .gitignore. Instructions hint users to place real secrets here; misconfiguration could commit N8N_ENCRYPTION_KEY to version control."
+      }
+    ],
+    "riskScore": 32,
+    "recommendations": [
+      "Add path normalization & validation in external_id.js: reject traversal sequences (notePath must not contain '..' or resolve outside repoRoot)",
+      "Consider using file basename + hash instead of absolute path to avoid leaking directory structure",
+      "Set explicit file permissions in bootstrap_jarvis_os.js: fs.writeFileSync(filePath, content, {mode: 0o600}) for sensitive files",
+      "Wrap fs operations in try-catch; log errors instead of crashing",
+      "Verify .env and .env.local are in .gitignore; add a pre-commit hook to prevent secret commits",
+      "Add input validation for environment variables (e.g., N8N_ENCRYPTION_KEY length/format)",
+      "Consider using a secrets manager (e.g., Vault, 1Password) instead of .env files for production"
+    ]
+  },
+  "durationMs": 24178,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T15:39:43.648Z",
+  "executionId": "audit_1783438759470_1lolnw"
+}

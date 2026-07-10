@@ -1,0 +1,617 @@
+[2026-07-07T20:03:53.898Z] PROMPT
+============================================================
+Analyze this codebase for security vulnerabilities:
+- Check for hardcoded secrets (API keys, passwords)
+- Identify SQL injection risks
+- Find XSS vulnerabilities
+- Check for insecure dependencies
+- Identify authentication/authorization issues
+
+Provide a JSON report with:
+{
+  "vulnerabilities": [{ "severity": "high|medium|low", "file": "...", "line": N, "description": "..." }],
+  "riskScore": 0-100,
+  "recommendations": ["..."]
+}
+
+## Codebase Context
+
+--- .claude/worktrees/agitated-gagarin-0adc45/sample/scripts/external_id.js ---
+// sample/scripts/external_id.js
+// Utility to generate a deterministic external_id for Vault notes
+// based on repo path + note ID (e.g., file name without extension)
+const crypto = require('crypto');
+const path = require('path');
+/**
+ * Generate external_id hash
+ * @param {string} repoRoot Absolute path to the repository root
+ * @param {string} notePath Relative path to the note inside the repo
+ * @returns {string} SHA‑256 hex string (first 12 chars) used as external_id
+ */
+function generateExternalId(repoRoot, notePath) {
+  const absolute = path.resolve(repoRoot, notePath);
+  const hash = crypto.createHash('sha256').update(absolute).digest('hex');
+  // Shorten for readability – still unique enough for our scale
+  return hash.substring(0, 12);
+}
+// Example usage (for testing)
+if (require.main === module) {
+  const repoRoot = process.argv[2] || process.cwd();
+  const notePath = process.argv[3];
+  if (!notePath) {
+    console.error('Usage: node external_id.js <repoRoot> <notePath>');
+    process.exit(1);
+  }
+  console.log('external_id:', generateExternalId(repoRoot, notePath));
+}
+module.exports = { generateExternalId };
+
+
+--- .claude/worktrees/agitated-gagarin-0adc45/scripts/bootstrap_jarvis_os.js ---
+// scripts/bootstrap_jarvis_os.js
+const fs = require('fs');
+const path = require('path');
+
+// Define volumes and chapters
+const volumes = [
+  { dir: '00 Sistema', chapters: [
+    'Chapter 01 — Executive Assistant.md',
+    'Chapter 02 — Prioritization Formula.md',
+    'Chapter 03 — Adaptive Agenda.md',
+    'Chapter 04 — Agent Orchestration.md',
+    'Chapter 05 — Decision Surface & Dashboard.md',
+    'Chapter 06 — Contracts & Taxonomy.md',
+  ]},
+  { dir: '10 Inbox', chapters: [
+    'Chapter 07 — Capture & Triage.md',
+    'Chapter 08 — Processing Rules.md',
+  ]},
+  { dir: '20 Pessoal', chapters: [
+    'Chapter 09 — Health & Performance.md',
+    'Chapter 10 — Goals & Progress.md',
+    'Chapter 11 — Training Logs.md',
+    'Chapter 12 — Nutrition & Body.md',
+  ]},
+  { dir: '30 Empresa', chapters: [
+    'Chapter 13 — Projects & Releases.md',
+    'Chapter 14 — Commercial Ops (Yalt).md',
+    'Chapter 15 — Partnerships & Legal.md',
+    'Chapter 16 — Marketing & Growth.md',
+  ]},
+  { dir: '40 CRM', chapters: [
+    'Chapter 17 — CRM Data Model.md',
+    'Chapter 18 — Sync & MCP Contracts.md',
+    'Chapter 19 — Outreach & ESP Strategy.md',
+  ]},
+  { dir: '50 Financeiro', chapters: [
+    'Chapter 20 — Revenue Ops.md',
+    'Chapter 21 — Billing & Forecasting.md',
+    'Chapter 22 — Budgets & KPIs.md',
+  ]},
+  { dir: '60 Conhecimento', chapters: [
+    'Chapter 23 — Vault Structure & Dataviews.md',
+    'Chapter 24 — Templates & Skills.md',
+    'Chapter 25 — Archives & Migration.md',
+    'Chapter 26 — Search & Indexing.md',
+  ]},
+  { dir: '70 Sistema', chapters: [
+    'Chapter 27 — Automations & n8n Bridge.md',
+    'Chapter 28 — Security & Secrets Runbook.md',
+    'Chapter 29 — Agent Roster & Authority.md',
+    'Chapter 30 — Monitoring & Alerts.md',
+    'Chapter 31 — Bootstrap & Maintenance.md',
+  ]},
+];
+
+// Canonical frontmatter template generator
+function frontmatter(volumeDir, chapterFile, title) {
+  const now = new Date().toISOString();
+  return `---\n` +
+         `tipo: chapter\n` +
+         `status: backlog\n` +
+         `area: ${volumeDir}\n` +
+         `title: ${title}\n` +
+         `created: ${now}\n` +
+         `---\n\n# ${title}\n\n*Draft content goes here.*\n`;
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+volumes.forEach(v => {
+  const volPath = path.join(process.cwd(), v.dir);
+  ensureDir(volPath);
+  v.chapters.forEach(ch => {
+    const filePath = path.join(volPath, ch);
+    if (!fs.existsSync(filePath)) {
+      const title = ch.replace('.md','').replace('Chapter ','');
+      const content = frontmatter(v.dir, ch, title);
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  });
+});
+
+console.log('Bootstrap completed: directories and chapter files generated.');
+
+
+--- .claude/worktrees/angry-khorana-455dae/sample/scripts/external_id.js ---
+// sample/scripts/external_id.js
+// Utility to generate a deterministic external_id for Vault notes
+// based on repo path + note ID (e.g., file name without extension)
+const crypto = require('crypto');
+const path = require('path');
+/**
+ * Generate external_id hash
+ * @param {string} repoRoot Absolute path to the repository root
+ * @param {string} notePath Relative path to the note inside the repo
+ * @returns {string} SHA‑256 hex string (first 12 chars) used as external_id
+ */
+function generateExternalId(repoRoot, notePath) {
+  const absolute = path.resolve(repoRoot, notePath);
+  const hash = crypto.createHash('sha256').update(absolute).digest('hex');
+  // Shorten for readability – still unique enough for our scale
+  return hash.substring(0, 12);
+}
+// Example usage (for testing)
+if (require.main === module) {
+  const repoRoot = process.argv[2] || process.cwd();
+  const notePath = process.argv[3];
+  if (!notePath) {
+    console.error('Usage: node external_id.js <repoRoot> <notePath>');
+    process.exit(1);
+  }
+  console.log('external_id:', generateExternalId(repoRoot, notePath));
+}
+module.exports = { generateExternalId };
+
+
+--- .claude/worktrees/angry-khorana-455dae/scripts/bootstrap_jarvis_os.js ---
+// scripts/bootstrap_jarvis_os.js
+const fs = require('fs');
+const path = require('path');
+
+// Define volumes and chapters
+const volumes = [
+  { dir: '00 Sistema', chapters: [
+    'Chapter 01 — Executive Assistant.md',
+    'Chapter 02 — Prioritization Formula.md',
+    'Chapter 03 — Adaptive Agenda.md',
+    'Chapter 04 — Agent Orchestration.md',
+    'Chapter 05 — Decision Surface & Dashboard.md',
+    'Chapter 06 — Contracts & Taxonomy.md',
+  ]},
+  { dir: '10 Inbox', chapters: [
+    'Chapter 07 — Capture & Triage.md',
+    'Chapter 08 — Processing Rules.md',
+  ]},
+  { dir: '20 Pessoal', chapters: [
+    'Chapter 09 — Health & Performance.md',
+    'Chapter 10 — Goals & Progress.md',
+    'Chapter 11 — Training Logs.md',
+    'Chapter 12 — Nutrition & Body.md',
+  ]},
+  { dir: '30 Empresa', chapters: [
+    'Chapter 13 — Projects & Releases.md',
+    'Chapter 14 — Commercial Ops (Yalt).md',
+    'Chapter 15 — Partnerships & Legal.md',
+    'Chapter 16 — Marketing & Growth.md',
+  ]},
+  { dir: '40 CRM', chapters: [
+    'Chapter 17 — CRM Data Model.md',
+    'Chapter 18 — Sync & MCP Contracts.md',
+    'Chapter 19 — Outreach & ESP Strategy.md',
+  ]},
+  { dir: '50 Financeiro', chapters: [
+    'Chapter 20 — Revenue Ops.md',
+    'Chapter 21 — Billing & Forecasting.md',
+    'Chapter 22 — Budgets & KPIs.md',
+  ]},
+  { dir: '60 Conhecimento', chapters: [
+    'Chapter 23 — Vault Structure & Dataviews.md',
+    'Chapter 24 — Templates & Skills.md',
+    'Chapter 25 — Archives & Migration.md',
+    'Chapter 26 — Search & Indexing.md',
+  ]},
+  { dir: '70 Sistema', chapters: [
+    'Chapter 27 — Automations & n8n Bridge.md',
+    'Chapter 28 — Security & Secrets Runbook.md',
+    'Chapter 29 — Agent Roster & Authority.md',
+    'Chapter 30 — Monitoring & Alerts.md',
+    'Chapter 31 — Bootstrap & Maintenance.md',
+  ]},
+];
+
+// Canonical frontmatter template generator
+function frontmatter(volumeDir, chapterFile, title) {
+  const now = new Date().toISOString();
+  return `---\n` +
+         `tipo: chapter\n` +
+         `status: backlog\n` +
+         `area: ${volumeDir}\n` +
+         `title: ${title}\n` +
+         `created: ${now}\n` +
+         `---\n\n# ${title}\n\n*Draft content goes here.*\n`;
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+volumes.forEach(v => {
+  const volPath = path.join(process.cwd(), v.dir);
+  ensureDir(volPath);
+  v.chapters.forEach(ch => {
+    const filePath = path.join(volPath, ch);
+    if (!fs.existsSync(filePath)) {
+      const title = ch.replace('.md','').replace('Chapter ','');
+      const content = frontmatter(v.dir, ch, title);
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  });
+});
+
+console.log('Bootstrap completed: directories and chapter files generated.');
+
+
+--- .claude/worktrees/gifted-kare-13bfb2/sample/scripts/external_id.js ---
+// sample/scripts/external_id.js
+// Utility to generate a deterministic external_id for Vault notes
+// based on repo path + note ID (e.g., file name without extension)
+const crypto = require('crypto');
+const path = require('path');
+/**
+ * Generate external_id hash
+ * @param {string} repoRoot Absolute path to the repository root
+ * @param {string} notePath Relative path to the note inside the repo
+ * @returns {string} SHA‑256 hex string (first 12 chars) used as external_id
+ */
+function generateExternalId(repoRoot, notePath) {
+  const absolute = path.resolve(repoRoot, notePath);
+  const hash = crypto.createHash('sha256').update(absolute).digest('hex');
+  // Shorten for readability – still unique enough for our scale
+  return hash.substring(0, 12);
+}
+// Example usage (for testing)
+if (require.main === module) {
+  const repoRoot = process.argv[2] || process.cwd();
+  const notePath = process.argv[3];
+  if (!notePath) {
+    console.error('Usage: node external_id.js <repoRoot> <notePath>');
+    process.exit(1);
+  }
+  console.log('external_id:', generateExternalId(repoRoot, notePath));
+}
+module.exports = { generateExternalId };
+
+
+--- .claude/worktrees/gifted-kare-13bfb2/scripts/bootstrap_jarvis_os.js ---
+// scripts/bootstrap_jarvis_os.js
+const fs = require('fs');
+const path = require('path');
+
+// Define volumes and chapters
+const volumes = [
+  { dir: '00 Sistema', chapters: [
+    'Chapter 01 — Executive Assistant.md',
+    'Chapter 02 — Prioritization Formula.md',
+    'Chapter 03 — Adaptive Agenda.md',
+    'Chapter 04 — Agent Orchestration.md',
+    'Chapter 05 — Decision Surface & Dashboard.md',
+    'Chapter 06 — Contracts & Taxonomy.md',
+  ]},
+  { dir: '10 Inbox', chapters: [
+    'Chapter 07 — Capture & Triage.md',
+    'Chapter 08 — Processing Rules.md',
+  ]},
+  { dir: '20 Pessoal', chapters: [
+    'Chapter 09 — Health & Performance.md',
+    'Chapter 10 — Goals & Progress.md',
+    'Chapter 11 — Training Logs.md',
+    'Chapter 12 — Nutrition & Body.md',
+  ]},
+  { dir: '30 Empresa', chapters: [
+    'Chapter 13 — Projects & Releases.md',
+    'Chapter 14 — Commercial Ops (Yalt).md',
+    'Chapter 15 — Partnerships & Legal.md',
+    'Chapter 16 — Marketing & Growth.md',
+  ]},
+  { dir: '40 CRM', chapters: [
+    'Chapter 17 — CRM Data Model.md',
+    'Chapter 18 — Sync & MCP Contracts.md',
+    'Chapter 19 — Outreach & ESP Strategy.md',
+  ]},
+  { dir: '50 Financeiro', chapters: [
+    'Chapter 20 — Revenue Ops.md',
+    'Chapter 21 — Billing & Forecasting.md',
+    'Chapter 22 — Budgets & KPIs.md',
+  ]},
+  { dir: '60 Conhecimento', chapters: [
+    'Chapter 23 — Vault Structure & Dataviews.md',
+    'Chapter 24 — Templates & Skills.md',
+    'Chapter 25 — Archives & Migration.md',
+    'Chapter 26 — Search & Indexing.md',
+  ]},
+  { dir: '70 Sistema', chapters: [
+    'Chapter 27 — Automations & n8n Bridge.md',
+    'Chapter 28 — Security & Secrets Runbook.md',
+    'Chapter 29 — Agent Roster & Authority.md',
+    'Chapter 30 — Monitoring & Alerts.md',
+    'Chapter 31 — Bootstrap & Maintenance.md',
+  ]},
+];
+
+// Canonical frontmatter template generator
+function frontmatter(volumeDir, chapterFile, title) {
+  const now = new Date().toISOString();
+  return `---\n` +
+         `tipo: chapter\n` +
+         `status: backlog\n` +
+         `area: ${volumeDir}\n` +
+         `title: ${title}\n` +
+         `created: ${now}\n` +
+         `---\n\n# ${title}\n\n*Draft content goes here.*\n`;
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+volumes.forEach(v => {
+  const volPath = path.join(process.cwd(), v.dir);
+  ensureDir(volPath);
+  v.chapters.forEach(ch => {
+    const filePath = path.join(volPath, ch);
+    if (!fs.existsSync(filePath)) {
+      const title = ch.replace('.md','').replace('Chapter ','');
+      const content = frontmatter(v.dir, ch, title);
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  });
+});
+
+console.log('Bootstrap completed: directories and chapter files generated.');
+
+
+--- .claude/worktrees/mystifying-hoover-29462b/sample/scripts/external_id.js ---
+// sample/scripts/external_id.js
+// Utility to generate a deterministic external_id for Vault notes
+// based on repo path + note ID (e.g., file name without extension)
+const crypto = require('crypto');
+const path = require('path');
+/**
+ * Generate external_id hash
+ * @param {string} repoRoot Absolute path to the repository root
+ * @param {string} notePath Relative path to the note inside the repo
+ * @returns {string} SHA‑256 hex string (first 12 chars) used as external_id
+ */
+function generateExternalId(repoRoot, notePath) {
+  const absolute = path.resolve(repoRoot, notePath);
+  const hash = crypto.createHash('sha256').update(absolute).digest('hex');
+  // Shorten for readability – still unique enough for our scale
+  return hash.substring(0, 12);
+}
+// Example usage (for testing)
+if (require.main === module) {
+  const repoRoot = process.argv[2] || process.cwd();
+  const notePath = process.argv[3];
+  if (!notePath) {
+    console.error('Usage: node external_id.js <repoRoot> <notePath>');
+    process.exit(1);
+  }
+  console.log('external_id:', generateExternalId(repoRoot, notePath));
+}
+module.exports = { generateExternalId };
+
+
+--- .claude/worktrees/mystifying-hoover-29462b/scripts/bootstrap_jarvis_os.js ---
+// scripts/bootstrap_jarvis_os.js
+const fs = require('fs');
+const path = require('path');
+
+// Define volumes and chapters
+const volumes = [
+  { dir: '00 Sistema', chapters: [
+    'Chapter 01 — Executive Assistant.md',
+    'Chapter 02 — Prioritization Formula.md',
+    'Chapter 03 — Adaptive Agenda.md',
+    'Chapter 04 — Agent Orchestration.md',
+    'Chapter 05 — Decision Surface & Dashboard.md',
+    'Chapter 06 — Contracts & Taxonomy.md',
+  ]},
+  { dir: '10 Inbox', chapters: [
+    'Chapter 07 — Capture & Triage.md',
+    'Chapter 08 — Processing Rules.md',
+  ]},
+  { dir: '20 Pessoal', chapters: [
+    'Chapter 09 — Health & Performance.md',
+    'Chapter 10 — Goals & Progress.md',
+    'Chapter 11 — Training Logs.md',
+    'Chapter 12 — Nutrition & Body.md',
+  ]},
+  { dir: '30 Empresa', chapters: [
+    'Chapter 13 — Projects & Releases.md',
+    'Chapter 14 — Commercial Ops (Yalt).md',
+    'Chapter 15 — Partnerships & Legal.md',
+    'Chapter 16 — Marketing & Growth.md',
+  ]},
+  { dir: '40 CRM', chapters: [
+    'Chapter 17 — CRM Data Model.md',
+    'Chapter 18 — Sync & MCP Contracts.md',
+    'Chapter 19 — Outreach & ESP Strategy.md',
+  ]},
+  { dir: '50 Financeiro', chapters: [
+    'Chapter 20 — Revenue Ops.md',
+    'Chapter 21 — Billing & Forecasting.md',
+    'Chapter 22 — Budgets & KPIs.md',
+  ]},
+  { dir: '60 Conhecimento', chapters: [
+    'Chapter 23 — Vault Structure & Dataviews.md',
+    'Chapter 24 — Templates & Skills.md',
+    'Chapter 25 — Archives & Migration.md',
+    'Chapter 26 — Search & Indexing.md',
+  ]},
+  { dir: '70 Sistema', chapters: [
+    'Chapter 27 — Automations & n8n Bridge.md',
+    'Chapter 28 — Security & Secrets Runbook.md',
+    'Chapter 29 — Agent Roster & Authority.md',
+    'Chapter 30 — Monitoring & Alerts.md',
+    'Chapter 31 — Bootstrap & Maintenance.md',
+  ]},
+];
+
+// Canonical frontmatter template generator
+function frontmatter(volumeDir, chapterFile, title) {
+  const now = new Date().toISOString();
+  return `---\n` +
+         `tipo: chapter\n` +
+         `status: backlog\n` +
+         `area: ${volumeDir}\n` +
+         `title: ${title}\n` +
+         `created: ${now}\n` +
+         `---\n\n# ${title}\n\n*Draft content goes here.*\n`;
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+volumes.forEach(v => {
+  const volPath = path.join(process.cwd(), v.dir);
+  ensureDir(volPath);
+  v.chapters.forEach(ch => {
+    const filePath = path.join(volPath, ch);
+    if (!fs.existsSync(filePath)) {
+      const title = ch.replace('.md','').replace('Chapter ','');
+      const content = frontmatter(v.dir, ch, title);
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  });
+});
+
+console.log('Bootstrap completed: directories and chapter files generated.');
+
+
+--- 90 Arquivo/scripts/bootstrap_jarvis_os.js ---
+// scripts/bootstrap_jarvis_os.js
+const fs = require('fs');
+const path = require('path');
+
+// Define volumes and chapters
+const volumes = [
+  { dir: '00 Sistema', chapters: [
+    'Chapter 01 — Executive Assistant.md',
+    'Chapter 02 — Prioritization Formula.md',
+    'Chapter 03 — Adaptive Agenda.md',
+    'Chapter 04 — Agent Orchestration.md',
+    'Chapter 05 — Decision Surface & Dashboard.md',
+    'Chapter 06 — Contracts & Taxonomy.md',
+  ]},
+  { dir: '10 Inbox', chapters: [
+    'Chapter 07 — Capture & Triage.md',
+    'Chapter 08 — Processing Rules.md',
+  ]},
+  { dir: '20 Pessoal', chapters: [
+    'Chapter 09 — Health & Performance.md',
+    'Chapter 10 — Goals & Progress.md',
+    'Chapter 11 — Training Logs.md',
+    'Chapter 12 — Nutrition & Body.md',
+  ]},
+  { dir: '30 Empresa', chapters: [
+    'Chapter 13 — Projects & Releases.md',
+    'Chapter 14 — Commercial Ops (Yalt).md',
+    'Chapter 15 — Partnerships & Legal.md',
+    'Chapter 16 — Marketing & Growth.md',
+  ]},
+  { dir: '40 CRM', chapters: [
+    'Chapter 17 — CRM Data Model.md',
+    'Chapter 18 — Sync & MCP Contracts.md',
+    'Chapter 19 — Outreach & ESP Strategy.md',
+  ]},
+  { dir: '50 Financeiro', chapters: [
+    'Chapter 20 — Revenue Ops.md',
+    'Chapter 21 — Billing & Forecasting.md',
+    'Chapter 22 — Budgets & KPIs.md',
+  ]},
+  { dir: '60 Conhecimento', chapters: [
+    'Chapter 23 — Vault Structure & Dataviews.md',
+    'Chapter 24 — Templates & Skills.md',
+    'Chapter 25 — Archives & Migration.md',
+    'Chapter 26 — Search & Indexing.md',
+  ]},
+  { dir: '70 Sistema', chapters: [
+    'Chapter 27 — Automations & n8n Bridge.md',
+    'Chapter 28 — Security & Secrets Runbook.md',
+    'Chapter 29 — Agent Roster & Authority.md',
+    'Chapter 30 — Monitoring & Alerts.md',
+    'Chapter 31 — Bootstrap & Maintenance.md',
+  ]},
+];
+
+// Canonical frontmatter template generator
+function frontmatter(volumeDir, chapterFile, title) {
+  const now = new Date().toISOString();
+  return `---\n` +
+         `tipo: chapter\n` +
+         `status: backlog\n` +
+         `area: ${volumeDir}\n` +
+         `title: ${title}\n` +
+         `created: ${now}\n` +
+         `---\n\n# ${title}\n\n*Draft content goes here.*\n`;
+}
+
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+volumes.forEach(v => {
+  const volPath = path.join(process.cwd(), v.dir);
+  ensureDir(volPath);
+  v.chapters.forEach(ch => {
+    const filePath = path.join(volPath, ch);
+    if (!fs.existsSync(filePath)) {
+      const title = ch.replace('.md','').replace('Chapter ','');
+      const content = frontmatter(v.dir, ch, title);
+      fs.writeFileSync(filePath, content, 'utf8');
+    }
+  });
+});
+
+console.log('Bootstrap completed: directories and chapter files generated.');
+
+
+--- 70 Sistema/Automacao/n8n-selfhost/.env.example ---
+# Copia para .env e preenche. Gera a chave com:
+#   node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
+N8N_ENCRYPTION_KEY=COLA_UMA_CHAVE_ALEATORIA_AQUI
+
+GENERIC_TIMEZONE=Europe/Lisbon
+TZ=Europe/Lisbon
+
+N8N_HOST=localhost
+N8N_PORT=5678
+N8N_PROTOCOL=http
+# N8N_SECURE_COOKIE=false
+
+# URL público onde o n8n regista os webhooks (túnel/reverse-proxy):
+# WEBHOOK_URL=https://<subdominio>.trycloudflare.com/
+# N8N_PROXY_HOPS=1
+
+N8N_DIAGNOSTICS_ENABLED=false
+N8N_PERSONALIZATION_ENABLED=false
+N8N_RUNNERS_ENABLED=true
+
+
+## Instructions
+
+Analyze the above codebase context and provide your response following the format specified in the task.

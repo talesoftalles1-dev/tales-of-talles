@@ -1,0 +1,47 @@
+[2026-07-07T15:37:06.099Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "## Performance analysis — `index.html` (the only real app code in this vault)\n\nContext: this repo is an Obsidian vault (JARVIS), not a React/SQL codebase. The only executable app is `index.html:2823-7764` — a single-file vanilla-JS fight-camp tracker (\"TALES OF TALLES\") with a Redux-like `dispatch`/`reducer`/`renderAll` loop over localStorage/IndexedDB state. I translated your 5 categories into that architecture's real equivalents.\n\n### 1. N+1-style patterns\n- **`gruposEvolucao()`** (`index.html:2885`) rescans the *entire* `exDone` history and re-aggregates muscle-group counts from scratch on every render, not just when `exDone` changes. Fix: maintain a running `muscleWorkCount` object, updated ±1 in the `EX_DONE`/`EX_UNDONE` reducer branches.\n- **`rLog()`** (`index.html:5758`) does three separate `.filter()` passes over the same events array to count `GYM`, `DRILL`, `MEAL` types. Fix: one `reduce` into a counts object.\n\n### 2. Unnecessary re-renders\n- **`dispatch()`** (`index.html:3728`) always triggers a full `renderAll(LIVE)` regardless of event type — logging a meal rebuilds the training list, arsenal grid, everything.\n- **`rCamp()`** (`index.html:5147-5258`) rebuilds the whole exercise list — including fresh SVG builds via `exMoveFig()` and new `addEventListener`s per card — on *every* `renderAll`, even for unrelated events.\n- **Double-render bug**: `toggleExercise()` (line 4892) and `saveAddEx()` (line 4692) each call `renderAll(LIVE)` explicitly *after* `dispatch(...)`, but `dispatch` already renders internally — one checkbox click rebuilds the entire UI twice. This is a straightforward, no-tradeoff fix: delete the redundant trailing calls.\n\n### 3. Caching opportunities\n- **`pront(state)`** is recomputed independently at 4+ call sites per action (lines 4430, 5832, 6680, 7378) instead of computed once and threaded through.\n- **`exMoveFig(name)`** (line 4847) rebuilds an SVG string via regex/normalize logic every render, even though output depends only on the static exercise name — trivially memoizable with a `Map` cache + `cloneNode`.\n\n### 4. Memory leaks\n- **`SEEN`** (Set) and **`_lastEvents`** (array), both at line ~3677-3679, grow by one entry per dispatch/remote event for the app's entire lifetime. `autoCompact()` (line 3840) trims the persisted store past 400 events but never trims these in-memory mirrors — long sessions accumulate unbounded state that's also repeatedly iterated elsewhere (lines 5317, 7221, 7374). Fix: rebuild/truncate both alongside `autoCompact()`.\n- Timers (`_decayInterval`, `_cdInterval`) are correctly cleared on `pagehide` — not an issue.\n\n### 5. Redundant computations\n- **Biggest one**: `reducer()` deep-clones the *entire* state tree via `structuredClone` (line 3384) on **every single dispatch** — including all accumulated base64 photo data URLs in `state.scans[]`/`state.market[]`. A meal-log dispatch pays the cost of cloning every fight-camp photo taken so far. Fix: keep photo blobs out of event-sourced state (store in IndexedDB keyed by event id, reference by key), or shallow-clone and only deep-clone the sub-branch the event actually mutates.\n\nFull line references are in the findings above (`reducer`/`DC`: 2831-2834, 3383-3384; `dispatch`: 3723-3735; `pront`/`calcOvr`: 3600-3618; `renderAll`: 4406-4445; `rCamp`: 5064-5259).\n\nThe easiest wins with zero tradeoffs: removing the double `renderAll()` calls (#2) and de-duplicating `pront()` calls (#3A) — both are pure redundancy, no behavior change.\n",
+  "parsedOutput": {
+    "sections": [
+      {
+        "title": "Performance analysis — `index.html` (the only real app code in this vault)",
+        "content": "\nContext: this repo is an Obsidian vault (JARVIS), not a React/SQL codebase. The only executable app is `index.html:2823-7764` — a single-file vanilla-JS fight-camp tracker (\"TALES OF TALLES\") with a Redux-like `dispatch`/`reducer`/`renderAll` loop over localStorage/IndexedDB state. I translated your 5 categories into that architecture's real equivalents.\n\n",
+        "level": 2
+      },
+      {
+        "title": "1. N+1-style patterns",
+        "content": "- **`gruposEvolucao()`** (`index.html:2885`) rescans the *entire* `exDone` history and re-aggregates muscle-group counts from scratch on every render, not just when `exDone` changes. Fix: maintain a running `muscleWorkCount` object, updated ±1 in the `EX_DONE`/`EX_UNDONE` reducer branches.\n- **`rLog()`** (`index.html:5758`) does three separate `.filter()` passes over the same events array to count `GYM`, `DRILL`, `MEAL` types. Fix: one `reduce` into a counts object.\n\n",
+        "level": 3
+      },
+      {
+        "title": "2. Unnecessary re-renders",
+        "content": "- **`dispatch()`** (`index.html:3728`) always triggers a full `renderAll(LIVE)` regardless of event type — logging a meal rebuilds the training list, arsenal grid, everything.\n- **`rCamp()`** (`index.html:5147-5258`) rebuilds the whole exercise list — including fresh SVG builds via `exMoveFig()` and new `addEventListener`s per card — on *every* `renderAll`, even for unrelated events.\n- **Double-render bug**: `toggleExercise()` (line 4892) and `saveAddEx()` (line 4692) each call `renderAll(LIVE)` explicitly *after* `dispatch(...)`, but `dispatch` already renders internally — one checkbox click rebuilds the entire UI twice. This is a straightforward, no-tradeoff fix: delete the redundant trailing calls.\n\n",
+        "level": 3
+      },
+      {
+        "title": "3. Caching opportunities",
+        "content": "- **`pront(state)`** is recomputed independently at 4+ call sites per action (lines 4430, 5832, 6680, 7378) instead of computed once and threaded through.\n- **`exMoveFig(name)`** (line 4847) rebuilds an SVG string via regex/normalize logic every render, even though output depends only on the static exercise name — trivially memoizable with a `Map` cache + `cloneNode`.\n\n",
+        "level": 3
+      },
+      {
+        "title": "4. Memory leaks",
+        "content": "- **`SEEN`** (Set) and **`_lastEvents`** (array), both at line ~3677-3679, grow by one entry per dispatch/remote event for the app's entire lifetime. `autoCompact()` (line 3840) trims the persisted store past 400 events but never trims these in-memory mirrors — long sessions accumulate unbounded state that's also repeatedly iterated elsewhere (lines 5317, 7221, 7374). Fix: rebuild/truncate both alongside `autoCompact()`.\n- Timers (`_decayInterval`, `_cdInterval`) are correctly cleared on `pagehide` — not an issue.\n\n",
+        "level": 3
+      },
+      {
+        "title": "5. Redundant computations",
+        "content": "- **Biggest one**: `reducer()` deep-clones the *entire* state tree via `structuredClone` (line 3384) on **every single dispatch** — including all accumulated base64 photo data URLs in `state.scans[]`/`state.market[]`. A meal-log dispatch pays the cost of cloning every fight-camp photo taken so far. Fix: keep photo blobs out of event-sourced state (store in IndexedDB keyed by event id, reference by key), or shallow-clone and only deep-clone the sub-branch the event actually mutates.\n\nFull line references are in the findings above (`reducer`/`DC`: 2831-2834, 3383-3384; `dispatch`: 3723-3735; `pront`/`calcOvr`: 3600-3618; `renderAll`: 4406-4445; `rCamp`: 5064-5259).\n\nThe easiest wins with zero tradeoffs: removing the double `renderAll()` calls (#2) and de-duplicating `pront()` calls (#3A) — both are pure redundancy, no behavior change.",
+        "level": 3
+      }
+    ],
+    "codeBlocks": []
+  },
+  "durationMs": 324055,
+  "model": "sonnet",
+  "sandboxMode": "permissive",
+  "workerType": "optimize",
+  "timestamp": "2026-07-07T15:37:06.099Z",
+  "executionId": "optimize_1783438302044_ttit87"
+}

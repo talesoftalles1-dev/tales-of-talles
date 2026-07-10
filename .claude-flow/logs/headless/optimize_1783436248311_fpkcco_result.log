@@ -1,0 +1,48 @@
+[2026-07-07T15:01:20.821Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "## Performance Analysis — Jarvis Repo\n\n**Heads up first:** this isn't a React/database codebase, so most of the requested categories (N+1 queries, React re-renders, SQL) don't apply. This repo is the JARVIS Obsidian vault (markdown notes) plus one large (476KB) vanilla-JS single-page app in `index.html` — \"TALES OF TALLES,\" a fighter's training/camp tracker with client-side `localStorage` persistence, no framework, no backend. I analyzed that file since it's the only real application code here.\n\n### Findings (verified against actual code)\n\n**1. Full monolithic re-render on every action (biggest win)** — `index.html:3728, 4406-4445, 5147-5259`\n`dispatch()` calls `renderAll()` on *every* event, which tears down and rebuilds the entire exercise list (`ex.textContent=''` then recreate every node + listener) even when only one checkbox toggled.\n```js\n// now: full rebuild on any dispatch\nex.textContent='';\ndet.grupos.forEach(grp=>grp.exs.forEach(e=>{/* createElement + 2 listeners, every time */}));\n\n// fix: patch just the changed node\nfunction updateExCard(key){\n  const el=document.querySelector(`[data-ex=\"${key}\"]`);\n  el.classList.toggle('done', state.exs[key].done);\n}\n```\n\n**2. Same derived value computed 3-4× per render** — `index.html:3615, 4430, 5080-5082`\n`pront()` runs inside `calcOvr()`, and `calcOvr(state)` is called again independently right after — recomputing an `Object.values(state.mus)` iteration repeatedly for unchanged state.\n```js\n// now\n$s('ov-n', calcOvr(state));   // 5080\nconst ov = calcOvr(state);    // 5082, recomputed\n\n// fix: compute once, thread through\nconst {rd, ov} = deriveOnce(state);\nrCamp(state, rd, ov);\n```\n\n**3. Static UI rebuilt with fresh closures every render** — `index.html:5044-5061`\n`rWorkoutSelector` wipes and recreates 5 day-chip buttons (with new `addEventListener` closures) on every dispatch, though the chips rarely change.\n```js\n// fix: build once, toggle state only\nchips.forEach(chip => chip.classList.toggle('on', chip.dataset.tp === activeTp));\n```\n\n**4. Redundant localStorage reads within one render pass** — `index.html:4399-4403`\n`getN8nBase()` re-reads and regex-strips `localStorage` twice per `rConnections()` call, which itself fires on every user action.\n```js\n// fix: cache at boot, only re-read on explicit user edit\nlet n8nBaseCache = null;\nfunction getN8nBase(){ return n8nBaseCache ??= readN8nBaseFromStorage(); }\nfunction setN8nBase(v){ n8nBaseCache = v; localStorage.setItem('tt_n8n_base', v); }\n```\n\n**5. Full-DOM `querySelectorAll` scan every render** — `index.html:4363-4365, 4408`\n`initCollapsibles()` walks `[data-collapse]` on every `renderAll` just to check an already-set `_collapseInit` flag.\n```js\n// fix: call once after boot, not inside renderAll\n// or gate with a module-level \"collapsiblesInit\" boolean\n```\n\n**Checked and clean:** `setInterval`/`clearInterval` (countdown/decay timers) are properly cleared, including on `pagehide` — no timer leaks found.\n\n**Not applicable to this repo:** N+1 query patterns (no database), React re-renders (no React/component tree), backend caching layers (no server). If you meant to point me at a different, more typical app codebase (React/SQL-backed), let me know the path and I'll redo this analysis there.\n",
+  "parsedOutput": {
+    "sections": [
+      {
+        "title": "Performance Analysis — Jarvis Repo",
+        "content": "\n**Heads up first:** this isn't a React/database codebase, so most of the requested categories (N+1 queries, React re-renders, SQL) don't apply. This repo is the JARVIS Obsidian vault (markdown notes) plus one large (476KB) vanilla-JS single-page app in `index.html` — \"TALES OF TALLES,\" a fighter's training/camp tracker with client-side `localStorage` persistence, no framework, no backend. I analyzed that file since it's the only real application code here.\n\n",
+        "level": 2
+      },
+      {
+        "title": "Findings (verified against actual code)",
+        "content": "**1. Full monolithic re-render on every action (biggest win)** — `index.html:3728, 4406-4445, 5147-5259`\n`dispatch()` calls `renderAll()` on *every* event, which tears down and rebuilds the entire exercise list (`ex.textContent=''` then recreate every node + listener) even when only one checkbox toggled.\n```js\n// now: full rebuild on any dispatch\nex.textContent='';\ndet.grupos.forEach(grp=>grp.exs.forEach(e=>{/* createElement + 2 listeners, every time */}));\n\n// fix: patch just the changed node\nfunction updateExCard(key){\n  const el=document.querySelector(`[data-ex=\"${key}\"]`);\n  el.classList.toggle('done', state.exs[key].done);\n}\n```\n\n**2. Same derived value computed 3-4× per render** — `index.html:3615, 4430, 5080-5082`\n`pront()` runs inside `calcOvr()`, and `calcOvr(state)` is called again independently right after — recomputing an `Object.values(state.mus)` iteration repeatedly for unchanged state.\n```js\n// now\n$s('ov-n', calcOvr(state));   // 5080\nconst ov = calcOvr(state);    // 5082, recomputed\n\n// fix: compute once, thread through\nconst {rd, ov} = deriveOnce(state);\nrCamp(state, rd, ov);\n```\n\n**3. Static UI rebuilt with fresh closures every render** — `index.html:5044-5061`\n`rWorkoutSelector` wipes and recreates 5 day-chip buttons (with new `addEventListener` closures) on every dispatch, though the chips rarely change.\n```js\n// fix: build once, toggle state only\nchips.forEach(chip => chip.classList.toggle('on', chip.dataset.tp === activeTp));\n```\n\n**4. Redundant localStorage reads within one render pass** — `index.html:4399-4403`\n`getN8nBase()` re-reads and regex-strips `localStorage` twice per `rConnections()` call, which itself fires on every user action.\n```js\n// fix: cache at boot, only re-read on explicit user edit\nlet n8nBaseCache = null;\nfunction getN8nBase(){ return n8nBaseCache ??= readN8nBaseFromStorage(); }\nfunction setN8nBase(v){ n8nBaseCache = v; localStorage.setItem('tt_n8n_base', v); }\n```\n\n**5. Full-DOM `querySelectorAll` scan every render** — `index.html:4363-4365, 4408`\n`initCollapsibles()` walks `[data-collapse]` on every `renderAll` just to check an already-set `_collapseInit` flag.\n```js\n// fix: call once after boot, not inside renderAll\n// or gate with a module-level \"collapsiblesInit\" boolean\n```\n\n**Checked and clean:** `setInterval`/`clearInterval` (countdown/decay timers) are properly cleared, including on `pagehide` — no timer leaks found.\n\n**Not applicable to this repo:** N+1 query patterns (no database), React re-renders (no React/component tree), backend caching layers (no server). If you meant to point me at a different, more typical app codebase (React/SQL-backed), let me know the path and I'll redo this analysis there.",
+        "level": 3
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "js",
+        "code": "// now: full rebuild on any dispatch\nex.textContent='';\ndet.grupos.forEach(grp=>grp.exs.forEach(e=>{/* createElement + 2 listeners, every time */}));\n\n// fix: patch just the changed node\nfunction updateExCard(key){\n  const el=document.querySelector(`[data-ex=\"${key}\"]`);\n  el.classList.toggle('done', state.exs[key].done);\n}"
+      },
+      {
+        "language": "js",
+        "code": "// now\n$s('ov-n', calcOvr(state));   // 5080\nconst ov = calcOvr(state);    // 5082, recomputed\n\n// fix: compute once, thread through\nconst {rd, ov} = deriveOnce(state);\nrCamp(state, rd, ov);"
+      },
+      {
+        "language": "js",
+        "code": "// fix: build once, toggle state only\nchips.forEach(chip => chip.classList.toggle('on', chip.dataset.tp === activeTp));"
+      },
+      {
+        "language": "js",
+        "code": "// fix: cache at boot, only re-read on explicit user edit\nlet n8nBaseCache = null;\nfunction getN8nBase(){ return n8nBaseCache ??= readN8nBaseFromStorage(); }\nfunction setN8nBase(v){ n8nBaseCache = v; localStorage.setItem('tt_n8n_base', v); }"
+      },
+      {
+        "language": "js",
+        "code": "// fix: call once after boot, not inside renderAll\n// or gate with a module-level \"collapsiblesInit\" boolean"
+      }
+    ]
+  },
+  "durationMs": 232510,
+  "model": "sonnet",
+  "sandboxMode": "permissive",
+  "workerType": "optimize",
+  "timestamp": "2026-07-07T15:01:20.821Z",
+  "executionId": "optimize_1783436248311_fpkcco"
+}
