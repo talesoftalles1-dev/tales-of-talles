@@ -4,6 +4,10 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    # Atualiza o snapshot do dashboard Yalt diariamente às 04:17 UTC
+    # (horário dessincronizado de outros crons para não competir).
+    - cron: "17 4 * * *"
 
 permissions:
   contents: read
@@ -33,6 +37,16 @@ jobs:
           cp index.html _dist/404.html
           cp sw.js _dist/sw.js
           touch _dist/.nojekyll
+
+      # Yalt dashboard (snapshot estático). Step aditivo — NUNCA derruba o
+      # deploy do Tales of Talles se a API do CRM falhar.
+      - name: Generate Yalt dashboard snapshot
+        continue-on-error: true
+        env:
+          YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
+        run: |
+          cd "70 Sistema/Automacao/yalt-dashboard"
+          node generate.mjs --out "${{ github.workspace }}/_dist/yalt/index.html" || echo "::warning::Yalt dashboard generation failed (non-blocking)"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

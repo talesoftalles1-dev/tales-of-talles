@@ -39,8 +39,8 @@ Entrada de referência para o **E6 · AUTOMATOR** ([[estagiarios]]) antes de cri
 | Briefing Comercial (gerente diário do CRM) | `briefing-comercial/` | ✅ Pronto — requer `YALT_API_KEY` | Não (só lê o CRM) |
 | Fila de e-mails pré-cold-call | `briefing-comercial/send-approved.mjs` | ✅ Pronto | **Sim — todo envio** (`aprovacao: aprovado` na fila) |
 | Enriquecimento CRM (Lusha via CRM) | `enriquecimento-crm/` | ✅ Pronto — Lusha configurada no CRM | Validação das sugestões; `--max` limita créditos |
-
-> Contrato dos três: [[_Briefing Comercial — Spec]]. Substituem, em versão local-first, os papéis dos workflows n8n "Briefing Diário SDR", "Apollo Enrichment" e "AgentMail Backlog Drafts" acima — que permanecem congelados (aditivo, nada foi tocado).
+| Dashboard Yalt (snapshot estático do pipeline) | `yalt-dashboard/` | ✅ Pronto — requer `YALT_API_KEY` | Não (só lê o CRM; gera HTML estático p/ `/yalt/`) |
+> Contrato dos três: [[_Briefing Comercial — Spec]]. Substituem, em versão local-first, os papéis dos workflows n8n "Briefing Diário SDR", "Apollo Enrichment" e "AgentMail Backlog Drafts" acima — que permanecem congelados (aditivo, nada foi tocado). O Dashboard Yalt é geração de site (snapshot), não agente comercial — registrado aqui por consistência de catálogo.
 
 ## Regra para o E6 · AUTOMATOR
 
