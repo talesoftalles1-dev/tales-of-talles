@@ -2,7 +2,7 @@
 dominio: jarvis
 tipo: prompt
 status: ativo
-criado: ...
+criado: 2026-07-09
 atualizado: 2026-07-09
 area: sistema
 relacionado:
@@ -10,7 +10,6 @@ relacionado:
   - "[[_Spec JARVIS]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
 tags:
-  - prompt
   - arquitetura
 ---
 
