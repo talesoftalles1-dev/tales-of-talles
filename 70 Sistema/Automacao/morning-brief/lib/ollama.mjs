@@ -1,7 +1,7 @@
 import http from "node:http";
 
-const DEFAULT_HOST = "localhost";
-const DEFAULT_PORT = 11437;
+const DEFAULT_HOST = process.env.OLLAMA_HOST || "localhost";
+const DEFAULT_PORT = Number(process.env.OLLAMA_PORT || "11434");
 
 export async function checkOllama({ host = DEFAULT_HOST, port = DEFAULT_PORT } = {}) {
   return new Promise((resolve) => {
@@ -41,7 +41,7 @@ export async function generateWithOllama(
         path: "/api/generate",
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        timeout: 240000,
+        timeout: 480000,
       },
       (res) => {
         const chunks = [];
