@@ -17,6 +17,7 @@ import {
 } from "./lib/slack.mjs";
 import { todayISO } from "./lib/priority.mjs";
 import { loadVault } from "./lib/vault.mjs";
+import { checkOllama, generateWithOllama } from "./lib/ollama.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,6 +27,7 @@ function parseArgs(argv) {
     force: argv.includes("--force"),
     noSlack: argv.includes("--no-slack"),
     print: argv.includes("--print") || argv.includes("--dry-run"),
+    llmInsights: argv.includes("--llm-insights"),
   };
 }
 
@@ -69,6 +71,7 @@ async function main() {
   initDebugLog(config.vaultRoot);
   const today = todayISO();
   const runId = args.dryRun ? "dry-run" : "post-fix";
+  if (args.llmInsights) logInfo("LLM insights explicitamente solicitado via --llm-insights");
 
   // #region agent log
   logDebug({
@@ -117,6 +120,25 @@ async function main() {
 
   const brief = buildMorningBrief(vault, { today });
 
+  let enrichedBriefText = null;
+  if (args.llmInsights) {
+    try {
+      enrichedBriefText = await maybeEnrichBriefWithOllama(brief, config);
+    } catch (err) {
+      logDebug({
+        hypothesisId: "H5",
+        location: "generate.mjs:maybeEnrichBriefWithOllama",
+        message: "local brief enrichment failed",
+        data: { error: String(err.message) },
+      });
+    }
+  } else {
+    logInfo("LLM insights desligado para esta execução: use --llm-insights para habilitar");
+  }
+
+  const finalText = enrichedBriefText ? `${brief.text}\n\n${enrichedBriefText}` : brief.text;
+  const briefForOutput = { ...brief, text: finalText };
+
   // #region agent log
   logDebug({
     hypothesisId: "H4",
@@ -132,11 +154,11 @@ async function main() {
   });
   // #endregion
 
-  const savedPath = saveBriefLocally(brief.text, config.outputDir, today);
+  const savedPath = saveBriefLocally(briefForOutput.text, config.outputDir, today);
   logInfo(`Brief salvo localmente: ${savedPath}`);
 
   if (args.print) {
-    console.log("\n" + brief.text + "\n");
+    console.log("\n" + briefForOutput.text + "\n");
   }
 
   if (args.noSlack || args.dryRun) {
@@ -150,7 +172,7 @@ async function main() {
   }
 
   try {
-    const result = await publishToSlack(brief.text, config, {
+    const result = await publishToSlack(briefForOutput.text, config, {
       dryRun: args.dryRun,
       date: today,
       runId,
@@ -198,3 +220,26 @@ main().catch((err) => {
   logInfo(`Erro fatal: ${err.message}`);
   process.exitCode = 1;
 });
+
+async function maybeEnrichBriefWithOllama(brief, config) {
+  const availability = await checkOllama({ host: "localhost", port: 11434 });
+  if (!availability.ok) return null;
+
+  const top3Summary = brief.top3.map((item) => `${item.rank}. ${item.text} — ${item.due}`).join("\n");
+  const riskSummary = brief.risks.map((item) => `• ${item.text}`).join("\n");
+  const prompt =
+    `Reescreva APENAS o bloco "LLM Insights" de um Morning Brief do JARVIS, em PT-BR, direto e executável.` +
+    `\nRegras:` +
+    `\n- Máximo 3 bullets` +
+    `\n- Sempre que possível, retome exatamente pelo item mais crítico do Top 3` +
+    `\n- Não invente dados do vault; use apenas:` +
+    `\nTop 3:\n${top3Summary}\nRiscos:\n${riskSummary}` +
+    `\n- Saída final em markdown curto, começando por "LLM Insights:".`;
+
+  const { response: text } = await generateWithOllama(prompt, { model: "gemma4", host: "localhost", port: 11434, stream: false });
+  const cleaned = String(text || "")
+    .replace(/^[\s\W]*/i, "")
+    .replace(/\*\*?/g, "")
+    .trim();
+  return cleaned ? `LLM Insights:\n${cleaned}` : null;
+}

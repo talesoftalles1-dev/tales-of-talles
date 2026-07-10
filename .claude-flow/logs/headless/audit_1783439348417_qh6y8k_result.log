@@ -1,0 +1,50 @@
+[2026-07-07T15:49:30.458Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"medium\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 10,\n      \"description\": \"N8N_PROTOCOL=http in template — production deployments should use HTTPS to protect encryption keys and API traffic. Unencrypted HTTP exposes sensitive configuration and authentication tokens in transit.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \".claude/worktrees/*/sample/scripts/external_id.js\",\n      \"line\": 24,\n      \"description\": \"No input validation on command-line arguments (process.argv). While low risk in this utility context, malformed paths could cause unexpected behavior. Consider validating notePath is not empty and repoRoot exists.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 48,\n      \"description\": \"No error handling for file system operations (fs.writeFileSync). Permission errors or disk full conditions will crash the bootstrap process. Consider wrapping in try-catch.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 16,\n      \"description\": \"N8N_WEBHOOK_URL commented out — if webhooks are enabled without a proper callback URL, incoming webhooks may fail silently or expose local URLs. Ensure this is configured correctly in production.\"\n    }\n  ],\n  \"riskScore\": 18,\n  \"recommendations\": [\n    \"Update .env.example to show N8N_PROTOCOL=https (or add conditional logic for dev/prod)\",\n    \"Add input validation to external_id.js: verify repoRoot exists and notePath is not empty before hashing\",\n    \"Wrap fs.writeFileSync calls in try-catch blocks to handle permission and disk errors gracefully\",\n    \"Add comments in .env.example explaining webhook URL setup requirements and why WEBHOOK_URL must match production domain\",\n    \"Verify that .env (actual secrets) is in .gitignore (not present in provided context, but critical)\",\n    \"Consider adding a startup script that validates .env configuration before running n8n\",\n    \"No SQL injection, XSS, or hardcoded secrets detected — codebase follows safe patterns for utility scripts\"\n  ]\n}\n```\n\n**Summary**: This codebase has low overall security risk. It consists of utility scripts and configuration templates with no web-facing endpoints or database access. The main concern is the HTTP protocol in the n8n example config — update it to HTTPS for production. All provided code avoids common pitfalls like hardcoded credentials, SQL injection, and XSS.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "medium",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 10,
+        "description": "N8N_PROTOCOL=http in template — production deployments should use HTTPS to protect encryption keys and API traffic. Unencrypted HTTP exposes sensitive configuration and authentication tokens in transit."
+      },
+      {
+        "severity": "low",
+        "file": ".claude/worktrees/*/sample/scripts/external_id.js",
+        "line": 24,
+        "description": "No input validation on command-line arguments (process.argv). While low risk in this utility context, malformed paths could cause unexpected behavior. Consider validating notePath is not empty and repoRoot exists."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 48,
+        "description": "No error handling for file system operations (fs.writeFileSync). Permission errors or disk full conditions will crash the bootstrap process. Consider wrapping in try-catch."
+      },
+      {
+        "severity": "low",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 16,
+        "description": "N8N_WEBHOOK_URL commented out — if webhooks are enabled without a proper callback URL, incoming webhooks may fail silently or expose local URLs. Ensure this is configured correctly in production."
+      }
+    ],
+    "riskScore": 18,
+    "recommendations": [
+      "Update .env.example to show N8N_PROTOCOL=https (or add conditional logic for dev/prod)",
+      "Add input validation to external_id.js: verify repoRoot exists and notePath is not empty before hashing",
+      "Wrap fs.writeFileSync calls in try-catch blocks to handle permission and disk errors gracefully",
+      "Add comments in .env.example explaining webhook URL setup requirements and why WEBHOOK_URL must match production domain",
+      "Verify that .env (actual secrets) is in .gitignore (not present in provided context, but critical)",
+      "Consider adding a startup script that validates .env configuration before running n8n",
+      "No SQL injection, XSS, or hardcoded secrets detected — codebase follows safe patterns for utility scripts"
+    ]
+  },
+  "durationMs": 22040,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T15:49:30.457Z",
+  "executionId": "audit_1783439348417_qh6y8k"
+}

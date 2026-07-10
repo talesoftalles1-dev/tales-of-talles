@@ -1,0 +1,52 @@
+[2026-07-07T21:35:41.209Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"medium\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 1,\n      \"description\": \"N8N_ENCRYPTION_KEY requires secure generation and storage. The placeholder must be replaced with a cryptographically secure random key. While this is just an example, ensure the actual .env file is git-ignored and never committed.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 19,\n      \"description\": \"SHA-256 hash shortened to 12 characters (0.05% of full hash) reduces collision resistance. While acceptable for internal use, consider full 32-character hash or documenting the collision risk tolerance for this use case.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 46,\n      \"description\": \"No error handling for file system operations (fs.writeFileSync, fs.mkdirSync). Script will crash silently on permission errors or disk space issues. Add try-catch blocks for production use.\"\n    },\n    {\n      \"severity\": \"info\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/README.md\",\n      \"line\": 71,\n      \"description\": \"Credentials (Anthropic API key, Notion token) are referenced as stored in n8n credential store. Verify that n8n instance has encryption-at-rest enabled and is not exposed to untrusted networks.\"\n    }\n  ],\n  \"riskScore\": 15,\n  \"recommendations\": [\n    \"✅ **Passing:** No hardcoded secrets found in provided JavaScript or configuration files. The CRM API key previously exposed in vault has been removed (security monitor detected and cleaned it).\",\n    \"✅ **Passing:** No SQL injection risks detected — no database operations in provided code.\",\n    \"✅ **Passing:** No XSS vulnerabilities — backend scripts only, no unsanitized user input rendering.\",\n    \"✅ **Passing:** Basic Node.js dependencies (fs, path, crypto) are built-in and standard.\",\n    \"⚠️ **Action:** Ensure `.env` files and `config.json` containing secrets remain in `.gitignore` and are never synced to cloud storage (OneDrive). The vault currently has this controlled but verify OneDrive folder sharing permissions.\",\n    \"⚠️ **Action:** Implement error handling in `bootstrap_jarvis_os.js` for file system operations to prevent silent failures.\",\n    \"⚠️ **Action:** Document the collision risk tolerance for 12-character hash shortening in `external_id.js` or increase to full-length hash if collision is a concern.\",\n    \"✅ **Process:** Security rotation runbook exists (`70 Sistema/Runbooks/Rotate_CRM_Key.md`). Ensure this is followed for any key compromise.\",\n    \"✅ **Process:** Architecture specifies credentials go to n8n credential store or environment variables, not vault — this is correctly documented in CONSTITUTION.md and Runbooks.\"\n  ]\n}\n```\n\n**Summary:** The codebase demonstrates **strong security hygiene** — no active vulnerabilities in provided code, secrets properly externalized, and a runbook in place for key rotation. The main residual risks are operational (ensuring .env/config.json remain git-ignored and unshared in cloud sync) rather than code defects.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "medium",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 1,
+        "description": "N8N_ENCRYPTION_KEY requires secure generation and storage. The placeholder must be replaced with a cryptographically secure random key. While this is just an example, ensure the actual .env file is git-ignored and never committed."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 19,
+        "description": "SHA-256 hash shortened to 12 characters (0.05% of full hash) reduces collision resistance. While acceptable for internal use, consider full 32-character hash or documenting the collision risk tolerance for this use case."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 46,
+        "description": "No error handling for file system operations (fs.writeFileSync, fs.mkdirSync). Script will crash silently on permission errors or disk space issues. Add try-catch blocks for production use."
+      },
+      {
+        "severity": "info",
+        "file": "70 Sistema/Automacao/n8n-selfhost/README.md",
+        "line": 71,
+        "description": "Credentials (Anthropic API key, Notion token) are referenced as stored in n8n credential store. Verify that n8n instance has encryption-at-rest enabled and is not exposed to untrusted networks."
+      }
+    ],
+    "riskScore": 15,
+    "recommendations": [
+      "✅ **Passing:** No hardcoded secrets found in provided JavaScript or configuration files. The CRM API key previously exposed in vault has been removed (security monitor detected and cleaned it).",
+      "✅ **Passing:** No SQL injection risks detected — no database operations in provided code.",
+      "✅ **Passing:** No XSS vulnerabilities — backend scripts only, no unsanitized user input rendering.",
+      "✅ **Passing:** Basic Node.js dependencies (fs, path, crypto) are built-in and standard.",
+      "⚠️ **Action:** Ensure `.env` files and `config.json` containing secrets remain in `.gitignore` and are never synced to cloud storage (OneDrive). The vault currently has this controlled but verify OneDrive folder sharing permissions.",
+      "⚠️ **Action:** Implement error handling in `bootstrap_jarvis_os.js` for file system operations to prevent silent failures.",
+      "⚠️ **Action:** Document the collision risk tolerance for 12-character hash shortening in `external_id.js` or increase to full-length hash if collision is a concern.",
+      "✅ **Process:** Security rotation runbook exists (`70 Sistema/Runbooks/Rotate_CRM_Key.md`). Ensure this is followed for any key compromise.",
+      "✅ **Process:** Architecture specifies credentials go to n8n credential store or environment variables, not vault — this is correctly documented in CONSTITUTION.md and Runbooks."
+    ]
+  },
+  "durationMs": 23123,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T21:35:41.209Z",
+  "executionId": "audit_1783460118086_jmzkk4"
+}
