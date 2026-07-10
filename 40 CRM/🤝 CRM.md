@@ -6,7 +6,7 @@ criado: 2026-06-27
 atualizado: 2026-06-27
 tags: []
 ---
-<!-- 🔒 Chave de API YALT removida pelo monitor de segurança (estava em texto puro). ROTACIONE-A (ver 70 Sistema/Runbooks/Rotate_CRM_Key.md) e guarde a nova em n8n credentials / env var YALT_API_KEY — nunca no vault. -->
+<!-- 🔒 Chave da API YALT removida pelo monitor de segurança (estava em texto puro). ROTACIONE-A (ver 70 Sistema/Runbooks/Rotate_CRM_Key.md) e guarde a nova em n8n credentials / env var YALT_API_KEY — nunca no vault. -->
 https://sales-crm.yalt.co/dashboard
 # 🤝 CRM
 
