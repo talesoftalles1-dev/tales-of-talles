@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkOllama, generateWithOllama } from "../morning-brief/lib/ollama.mjs";
-import { getAllMyLeads, getLeadContacts } from "./lib/yalt.mjs";
+import { getAllMyLeads, getLeadContacts, createEmailDraft } from "./lib/yalt.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MODEL = process.env.JARVIS_BRAIN_MODEL || "gemma4";
@@ -62,6 +62,13 @@ function decisionOf(lead, contacts) {
 
 async function genDraft(lead, decision, contactEmail) {
   const prompt =
+    `Escreva um email de cold outreach 1:1, em PT-BR, curto (máx 120 palavras), tom executivo e humano (nada de robótico).` +
+    ` Destinatário: ${decision?.name || lead.contactPerson || "Equipa"}${decision?.title ? " (" + decision.title + ")" : ""}.` +
+    ` Empresa: ${lead.businessName}${lead.city ? " (" + lead.city + ")" : ""}.` +
+    ` Contexto: somos a Yalt (portal comercial B2B que liga fornecedores e compradores). Objetivo: abrir porta para uma chamada de 15 min esta semana.` +
+    ` Regras obrigatórias: SEM placeholders {{}} ou colchetes []; NUNCA "Olá [Nome]"; se não souber um dado, omita-o;` +
+    ` mencione 1 facto real da empresa se houver (localização/setor); CTA claro de agendamento;` +
+    ` assinatura "Talles"; uma linha curta de opt-out no fim (ex.: "Se não é o momento, basta ignorar"). Sem HTML, só texto.`;
     `Escreva um email de cold outreach 1:1, em PT-BR, curto (máx 120 palavras), tom executivo e humano.` +
     ` Destinatário: ${decision?.name || lead.contactPerson || "Equipa"}${decision?.title ? " (" + decision.title + ")" : ""}.` +
     ` Empresa: ${lead.businessName}${lead.city ? " (" + lead.city + ")" : ""}.` +
@@ -116,6 +123,20 @@ async function main() {
       body,
       sendReal: config.sendReal,
     });
+    // Envio real (opcional, atrás de YALT_SEND_REAL=1): agenda no CRM com
+    // scheduledAt no futuro (fila, não disparo imediato). Requer Gmail/ESP ligado.
+    if (config.sendReal) {
+      const when = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // +1h
+      const r = await createEmailDraft(config.apiKey, {
+        leadId: lead.id,
+        to: email,
+        subject: `Parceria Yalt · ${lead.businessName}`,
+        bodyHtml: body.replace(/\n/g, "<br>"),
+        scheduledAt: when,
+        trackingEnabled: true,
+      });
+      console.log(`  → enviado(agendado) ${email}: HTTP ${r.statusCode}`);
+    }
   }
 
   const md = drafts
@@ -126,6 +147,7 @@ async function main() {
   fs.writeFileSync(mdPath, `# Cold Emails (rascunho) — ${today}\n\n${md}`, "utf8");
   fs.writeFileSync(jsonPath, JSON.stringify(drafts, null, 2), "utf8");
   console.log(`Rascunhos: ${drafts.length} | MD: ${mdPath} | JSON: ${jsonPath}`);
+  console.log(config.sendReal ? "Envio real AGENDADO via CRM (scheduledAt +1h). Confirme Gmail/ESP no CRM." : "Nenhum envio real efetuado (modo rascunho).");
   console.log(config.sendReal ? "ENVIAR_REAL não implementado neste pipeline (exige Gmail/ESP) — rascunho salvo apenas." : "Nenhum envio real efetuado.");
 }
 
