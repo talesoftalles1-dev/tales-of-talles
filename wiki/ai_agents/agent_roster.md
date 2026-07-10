@@ -28,7 +28,12 @@ Status operacional dos agentes do JARVIS OS. **Regra de honestidade:** este arqu
 | **EA / Jarvis** | 🟢 Ativo — gera `output/daily_dashboard.md` diariamente às 07:00 | Tarefa Windows "JARVIS Executive Assistant" |
 | **TOR** (dev) | 🔵 Sob demanda — via sessões Claude Code / E4 | Invocação manual |
 | **BOBBY** (comercial) | 🟢 Ativo — pipeline `commercial-crm` (Frentes 1·2·3) roda no branch `fix/workflows-replacement-n8n`; Gerente/enriquecimento/cold-email via Gemma 4 + CRM Yalt | `.github/workflows/commercial-crm-agents.yml` + `70 Sistema/Automacao/commercial-crm/` |
-| **RESEARCH · WRITING · FINANCE · CALENDAR · KNOWLEDGE · HEALTH** | ⚪ Sob demanda — sem agendamento próprio | Invocação via Jarvis |
+| **RESEARCH** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` | `.claude/agents/research.md` · carta em `_Contrato de Autoridade` |
+| **WRITING** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` | `.claude/agents/writing.md` · carta em `_Contrato de Autoridade` |
+| **FINANCE** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` (nunca move dinheiro) | `.claude/agents/finance.md` · carta em `_Contrato de Autoridade` |
+| **CALENDAR** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` | `.claude/agents/calendar.md` · carta em `_Contrato de Autoridade` |
+| **KNOWLEDGE** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` (mantém a Wiki) | `.claude/agents/knowledge.md` · carta em `_Contrato de Autoridade` |
+| **HEALTH** | 🟢 Ativo — agente de domínio, `model: gemma4-jarvis` | `.claude/agents/health.md` · carta em `_Contrato de Autoridade` |
 
 ## 👥 Estagiários (camada de execução)
 

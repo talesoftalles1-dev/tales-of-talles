@@ -63,10 +63,10 @@ const CHAVES_PROIBIDAS = {
 };
 const DATA_RE = /^\d{4}-\d{2}-\d{2}$/;
 
-const SKIP_FOLDERS = ["90 Arquivo", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".git", "node_modules", "raw", "logs", "pixel-agents"];
+const SKIP_FOLDERS = ["90 Arquivo", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".claudian", ".git", "node_modules", "raw", "logs", "pixel-agents", "Jarvis"];
 const SEM_FRONTMATTER_OK = ["AGENTS.md", "CLAUDE.md", "README.md", "60 Conhecimento/Wiki/index.md", "60 Conhecimento/Wiki/log.md", "output/daily_dashboard.md"];
 // Fora do lint por design: histórico superseded + o próprio relatório (auto-referência):
-const EXEMPT = ["CONSTITUTION.md", "output/vault_lint.md"];
+const EXEMPT = ["CONSTITUTION.md", "output/vault_lint.md", "output/bobby_comercial.md", "output/ea_briefing_executivo.md", "output/organizer_log.md"];
 
 // ---------------------------------------------------------------------------
 // Parser mínimo (mesmo padrão de morning-brief/lib/vault.mjs — CRLF → LF)
