@@ -1,3 +1,14 @@
+---
+tipo: runbook
+status: ativo
+area: sistema
+dominio: jarvis
+titulo: JARVIS Commercial CRM — Agentes Comerciais (Frentes 1·2·3)
+tags:
+  - comercial
+  - automacao
+---
+
 # JARVIS Commercial CRM — Agentes Comerciais (Frentes 1·2·3)
 
 Pipeline de agentes comerciais do JARVIS. Stack: Node + Gemma 4 (Ollama local) + CRM Yalt.
