@@ -1,0 +1,23 @@
+[2026-07-07T21:27:57.379Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [],\n  \"riskScore\": 8,\n  \"recommendations\": [\n    \"File permissions: bootstrap_jarvis_os.js creates directories with default umask; consider explicitly setting restrictive permissions (e.g., 0o750) if sensitive data will be stored\",\n    \"Hash collision: external_id.js truncates SHA-256 to 12 chars (~48 bits); for a small vault this is safe, but document the collision risk and maximum recommended note count\",\n    \"Dependency audit: add 'npm audit' to CI/CD; no vulnerabilities found in current code, but lock production Node.js version\",\n    \"Environment hardening: .env.example correctly avoids committing secrets; ensure .env and .env.local are in .gitignore\",\n    \"Path handling: bootstrap_jarvis_os.js should validate chapter filenames to prevent path traversal if input ever becomes user-controlled (currently hardcoded, so safe)\"\n  ]\n}\n```\n\n**Analysis Summary:**\n\nYour codebase has **no critical vulnerabilities**. The provided Node.js scripts and configuration are security-conscious:\n\n- ✅ **No hardcoded secrets** — `.env.example` correctly uses placeholders; sensitive values go in `.env` (should be .gitignored)\n- ✅ **No SQL injection** — No database operations; only file I/O using safe Node.js APIs\n- ✅ **No XSS** — Server-side Node.js utilities, no web-facing rendering\n- ✅ **No auth bypass** — No authentication logic present\n- ✅ **Safe crypto** — Uses `crypto.createHash('sha256')` correctly; `randomBytes(24)` recommendation is solid\n\n**Minor observations (low-risk):**\n1. Directory creation doesn't explicitly set permissions (uses umask default)\n2. External ID truncation to 12 hex chars = ~48-bit uniqueness; acceptable for personal vault, but document scale limits\n3. `bootstrap_jarvis_os.js` operates on `process.cwd()` by default — not a vulnerability, but ensure it's called from the intended root\n\nThe vault is well-structured from a secrets-handling perspective. Continue protecting `.env` files from version control.\n",
+  "parsedOutput": {
+    "vulnerabilities": [],
+    "riskScore": 8,
+    "recommendations": [
+      "File permissions: bootstrap_jarvis_os.js creates directories with default umask; consider explicitly setting restrictive permissions (e.g., 0o750) if sensitive data will be stored",
+      "Hash collision: external_id.js truncates SHA-256 to 12 chars (~48 bits); for a small vault this is safe, but document the collision risk and maximum recommended note count",
+      "Dependency audit: add 'npm audit' to CI/CD; no vulnerabilities found in current code, but lock production Node.js version",
+      "Environment hardening: .env.example correctly avoids committing secrets; ensure .env and .env.local are in .gitignore",
+      "Path handling: bootstrap_jarvis_os.js should validate chapter filenames to prevent path traversal if input ever becomes user-controlled (currently hardcoded, so safe)"
+    ]
+  },
+  "durationMs": 20206,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T21:27:57.379Z",
+  "executionId": "audit_1783459657173_kny67x"
+}

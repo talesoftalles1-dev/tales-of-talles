@@ -1,0 +1,58 @@
+[2026-07-07T19:53:53.722Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "Now I'll generate the security audit report based on my analysis of the codebase:\n\n```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"medium\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/workflows/01-tales-ilia.json\",\n      \"line\": 20,\n      \"description\": \"Webhook configured with allowedOrigins: '*' — exposes endpoint to CSRF attacks from any origin. Should restrict to known domains only.\",\n      \"category\": \"cors-misconfiguration\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/workflows/08-tales-notion-sync.json\",\n      \"line\": 20,\n      \"description\": \"Webhook configured with allowedOrigins: '*' — exposes endpoint to CSRF attacks from any origin. Recommendation: restrict to specific domains.\",\n      \"category\": \"cors-misconfiguration\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/scripts/bootstrap_jarvis_os.js\",\n      \"line\": 53,\n      \"description\": \"TOCTOU (Time-Of-Check-Time-Of-Use) race condition: script checks file existence before writing, but doesn't handle concurrent execution. Low-risk for bootstrap scripts but should use atomic operations.\",\n      \"category\": \"race-condition\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 17,\n      \"description\": \"No input validation on notePath parameter. While the hash operation is safe, path traversal should be validated with path.normalize() checks before use in other contexts.\",\n      \"category\": \"input-validation\"\n    }\n  ],\n  \"riskScore\": 28,\n  \"recommendations\": [\n    \"✅ Secrets management is correctly configured: .gitignore properly excludes .env, config.json, credentials, and data.json files\",\n    \"✅ No hardcoded API keys, passwords, or tokens found in tracked code\",\n    \"✅ n8n workflow credentials use proper credential storage system (referenced by name, not hardcoded)\",\n    \"⚠️  Restrict CORS allowedOrigins from '*' to specific trusted domains in all webhooks (lines 20 in workflow files)\",\n    \"⚠️  Add Origin validation: update n8n workflows to explicitly list allowed origins rather than wildcard\",\n    \"✅ No SQL injection vulnerabilities detected (no database queries in provided code)\",\n    \"✅ No XSS vulnerabilities detected (backend/Node.js code, not web-facing HTML rendering)\",\n    \"✅ Bootstrap script (bootstrap_jarvis_os.js) uses safe file operations with hardcoded paths\",\n    \"✅ Docker compose properly externalizes secrets via environment variables (no .env committed)\",\n    \"💡 Recommendation: Add rate limiting to n8n webhooks to prevent abuse\",\n    \"💡 Recommendation: Enable authentication/API key requirement for webhook endpoints instead of open access\"\n  ]\n}\n```\n\n**Summary:**\n\nThe codebase demonstrates **good security practices** overall:\n- Secrets are properly externalized via `.env` files and n8n credential storage\n- No hardcoded credentials found in version-controlled files\n- `.gitignore` is well-configured to exclude sensitive data\n\n**Key findings:**\n1. **Medium risk (CORS)**: Two webhook endpoints allow requests from any origin (`allowedOrigins: '*'`), creating CSRF vulnerability potential\n2. **Low risk (Race condition)**: Bootstrap script has a theoretical TOCTOU race condition (minor issue for bootstrap-time operations)\n3. **Low risk (Input validation)**: external_id.js lacks path validation (though the hash operation itself is safe)\n\n**Risk Score: 28/100** — Low overall risk with minor security improvements recommended for webhook CORS configuration.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "medium",
+        "file": "70 Sistema/Automacao/n8n-selfhost/workflows/01-tales-ilia.json",
+        "line": 20,
+        "description": "Webhook configured with allowedOrigins: '*' — exposes endpoint to CSRF attacks from any origin. Should restrict to known domains only.",
+        "category": "cors-misconfiguration"
+      },
+      {
+        "severity": "medium",
+        "file": "70 Sistema/Automacao/n8n-selfhost/workflows/08-tales-notion-sync.json",
+        "line": 20,
+        "description": "Webhook configured with allowedOrigins: '*' — exposes endpoint to CSRF attacks from any origin. Recommendation: restrict to specific domains.",
+        "category": "cors-misconfiguration"
+      },
+      {
+        "severity": "low",
+        "file": "70 Sistema/Automacao/n8n-selfhost/scripts/bootstrap_jarvis_os.js",
+        "line": 53,
+        "description": "TOCTOU (Time-Of-Check-Time-Of-Use) race condition: script checks file existence before writing, but doesn't handle concurrent execution. Low-risk for bootstrap scripts but should use atomic operations.",
+        "category": "race-condition"
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 17,
+        "description": "No input validation on notePath parameter. While the hash operation is safe, path traversal should be validated with path.normalize() checks before use in other contexts.",
+        "category": "input-validation"
+      }
+    ],
+    "riskScore": 28,
+    "recommendations": [
+      "✅ Secrets management is correctly configured: .gitignore properly excludes .env, config.json, credentials, and data.json files",
+      "✅ No hardcoded API keys, passwords, or tokens found in tracked code",
+      "✅ n8n workflow credentials use proper credential storage system (referenced by name, not hardcoded)",
+      "⚠️  Restrict CORS allowedOrigins from '*' to specific trusted domains in all webhooks (lines 20 in workflow files)",
+      "⚠️  Add Origin validation: update n8n workflows to explicitly list allowed origins rather than wildcard",
+      "✅ No SQL injection vulnerabilities detected (no database queries in provided code)",
+      "✅ No XSS vulnerabilities detected (backend/Node.js code, not web-facing HTML rendering)",
+      "✅ Bootstrap script (bootstrap_jarvis_os.js) uses safe file operations with hardcoded paths",
+      "✅ Docker compose properly externalizes secrets via environment variables (no .env committed)",
+      "💡 Recommendation: Add rate limiting to n8n webhooks to prevent abuse",
+      "💡 Recommendation: Enable authentication/API key requirement for webhook endpoints instead of open access"
+    ]
+  },
+  "durationMs": 51865,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T19:53:53.721Z",
+  "executionId": "audit_1783453981856_mjvk2s"
+}

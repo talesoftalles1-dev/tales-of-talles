@@ -1,0 +1,56 @@
+[2026-07-07T15:28:47.808Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"medium\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 22,\n      \"description\": \"Path traversal risk: The 'notePath' parameter from command-line arguments is passed to path.resolve() without validation. An attacker could provide paths like '../../../etc/passwd' to generate hashes for arbitrary files outside the intended repository. Add validation to ensure resolved paths stay within repoRoot boundaries.\"\n    },\n    {\n      \"severity\": \"medium\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 14,\n      \"description\": \"Weak identifier entropy: SHA-256 hash is truncated to 12 hex characters (48 bits entropy). While acknowledged in comments, this creates collision risk and may be insufficient for large-scale unique identification systems. Consider using full 16-20 char hashes or adding collision detection.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 18,\n      \"description\": \"No input validation: 'repoRoot' parameter is not validated to ensure it's an absolute path or that it exists. Malformed inputs could cause unexpected behavior. Add path validation before processing.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 51,\n      \"description\": \"Missing error handling: fs.mkdirSync() and fs.writeFileSync() calls lack try-catch blocks. File system failures will crash the script. Add proper error handling and user feedback.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 46,\n      \"description\": \"File permissions not explicitly set: fs.mkdirSync() creates directories with default umask permissions. On multi-user systems, this could make sensitive files readable by other users. Explicitly set restrictive permissions (0o700 for dirs, 0o600 for files).\"\n    }\n  ],\n  \"riskScore\": 28,\n  \"recommendations\": [\n    \"Add path validation to external_id.js: Ensure notePath resolves within repoRoot using path.relative() checks. Reject if relative path escapes bounds.\",\n    \"Increase external ID entropy: Use at least 16 hex characters from SHA-256 (64 bits). Consider UUIDs or full hash for production systems.\",\n    \"Add input validation: Validate repoRoot exists and is an absolute path before processing.\",\n    \"Add error handling: Wrap file system operations in bootstrap_jarvis_os.js with try-catch and provide informative error messages.\",\n    \"Set explicit file permissions: Use fs.mkdirSync(dirPath, { recursive: true, mode: 0o700 }) and fs.writeFileSync() with explicit modes on Unix systems.\",\n    \"Review .env.example handling: Ensure .env is never committed to version control; add .env to .gitignore if not already present.\",\n    \"No hardcoded secrets detected: ✓ Current code is clean of API keys, passwords, or credentials.\"\n  ]\n}\n```\n\n**Summary:** The codebase has low-to-medium risk primarily around **path traversal in file hash generation** and **missing input validation**. No critical vulnerabilities like hardcoded secrets, SQL injection, or XSS were found. The main concerns are defensive: add bounds-checking for file paths, increase hash entropy, and add proper error handling for file operations.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "medium",
+        "file": "sample/scripts/external_id.js",
+        "line": 22,
+        "description": "Path traversal risk: The 'notePath' parameter from command-line arguments is passed to path.resolve() without validation. An attacker could provide paths like '../../../etc/passwd' to generate hashes for arbitrary files outside the intended repository. Add validation to ensure resolved paths stay within repoRoot boundaries."
+      },
+      {
+        "severity": "medium",
+        "file": "sample/scripts/external_id.js",
+        "line": 14,
+        "description": "Weak identifier entropy: SHA-256 hash is truncated to 12 hex characters (48 bits entropy). While acknowledged in comments, this creates collision risk and may be insufficient for large-scale unique identification systems. Consider using full 16-20 char hashes or adding collision detection."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 18,
+        "description": "No input validation: 'repoRoot' parameter is not validated to ensure it's an absolute path or that it exists. Malformed inputs could cause unexpected behavior. Add path validation before processing."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 51,
+        "description": "Missing error handling: fs.mkdirSync() and fs.writeFileSync() calls lack try-catch blocks. File system failures will crash the script. Add proper error handling and user feedback."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 46,
+        "description": "File permissions not explicitly set: fs.mkdirSync() creates directories with default umask permissions. On multi-user systems, this could make sensitive files readable by other users. Explicitly set restrictive permissions (0o700 for dirs, 0o600 for files)."
+      }
+    ],
+    "riskScore": 28,
+    "recommendations": [
+      "Add path validation to external_id.js: Ensure notePath resolves within repoRoot using path.relative() checks. Reject if relative path escapes bounds.",
+      "Increase external ID entropy: Use at least 16 hex characters from SHA-256 (64 bits). Consider UUIDs or full hash for production systems.",
+      "Add input validation: Validate repoRoot exists and is an absolute path before processing.",
+      "Add error handling: Wrap file system operations in bootstrap_jarvis_os.js with try-catch and provide informative error messages.",
+      "Set explicit file permissions: Use fs.mkdirSync(dirPath, { recursive: true, mode: 0o700 }) and fs.writeFileSync() with explicit modes on Unix systems.",
+      "Review .env.example handling: Ensure .env is never committed to version control; add .env to .gitignore if not already present.",
+      "No hardcoded secrets detected: ✓ Current code is clean of API keys, passwords, or credentials."
+    ]
+  },
+  "durationMs": 22721,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T15:28:47.808Z",
+  "executionId": "audit_1783438105087_2c5yc0"
+}

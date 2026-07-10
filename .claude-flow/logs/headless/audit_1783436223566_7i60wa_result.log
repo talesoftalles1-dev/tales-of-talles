@@ -1,0 +1,45 @@
+[2026-07-07T14:57:26.150Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 66,\n      \"description\": \"No input validation on process.cwd() or hardcoded directory paths. If executed from unexpected directory, could create unintended file structure. Consider validating cwd or accepting explicit root path parameter.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 70,\n      \"description\": \"File creation does not explicitly set permissions. Uses system defaults. Consider setting restrictive mode (e.g., 0o644) if files contain sensitive metadata or access control matters.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 20,\n      \"description\": \"SHA256 hash truncated to 12 characters reduces collision resistance. While acceptable for internal use, consider documenting the security assumptions (scale, use case) that make this acceptable.\"\n    }\n  ],\n  \"riskScore\": 18,\n  \"recommendations\": [\n    \"✓ No hardcoded secrets detected — .env.example correctly uses placeholders and instructs users to generate own N8N_ENCRYPTION_KEY\",\n    \"✓ No SQL injection, XSS, or authentication bypass vulnerabilities in provided scripts\",\n    \"✓ Dependencies (crypto, fs, path) are Node.js built-ins with no supply-chain risk\",\n    \"Add path validation in bootstrap_jarvis_os.js to prevent accidental creation of files in wrong directory\",\n    \"Document the security model for external_id.js truncation (why 12 chars is sufficient for this codebase)\",\n    \"Consider explicit file mode in fs.writeFileSync() calls if vault files may contain sensitive metadata\",\n    \"Verify that .env (production file) is in .gitignore and never committed — spot-check recent commits\",\n    \"Audit n8n webhook URL configuration to ensure reverse-proxy/tunnel URLs don't leak internal addresses\"\n  ]\n}\n```\n\n**Summary:** This codebase has a **very low risk profile (18/100)**. It's a Node.js utility suite with no exposed secrets, SQL/XSS surfaces, or insecure dependencies. The three low-severity findings are minor hardening suggestions (input validation, file permissions, hash documentation) rather than exploitable vulnerabilities. The `.env.example` file correctly stores placeholders only—confirm that the actual `.env` is gitignored.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 66,
+        "description": "No input validation on process.cwd() or hardcoded directory paths. If executed from unexpected directory, could create unintended file structure. Consider validating cwd or accepting explicit root path parameter."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 70,
+        "description": "File creation does not explicitly set permissions. Uses system defaults. Consider setting restrictive mode (e.g., 0o644) if files contain sensitive metadata or access control matters."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 20,
+        "description": "SHA256 hash truncated to 12 characters reduces collision resistance. While acceptable for internal use, consider documenting the security assumptions (scale, use case) that make this acceptable."
+      }
+    ],
+    "riskScore": 18,
+    "recommendations": [
+      "✓ No hardcoded secrets detected — .env.example correctly uses placeholders and instructs users to generate own N8N_ENCRYPTION_KEY",
+      "✓ No SQL injection, XSS, or authentication bypass vulnerabilities in provided scripts",
+      "✓ Dependencies (crypto, fs, path) are Node.js built-ins with no supply-chain risk",
+      "Add path validation in bootstrap_jarvis_os.js to prevent accidental creation of files in wrong directory",
+      "Document the security model for external_id.js truncation (why 12 chars is sufficient for this codebase)",
+      "Consider explicit file mode in fs.writeFileSync() calls if vault files may contain sensitive metadata",
+      "Verify that .env (production file) is in .gitignore and never committed — spot-check recent commits",
+      "Audit n8n webhook URL configuration to ensure reverse-proxy/tunnel URLs don't leak internal addresses"
+    ]
+  },
+  "durationMs": 22584,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T14:57:26.150Z",
+  "executionId": "audit_1783436223566_7i60wa"
+}

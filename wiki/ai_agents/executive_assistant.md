@@ -2,17 +2,10 @@
 dominio: jarvis
 tipo: agent
 status: canonico
-<<<<<<< HEAD
 titulo: Executive Assistant — Contrato do Agente
 area: sistema
 criado: 2026-06-27
-atualizado: 2026-07-06
-=======
-titulo: Executive Assistant — Agent Contract
-area: sistema
-criado: 2026-06-27
-atualizado: 2026-07-03
->>>>>>> reconcile/vault-merge-20260628
+atualizado: 2026-07-09
 aliases:
   - Executive Assistant
   - EA Agent
@@ -73,4 +66,5 @@ Varrer `raw/inbox.md`, `raw/clips/` e `10 Inbox/`; classificar cada captura; cal
 
 1. **v1.1** — loop de feedback: Operador reordena o HOJE, EA aprende o ajuste.
 2. **v2.0** — integração de agenda (CALENDAR) no brief.
-3. **v3.0** — triagem preditiva por padrão histórico (modelo local, ver Relatório de Arquitetura §8).
+3. **v2.1** — substituir n8n por GitHub Actions como backend canônico de automação/rotinas do vault; manter roadmaps/documentação, mas mover execução para Actions onde for mais simples, idempotente e auditável.
+4. **v3.0** — triagem preditiva por padrão histórico (modelo local, ver Relatório de Arquitetura §8).
