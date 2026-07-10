@@ -5,6 +5,11 @@ on:
     # 07:00 UTC = 08:00 Lisboa (horário de verão) / 07:00 WET. Ajuste se necessário.
     - cron: "0 7 * * *"
   workflow_dispatch:
+    inputs:
+      cold_email_limit:
+        description: "Limite de rascunhos de cold email por run"
+        required: false
+        default: "10"
 
 permissions:
   contents: write
@@ -21,6 +26,17 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Setup Ollama (cérebro local) — opcional
+        # O Gerente usa Gemma 4 se o Ollama estiver disponível; senão cai no
+        # briefing fallback (ainda funcional). Pull de ~9.6GB pode demorar;
+        # se falhar, o passo seguinte continua com fallback.
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          ollama serve &
+          sleep 5
+          ollama pull gemma4 || echo "gemma4 pull falhou — Gerente usará fallback"
+
       - name: Run Frente 1 — Gerente (briefing diário)
         env:
           YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
@@ -30,12 +46,18 @@ jobs:
       - name: Run Frente 2 — Enriquecimento
         env:
           YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
+          # Enriquecimento web opcional (Firecrawl) para lacunas de decisor/linkedin.
+          # Desligado por padrão; ligue definindo YALT_ENRICH_FIRECRAWL=1 e o segredo.
+          YALT_ENRICH_FIRECRAWL: ${{ vars.YALT_ENRICH_FIRECRAWL || '0' }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          YALT_ENRICH_FIRECRAWL_LIMIT: "20"
         run: node "70 Sistema/Automacao/commercial-crm/enrichment.mjs"
 
       - name: Run Frente 3 — Cold email (rascunho only, sem envio)
         env:
           YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
           YALT_SEND_REAL: "0"
+        run: node "70 Sistema/Automacao/commercial-crm/cold_email.mjs" --limit ${{ github.event.inputs.cold_email_limit || '10' }}
         run: node "70 Sistema/Automacao/commercial-crm/cold_email.mjs" --limit 10
 
       - name: Commit outputs (regeneráveis)

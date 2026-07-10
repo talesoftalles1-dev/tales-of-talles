@@ -28,12 +28,15 @@ function loadConfig() {
     scope: "mine",
     limit: 200,
     tryEnrich: process.env.YALT_ENRICH === "1", // opcional, custa e pode estar inativo
+    tryEnrichWeb: process.env.YALT_ENRICH_FIRECRAWL === "1", // web (Firecrawl) p/ lacunas
+    webEnrichLimit: Number(process.env.YALT_ENRICH_FIRECRAWL_LIMIT || "20"), // teto de web-enrichs por run
     outputDir: path.resolve(__dirname, "..", "..", "..", "output", "comercial"),
     logDir: path.join(__dirname, "logs"),
   };
   if (!fs.existsSync(cfgPath)) return defaults;
   const raw = JSON.parse(fs.readFileSync(cfgPath, "utf8"));
   return {
+    apiKey: process.env.YALT_API_KEY || defaults.apiKey,
     apiKey: raw.apiKey || defaults.apiKey,
     scope: raw.scope || defaults.scope,
     limit: raw.limit || defaults.limit,
@@ -82,6 +85,17 @@ async function main() {
   let gaps = 0;
   let enrichAttempts = 0;
   let enrichOk = 0;
+  let webEnrichedCount = 0;
+
+  for (const lead of leads) {
+    const contacts = await getLeadContacts(config.apiKey, lead.id);
+    // bandeiras por-lead (não cumulativas de contactos)
+    const leadHasContacts = contacts.length > 0;
+    const leadHasEmail = leadHasContacts ? withEmailContact(contacts) : false;
+    const leadHasLinkedin = leadHasContacts ? withLinkedinContact(contacts) : false;
+    let bestDecision = null;
+    for (const c of contacts) {
+      if (isDecisionRole(c)) {
 
   for (const lead of leads) {
     const contacts = await getLeadContacts(config.apiKey, lead.id);
@@ -98,10 +112,7 @@ async function main() {
       if (config.tryEnrich && !hasEmail(c) && !hasLinkedin(c)) {
         enrichAttempts++;
         const r = await enrichContact(config.apiKey, c.id, "lusha");
-        if (r.ok) {
-          enrichOk++;
-          // re-leitura opcional; por ora regista sucesso
-        }
+        if (r.ok) enrichOk++;
       }
     }
     // Decisor também pode vir do salesData do próprio lead
@@ -119,6 +130,15 @@ async function main() {
       city: lead.city,
       locations: lead._locationCount,
       contacts: contacts.length,
+      hasDecision: hasDecision || !!webDecision,
+      hasEmail: leadHasEmail || hasEmail(lead),
+      hasLinkedin: leadHasLinkedin || !!webLinkedin,
+      decisionName: bestDecision ? `${bestDecision.first_name} ${bestDecision.last_name}`.trim() : (sdDecision?.name || webDecision?.name || null),
+      decisionTitle: bestDecision?.position || sdDecision?.title || webDecision?.title || null,
+      email: firstEmail(contacts) || (hasEmail(lead) ? lead.email : null),
+      linkedin: firstLinkedin(contacts) || webLinkedin || null,
+    });
+    if (webEnriched) webEnrichedCount++;
       hasDecision: !!(bestDecision || sdDecision),
       hasEmail: withEmailContact(contacts) || hasEmail(lead),
       hasLinkedin: withLinkedinContact(contacts),
@@ -140,6 +160,8 @@ async function main() {
     lacunas: gaps,
     enrichAttempts,
     enrichOk,
+    webEnrichAtivo: config.tryEnrichWeb,
+    webEnrichEncontrados: webEnrichedCount,
     enriquecimentoAtivo: config.tryEnrich,
     detalhe: rows,
   };
