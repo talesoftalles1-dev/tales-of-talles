@@ -44,3 +44,8 @@ Thumbs.db
 70 Sistema/Automacao/*/config.json
 70 Sistema/Automacao/*/state/
 70 Sistema/Automacao/*/logs/
+
+# --- Duplicata do vault (sync OneDrive caiu dentro do repo Desktop) ---
+# NÃO é o vault canônico; está em C:\Users\talle\OneDrive\Documents\Jarvis.
+# Mantido fora do git + lint. Move para backup fora do repo (ver histórico).
+Jarvis/
