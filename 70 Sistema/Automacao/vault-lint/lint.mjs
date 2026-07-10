@@ -63,7 +63,7 @@ const CHAVES_PROIBIDAS = {
 };
 const DATA_RE = /^\d{4}-\d{2}-\d{2}$/;
 
-const SKIP_FOLDERS = ["90 Arquivo", ".trash", "Excalidraw", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".claudian", ".hermes", ".git", "node_modules", "raw", "logs", "pixel-agents", "Jarvis", "output/comercial"];
+const SKIP_FOLDERS = ["90 Arquivo", ".trash", "Excalidraw", "70 Sistema/Templates", "70 Sistema/Automacao/n8n-selfhost", ".obsidian", ".claude", ".claudian", ".hermes", ".git", "node_modules", "raw", "logs", "pixel-agents", "Jarvis", "output/comercial", "textgenerator"];
 const SEM_FRONTMATTER_OK = ["AGENTS.md", "CLAUDE.md", "HERMES.md", "README.md", "60 Conhecimento/Wiki/index.md", "60 Conhecimento/Wiki/log.md", "output/daily_dashboard.md"];
 // Fora do lint por design: histórico superseded + o próprio relatório (auto-referência):
 const EXEMPT = ["CONSTITUTION.md", "output/vault_lint.md", "output/bobby_comercial.md", "output/ea_briefing_executivo.md", "output/organizer_log.md"];
