@@ -3,17 +3,10 @@ dominio: jarvis
 aliases:
   - "Archives & Migration"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 25 — Archives & Migration.md
 status: arquivado
 area: 60 Conhecimento
 title: Archives & Migration
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: sistema
-titulo: Archives & Migration
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:60 Conhecimento/Chapter 25 — Archives & Migration.md
 ---
 
 <!-- canonicity-banner -->

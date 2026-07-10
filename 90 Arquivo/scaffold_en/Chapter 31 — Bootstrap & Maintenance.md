@@ -3,17 +3,10 @@ dominio: jarvis
 aliases:
   - "Bootstrap & Maintenance"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 31 — Bootstrap & Maintenance.md
 status: arquivado
 area: 70 Sistema
 title: Bootstrap & Maintenance
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: sistema
-titulo: Bootstrap & Maintenance
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:70 Sistema/Chapter 31 — Bootstrap & Maintenance.md
 ---
 
 <!-- canonicity-banner -->

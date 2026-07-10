@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Partnerships & Legal"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 15 — Partnerships & Legal.md
 status: arquivado
 area: 30 Empresa
 title: Partnerships & Legal
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: empresa
-titulo: Partnerships & Legal
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:30 Empresa/Chapter 15 — Partnerships & Legal.md
 ---
 
 <!-- canonicity-banner -->

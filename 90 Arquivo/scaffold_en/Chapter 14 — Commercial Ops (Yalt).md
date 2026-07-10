@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Commercial Ops (Yalt)"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 14 — Commercial Ops (Yalt).md
 status: arquivado
 area: 30 Empresa
 title: Commercial Ops (Yalt)
 created: 2026-06-27T18:24:00Z
-=======
-status: ativo
-area: empresa
-titulo: Commercial Ops (Yalt)
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:30 Empresa/Chapter 14 — Commercial Ops (Yalt).md
 ---
 
 <!-- canonicity-banner -->

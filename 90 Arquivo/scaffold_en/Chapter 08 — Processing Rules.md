@@ -3,17 +3,10 @@ dominio: jarvis
 aliases:
   - "Processing Rules"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 08 — Processing Rules.md
 status: arquivado
 area: 10 Inbox
 title: Processing Rules
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: sistema
-titulo: Processing Rules
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:10 Inbox/Chapter 08 — Processing Rules.md
 ---
 
 <!-- canonicity-banner -->
