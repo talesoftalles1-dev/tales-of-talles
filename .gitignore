@@ -24,10 +24,16 @@ CREDENTIALS.md
 pixel-agents/
 
 # --- Obsidian: estado de sessão local (churn por máquina) ---
-# IMPORTANTE: .obsidian/ INTEIRO é ignorado — inclui plugins com
-# client secrets hardcoded (ex: remotely-save/main.js com chaves do
-# OneDrive/Dropbox/Google/Koofr). Nunca versionar isto.
-.obsidian/
+.obsidian/workspace.json
+.obsidian/workspaces.json
+.obsidian/graph.json
+# Decisão anti-corrupção de sync OneDrive (_Spec §6):
+.obsidian/community-plugins.json
+.obsidian/plugins/*/data.json
+.obsidian/plugins/
+.obsidian/themes/
+.obsidian/hotkeys.json
+.obsidian/text-generator.json
 .trash/
 
 # --- Node / builds ---
@@ -65,4 +71,6 @@ output/comercial/
 # NÃO é o vault canônico; está em C:\Users\talle\OneDrive\Documents\Jarvis.
 # Mantido fora do git + lint. Move para backup fora do repo (ver histórico).
 Jarvis/
+sai
+test-results/
 textgenerator/
