@@ -54,7 +54,11 @@
     "opencode": {
       "cliPath": "",
       "cliPathsByHost": {},
+<<<<<<< HEAD
       "enabled": false,
+=======
+      "enabled": true,
+>>>>>>> fb-remove-obsidian
       "environmentHash": "",
       "environmentVariables": "OPENCODE_ENABLE_EXA=1",
       "modelAliases": {},
