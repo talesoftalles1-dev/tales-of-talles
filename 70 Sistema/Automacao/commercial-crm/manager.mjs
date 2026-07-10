@@ -34,7 +34,7 @@ function loadConfig() {
   if (!fs.existsSync(cfgPath)) return defaults;
   const raw = JSON.parse(fs.readFileSync(cfgPath, "utf8"));
   return {
-    apiKey: raw.apiKey || defaults.apiKey,
+    apiKey: raw.apiKey || process.env.YALT_API_KEY || "",
     scope: raw.scope || defaults.scope,
     outputDir: raw.outputDir || defaults.outputDir,
     logDir: raw.logDir || defaults.logDir,
