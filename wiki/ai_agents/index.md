@@ -8,6 +8,7 @@ relacionado:
   - "[[_master_index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
   - "[[protocolo_orquestracao_jarvis]]"
+  - "[[orquestracao_mestre_hermes_claude_gemma4]]"
   - "[[estagiarios]]"
 tags:
   - tema/ia
