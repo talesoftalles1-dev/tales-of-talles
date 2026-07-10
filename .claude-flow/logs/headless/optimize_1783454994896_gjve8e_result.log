@@ -1,0 +1,81 @@
+[2026-07-07T20:11:21.528Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "This repo isn't a typical web app — there's no database and no React. It's a set of Node.js CLI scripts (`70 Sistema/Automacao/**/*.mjs`) that recursively read an Obsidian markdown vault (thousands of `.md` files), parse frontmatter/tasks, and regenerate output reports (`morning-brief`, `daily_dashboard`, `vault-lint`). So SQL N+1 and React re-renders don't apply. I mapped your five categories onto what actually exists here — redundant file/parse work, no caching between runs, and blocking I/O — with real file:line findings.\n\n## 1. \"N+1\" equivalent: redundant frontmatter parsing per note\n\n`70 Sistema/Automacao/vault-lint/lint.mjs` parses the same note's frontmatter **up to 3 times**:\n- `lintFrontmatter(note, ...)` (lint.mjs:145) parses it once\n- `coletarAlvos(notes)` (lint.mjs:201) parses it again for every note, for every lint run\n- `lintLinks(...)` (lint.mjs:235) parses it a third time in its own loop\n\n```js\n// lint.mjs — current: 3 independent parseFrontmatter(n.raw) calls across 3 functions\nfor (const n of notesAtivas) lintFrontmatter(n, erros, avisos);   // parse #1\nconst alvos = coletarAlvos(notesAtivas);                          // parse #2 (again, per note)\nlintLinks(notesAtivas, ...);                                      // parse #3 (again, per note)\n```\n\nFix: parse once per note up front, attach the result, and pass it through.\n\n```js\n// parse once, reuse everywhere\nfor (const n of notesAtivas) n.fm = parseFrontmatter(n.raw);\n\nfunction lintFrontmatter(note, erros, avisos) {\n  const fm = note.fm; // no re-parse\n  ...\n}\nfunction coletarAlvos(notes) {\n  const alvos = new Set();\n  for (const n of notes) {\n    alvos.add(n.basename.toLowerCase());\n    if (n.fm && Array.isArray(n.fm.data.aliases)) {\n      for (const a of n.fm.data.aliases) alvos.add(String(a).toLowerCase());\n    }\n  }\n  return alvos;\n}\n```\n\n## 2. No caching between pipeline runs — full vault re-read every invocation\n\n`generate.mjs` (morning-brief), `dashboard.mjs` (EA), and `lint.mjs` each independently call their own `walkMd`/`loadVault`, which does a synchronous `readFileSync` over **every** `.md` file in the vault, every single run — even though most notes are unchanged day to day (`70 Sistema/Automacao/morning-brief/lib/vault.mjs:20-46`, duplicated again in `lint.mjs:75-99`).\n\nIf these run back-to-back in the same automation batch (they're triggered together per the morning-brief/EA scheduling in `70 Sistema/Automacao/`), you pay the full walk-and-parse cost 2-3x for the same files in the same minute, with zero sharing.\n\nFix: a tiny mtime-keyed cache shared by the three scripts.\n\n```js\n// lib/vault-cache.mjs\nconst cache = new Map(); // path -> { mtimeMs, parsed }\n\nexport function readCached(fullPath) {\n  const stat = fs.statSync(fullPath);\n  const hit = cache.get(fullPath);\n  if (hit && hit.mtimeMs === stat.mtimeMs) return hit.parsed;\n  const raw = fs.readFileSync(fullPath, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  const parsed = parseNote(raw, ...);\n  cache.set(fullPath, { mtimeMs: stat.mtimeMs, parsed });\n  return parsed;\n}\n```\nPersist `cache` to a JSON file in `state/` between process invocations to also save cost across separate cron runs, not just within one.\n\n## 3. Redundant computation: task priority recomputed on every sort comparison\n\n`compareTasks` (`lib/priority.mjs:90-96`) calls `taskPriorityValue(a)`/`taskPriorityValue(b)` — a per-character scan of `rawLine` — **inside the comparator**, so it's recomputed on every one of the O(n log n) comparisons `Array.sort` makes, not once per task. It's called this way in `brief.mjs:40,43,97,183` and again in `dashboard.mjs`'s reuse of `buildMorningBrief`.\n\n```js\n// current — recomputes priority for the same task many times during sort\ntasks.sort(compareTasks);\n```\n\nFix: decorate-sort-undecorate (compute once per item, sort by cached value):\n\n```js\nfunction sortByPriority(tasks) {\n  return tasks\n    .map((t) => ({ t, p: taskPriorityValue(t) }))\n    .sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"))\n    .map(({ t }) => t);\n}\n```\nVault-scale today this is cheap, but it's a straightforward win if the vault (or task count) grows.\n\n## 4. Inefficient \"find latest file\" pattern\n\n`70 Sistema/Automacao/executive-assistant/triage.mjs:72` — `getReadinessModifier()`:\n\n```js\nconst files = fs.readdirSync(corporalPath).sort().reverse(); // O(n log n) just to get 1 file\nconst lastFile = path.join(corporalPath, files[0]);\n```\n\nFix: single-pass max instead of a full sort:\n\n```js\nconst files = fs.readdirSync(corporalPath);\nconst lastFile = files.length\n  ? path.join(corporalPath, files.reduce((max, f) => (f > max ? f : max)))\n  : null;\n```\n\n## 5. Blocking, synchronous I/O over the whole tree\n\n`walkMd` in both `vault.mjs` and `lint.mjs` uses `readdirSync`/`readFileSync` recursively and synchronously, so a large vault fully blocks the event loop for the duration of the walk. Not urgent at current note counts, but if the vault grows into the thousands, switch to `fs.promises` + bounded concurrency (e.g. `Promise.all` in chunks) so I/O overlaps instead of serializing.\n\n## On \"memory leaks\"\n\nNot applicable here in the classic sense — every script in `70 Sistema/Automacao/` is a one-shot CLI process (`main().catch(...)`, then process exit), not a long-lived server. There's no accumulating state, event listeners, or timers across requests. The only \"memory\" consideration is point 5 above: holding every note's full body in the `notes`/`out` array at once — fine at current vault size, worth revisiting only if the vault gets an order of magnitude larger.\n\n## Caching opportunity summary\n\nThe biggest lever here isn't micro-optimizing the parsing regexes — it's that `generate.mjs`, `dashboard.mjs`, and `lint.mjs` are three independent entry points doing the *same* full-vault walk+parse with no shared result. Fix #2 (shared mtime cache) is the one worth prioritizing if these are run together on a schedule.\n",
+  "parsedOutput": {
+    "sections": [
+      {
+        "title": "1. \"N+1\" equivalent: redundant frontmatter parsing per note",
+        "content": "\n`70 Sistema/Automacao/vault-lint/lint.mjs` parses the same note's frontmatter **up to 3 times**:\n- `lintFrontmatter(note, ...)` (lint.mjs:145) parses it once\n- `coletarAlvos(notes)` (lint.mjs:201) parses it again for every note, for every lint run\n- `lintLinks(...)` (lint.mjs:235) parses it a third time in its own loop\n\n```js\n// lint.mjs — current: 3 independent parseFrontmatter(n.raw) calls across 3 functions\nfor (const n of notesAtivas) lintFrontmatter(n, erros, avisos);   // parse #1\nconst alvos = coletarAlvos(notesAtivas);                          // parse #2 (again, per note)\nlintLinks(notesAtivas, ...);                                      // parse #3 (again, per note)\n```\n\nFix: parse once per note up front, attach the result, and pass it through.\n\n```js\n// parse once, reuse everywhere\nfor (const n of notesAtivas) n.fm = parseFrontmatter(n.raw);\n\nfunction lintFrontmatter(note, erros, avisos) {\n  const fm = note.fm; // no re-parse\n  ...\n}\nfunction coletarAlvos(notes) {\n  const alvos = new Set();\n  for (const n of notes) {\n    alvos.add(n.basename.toLowerCase());\n    if (n.fm && Array.isArray(n.fm.data.aliases)) {\n      for (const a of n.fm.data.aliases) alvos.add(String(a).toLowerCase());\n    }\n  }\n  return alvos;\n}\n```\n\n",
+        "level": 2
+      },
+      {
+        "title": "2. No caching between pipeline runs — full vault re-read every invocation",
+        "content": "\n`generate.mjs` (morning-brief), `dashboard.mjs` (EA), and `lint.mjs` each independently call their own `walkMd`/`loadVault`, which does a synchronous `readFileSync` over **every** `.md` file in the vault, every single run — even though most notes are unchanged day to day (`70 Sistema/Automacao/morning-brief/lib/vault.mjs:20-46`, duplicated again in `lint.mjs:75-99`).\n\nIf these run back-to-back in the same automation batch (they're triggered together per the morning-brief/EA scheduling in `70 Sistema/Automacao/`), you pay the full walk-and-parse cost 2-3x for the same files in the same minute, with zero sharing.\n\nFix: a tiny mtime-keyed cache shared by the three scripts.\n\n```js\n// lib/vault-cache.mjs\nconst cache = new Map(); // path -> { mtimeMs, parsed }\n\nexport function readCached(fullPath) {\n  const stat = fs.statSync(fullPath);\n  const hit = cache.get(fullPath);\n  if (hit && hit.mtimeMs === stat.mtimeMs) return hit.parsed;\n  const raw = fs.readFileSync(fullPath, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  const parsed = parseNote(raw, ...);\n  cache.set(fullPath, { mtimeMs: stat.mtimeMs, parsed });\n  return parsed;\n}\n```\nPersist `cache` to a JSON file in `state/` between process invocations to also save cost across separate cron runs, not just within one.\n\n",
+        "level": 2
+      },
+      {
+        "title": "3. Redundant computation: task priority recomputed on every sort comparison",
+        "content": "\n`compareTasks` (`lib/priority.mjs:90-96`) calls `taskPriorityValue(a)`/`taskPriorityValue(b)` — a per-character scan of `rawLine` — **inside the comparator**, so it's recomputed on every one of the O(n log n) comparisons `Array.sort` makes, not once per task. It's called this way in `brief.mjs:40,43,97,183` and again in `dashboard.mjs`'s reuse of `buildMorningBrief`.\n\n```js\n// current — recomputes priority for the same task many times during sort\ntasks.sort(compareTasks);\n```\n\nFix: decorate-sort-undecorate (compute once per item, sort by cached value):\n\n```js\nfunction sortByPriority(tasks) {\n  return tasks\n    .map((t) => ({ t, p: taskPriorityValue(t) }))\n    .sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"))\n    .map(({ t }) => t);\n}\n```\nVault-scale today this is cheap, but it's a straightforward win if the vault (or task count) grows.\n\n",
+        "level": 2
+      },
+      {
+        "title": "4. Inefficient \"find latest file\" pattern",
+        "content": "\n`70 Sistema/Automacao/executive-assistant/triage.mjs:72` — `getReadinessModifier()`:\n\n```js\nconst files = fs.readdirSync(corporalPath).sort().reverse(); // O(n log n) just to get 1 file\nconst lastFile = path.join(corporalPath, files[0]);\n```\n\nFix: single-pass max instead of a full sort:\n\n```js\nconst files = fs.readdirSync(corporalPath);\nconst lastFile = files.length\n  ? path.join(corporalPath, files.reduce((max, f) => (f > max ? f : max)))\n  : null;\n```\n\n",
+        "level": 2
+      },
+      {
+        "title": "5. Blocking, synchronous I/O over the whole tree",
+        "content": "\n`walkMd` in both `vault.mjs` and `lint.mjs` uses `readdirSync`/`readFileSync` recursively and synchronously, so a large vault fully blocks the event loop for the duration of the walk. Not urgent at current note counts, but if the vault grows into the thousands, switch to `fs.promises` + bounded concurrency (e.g. `Promise.all` in chunks) so I/O overlaps instead of serializing.\n\n",
+        "level": 2
+      },
+      {
+        "title": "On \"memory leaks\"",
+        "content": "\nNot applicable here in the classic sense — every script in `70 Sistema/Automacao/` is a one-shot CLI process (`main().catch(...)`, then process exit), not a long-lived server. There's no accumulating state, event listeners, or timers across requests. The only \"memory\" consideration is point 5 above: holding every note's full body in the `notes`/`out` array at once — fine at current vault size, worth revisiting only if the vault gets an order of magnitude larger.\n\n",
+        "level": 2
+      },
+      {
+        "title": "Caching opportunity summary",
+        "content": "The biggest lever here isn't micro-optimizing the parsing regexes — it's that `generate.mjs`, `dashboard.mjs`, and `lint.mjs` are three independent entry points doing the *same* full-vault walk+parse with no shared result. Fix #2 (shared mtime cache) is the one worth prioritizing if these are run together on a schedule.",
+        "level": 2
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "js",
+        "code": "// lint.mjs — current: 3 independent parseFrontmatter(n.raw) calls across 3 functions\nfor (const n of notesAtivas) lintFrontmatter(n, erros, avisos);   // parse #1\nconst alvos = coletarAlvos(notesAtivas);                          // parse #2 (again, per note)\nlintLinks(notesAtivas, ...);                                      // parse #3 (again, per note)"
+      },
+      {
+        "language": "js",
+        "code": "// parse once, reuse everywhere\nfor (const n of notesAtivas) n.fm = parseFrontmatter(n.raw);\n\nfunction lintFrontmatter(note, erros, avisos) {\n  const fm = note.fm; // no re-parse\n  ...\n}\nfunction coletarAlvos(notes) {\n  const alvos = new Set();\n  for (const n of notes) {\n    alvos.add(n.basename.toLowerCase());\n    if (n.fm && Array.isArray(n.fm.data.aliases)) {\n      for (const a of n.fm.data.aliases) alvos.add(String(a).toLowerCase());\n    }\n  }\n  return alvos;\n}"
+      },
+      {
+        "language": "js",
+        "code": "// lib/vault-cache.mjs\nconst cache = new Map(); // path -> { mtimeMs, parsed }\n\nexport function readCached(fullPath) {\n  const stat = fs.statSync(fullPath);\n  const hit = cache.get(fullPath);\n  if (hit && hit.mtimeMs === stat.mtimeMs) return hit.parsed;\n  const raw = fs.readFileSync(fullPath, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  const parsed = parseNote(raw, ...);\n  cache.set(fullPath, { mtimeMs: stat.mtimeMs, parsed });\n  return parsed;\n}"
+      },
+      {
+        "language": "js",
+        "code": "// current — recomputes priority for the same task many times during sort\ntasks.sort(compareTasks);"
+      },
+      {
+        "language": "js",
+        "code": "function sortByPriority(tasks) {\n  return tasks\n    .map((t) => ({ t, p: taskPriorityValue(t) }))\n    .sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"))\n    .map(({ t }) => t);\n}"
+      },
+      {
+        "language": "js",
+        "code": "const files = fs.readdirSync(corporalPath).sort().reverse(); // O(n log n) just to get 1 file\nconst lastFile = path.join(corporalPath, files[0]);"
+      },
+      {
+        "language": "js",
+        "code": "const files = fs.readdirSync(corporalPath);\nconst lastFile = files.length\n  ? path.join(corporalPath, files.reduce((max, f) => (f > max ? f : max)))\n  : null;"
+      }
+    ]
+  },
+  "durationMs": 86632,
+  "model": "sonnet",
+  "sandboxMode": "permissive",
+  "workerType": "optimize",
+  "timestamp": "2026-07-07T20:11:21.528Z",
+  "executionId": "optimize_1783454994896_gjve8e"
+}

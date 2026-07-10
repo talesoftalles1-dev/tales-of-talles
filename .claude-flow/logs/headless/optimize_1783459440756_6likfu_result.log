@@ -1,0 +1,88 @@
+[2026-07-07T21:25:37.794Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "This is a JARVIS Obsidian vault (markdown knowledge base), not a web/database app — there's no React, no ORM/database, no client-side rendering. The only real application code is a handful of Node.js CLI scripts under `70 Sistema/Automacao/` that scan the vault and generate `output/*.md`. I mapped your five categories onto what actually exists there; two categories genuinely don't apply, and I said so instead of inventing findings.\n\n## 1. N+1-equivalent: redundant full-tree filesystem walks (`vault-lint/lint.mjs`)\n\n`main()` walks the vault 4 times total instead of once:\n\n```js\n// lint.mjs:271-283\nwalkMd(vaultRoot, vaultRoot, notes);                          // walk #1: all .md\nwalkMd(path.join(vaultRoot, \"90 Arquivo\"), vaultRoot, extras, [\".git\"], [\".md\"]);        // walk #2\nwalkMd(path.join(vaultRoot, \"70 Sistema\", \"Templates\"), vaultRoot, extras, [\".git\"], [\".md\"]); // walk #3\nwalkMd(vaultRoot, vaultRoot, extras, [\".git\",\"node_modules\",\".obsidian\",\".claude\"], [\".canvas\",\".m4a\",\".png\",\".jpg\",\".pdf\",\".base\"]); // walk #4: full tree again\n```\n\nWalk #1 already skips `90 Arquivo` and `Templates` via `SKIP_FOLDERS`, so walks #2/#3 re-traverse those subtrees just to collect link-target names. Walk #4 re-traverses the *entire vault* again for attachment extensions. Fix: collect everything in a single pass with a superset of extensions and no folder skip, then partition in memory:\n\n```js\nfunction walkAll(dir, vaultRoot, out) { /* one walk, all extensions, no SKIP_FOLDERS */ }\nconst all = [];\nwalkAll(vaultRoot, vaultRoot, all);\nconst notes = all.filter(n => n.name.endsWith(\".md\") && !inSkipFolders(n.rel));\nconst extras = all.filter(n => !notes.includes(n)); // link targets: everything else\n```\n\n## 2. React re-renders — not applicable\n\nNo React/frontend code exists in this repo (confirmed via glob across the tree, excluding `.claude/worktrees` scratch copies). Nothing to analyze here.\n\n## 3. Caching opportunities: frontmatter re-parsed up to 3× per note\n\n`parseFrontmatter(n.raw)` is called separately in three places for the *same* note during one `lint.mjs` run:\n\n```js\n// lintFrontmatter(note, ...) → parseFrontmatter(note.raw)      (main.js:277)\n// coletarAlvos(notes)        → parseFrontmatter(n.raw)         (lint.mjs:201, inside lintLinks)\n// lintLinks(...)             → parseFrontmatter(n.raw)         (lint.mjs:235, again per note)\n```\n\nFix — parse once when the note is loaded and reuse:\n\n```js\nfunction walkMd(dir, vaultRoot, out, ...) {\n  // ...\n  const raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  out.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) }); // parse once\n}\n// then everywhere: use n.fm instead of parseFrontmatter(n.raw)\n```\n\nSame pattern applies in `morning-brief/lib/vault.mjs` — cheap here since it's only parsed once, but worth keeping consistent if `lint.mjs` and `vault.mjs` ever get unified (they're near-duplicate parsers today, which is its own maintenance cost).\n\n## 4. Memory leaks — not applicable\n\nThese are one-shot CLI scripts (`main()` runs once, process exits). No listeners, timers, or unbounded in-memory caches that persist across invocations. The only long-lived artifact is `logs/*.log` via `appendFileSync` in `dashboard.mjs` — it grows daily but rotates by filename per day, so it's not a leak, just something to eventually prune from `70 Sistema/Automacao/*/logs/`.\n\n## 5. Redundant computations\n\n**a) Regex recompiled per call, in a per-line loop** (`morning-brief/lib/vault.mjs:162-166`):\n\n```js\nfunction matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`); // rebuilt on every task line, ×3 emojis\n  return text.match(re)?.[1] ?? null;\n}\n```\nCalled 3× per task (`due`, `scheduled`, `completed`) for every task line in the vault. Fix: hoist to module-level constants:\n```js\nconst DATE_RE = { \"📅\": /📅\\s*(\\d{4}-\\d{2}-\\d{2})/, \"⏳\": /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/, \"✅\": /✅\\s*(\\d{4}-\\d{2}-\\d{2})/ };\nfunction matchDate(text, emoji) { return text.match(DATE_RE[emoji])?.[1] ?? null; }\n```\n\n**b) `toDate(today)` recomputed inside loops instead of hoisted** (`morning-brief/lib/brief.mjs`):\n\n`buildMorningBrief` already computes `tDate = toDate(today)` (line 14) but never uses it — every helper (`selectTop3`, `collectRisks`, `collectCommercial`, `selectProjectsAttention`, `collectToday`) calls `toDate(today)` again itself, and `collectRisks`/`collectCommercial` do it *inside* their per-note loop, so the same string gets re-parsed into a `Date` once per note:\n\n```js\n// collectRisks, inside `for (const n of notes)`:\nif (n.tipo === \"projeto\" && n.status === \"ativo\" && n.prazo && toDate(n.prazo) < toDate(today)) // toDate(today) redone every iteration\n```\nFix: parse once, pass down:\n```js\nexport function buildMorningBrief({ notes, tasks }, options = {}) {\n  const today = options.today || todayISO();\n  const tDate = toDate(today);\n  const top3 = selectTop3(tasks, today, tDate);\n  const risks = collectRisks(notes, tasks, today, tDate); // reuse tDate instead of recomputing\n  ...\n}\n```\n\n**c) `taskPriorityValue` recomputed on every comparator call during sort** (`priority.mjs:82-96`):\n\n```js\nexport function compareTasks(a, b) {\n  const pd = taskPriorityValue(b) - taskPriorityValue(a); // O(len) scan of rawLine, called O(n log n) times total\n  ...\n}\n```\nFor an array of size *n*, `Array.sort` calls the comparator ~*n log n* times, each re-scanning `rawLine` character-by-character. Fix with a Schwartzian transform (decorate-sort-undecorate) at each of the 4 call sites (`selectTop3`, `collectRisks`, `collectToday`, `dashboard.mjs`):\n```js\nconst decorated = eligible.map(t => ({ t, p: taskPriorityValue(t) }));\ndecorated.sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"));\nconst sorted = decorated.map(d => d.t);\n```\n\n## Bottom line\n\nGiven the actual size of this vault (a few hundred markdown notes, scripts run on a schedule or manually), none of this is currently a bottleneck — these are correctness/hygiene wins, not urgent fixes. The one worth doing if you touch `vault-lint` again is **(1)**, since it's the only O(files) → O(4×files) blowup; the rest are micro-optimizations (**3–5**) only worth it if the vault grows to thousands of notes or the lint/dashboard scripts start running noticeably slow.\n",
+  "parsedOutput": {
+    "sections": [
+      {
+        "title": "1. N+1-equivalent: redundant full-tree filesystem walks (`vault-lint/lint.mjs`)",
+        "content": "\n`main()` walks the vault 4 times total instead of once:\n\n```js\n// lint.mjs:271-283\nwalkMd(vaultRoot, vaultRoot, notes);                          // walk #1: all .md\nwalkMd(path.join(vaultRoot, \"90 Arquivo\"), vaultRoot, extras, [\".git\"], [\".md\"]);        // walk #2\nwalkMd(path.join(vaultRoot, \"70 Sistema\", \"Templates\"), vaultRoot, extras, [\".git\"], [\".md\"]); // walk #3\nwalkMd(vaultRoot, vaultRoot, extras, [\".git\",\"node_modules\",\".obsidian\",\".claude\"], [\".canvas\",\".m4a\",\".png\",\".jpg\",\".pdf\",\".base\"]); // walk #4: full tree again\n```\n\nWalk #1 already skips `90 Arquivo` and `Templates` via `SKIP_FOLDERS`, so walks #2/#3 re-traverse those subtrees just to collect link-target names. Walk #4 re-traverses the *entire vault* again for attachment extensions. Fix: collect everything in a single pass with a superset of extensions and no folder skip, then partition in memory:\n\n```js\nfunction walkAll(dir, vaultRoot, out) { /* one walk, all extensions, no SKIP_FOLDERS */ }\nconst all = [];\nwalkAll(vaultRoot, vaultRoot, all);\nconst notes = all.filter(n => n.name.endsWith(\".md\") && !inSkipFolders(n.rel));\nconst extras = all.filter(n => !notes.includes(n)); // link targets: everything else\n```\n\n",
+        "level": 2
+      },
+      {
+        "title": "2. React re-renders — not applicable",
+        "content": "\nNo React/frontend code exists in this repo (confirmed via glob across the tree, excluding `.claude/worktrees` scratch copies). Nothing to analyze here.\n\n",
+        "level": 2
+      },
+      {
+        "title": "3. Caching opportunities: frontmatter re-parsed up to 3× per note",
+        "content": "\n`parseFrontmatter(n.raw)` is called separately in three places for the *same* note during one `lint.mjs` run:\n\n```js\n// lintFrontmatter(note, ...) → parseFrontmatter(note.raw)      (main.js:277)\n// coletarAlvos(notes)        → parseFrontmatter(n.raw)         (lint.mjs:201, inside lintLinks)\n// lintLinks(...)             → parseFrontmatter(n.raw)         (lint.mjs:235, again per note)\n```\n\nFix — parse once when the note is loaded and reuse:\n\n```js\nfunction walkMd(dir, vaultRoot, out, ...) {\n  // ...\n  const raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  out.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) }); // parse once\n}\n// then everywhere: use n.fm instead of parseFrontmatter(n.raw)\n```\n\nSame pattern applies in `morning-brief/lib/vault.mjs` — cheap here since it's only parsed once, but worth keeping consistent if `lint.mjs` and `vault.mjs` ever get unified (they're near-duplicate parsers today, which is its own maintenance cost).\n\n",
+        "level": 2
+      },
+      {
+        "title": "4. Memory leaks — not applicable",
+        "content": "\nThese are one-shot CLI scripts (`main()` runs once, process exits). No listeners, timers, or unbounded in-memory caches that persist across invocations. The only long-lived artifact is `logs/*.log` via `appendFileSync` in `dashboard.mjs` — it grows daily but rotates by filename per day, so it's not a leak, just something to eventually prune from `70 Sistema/Automacao/*/logs/`.\n\n",
+        "level": 2
+      },
+      {
+        "title": "5. Redundant computations",
+        "content": "\n**a) Regex recompiled per call, in a per-line loop** (`morning-brief/lib/vault.mjs:162-166`):\n\n```js\nfunction matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`); // rebuilt on every task line, ×3 emojis\n  return text.match(re)?.[1] ?? null;\n}\n```\nCalled 3× per task (`due`, `scheduled`, `completed`) for every task line in the vault. Fix: hoist to module-level constants:\n```js\nconst DATE_RE = { \"📅\": /📅\\s*(\\d{4}-\\d{2}-\\d{2})/, \"⏳\": /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/, \"✅\": /✅\\s*(\\d{4}-\\d{2}-\\d{2})/ };\nfunction matchDate(text, emoji) { return text.match(DATE_RE[emoji])?.[1] ?? null; }\n```\n\n**b) `toDate(today)` recomputed inside loops instead of hoisted** (`morning-brief/lib/brief.mjs`):\n\n`buildMorningBrief` already computes `tDate = toDate(today)` (line 14) but never uses it — every helper (`selectTop3`, `collectRisks`, `collectCommercial`, `selectProjectsAttention`, `collectToday`) calls `toDate(today)` again itself, and `collectRisks`/`collectCommercial` do it *inside* their per-note loop, so the same string gets re-parsed into a `Date` once per note:\n\n```js\n// collectRisks, inside `for (const n of notes)`:\nif (n.tipo === \"projeto\" && n.status === \"ativo\" && n.prazo && toDate(n.prazo) < toDate(today)) // toDate(today) redone every iteration\n```\nFix: parse once, pass down:\n```js\nexport function buildMorningBrief({ notes, tasks }, options = {}) {\n  const today = options.today || todayISO();\n  const tDate = toDate(today);\n  const top3 = selectTop3(tasks, today, tDate);\n  const risks = collectRisks(notes, tasks, today, tDate); // reuse tDate instead of recomputing\n  ...\n}\n```\n\n**c) `taskPriorityValue` recomputed on every comparator call during sort** (`priority.mjs:82-96`):\n\n```js\nexport function compareTasks(a, b) {\n  const pd = taskPriorityValue(b) - taskPriorityValue(a); // O(len) scan of rawLine, called O(n log n) times total\n  ...\n}\n```\nFor an array of size *n*, `Array.sort` calls the comparator ~*n log n* times, each re-scanning `rawLine` character-by-character. Fix with a Schwartzian transform (decorate-sort-undecorate) at each of the 4 call sites (`selectTop3`, `collectRisks`, `collectToday`, `dashboard.mjs`):\n```js\nconst decorated = eligible.map(t => ({ t, p: taskPriorityValue(t) }));\ndecorated.sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"));\nconst sorted = decorated.map(d => d.t);\n```\n\n",
+        "level": 2
+      },
+      {
+        "title": "Bottom line",
+        "content": "Given the actual size of this vault (a few hundred markdown notes, scripts run on a schedule or manually), none of this is currently a bottleneck — these are correctness/hygiene wins, not urgent fixes. The one worth doing if you touch `vault-lint` again is **(1)**, since it's the only O(files) → O(4×files) blowup; the rest are micro-optimizations (**3–5**) only worth it if the vault grows to thousands of notes or the lint/dashboard scripts start running noticeably slow.",
+        "level": 2
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "js",
+        "code": "// lint.mjs:271-283\nwalkMd(vaultRoot, vaultRoot, notes);                          // walk #1: all .md\nwalkMd(path.join(vaultRoot, \"90 Arquivo\"), vaultRoot, extras, [\".git\"], [\".md\"]);        // walk #2\nwalkMd(path.join(vaultRoot, \"70 Sistema\", \"Templates\"), vaultRoot, extras, [\".git\"], [\".md\"]); // walk #3\nwalkMd(vaultRoot, vaultRoot, extras, [\".git\",\"node_modules\",\".obsidian\",\".claude\"], [\".canvas\",\".m4a\",\".png\",\".jpg\",\".pdf\",\".base\"]); // walk #4: full tree again"
+      },
+      {
+        "language": "js",
+        "code": "function walkAll(dir, vaultRoot, out) { /* one walk, all extensions, no SKIP_FOLDERS */ }\nconst all = [];\nwalkAll(vaultRoot, vaultRoot, all);\nconst notes = all.filter(n => n.name.endsWith(\".md\") && !inSkipFolders(n.rel));\nconst extras = all.filter(n => !notes.includes(n)); // link targets: everything else"
+      },
+      {
+        "language": "js",
+        "code": "// lintFrontmatter(note, ...) → parseFrontmatter(note.raw)      (main.js:277)\n// coletarAlvos(notes)        → parseFrontmatter(n.raw)         (lint.mjs:201, inside lintLinks)\n// lintLinks(...)             → parseFrontmatter(n.raw)         (lint.mjs:235, again per note)"
+      },
+      {
+        "language": "js",
+        "code": "function walkMd(dir, vaultRoot, out, ...) {\n  // ...\n  const raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\n  out.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) }); // parse once\n}\n// then everywhere: use n.fm instead of parseFrontmatter(n.raw)"
+      },
+      {
+        "language": "js",
+        "code": "function matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`); // rebuilt on every task line, ×3 emojis\n  return text.match(re)?.[1] ?? null;\n}"
+      },
+      {
+        "language": "js",
+        "code": "const DATE_RE = { \"📅\": /📅\\s*(\\d{4}-\\d{2}-\\d{2})/, \"⏳\": /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/, \"✅\": /✅\\s*(\\d{4}-\\d{2}-\\d{2})/ };\nfunction matchDate(text, emoji) { return text.match(DATE_RE[emoji])?.[1] ?? null; }"
+      },
+      {
+        "language": "js",
+        "code": "// collectRisks, inside `for (const n of notes)`:\nif (n.tipo === \"projeto\" && n.status === \"ativo\" && n.prazo && toDate(n.prazo) < toDate(today)) // toDate(today) redone every iteration"
+      },
+      {
+        "language": "js",
+        "code": "export function buildMorningBrief({ notes, tasks }, options = {}) {\n  const today = options.today || todayISO();\n  const tDate = toDate(today);\n  const top3 = selectTop3(tasks, today, tDate);\n  const risks = collectRisks(notes, tasks, today, tDate); // reuse tDate instead of recomputing\n  ...\n}"
+      },
+      {
+        "language": "js",
+        "code": "export function compareTasks(a, b) {\n  const pd = taskPriorityValue(b) - taskPriorityValue(a); // O(len) scan of rawLine, called O(n log n) times total\n  ...\n}"
+      },
+      {
+        "language": "js",
+        "code": "const decorated = eligible.map(t => ({ t, p: taskPriorityValue(t) }));\ndecorated.sort((a, b) => b.p - a.p || (a.t.due || \"9999\").localeCompare(b.t.due || \"9999\"));\nconst sorted = decorated.map(d => d.t);"
+      }
+    ]
+  },
+  "durationMs": 97038,
+  "model": "sonnet",
+  "sandboxMode": "permissive",
+  "workerType": "optimize",
+  "timestamp": "2026-07-07T21:25:37.794Z",
+  "executionId": "optimize_1783459440756_6likfu"
+}

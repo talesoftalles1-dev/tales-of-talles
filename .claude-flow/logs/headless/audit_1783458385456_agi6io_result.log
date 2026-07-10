@@ -1,0 +1,62 @@
+[2026-07-07T21:06:48.152Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 80,\n      \"description\": \"Missing error handling for fs.mkdirSync() and fs.writeFileSync(). If directory creation fails (permission denied, disk full), the error is not caught, leading to silent failures or unhandled exceptions.\",\n      \"category\": \"error-handling\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 70,\n      \"description\": \"No input validation or escaping for the title variable in frontmatter YAML. If chapter filenames contain special YAML characters (colons, quotes, newlines), the generated frontmatter could be malformed. Limited risk since filenames are hardcoded, but poor practice.\",\n      \"category\": \"input-validation\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 26,\n      \"description\": \"Hash truncated to 12 characters from SHA-256. While intentional for readability, this reduces collision resistance. At scale, birthday collision risk increases. For external_id purposes in an Obsidian vault, this is acceptable, but note it's not cryptographically strong.\",\n      \"category\": \"weak-crypto\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 75,\n      \"description\": \"File creation does not explicitly set permissions. New files/directories inherit the process umask, which could expose them if umask is permissive (e.g., world-readable on shared systems).\",\n      \"category\": \"insecure-defaults\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 38,\n      \"description\": \"No path traversal protection check. While path.resolve() normalizes paths, there's no validation that the resolved path stays within an expected boundary. Passing notePath like '../../../../../../etc/passwd' would resolve outside the vault.\",\n      \"category\": \"path-traversal-potential\"\n    }\n  ],\n  \"riskScore\": 18,\n  \"recommendations\": [\n    \"Add try-catch blocks around fs.mkdirSync() and fs.writeFileSync() with proper error logging\",\n    \"Implement path boundary validation in external_id.js: verify resolved path is within repoRoot\",\n    \"Add explicit file permissions (0o644 for files, 0o755 for dirs) to fs calls: fs.mkdirSync(dirPath, { mode: 0o755, recursive: true })\",\n    \"Validate/escape YAML frontmatter generation, especially title field, to prevent malformed YAML\",\n    \"Review .env.example comments: ensure production .env files are never committed and use secure secret management (Vault, AWS Secrets Manager, etc.)\",\n    \"Consider using a logging library instead of console.error() for production use\",\n    \"No hardcoded secrets detected ✓ — review actual .env and config files in your deployment for secrets\",\n    \"These are local utility scripts; ensure they're not exposed to untrusted input in any web-facing context\"\n  ]\n}\n```\n\n**Summary:** This is a personal knowledge management system (Obsidian vault) using local Node.js bootstrap scripts. **No critical security vulnerabilities found.** Risk is inherently low since these are local tooling scripts without network exposure or database operations. Main improvements needed: error handling, input validation, and explicit file permissions. The codebase follows reasonable practices for its intended use case.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 80,
+        "description": "Missing error handling for fs.mkdirSync() and fs.writeFileSync(). If directory creation fails (permission denied, disk full), the error is not caught, leading to silent failures or unhandled exceptions.",
+        "category": "error-handling"
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 70,
+        "description": "No input validation or escaping for the title variable in frontmatter YAML. If chapter filenames contain special YAML characters (colons, quotes, newlines), the generated frontmatter could be malformed. Limited risk since filenames are hardcoded, but poor practice.",
+        "category": "input-validation"
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 26,
+        "description": "Hash truncated to 12 characters from SHA-256. While intentional for readability, this reduces collision resistance. At scale, birthday collision risk increases. For external_id purposes in an Obsidian vault, this is acceptable, but note it's not cryptographically strong.",
+        "category": "weak-crypto"
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 75,
+        "description": "File creation does not explicitly set permissions. New files/directories inherit the process umask, which could expose them if umask is permissive (e.g., world-readable on shared systems).",
+        "category": "insecure-defaults"
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 38,
+        "description": "No path traversal protection check. While path.resolve() normalizes paths, there's no validation that the resolved path stays within an expected boundary. Passing notePath like '../../../../../../etc/passwd' would resolve outside the vault.",
+        "category": "path-traversal-potential"
+      }
+    ],
+    "riskScore": 18,
+    "recommendations": [
+      "Add try-catch blocks around fs.mkdirSync() and fs.writeFileSync() with proper error logging",
+      "Implement path boundary validation in external_id.js: verify resolved path is within repoRoot",
+      "Add explicit file permissions (0o644 for files, 0o755 for dirs) to fs calls: fs.mkdirSync(dirPath, { mode: 0o755, recursive: true })",
+      "Validate/escape YAML frontmatter generation, especially title field, to prevent malformed YAML",
+      "Review .env.example comments: ensure production .env files are never committed and use secure secret management (Vault, AWS Secrets Manager, etc.)",
+      "Consider using a logging library instead of console.error() for production use",
+      "No hardcoded secrets detected ✓ — review actual .env and config files in your deployment for secrets",
+      "These are local utility scripts; ensure they're not exposed to untrusted input in any web-facing context"
+    ]
+  },
+  "durationMs": 22695,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T21:06:48.151Z",
+  "executionId": "audit_1783458385456_agi6io"
+}

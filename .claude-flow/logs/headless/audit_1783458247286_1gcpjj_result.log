@@ -1,0 +1,35 @@
+[2026-07-07T21:04:27.192Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 2,\n      \"description\": \"Environment variable template exists, but only as .env.example. Ensure actual .env files containing secrets are NOT committed to version control and are listed in .gitignore.\"\n    }\n  ],\n  \"riskScore\": 12,\n  \"recommendations\": [\n    \"✓ PASSED: No hardcoded secrets found in production code\",\n    \"✓ PASSED: No SQL injection vectors (no database code present)\",\n    \"✓ PASSED: No XSS vulnerabilities (no HTML/web rendering code)\",\n    \"✓ PASSED: Path operations are safe—uses path.resolve() to prevent directory traversal\",\n    \"✓ PASSED: Cryptographic hashing (SHA-256) is used correctly\",\n    \"VERIFY: Confirm .env file is in .gitignore (only .env.example should be committed)\",\n    \"VERIFY: Confirm .claude/worktrees are not tracked or are in .gitignore (temporary worktrees)\",\n    \"RECOMMEND: Add package.json scanning—no dependencies listed, so no transitive vulnerability risk visible\",\n    \"RECOMMEND: Add secrets scanning pre-commit hook: npm install --save-dev husky detect-secrets\",\n    \"RECOMMEND: Document N8N_ENCRYPTION_KEY rotation policy in 70 Sistema/28 Security & Secrets Runbook.md\"\n  ]\n}\n```\n\n**Summary:** This codebase is **low-risk**. The three main file types are utility scripts (hashing, bootstrap) and a configuration template. All file I/O is safe from injection, cryptography is correct, and no secrets are hardcoded. Only concern: ensure actual `.env` files are never committed (verify `.gitignore`).\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 2,
+        "description": "Environment variable template exists, but only as .env.example. Ensure actual .env files containing secrets are NOT committed to version control and are listed in .gitignore."
+      }
+    ],
+    "riskScore": 12,
+    "recommendations": [
+      "✓ PASSED: No hardcoded secrets found in production code",
+      "✓ PASSED: No SQL injection vectors (no database code present)",
+      "✓ PASSED: No XSS vulnerabilities (no HTML/web rendering code)",
+      "✓ PASSED: Path operations are safe—uses path.resolve() to prevent directory traversal",
+      "✓ PASSED: Cryptographic hashing (SHA-256) is used correctly",
+      "VERIFY: Confirm .env file is in .gitignore (only .env.example should be committed)",
+      "VERIFY: Confirm .claude/worktrees are not tracked or are in .gitignore (temporary worktrees)",
+      "RECOMMEND: Add package.json scanning—no dependencies listed, so no transitive vulnerability risk visible",
+      "RECOMMEND: Add secrets scanning pre-commit hook: npm install --save-dev husky detect-secrets",
+      "RECOMMEND: Document N8N_ENCRYPTION_KEY rotation policy in 70 Sistema/28 Security & Secrets Runbook.md"
+    ]
+  },
+  "durationMs": 19906,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T21:04:27.192Z",
+  "executionId": "audit_1783458247286_1gcpjj"
+}

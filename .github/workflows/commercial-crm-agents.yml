@@ -1,0 +1,47 @@
+name: commercial-crm-agents
+
+on:
+  schedule:
+    # 07:00 UTC = 08:00 Lisboa (horário de verão) / 07:00 WET. Ajuste se necessário.
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  crm-agents:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Run Frente 1 — Gerente (briefing diário)
+        env:
+          YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
+          JARVIS_AGENT_BRAIN: ollama
+        run: node "70 Sistema/Automacao/commercial-crm/manager.mjs"
+
+      - name: Run Frente 2 — Enriquecimento
+        env:
+          YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
+        run: node "70 Sistema/Automacao/commercial-crm/enrichment.mjs"
+
+      - name: Run Frente 3 — Cold email (rascunho only, sem envio)
+        env:
+          YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
+          YALT_SEND_REAL: "0"
+        run: node "70 Sistema/Automacao/commercial-crm/cold_email.mjs" --limit 10
+
+      - name: Commit outputs (regeneráveis)
+        run: |
+          git config user.name "jarvis-bot"
+          git config user.email "bot@jarvis.local"
+          git add "output/comercial/" || true
+          git commit -m "chore(automacao): daily CRM agent outputs [skip ci]" || echo "nothing to commit"
+          git push || echo "push skipped"
