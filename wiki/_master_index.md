@@ -75,6 +75,7 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 || [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
+| [[60 Conhecimento/Wiki/index\|Wiki (LLM-wiki)]] | Sub-sistema de conhecimento incremental (fontes + entidades + conceitos) | ingest comercial 2026-07-10 (Yalt/BOBBY); eixos orquestração multiagente e pipeline comercial |
 
 ## Fluxo
 
