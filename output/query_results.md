@@ -1,8 +1,13 @@
 ---
 dominio: jarvis
 tipo: output
+<<<<<<< HEAD
 status: ativo
 titulo: Resultados de Queries — Compilações Dataview
+=======
+status: gerado
+titulo: Query Results — Dataview Compilations
+>>>>>>> reconcile/vault-merge-20260628
 criado: 2026-06-27
 atualizado: 2026-07-06
 tags:

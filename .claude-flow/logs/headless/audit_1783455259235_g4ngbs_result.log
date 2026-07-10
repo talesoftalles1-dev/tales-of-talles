@@ -1,0 +1,38 @@
+[2026-07-07T20:14:40.139Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"external_id.js (all worktrees)\",\n      \"line\": 15,\n      \"description\": \"Hash truncation reduces collision resistance. Using first 12 chars of SHA-256 (48 bits) instead of full 64 hex chars. For small-scale personal vault, acceptable, but consider full hash if scale increases significantly.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"bootstrap_jarvis_os.js (all versions)\",\n      \"line\": 51,\n      \"description\": \"Synchronous filesystem operations (fs.writeFileSync) block the event loop. While acceptable for setup scripts, could cause issues if called during runtime. Consider fs.promises for future async refactor.\"\n    }\n  ],\n  \"riskScore\": 18,\n  \"recommendations\": [\n    \"✓ Secrets management: .env.example properly exemplifies key generation via crypto.randomBytes() — ensure actual .env files are in .gitignore (verify git config)\",\n    \"✓ No hardcoded credentials detected; all sensitive config in environment variables\",\n    \"Audit n8n encryption key rotation policy — document key expiration/rollover in '70 Sistema/Chapter 28 — Security & Secrets Runbook.md'\",\n    \"Add SAST tooling to CI/CD (e.g., npm audit, snyk) to catch upstream dependency CVEs in Node modules\",\n    \"Review file permissions on .env files and bootstrap script outputs — ensure private notes/config not world-readable\",\n    \"If vault grows beyond local filesystem, audit external_id collision risk; document expected scale assumptions\",\n    \"Validate any future auth integrations (MCP, n8n webhooks) against OWASP API Security Top 10\"\n  ]\n}\n```\n\n**Analysis Summary:**\n\nYour codebase is **low-risk** from a security standpoint:\n\n- **No hardcoded secrets** — environment config properly externalized to .env.example\n- **No injection vectors** — no SQL, no template injection, no dynamic code evaluation\n- **No XSS surface** — pure Node.js utilities, no web handlers exposed\n- **No auth flaws** — these are utilities, not auth systems\n\nThe issues found are **minor** and operational (hash truncation for local scale, blocking I/O in setup). For a personal vault system, the real surface is **operational security**: keeping .env files out of git, rotating n8n encryption keys, and auditing any MCP integrations (Slack, Linear, etc.) you wire up later.\n\nWould you like me to audit the n8n configuration or review the JARVIS spec document for systemic security patterns?\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "external_id.js (all worktrees)",
+        "line": 15,
+        "description": "Hash truncation reduces collision resistance. Using first 12 chars of SHA-256 (48 bits) instead of full 64 hex chars. For small-scale personal vault, acceptable, but consider full hash if scale increases significantly."
+      },
+      {
+        "severity": "low",
+        "file": "bootstrap_jarvis_os.js (all versions)",
+        "line": 51,
+        "description": "Synchronous filesystem operations (fs.writeFileSync) block the event loop. While acceptable for setup scripts, could cause issues if called during runtime. Consider fs.promises for future async refactor."
+      }
+    ],
+    "riskScore": 18,
+    "recommendations": [
+      "✓ Secrets management: .env.example properly exemplifies key generation via crypto.randomBytes() — ensure actual .env files are in .gitignore (verify git config)",
+      "✓ No hardcoded credentials detected; all sensitive config in environment variables",
+      "Audit n8n encryption key rotation policy — document key expiration/rollover in '70 Sistema/Chapter 28 — Security & Secrets Runbook.md'",
+      "Add SAST tooling to CI/CD (e.g., npm audit, snyk) to catch upstream dependency CVEs in Node modules",
+      "Review file permissions on .env files and bootstrap script outputs — ensure private notes/config not world-readable",
+      "If vault grows beyond local filesystem, audit external_id collision risk; document expected scale assumptions",
+      "Validate any future auth integrations (MCP, n8n webhooks) against OWASP API Security Top 10"
+    ]
+  },
+  "durationMs": 20904,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T20:14:40.139Z",
+  "executionId": "audit_1783455259235_g4ngbs"
+}

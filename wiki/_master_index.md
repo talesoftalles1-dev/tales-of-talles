@@ -4,7 +4,7 @@ tipo: index
 status: canonico
 titulo: Master Index — Registro Central do JARVIS OS
 criado: 2026-06-27
-atualizado: 2026-07-02
+atualizado: 2026-07-03
 aliases:
   - Master Index
   - Índice Mestre
@@ -53,28 +53,29 @@ Camada de cognição do JARVIS ([[_Arquitetura JARVIS]] Camada 3), materializada
 | [[🔁 Automacoes]] §10 | Automações orquestradas por agentes (FASE 4) |
 
 > Governança: E5 (Revisão), E6 (Automações) e E8 (Planejamento) introduziram linhas novas na matriz de autoridade — **ratificadas pelo Operador com o merge do PR #20 (2026-07-03)**, conforme a cláusula de imutabilidade do [[_Contrato de Autoridade dos Agentes]].
-
 ## Mapas de auditoria (`output/`, regeneráveis)
 
-Auditoria completa do repositório em 2026-07-07 (base `origin/main`). São compilações — a fonte de verdade continua no canon:
-
-| Mapa | Conteúdo |
+|| Mapa | Conteúdo |
 |---|---|
-| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo (tri-cópia) |
-| [[mapa_automacao]] | Pipelines locais, duas instâncias n8n, credenciais |
-| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
-| [[mapa_integracoes]] | Superfícies do Event Bus e fluxo de dados |
-| [[divida_tecnica]] | Dívida remanescente D1–D11 (pós-transformação 2026-07-06) |
-| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+|| [[mapa_arquitetura]] | 4 camadas, canon, topologia física do repo e checkpoints pós-transform |
+|| [[mapa_automacao]] | Pipelines locais validadas (`vault-lint`, EA 07:00, Brief 09:00), duas instâncias n8n, credenciais |
+|| [[mapa_agentes]] | Matriz de autoridade + estado real + Estagiários E1–E9 |
+|| [[mapa_integracoes]] | Superfícies do Event Bus, rotas e healthchecks locais |
+|| [[divida_tecnica]] | Dívida remanescente pós-aplicação das melhorias próximas |
+|| [[top20_melhorias]] | Fila ranqueada por alavancagem × segurança ÷ esforço |
+|| [[wiki/ai_agents/pixel-agents-agent-mapping\|Pixel Agents — Mapeamento canônico]] | Roster + slots + referência do PR #30 |
+||||
+|| `output/vault_lint.md` | Último relatório de conformidade do vault na validação atual |
 
 ## Índices principais (`wiki/`)
 
 | Área | Função | Entrada |
 |---|---|---|
-| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Jarvis (orquestrador), Estagiários E1–E8, TOR, BOBBY, KNOWLEDGE |
-| [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
+|| [[wiki/ai_agents/index\|ai_agents]] | Rotinas, contratos e prompts de agentes | Orquestrador Jarvis + 9 Estagiários (E1–E9, ver [[estagiarios]]) + agentes de domínio (BOBBY, TOR, KNOWLEDGE…) |
+|| [[wiki/areas/index\|areas]] | Contextos perenes por área de vida/empresa | saúde, finanças, trabalho, pessoal |
 | [[wiki/projects/index\|projects]] | Iniciativas ativas e dependências | projetos com ação ou decisão pendente |
 | [[wiki/knowledge/index\|knowledge]] | Conceitos consolidados e notas de referência | aprendizados, padrões, fontes processadas |
+| [[60 Conhecimento/Wiki/index\|Wiki (LLM-wiki)]] | Sub-sistema de conhecimento incremental (fontes + entidades + conceitos) | ingest comercial 2026-07-10 (Yalt/BOBBY); eixos orquestração multiagente e pipeline comercial |
 
 ## Fluxo
 
@@ -86,7 +87,14 @@ graph TD
     B --> E["wiki/knowledge/"]
     B --> F["wiki/ai_agents/"]
     B --> G["output/daily_dashboard.md"]
+    G --> H["output/2026-07-08-morning-brief.txt"]
 ```
+
+## Rotina de geração e verificação
+1. `vault-lint` valida contrato/links/espelho.
+2. `WindowsHealthcheck.ps1` valida Docker/n8n self-host.
+3. `executive-assistant/dashboard.mjs` gera `output/daily_dashboard.md`.
+4. `morning-brief/generate.mjs` gera o brief local e publica via Slack quando disponível.
 
 ## Ponte com a estrutura numerada
 
@@ -129,3 +137,7 @@ Autoridade e limites do EA: [[_Contrato de Autoridade dos Agentes]].
 - [x] **Resolver duplicata `query-results.md` vs `query_results.md`**: `query-results.md` convertido em stub de depreciação; `query_results.md` é o canônico.
 - [x] **Áudio na raiz**: `Recording 20260627141753.m4a` movido para `raw/clips/`.
 - [x] **Prompt de organização**: movido de `00 Sistema/` para `70 Sistema/` (lar natural dos docs de sistema).
+
+## Pendências da Fase 2
+
+- [ ] Decidir se `60 Conhecimento/Wiki/` será mantido como sub-sistema especializado ou absorvido por `wiki/knowledge/`.

@@ -1,0 +1,51 @@
+name: Vault Lint
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["feature/*", "fix/*", "manus/*", "auditoria/*", "claude/*"]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  vault-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run vault-lint
+        run: node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
+
+      # Roda também quando o lint FALHA — é quando o comentário mais importa.
+      # continue-on-error: restrição de token no comentário não pode reprovar o lint.
+      - name: Comment PR with lint summary
+        if: always() && github.event_name == 'pull_request'
+        continue-on-error: true
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = require('path').join(process.env.GITHUB_WORKSPACE, 'output', 'vault_lint.md');
+            let body = '## Vault-lint\n';
+            if (fs.existsSync(reportPath)) {
+              const text = fs.readFileSync(reportPath, 'utf8').split('\n').slice(0, 40).join('\n');
+              body += '```\n' + text + '\n```\n';
+            } else {
+              body += '_Relatório não encontrado._\n';
+            }
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });

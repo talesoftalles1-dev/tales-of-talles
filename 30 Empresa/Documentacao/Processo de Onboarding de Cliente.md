@@ -29,8 +29,13 @@ Logo após o "ganho" registrado no [[SOP - Fechar Venda]]: a partir daí, todo c
 
 ### 1. Formalização (D+0 a D+1)
 - Enviar contrato e coletar assinatura.
+<<<<<<< HEAD
 - Emitir a nota da primeira parcela e registrar o recebimento em `50 Financeiro/Empresa`.
 - Criar a nota do cliente em `40 CRM/Clientes` com `status: ativo`.
+=======
+- Emitir a nota da primeira parcela e registrar o recebimento (ex.: 2026-06-27 Recebimento Acme).
+- Criar a nota do cliente em `40 CRM/Clientes` com `status: publicado`.
+>>>>>>> reconcile/vault-merge-20260628
 
 ### 2. Coleta de informações (D+1 a D+3)
 - Briefing preenchido pelo cliente.

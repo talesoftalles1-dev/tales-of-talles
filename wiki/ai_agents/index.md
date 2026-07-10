@@ -3,7 +3,7 @@ dominio: jarvis
 tipo: sistema
 status: ativo
 criado: 2026-06-27
-atualizado: 2026-07-02
+atualizado: 2026-07-08
 relacionado:
   - "[[_master_index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
@@ -31,17 +31,22 @@ Contrato consolidado: [[estagiarios]]. Arquivos funcionais em `.claude/agents/es
 | E2 | Documentação | WRITING |
 | E3 | Pesquisa | RESEARCH |
 | E4 | Programação | TOR |
-| E5 | Revisão 🆕 | REVIEWER |
-| E6 | Automações 🆕 | AUTOMATOR |
+| E5 | Revisão | REVIEWER |
+| E6 | Automações | AUTOMATOR |
 | E7 | Conhecimento | KNOWLEDGE |
-| E8 | Planejamento 🆕 | PLANNER |
+| E8 | Planejamento | PLANNER |
 | E9 | Comercial | BOBBY |
 
-🆕 = linha de autoridade nova, **ratificada pelo Operador com o merge do PR #20 (2026-07-03)**. E9 = projeção da linha BOBBY, já ratificada de origem ([[_Contrato de Autoridade dos Agentes]]).
+Linhas novas ratificadas pelo Operador com o merge do PR #20 (2026-07-03). E9 = projeção da linha BOBBY, já ratificada de origem ([[_Contrato de Autoridade dos Agentes]]).
 
 ## 🏛️ Agentes de domínio (roster canônico)
 
-Executive Assistant (orquestrador), TOR (dev), BOBBY (comercial), RESEARCH, WRITING, FINANCE, CALENDAR, KNOWLEDGE, HEALTH — matriz de autoridade em [[_Contrato de Autoridade dos Agentes]]. Status em tempo real: [[agent_roster]].
+Executive Assistant (orquestrador), TOR (dev), BOBBY (comercial — executado por E9, contrato técnico em [[Chapter 18 — Sync & MCP Contracts]]), RESEARCH, WRITING, FINANCE, CALENDAR, KNOWLEDGE, HEALTH — matriz de autoridade em [[_Contrato de Autoridade dos Agentes]]. Status em tempo real: [[agent_roster]].
+
+## Pixel Agents
+
+- Mapeamento canônico: [[pixel-agents-agent-mapping]]
+- Referência oficial: PR #30 merged em `main` (https://github.com/talesoftalles1-dev/tales-of-talles/pull/30)
 
 ## Regras
 

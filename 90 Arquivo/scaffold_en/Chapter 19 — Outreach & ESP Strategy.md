@@ -3,10 +3,17 @@ dominio: yalt
 aliases:
   - "Outreach & ESP Strategy"
 tipo: chapter
+<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 19 — Outreach & ESP Strategy.md
 status: arquivado
 area: 40 CRM
 title: Outreach & ESP Strategy
 created: 2026-06-27T18:24:00Z
+=======
+status: backlog
+area: empresa
+titulo: Outreach & ESP Strategy
+criado: 2026-06-27
+>>>>>>> reconcile/vault-merge-20260628:40 CRM/Chapter 19 — Outreach & ESP Strategy.md
 ---
 
 <!-- canonicity-banner -->

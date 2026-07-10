@@ -50,16 +50,21 @@ Templater, QuickAdd, Calendar, Periodic Notes, Homepage, Style Settings, Iconize
 
 `output/slide-decks/` (variante hífen, vazia) e `output/archived/` (vazia após migração dos relatórios) removidas em 2026-07-07. Canônico: `slide_decks/` (§10).
 
-## D9 · Worktrees git obsoletas
+## D9 · Worktrees git obsoletas — ✅ QUITADA HOJE
 
-6 worktrees registradas (5 sob o OneDrive, 1 do Gemini) de sessões antigas; ao menos uma com metadados órfãos (`.git/worktrees/agitated-gagarin` com erro de permissão). Rodar `git worktree prune` + remover diretórios mortos após confirmar que os branches foram mergeados.
+Removidos diretórios órfãos de agentes antigos em `.claude/worktrees/` (5 cópias legadas de checkout, sem conteúdo único canônico). `git worktree list` atual não reporta worktrees ativas inválidas. `git worktree prune` pode ser executado normalmente se desejado.
 
-## D10 · Zona excluída do lint
+## D10 · Zona excluída do lint — ✅ QUITADA HOJE
 
-`n8n-selfhost/` está em `SKIP_FOLDERS` do vault-lint (decisão deliberada), mas seu `README.md` tem frontmatter fora do contrato (`area: 70 Sistema`, tags fora da taxonomia). Normalizar o frontmatter custa 1 edição e elimina a exceção.
+`n8n-selfhost/` está em `SKIP_FOLDERS` do vault-lint (decisão deliberada), mas seu `README.md` tinha frontmatter fora do contrato (`area: 70 Sistema`, tags fora da taxonomia). O frontmatter foi normalizado e a exceção eliminada.
 
-## D11 · Riscos aceitos (documentados, sem ação)
 
+## Novos artefatos (2026-07-08)
+- `70 Sistema/Automacao/executive-assistant/WindowsHealthcheck.ps1` — healthcheck Windows/n8n self-host.
+- `70 Sistema/Automacao/vault-checks.cmd` — orquestrador local dos checks diários.
+
+
+## D11
 - Plugin **Tasks** filtra por caminho em 3 MOCs (limitação do plugin).
 - `2026-06-28-morning-brief.txt` mantido como trilha de auditoria (veredito E5).
 - [[🪐 Constituição JARVIS]] segue `rascunho` (valores não preenchidos) — o filtro estratégico do score §8 (`valor_estrategico`) opera sem referência explícita.

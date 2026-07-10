@@ -19,7 +19,7 @@ tags:
 | # | Melhoria | Alav. | Seg. | Esf. | Score | Dono | Ref. |
 |---|---|:--:|:--:|:--:|:--:|:--:|---|
 | 1 | Remover dirs vazios bifurcados em `output/` | 2 | 5 | 1 | 10.0 | 🤖 feito hoje | D8 |
-| 2 | `git worktree prune` + limpar worktrees mortas | 2 | 5 | 1 | 10.0 | 🤖 feito hoje | D9 |
+| 2 | `git worktree prune` + limpar worktrees mortas | 2 | 5 | 1 | 10.0 | 🤖 quitado hoje | D9 |
 | 3 | Normalizar frontmatter do `n8n-selfhost/README.md` | 2 | 5 | 1 | 10.0 | 🤖 feito hoje | D10 |
 | 4 | Publicar estes 6 mapas + linkar no `_master_index` | 3 | 5 | 1 | 15.0 | 🤖 feito hoje | — |
 | 5 | Mover `CREDENTIALS.md` p/ gestor de segredos e apagar do OneDrive | 5 | 5 | 1 | 25.0 | 👤 | D3 |

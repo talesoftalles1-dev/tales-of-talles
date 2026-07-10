@@ -1,0 +1,55 @@
+[2026-07-07T20:33:15.664Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "```json\n{\n  \"vulnerabilities\": [\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 46,\n      \"description\": \"TOCTOU (Time-of-check-time-of-use) vulnerability: File existence check at line 46 is not atomic with subsequent write operation. Another process could create the file between the check and write, causing a race condition.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"scripts/bootstrap_jarvis_os.js\",\n      \"line\": 48,\n      \"description\": \"Missing error handling: fs.writeFileSync() can throw if the directory is not writable or disk is full. No try-catch block to handle failures gracefully.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 14,\n      \"description\": \"Information disclosure risk: External ID is based on absolute file path (hashed but only first 12 chars). If exposed in logs/APIs, could potentially leak system path structure. Consider using only relative path components.\"\n    },\n    {\n      \"severity\": \"low\",\n      \"file\": \"sample/scripts/external_id.js\",\n      \"line\": 21,\n      \"description\": \"No input validation: Function accepts arbitrary paths without validating they are within expected boundaries. If called with untrusted input, could leak hash of unintended paths.\"\n    },\n    {\n      \"severity\": \"informational\",\n      \"file\": \"70 Sistema/Automacao/n8n-selfhost/.env.example\",\n      \"line\": 1,\n      \"description\": \"Best practice: Ensure actual .env file is in .gitignore and never committed. The example file is safe but verify production secrets are not in version control.\"\n    }\n  ],\n  \"riskScore\": 15,\n  \"recommendations\": [\n    \"Add atomic file operations: Use fs.writeFileSync() with flag 'wx' (exclusive) to prevent TOCTOU issues, or wrap check+write in a mutex\",\n    \"Implement error handling: Wrap all fs operations in try-catch blocks with proper logging and exit codes\",\n    \"Reduce path information leakage: Base external_id on relative paths or just file names instead of absolute paths\",\n    \"Add input validation: If bootstrap_jarvis_os.js or external_id.js accept external parameters in future, validate they are within expected directory bounds\",\n    \"Verify .env security: Confirm .env and .env.local files are in .gitignore; audit git history to ensure no secrets were committed\",\n    \"No SQL injection, XSS, or hardcoded credentials detected in provided code - good foundation\"\n  ]\n}\n```\n\n**Summary:** The codebase has **low security risk** (score: 15/100). It's a file-system utility for note generation with no web/database exposure. Main issues are file operation error handling and potential race conditions. No critical vulnerabilities found.\n",
+  "parsedOutput": {
+    "vulnerabilities": [
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 46,
+        "description": "TOCTOU (Time-of-check-time-of-use) vulnerability: File existence check at line 46 is not atomic with subsequent write operation. Another process could create the file between the check and write, causing a race condition."
+      },
+      {
+        "severity": "low",
+        "file": "scripts/bootstrap_jarvis_os.js",
+        "line": 48,
+        "description": "Missing error handling: fs.writeFileSync() can throw if the directory is not writable or disk is full. No try-catch block to handle failures gracefully."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 14,
+        "description": "Information disclosure risk: External ID is based on absolute file path (hashed but only first 12 chars). If exposed in logs/APIs, could potentially leak system path structure. Consider using only relative path components."
+      },
+      {
+        "severity": "low",
+        "file": "sample/scripts/external_id.js",
+        "line": 21,
+        "description": "No input validation: Function accepts arbitrary paths without validating they are within expected boundaries. If called with untrusted input, could leak hash of unintended paths."
+      },
+      {
+        "severity": "informational",
+        "file": "70 Sistema/Automacao/n8n-selfhost/.env.example",
+        "line": 1,
+        "description": "Best practice: Ensure actual .env file is in .gitignore and never committed. The example file is safe but verify production secrets are not in version control."
+      }
+    ],
+    "riskScore": 15,
+    "recommendations": [
+      "Add atomic file operations: Use fs.writeFileSync() with flag 'wx' (exclusive) to prevent TOCTOU issues, or wrap check+write in a mutex",
+      "Implement error handling: Wrap all fs operations in try-catch blocks with proper logging and exit codes",
+      "Reduce path information leakage: Base external_id on relative paths or just file names instead of absolute paths",
+      "Add input validation: If bootstrap_jarvis_os.js or external_id.js accept external parameters in future, validate they are within expected directory bounds",
+      "Verify .env security: Confirm .env and .env.local files are in .gitignore; audit git history to ensure no secrets were committed",
+      "No SQL injection, XSS, or hardcoded credentials detected in provided code - good foundation"
+    ]
+  },
+  "durationMs": 21812,
+  "model": "haiku",
+  "sandboxMode": "strict",
+  "workerType": "audit",
+  "timestamp": "2026-07-07T20:33:15.664Z",
+  "executionId": "audit_1783456373852_uorc8c"
+}

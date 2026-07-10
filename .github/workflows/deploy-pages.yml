@@ -31,13 +31,12 @@ jobs:
           mkdir -p _dist
           cp index.html _dist/index.html
           cp index.html _dist/404.html
+          cp sw.js _dist/sw.js
           touch _dist/.nojekyll
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        timeout-minutes: 2
         with:
           path: _dist
 

@@ -1,0 +1,25 @@
+🌅 JARVIS Morning Brief
+📆 08/07 · 2026-07-08
+
+🎯 Top 3 Actions
+1. Religar Slack OAuth no n8n (Credentials → Slack → reauth)  📅 04/07
+2. Religar Gmail OAuth no n8n  📅 04/07
+3. Criar credencial `CRM Yalt API` (Bearer token)  📅 04/07
+
+⚠ Risks & Blockers
+• Automacao Comercial Yalt — 50% com prazo em 2d
+• Tarefa atrasada: Religar Slack OAuth no n8n (Credentials → Slack → reauth) (04/07)
+• Tarefa atrasada: Religar Gmail OAuth no n8n (04/07)
+• Tarefa atrasada: Criar credencial `CRM Yalt API` (Bearer token) (04/07)
+• Tarefa atrasada: Confirmar/renomear a credencial `Header Auth` existente (Apollo? n8n API Key?) (04/07)
+• Tarefa atrasada: Agendar exames de sangue e check-up anual (30/06)
+
+💼 Commercial Signals
+• — sem sinais comerciais urgentes —
+
+🏗 Projects Requiring Attention
+• Automacao Comercial Yalt · 50% · prazo 10/07 (score 63)
+• Reformular Rotina de Saude · 30% · prazo 31/08 (score 30)
+
+📅 Today
+• — agenda livre —

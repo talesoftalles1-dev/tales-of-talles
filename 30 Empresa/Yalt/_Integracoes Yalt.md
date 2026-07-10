@@ -21,7 +21,7 @@ tags: [tema/automacao, tema/comercial]
 
 | Necessidade | Tipo | Prioridade |
 |---|---|---|
-| Dashboard de tarefas activas (projetos cliente) | Leitura — query Dataview por `area: empresa` + `status: ativo` | Alta |
+| Dashboard de tarefas activas (projetos cliente) | Leitura — query Dataview por `area: empresa` + `status: publicado` | Alta |
 | Briefing diário com contexto de reuniões do dia | Output automático — Morning Brief inclui agenda de empresa | Alta |
 | CRM: histórico de interações com clientes | Leitura — `40 CRM/` notas com `tipo: cliente` | Média |
 | Lançamentos financeiros empresa | Leitura — `50 Financeiro/Empresa/` com `tipo: lancamento` | Média |

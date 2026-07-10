@@ -2,7 +2,6 @@
 dominio: jarvis
 tipo: checklist
 status: ativo
-contexto: janela de observação pós-estabilização, sem mudanças novas
 area: empresa
 criado: 2026-06-30
 atualizado: 2026-06-30
@@ -17,7 +16,7 @@ tags:
 > Operador aprovou explicitamente o resultado da estabilização e deu a ordem de entrar em **Operational Mode**. Esta nota é, a partir de agora, o contrato vigente até 2026-07-06 (ou até o fechamento formal na seção final).
 
 > [!info] Propósito
-> A fundação foi endurecida (canon ratificado — [[Fase 0 — Ratificacao do Canon]] / [PR #15](https://github.com/talesoftalles1-dev/tales-of-talles/pull/15), MERGED 2026-06-30 — e validação operacional rodada). Antes de avançar pra Fase 1 (Decision Engine) ou qualquer outra construção, **observe o sistema em uso real por 7 dias**. Esta janela não é passiva: é um instrumento de decisão — ela diz se o sistema está pronto pra mais complexidade ou se ainda precisa de mais endurecimento.
+> A fundação foi endurecida (canon ratificado — [[_Spec JARVIS|Spec JARVIS]] / [PR #15](https://github.com/talesoftalles1-dev/tales-of-talles/pull/15), MERGED 2026-06-30 — e validação operacional rodada). Antes de avançar pra Fase 1 (Decision Engine) ou qualquer outra construção, **observe o sistema em uso real por 7 dias**. Esta janela não é passiva: é um instrumento de decisão — ela diz se o sistema está pronto pra mais complexidade ou se ainda precisa de mais endurecimento.
 >
 > **Objetivo único da semana:** provar que o JARVIS melhora a tomada de decisão diária em uso real. Nada além disso importa esta semana.
 
@@ -110,12 +109,12 @@ Rode a seção **1–3** de [[Validacao Operacional JARVIS]] (scheduled tasks, d
 - [ ] **Captura:** itens novos foram parar em `raw/inbox.md` (fluxo certo) ou direto nas pastas numeradas (fluxo antigo, ainda válido mas sinaliza hábito não migrado)?
 - [ ] **Confiança na priorização:** alguma vez o score do `_Spec §8` sugeriu algo que pareceu errado? Se sim, anote o caso — é dado real pra calibrar a fórmula, não bug.
 - [ ] **Carga cognitiva:** alguma seção do Dashboard cresceu a ponto de incomodar (mais de 3 em "Hoje", bloqueios acumulando sem ação)?
-- [ ] **Slack reconnect:** você completou o passo manual (ver [[Validacao Operacional — 2026-06-30]] §3)? Se sim, em qual dia — marque na tabela acima quando o Brief passar a postar.
+- [ ] **Slack reconnect:** você completou o passo manual (ver Validação Operacional §3)? Se sim, em qual dia — marque na tabela acima quando o Brief passar a postar.
 - [ ] **PR #15 (ratificação do canon):** foi revisado/mergeado? Se sim, rode a validação de novo — alguns itens (link `_master-index`) devem se resolver sozinhos.
 
 ## Achados de segurança em aberto (decidir, não ignorar)
 
-Os dois itens abaixo (de [[Validacao Operacional — 2026-06-30]] §7) não bloqueiam uso diário, mas não devem ficar 7 dias sem decisão consciente:
+Os dois itens abaixo (de Validação Operacional §7) não bloqueiam uso diário, mas não devem ficar 7 dias sem decisão consciente:
 
 - [ ] **Token do plugin `mcp-tools-istefox`** — decidir: manter staged (e aceitar que vai pro histórico do git) ou remover do tracking + adicionar ao `.gitignore`.
 - [ ] **Claudian em `permissionMode: yolo`** — decidir conscientemente: manter (aceitando ações sem confirmação dentro do Obsidian) ou trocar pro modo com aprovação, alinhado ao `_Contrato de Autoridade dos Agentes`.

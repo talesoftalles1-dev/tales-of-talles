@@ -175,7 +175,7 @@ const prazo = await tp.system.prompt("Prazo (YYYY-MM-DD ou vazio)");
 -%>
 ---
 tipo: projeto
-status: ativo
+status: publicado
 area: <% area %>
 prioridade: <% prioridade %>
 inicio: <% tp.date.now("YYYY-MM-DD") %>
@@ -199,7 +199,7 @@ tags: []
 ```
 
 > [!warning] Pasta é só armazenamento
-> A pasta é definida por conveniência; o que faz o projeto aparecer no Dashboard é `tipo: projeto` + `status: ativo`. Mover a pasta depois **não quebra** nada.
+> A pasta é definida por conveniência; o que faz o projeto aparecer no Dashboard é `tipo: projeto` + `status: publicado`. Mover a pasta depois **não quebra** nada.
 
 ---
 
@@ -395,8 +395,13 @@ SORT data DESC
 > - Stack definida: Next.js + Supabase.
 >
 > ## ✅ Ações
+<<<<<<< HEAD
 > - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  (Responsável)
 > - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  (Responsável)
+=======
+> - [ ] Enviar proposta revisada para o cliente 🔼 📅 2026-07-01  João Silva
+> - [ ] Configurar repositório e CI 🔽 📅 2026-07-03  Maria Souza
+>>>>>>> reconcile/vault-merge-20260628
 > ```
 
 > [!tip] Atalho de captura da transcrição
@@ -549,7 +554,11 @@ tags
 
 **Plugin:** Periodic Notes (Weekly Note) + Tasks. A nota semanal `YYYY-[W]ww` (tipo `semanal`) carrega o ritual.
 
+<<<<<<< HEAD
 - Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Nome de arquivo esperado: `2026-W26.md` (padrão `YYYY-[W]ww` — ainda não instanciado; crie a primeira Weekly Note via T - Weekly Note para ativar o ritual).
+=======
+- Configure o template da Weekly Note para incluir o checklist de revisão e as queries abaixo. Link de referência: 2026-W26 (a semanal vigente).
+>>>>>>> reconcile/vault-merge-20260628
 
 ````markdown
 ## 🔁 Revisão semanal

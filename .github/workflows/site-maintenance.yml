@@ -1,0 +1,42 @@
+name: Site Maintenance — validação PWA + vault-lint
+
+on:
+  schedule:
+    - cron: "50 6 * * *" # diário 06:50 UTC (rotina do RUNBOOK vault-lint)
+  workflow_dispatch:
+
+jobs:
+  site-maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate PWA static files
+        run: |
+          fail() { echo "FAIL:$1"; exit 1; }
+          [ -f "index.html" ] || fail "index.html_missing"
+          [ -f "sw.js" ] || fail "sw_js_missing"
+          grep -q '"manifest"' index.html || fail "manifest_link_missing"
+          grep -q 'serviceWorker' index.html || fail "serviceworker_missing"
+          # sw.js e index.html devem apontar para a mesma versão de cache:
+          SW_HTML=$(grep -o "SW_VERSION='[^']*'" index.html | head -1 | cut -d"'" -f2)
+          SW_FILE=$(grep -o "CACHE = '[^']*'" sw.js | head -1 | cut -d"'" -f2)
+          [ "$SW_HTML" = "$SW_FILE" ] || fail "sw_version_drift(${SW_HTML}!=${SW_FILE})"
+          echo "PWA ok (SW $SW_FILE)"
+
+      - name: Run vault-lint
+        run: node "70 Sistema/Automacao/vault-lint/lint.mjs" --quiet
+
+      - name: Upload lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vault-lint-report
+          path: output/vault_lint.md
+          retention-days: 14

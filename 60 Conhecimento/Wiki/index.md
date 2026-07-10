@@ -7,16 +7,19 @@ Catálogo de todas as páginas da wiki. Atualizado a cada ingest. Ao responder u
 
 ## Visão Geral
 
-*(ainda sem página de visão geral — criada quando houver conteúdo sintetizado suficiente para resumir)*
+Sub-sistema LLM-wiki populado a partir de 3 fontes ingeridas em 2026-07-10 (domínios `jarvis` e `yalt`). Dois eixos consolidados: (1) a [[orquestracao-multiagente|Orquestração Multiagente]] do JARVIS e (2) o [[pipeline-comercial-yalt|Pipeline Comercial Yalt]] operado pelo [[bobby-e9-comercial|BOBBY (E9 · Comercial)]].
 
 ## Fontes
 
-*(uma página por fonte ingerida — criada no primeiro ingest)*
+- [[2026-07-10-ingest-comercial|Sources — Ingest Comercial (2026-07-10)]] — resumo das 3 fontes ingeridas (BOBBY, estagiários, protocolo).
 
 ## Entidades
 
-*(pessoas, organizações, lugares, coisas — criadas conforme acumulam menções suficientes para merecer página própria)*
+- [[yalt-crm|Yalt Sales CRM]] — CRM do domínio empresa; 315.778 leads, 272 qualificados (2026-07-10).
+- [[bobby-e9-comercial|BOBBY (E9 · Comercial)]] — Estagiário E9, braço comercial no Yalt.
+- [[jarvis-orquestrador|Jarvis (Orquestrador)]] — orquestrador (Executive Assistant) da arquitetura multiagente.
 
 ## Conceitos
 
-*(tópicos, temas e ideias recorrentes entre fontes — criados conforme padrões emergem)*
+- [[orquestracao-multiagente|Orquestração Multiagente]] — padrão orquestrador + 9 Estagiários (E1–E9).
+- [[pipeline-comercial-yalt|Pipeline Comercial Yalt]] — funil e follow-ups do Yalt; 110/111 FU vencidos (2026-07-10).

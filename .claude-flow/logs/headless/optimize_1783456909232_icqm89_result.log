@@ -1,0 +1,81 @@
+[2026-07-07T20:43:22.297Z] RESULT
+============================================================
+{
+  "success": true,
+  "output": "## Scope note\n\nThis repo is the **JARVIS Obsidian vault** — Node.js (`.mjs`) automation scripts that walk a markdown vault and generate dashboards/briefs. There's no database and no React here, so those two categories don't apply literally. I've mapped them to the closest real analogs in this codebase: **redundant filesystem walks** (the N+1 equivalent) and **redundant re-parsing** (the re-render equivalent). Findings below are from `70 Sistema/Automacao/{morning-brief,executive-assistant,vault-lint}/`.\n\n---\n\n### 1. Frontmatter parsed 3× per note in `vault-lint/lint.mjs` (redundant computation)\n\n`parseFrontmatter()` does a full string scan + regex-based YAML parse. It's called separately in three unrelated places for the *same* note:\n\n- `lintFrontmatter(note, ...)` — `lint.mjs:145`\n- `coletarAlvos(notes)` — `lint.mjs:201` (re-parses every note just to grab `aliases`)\n- `lintLinks()`'s main loop — `lint.mjs:235` (re-parses again to split `corpo`/`fmTexto`)\n\nFor a vault with N notes, that's 3N frontmatter parses when 1N is sufficient.\n\n**Fix** — parse once per note (e.g. during `walkMd`, or right after), and thread the result through:\n\n```js\n// walkMd: attach fm once\nconst raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\nout.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) });\n\n// coletarAlvos\nfor (const n of notes) {\n  alvos.add(n.basename.toLowerCase());\n  if (n.fm && Array.isArray(n.fm.data.aliases)) { ... }\n}\n\n// lintLinks main loop\nconst corpo = n.fm ? n.raw.slice(n.fm.end) : n.raw;\n```\n\n---\n\n### 2. `lint.mjs` walks the directory tree 4× (the N+1 analog)\n\n`main()` calls `walkMd` on:\n1. the whole vault (main notes pass)\n2. `90 Arquivo/` again\n3. `70 Sistema/Templates/` again\n4. the **whole vault again** for canvas/attachment extensions (`lint.mjs:283`)\n\nPass 4 re-walks nearly the same tree pass 1 already walked, doubling `readdirSync` calls across the whole repo.\n\n**Fix** — collect both `.md` and attachment extensions in a single walk:\n\n```js\nwalkMd(vaultRoot, vaultRoot, notes, SKIP_FOLDERS, [\".md\", \".canvas\", \".m4a\", \".png\", \".jpg\", \".pdf\", \".base\"]);\n// then split `notes` into markdown vs. attachment entries by extension\n```\n\n---\n\n### 3. Whole vault re-parsed independently by every script (cross-process cache opportunity)\n\n`generate.mjs` (morning-brief) and `dashboard.mjs` (executive-assistant) each independently call `loadVault(VAULT_ROOT)` (`vault.mjs:6`), which does a full recursive `readdirSync`/`readFileSync`/frontmatter-parse/task-extraction pass over **every** `.md` file. If both run back-to-back in the daily automation chain (per the RUNBOOKs), the entire vault is walked and parsed twice for identical data, plus a third time by `lint.mjs`.\n\n**Fix** — cache the parsed vault snapshot to disk, invalidated by the newest file mtime in the tree:\n\n```js\n// vault.mjs\nexport function loadVaultCached(vaultRoot, cacheFile) {\n  const newestMtime = getNewestMtime(vaultRoot); // walk with statSync, skip content read\n  if (fs.existsSync(cacheFile)) {\n    const cached = JSON.parse(fs.readFileSync(cacheFile, \"utf8\"));\n    if (cached.mtime >= newestMtime) return cached.vault;\n  }\n  const vault = loadVault(vaultRoot);\n  fs.writeFileSync(cacheFile, JSON.stringify({ mtime: newestMtime, vault }));\n  return vault;\n}\n```\nEven a naive version (compare against a single `.cache/vault-snapshot.json` mtime) avoids the double full-tree read when EA and morning-brief run within the same cron window.\n\n---\n\n### 4. `matchDate` constructs a `RegExp` per call, per task (`vault.mjs:162`)\n\n```js\nfunction matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`);\n  ...\n}\n```\nCalled 3× per task (📅/⏳/✅) inside `extractTasks`, so for a vault with thousands of tasks this is thousands of `RegExp` compilations for only 3 distinct patterns.\n\n**Fix** — hoist to module scope:\n\n```js\nconst DUE_RE = /📅\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst SCHEDULED_RE = /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst COMPLETED_RE = /✅\\s*(\\d{4}-\\d{2}-\\d{2})/;\n\nfunction matchDate(text, re) {\n  const m = text.match(re);\n  return m ? m[1] : null;\n}\n// usage: matchDate(text, DUE_RE)\n```\n\n---\n\n### 5. `triage.mjs:getReadinessModifier` sorts the whole directory just to find the latest file\n\n```js\nconst files = fs.readdirSync(corporalPath).sort().reverse();\nconst lastFile = path.join(corporalPath, files[0]);\n```\nSorting is O(n log n) to extract a single max — fine today since the folder is small, but grows unnecessarily as health logs accumulate. Also worth noting: `triage.mjs` appears to be an earlier/unused draft (`runTriage` is a stub that does nothing — see the \"Lógica de parsing... simplificada para v1.0\" comment) sitting alongside the real triage logic baked into `dashboard.mjs`'s inbox counter. Worth confirming whether `triage.mjs` is still invoked by anything (RUNBOOK/cron) or is dead code, since it duplicates config paths independently (`VAULT_ROOT = process.cwd()` vs. the `__dirname`-relative resolution used elsewhere) and reads `00 JARVIS/🤖 JARVIS.md` directly rather than going through `output/daily_dashboard.md`.\n\n**Fix** (if kept):\n```js\nconst files = fs.readdirSync(corporalPath);\nconst lastFile = files.reduce((a, b) => (b > a ? b : a), \"\");\n```\n\n---\n\n### Not applicable here\n- **N+1 queries**: no database/ORM — nearest analog is the redundant filesystem walks above.\n- **React re-renders**: no React/frontend code in this repo.\n- **Memory leaks**: none found — these are short-lived CLI processes (`main().catch(...)` then exit), no persistent listeners, timers, or caches held across invocations. Not a concern given the execution model.\n\n**Priority**: #2 and #3 (redundant tree walks) matter most since they scale with vault size and directly affect the daily automation's wall-clock time; #1 and #4 are cheap wins; #5 is cosmetic unless `triage.mjs` turns out to be dead code worth deleting.\n",
+  "parsedOutput": {
+    "sections": [
+      {
+        "title": "Scope note",
+        "content": "\nThis repo is the **JARVIS Obsidian vault** — Node.js (`.mjs`) automation scripts that walk a markdown vault and generate dashboards/briefs. There's no database and no React here, so those two categories don't apply literally. I've mapped them to the closest real analogs in this codebase: **redundant filesystem walks** (the N+1 equivalent) and **redundant re-parsing** (the re-render equivalent). Findings below are from `70 Sistema/Automacao/{morning-brief,executive-assistant,vault-lint}/`.\n\n---\n\n",
+        "level": 2
+      },
+      {
+        "title": "1. Frontmatter parsed 3× per note in `vault-lint/lint.mjs` (redundant computation)",
+        "content": "\n`parseFrontmatter()` does a full string scan + regex-based YAML parse. It's called separately in three unrelated places for the *same* note:\n\n- `lintFrontmatter(note, ...)` — `lint.mjs:145`\n- `coletarAlvos(notes)` — `lint.mjs:201` (re-parses every note just to grab `aliases`)\n- `lintLinks()`'s main loop — `lint.mjs:235` (re-parses again to split `corpo`/`fmTexto`)\n\nFor a vault with N notes, that's 3N frontmatter parses when 1N is sufficient.\n\n**Fix** — parse once per note (e.g. during `walkMd`, or right after), and thread the result through:\n\n```js\n// walkMd: attach fm once\nconst raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\nout.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) });\n\n// coletarAlvos\nfor (const n of notes) {\n  alvos.add(n.basename.toLowerCase());\n  if (n.fm && Array.isArray(n.fm.data.aliases)) { ... }\n}\n\n// lintLinks main loop\nconst corpo = n.fm ? n.raw.slice(n.fm.end) : n.raw;\n```\n\n---\n\n",
+        "level": 3
+      },
+      {
+        "title": "2. `lint.mjs` walks the directory tree 4× (the N+1 analog)",
+        "content": "\n`main()` calls `walkMd` on:\n1. the whole vault (main notes pass)\n2. `90 Arquivo/` again\n3. `70 Sistema/Templates/` again\n4. the **whole vault again** for canvas/attachment extensions (`lint.mjs:283`)\n\nPass 4 re-walks nearly the same tree pass 1 already walked, doubling `readdirSync` calls across the whole repo.\n\n**Fix** — collect both `.md` and attachment extensions in a single walk:\n\n```js\nwalkMd(vaultRoot, vaultRoot, notes, SKIP_FOLDERS, [\".md\", \".canvas\", \".m4a\", \".png\", \".jpg\", \".pdf\", \".base\"]);\n// then split `notes` into markdown vs. attachment entries by extension\n```\n\n---\n\n",
+        "level": 3
+      },
+      {
+        "title": "3. Whole vault re-parsed independently by every script (cross-process cache opportunity)",
+        "content": "\n`generate.mjs` (morning-brief) and `dashboard.mjs` (executive-assistant) each independently call `loadVault(VAULT_ROOT)` (`vault.mjs:6`), which does a full recursive `readdirSync`/`readFileSync`/frontmatter-parse/task-extraction pass over **every** `.md` file. If both run back-to-back in the daily automation chain (per the RUNBOOKs), the entire vault is walked and parsed twice for identical data, plus a third time by `lint.mjs`.\n\n**Fix** — cache the parsed vault snapshot to disk, invalidated by the newest file mtime in the tree:\n\n```js\n// vault.mjs\nexport function loadVaultCached(vaultRoot, cacheFile) {\n  const newestMtime = getNewestMtime(vaultRoot); // walk with statSync, skip content read\n  if (fs.existsSync(cacheFile)) {\n    const cached = JSON.parse(fs.readFileSync(cacheFile, \"utf8\"));\n    if (cached.mtime >= newestMtime) return cached.vault;\n  }\n  const vault = loadVault(vaultRoot);\n  fs.writeFileSync(cacheFile, JSON.stringify({ mtime: newestMtime, vault }));\n  return vault;\n}\n```\nEven a naive version (compare against a single `.cache/vault-snapshot.json` mtime) avoids the double full-tree read when EA and morning-brief run within the same cron window.\n\n---\n\n",
+        "level": 3
+      },
+      {
+        "title": "4. `matchDate` constructs a `RegExp` per call, per task (`vault.mjs:162`)",
+        "content": "\n```js\nfunction matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`);\n  ...\n}\n```\nCalled 3× per task (📅/⏳/✅) inside `extractTasks`, so for a vault with thousands of tasks this is thousands of `RegExp` compilations for only 3 distinct patterns.\n\n**Fix** — hoist to module scope:\n\n```js\nconst DUE_RE = /📅\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst SCHEDULED_RE = /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst COMPLETED_RE = /✅\\s*(\\d{4}-\\d{2}-\\d{2})/;\n\nfunction matchDate(text, re) {\n  const m = text.match(re);\n  return m ? m[1] : null;\n}\n// usage: matchDate(text, DUE_RE)\n```\n\n---\n\n",
+        "level": 3
+      },
+      {
+        "title": "5. `triage.mjs:getReadinessModifier` sorts the whole directory just to find the latest file",
+        "content": "\n```js\nconst files = fs.readdirSync(corporalPath).sort().reverse();\nconst lastFile = path.join(corporalPath, files[0]);\n```\nSorting is O(n log n) to extract a single max — fine today since the folder is small, but grows unnecessarily as health logs accumulate. Also worth noting: `triage.mjs` appears to be an earlier/unused draft (`runTriage` is a stub that does nothing — see the \"Lógica de parsing... simplificada para v1.0\" comment) sitting alongside the real triage logic baked into `dashboard.mjs`'s inbox counter. Worth confirming whether `triage.mjs` is still invoked by anything (RUNBOOK/cron) or is dead code, since it duplicates config paths independently (`VAULT_ROOT = process.cwd()` vs. the `__dirname`-relative resolution used elsewhere) and reads `00 JARVIS/🤖 JARVIS.md` directly rather than going through `output/daily_dashboard.md`.\n\n**Fix** (if kept):\n```js\nconst files = fs.readdirSync(corporalPath);\nconst lastFile = files.reduce((a, b) => (b > a ? b : a), \"\");\n```\n\n---\n\n",
+        "level": 3
+      },
+      {
+        "title": "Not applicable here",
+        "content": "- **N+1 queries**: no database/ORM — nearest analog is the redundant filesystem walks above.\n- **React re-renders**: no React/frontend code in this repo.\n- **Memory leaks**: none found — these are short-lived CLI processes (`main().catch(...)` then exit), no persistent listeners, timers, or caches held across invocations. Not a concern given the execution model.\n\n**Priority**: #2 and #3 (redundant tree walks) matter most since they scale with vault size and directly affect the daily automation's wall-clock time; #1 and #4 are cheap wins; #5 is cosmetic unless `triage.mjs` turns out to be dead code worth deleting.",
+        "level": 3
+      }
+    ],
+    "codeBlocks": [
+      {
+        "language": "js",
+        "code": "// walkMd: attach fm once\nconst raw = fs.readFileSync(full, \"utf8\").replace(/\\r\\n?/g, \"\\n\");\nout.push({ rel, name: ent.name, basename: ..., raw, fm: parseFrontmatter(raw) });\n\n// coletarAlvos\nfor (const n of notes) {\n  alvos.add(n.basename.toLowerCase());\n  if (n.fm && Array.isArray(n.fm.data.aliases)) { ... }\n}\n\n// lintLinks main loop\nconst corpo = n.fm ? n.raw.slice(n.fm.end) : n.raw;"
+      },
+      {
+        "language": "js",
+        "code": "walkMd(vaultRoot, vaultRoot, notes, SKIP_FOLDERS, [\".md\", \".canvas\", \".m4a\", \".png\", \".jpg\", \".pdf\", \".base\"]);\n// then split `notes` into markdown vs. attachment entries by extension"
+      },
+      {
+        "language": "js",
+        "code": "// vault.mjs\nexport function loadVaultCached(vaultRoot, cacheFile) {\n  const newestMtime = getNewestMtime(vaultRoot); // walk with statSync, skip content read\n  if (fs.existsSync(cacheFile)) {\n    const cached = JSON.parse(fs.readFileSync(cacheFile, \"utf8\"));\n    if (cached.mtime >= newestMtime) return cached.vault;\n  }\n  const vault = loadVault(vaultRoot);\n  fs.writeFileSync(cacheFile, JSON.stringify({ mtime: newestMtime, vault }));\n  return vault;\n}"
+      },
+      {
+        "language": "js",
+        "code": "function matchDate(text, emoji) {\n  const re = new RegExp(`${emoji}\\\\s*(\\\\d{4}-\\\\d{2}-\\\\d{2})`);\n  ...\n}"
+      },
+      {
+        "language": "js",
+        "code": "const DUE_RE = /📅\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst SCHEDULED_RE = /⏳\\s*(\\d{4}-\\d{2}-\\d{2})/;\nconst COMPLETED_RE = /✅\\s*(\\d{4}-\\d{2}-\\d{2})/;\n\nfunction matchDate(text, re) {\n  const m = text.match(re);\n  return m ? m[1] : null;\n}\n// usage: matchDate(text, DUE_RE)"
+      },
+      {
+        "language": "js",
+        "code": "const files = fs.readdirSync(corporalPath).sort().reverse();\nconst lastFile = path.join(corporalPath, files[0]);"
+      },
+      {
+        "language": "js",
+        "code": "const files = fs.readdirSync(corporalPath);\nconst lastFile = files.reduce((a, b) => (b > a ? b : a), \"\");"
+      }
+    ]
+  },
+  "durationMs": 93065,
+  "model": "sonnet",
+  "sandboxMode": "permissive",
+  "workerType": "optimize",
+  "timestamp": "2026-07-07T20:43:22.297Z",
+  "executionId": "optimize_1783456909232_icqm89"
+}

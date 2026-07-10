@@ -1,7 +1,7 @@
 ---
 tipo: doc
-status: ativo
-area: 70 Sistema
+status: publicado
+area: sistema
 criado: 2026-07-02
 atualizado: 2026-07-02
 tags: [n8n, credenciais, onboarding]
