@@ -36,7 +36,7 @@ function loadConfig() {
   if (!fs.existsSync(cfgPath)) return defaults;
   const raw = JSON.parse(fs.readFileSync(cfgPath, "utf8"));
   return {
-    apiKey: raw.apiKey || defaults.apiKey,
+    apiKey: raw.apiKey || process.env.YALT_API_KEY || "",
     scope: raw.scope || defaults.scope,
     limit: raw.limit || defaults.limit,
     sendReal: raw.sendReal === true || defaults.sendReal,
@@ -69,12 +69,6 @@ async function genDraft(lead, decision, contactEmail) {
     ` Regras obrigatórias: SEM placeholders {{}} ou colchetes []; NUNCA "Olá [Nome]"; se não souber um dado, omita-o;` +
     ` mencione 1 facto real da empresa se houver (localização/setor); CTA claro de agendamento;` +
     ` assinatura "Talles"; uma linha curta de opt-out no fim (ex.: "Se não é o momento, basta ignorar"). Sem HTML, só texto.`;
-    `Escreva um email de cold outreach 1:1, em PT-BR, curto (máx 120 palavras), tom executivo e humano.` +
-    ` Destinatário: ${decision?.name || lead.contactPerson || "Equipa"}${decision?.title ? " (" + decision.title + ")" : ""}.` +
-    ` Empresa: ${lead.businessName}${lead.city ? " (" + lead.city + ")" : ""}.` +
-    ` Contexto: somos a Yalt (portal comercial B2B). Objetivo: abrir porta para uma chamada curta esta semana.` +
-    ` Regras: sem placeholders {{}} ou colchetes []; sem "Olá [Nome]"; mencione 1 facto real da empresa se houver (localização/setor),` +
-    ` CTA claro de agendamento, assinatura "Talles". Sem HTML, só texto. Se não souber um dado, omita-o em vez de usar colchetes.`;
   const { response: text } = await generateWithOllama(prompt, { model: MODEL, host: HOST, port: PORT, stream: false });
   return String(text || "").trim();
 }
@@ -148,7 +142,6 @@ async function main() {
   fs.writeFileSync(jsonPath, JSON.stringify(drafts, null, 2), "utf8");
   console.log(`Rascunhos: ${drafts.length} | MD: ${mdPath} | JSON: ${jsonPath}`);
   console.log(config.sendReal ? "Envio real AGENDADO via CRM (scheduledAt +1h). Confirme Gmail/ESP no CRM." : "Nenhum envio real efetuado (modo rascunho).");
-  console.log(config.sendReal ? "ENVIAR_REAL não implementado neste pipeline (exige Gmail/ESP) — rascunho salvo apenas." : "Nenhum envio real efetuado.");
 }
 
 main().catch((err) => {

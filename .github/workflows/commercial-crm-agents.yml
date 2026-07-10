@@ -58,7 +58,6 @@ jobs:
           YALT_API_KEY: ${{ secrets.YALT_API_KEY }}
           YALT_SEND_REAL: "0"
         run: node "70 Sistema/Automacao/commercial-crm/cold_email.mjs" --limit ${{ github.event.inputs.cold_email_limit || '10' }}
-        run: node "70 Sistema/Automacao/commercial-crm/cold_email.mjs" --limit 10
 
       - name: Commit outputs (regeneráveis)
         run: |
