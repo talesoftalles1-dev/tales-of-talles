@@ -2,7 +2,7 @@
 dominio: jarvis
 tipo: sistema
 status: ativo
-criado: ...
+criado: 2026-07-09
 atualizado: 2026-07-09
 area: sistema
 relacionado:
@@ -11,7 +11,6 @@ relacionado:
   - "[[agent_roster]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
 tags:
-  - jarvis
   - protocolo
   - orquestracao
 ---

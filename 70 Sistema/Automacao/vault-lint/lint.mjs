@@ -83,7 +83,10 @@ function walkMd(dir, vaultRoot, out, skip = SKIP_FOLDERS, extensoes = [".md"]) {
     const full = path.join(dir, ent.name);
     const rel = path.relative(vaultRoot, full).replace(/\\/g, "/");
     if (ent.isDirectory()) {
-      if (skip.some((s) => rel === s || rel.startsWith(`${s}/`))) continue;
+      const segs = rel.split("/");
+      const blockedByPrefix = skip.some((s) => rel === s || rel.startsWith(`${s}/`));
+      const blockedBySegment = skip.some((s) => !s.includes("/") && segs.includes(s));
+      if (blockedByPrefix || blockedBySegment) continue;
       walkMd(full, vaultRoot, out, skip, extensoes);
       continue;
     }
