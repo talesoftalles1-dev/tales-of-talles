@@ -1,9 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "name": "tales-of-talles",
   "buildCommand": null,
-  "outputDirectory": null,
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }

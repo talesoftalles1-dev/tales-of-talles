@@ -1,0 +1,37 @@
+# Ignora tudo que não é o app estático
+node_modules
+.pixel-agents
+.obsidian
+.git
+.claude
+.claude-flow
+.claudian
+.cursor
+.hermes
+.secrets
+.env
+logs
+hooks
+output
+raw
+90 Arquivo
+00 Sistema
+10 Inbox
+20 Pessoal
+30 Empresa
+40 CRM
+50 Financeiro
+60 Conhecimento
+70 Sistema
+wiki
+samples
+scripts
+*.md
+*.cmd
+.DS_Store
+Thumbs.db
+nul
+test-results
+sai
+SKILL.md
+install.cmd
