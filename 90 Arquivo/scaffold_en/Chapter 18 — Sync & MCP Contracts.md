@@ -3,23 +3,10 @@ dominio: yalt
 aliases:
   - "Sync & MCP Contracts"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 18 — Sync & MCP Contracts.md
 status: arquivado
 area: 40 CRM
 title: Sync & MCP Contracts
 created: 2026-06-27T18:24:00Z
-=======
-status: ativo
-area: empresa
-titulo: Sync & MCP Contracts
-criado: 2026-06-27
-atualizado: 2026-07-03
-relacionado:
-  - "[[CRM MCP — Contract & Scaffold]]"
-  - "[[CRM — Mapeamento de Entidades|Mapeamento de Entidades]]"
-  - "[[estagiarios]]"
-  - "[[Chapter 14 — Commercial Ops (Yalt)]]"
->>>>>>> reconcile/vault-merge-20260628:40 CRM/Chapter 18 — Sync & MCP Contracts.md
 ---
 
 <!-- canonicity-banner -->

@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Billing & Forecasting"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 21 — Billing & Forecasting.md
 status: arquivado
 area: 50 Financeiro
 title: Billing & Forecasting
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: empresa
-titulo: Billing & Forecasting
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:50 Financeiro/Chapter 21 — Billing & Forecasting.md
 ---
 
 <!-- canonicity-banner -->

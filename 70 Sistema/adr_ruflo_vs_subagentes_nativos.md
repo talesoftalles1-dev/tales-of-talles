@@ -57,11 +57,7 @@ O que é, honestamente: 100+ agentes especializados, swarms lideradas por "queen
 | Reversibilidade | ⚠️ | ✅ trivial |
 | Alinhamento ao gate "5–7 agentes operacionais" | prematuro | ✅ |
 
-<<<<<<< HEAD
 Hoje o JARVIS tem os agentes de domínio + 8 Estagiários — mas ainda em **rodagem inicial**. O gate do Ruflo pede maturidade operacional comprovada, não apenas contagem.
-=======
-Hoje o JARVIS tem os agentes de domínio + 9 Estagiários (E1–E9, com a adição do E9/BOBBY em 2026-07-03) — mas ainda em **rodagem inicial**. O gate do Ruflo pede maturidade operacional comprovada, não apenas contagem.
->>>>>>> reconcile/vault-merge-20260628
 
 ## Consequências
 
@@ -71,10 +67,4 @@ Hoje o JARVIS tem os agentes de domínio + 9 Estagiários (E1–E9, com a adiç�
 
 ## Gatilho de reavaliação
 
-<<<<<<< HEAD
 Reconsiderar o Ruflo (ou parte dele — ex.: só a memória AgentDB) quando **todos**: (1) os 8 Estagiários tiverem uso real comprovado por semanas; (2) a memória markdown demonstrar limite concreto (busca/recall insuficiente); (3) houver ganho mensurável que justifique a carga. Até lá, diferido.
-=======
-Reconsiderar o Ruflo (ou parte dele — ex.: só a memória AgentDB) quando **todos**: (1) os 9 Estagiários tiverem uso real comprovado por semanas; (2) a memória markdown demonstrar limite concreto (busca/recall insuficiente); (3) houver ganho mensurável que justifique a carga. Até lá, diferido.
-
-> **Nota de proveniência (2026-07-03):** este ADR foi originalmente escrito numa sessão em worktree isolado (`claude/zen-mclaren-ab1c72`) e materializado aqui no vault principal numa sessão de continuidade. O worktree original nunca foi mergeado via git; o conteúdo foi portado por cópia direta de arquivo (mesmo texto, sem alterar a decisão).
->>>>>>> reconcile/vault-merge-20260628

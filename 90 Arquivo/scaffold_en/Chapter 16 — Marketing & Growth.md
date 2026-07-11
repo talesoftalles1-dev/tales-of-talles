@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Marketing & Growth"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 16 — Marketing & Growth.md
 status: arquivado
 area: 30 Empresa
 title: Marketing & Growth
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: empresa
-titulo: Marketing & Growth
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:30 Empresa/Chapter 16 — Marketing & Growth.md
 ---
 
 <!-- canonicity-banner -->

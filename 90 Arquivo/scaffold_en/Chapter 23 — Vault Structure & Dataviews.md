@@ -3,17 +3,10 @@ dominio: jarvis
 aliases:
   - "Vault Structure & Dataviews"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 23 — Vault Structure & Dataviews.md
 status: arquivado
 area: 60 Conhecimento
 title: Vault Structure & Dataviews
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: sistema
-titulo: Vault Structure & Dataviews
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:60 Conhecimento/Chapter 23 — Vault Structure & Dataviews.md
 ---
 
 <!-- canonicity-banner -->

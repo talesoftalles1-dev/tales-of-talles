@@ -5,14 +5,8 @@ status: ativo
 criado: 2026-06-27
 atualizado: 2026-07-06
 cssclasses:
-<<<<<<< HEAD
   - jarvis-dashboard-v2
 tags: []
-=======
-  - jarvis-dashboard
-tags:
-  - tema/sistema
->>>>>>> reconcile/vault-merge-20260628
 ---
 
 <div class="jarvis-hud-container">

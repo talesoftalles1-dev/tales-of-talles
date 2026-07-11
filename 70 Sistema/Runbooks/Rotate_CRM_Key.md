@@ -2,25 +2,15 @@
 dominio: jarvis
 tipo: runbook
 status: rascunho
-<<<<<<< HEAD
 categoria: operacao
 area: empresa
-=======
-categoria: operations
-area: sistema
->>>>>>> reconcile/vault-merge-20260628
 criado: 2026-06-27
 atualizado: 2026-07-06
 relacionado:
   - "[[_Index]]"
   - "[[_Contrato de Autoridade dos Agentes]]"
 tags:
-<<<<<<< HEAD
   - tema/dev
-=======
-  - crm
-  - security
->>>>>>> reconcile/vault-merge-20260628
 ---
 
 # Runbook: Rotacionar Chave CRM (Yalt)

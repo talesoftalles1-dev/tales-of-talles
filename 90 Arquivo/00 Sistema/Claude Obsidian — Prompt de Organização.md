@@ -1,11 +1,7 @@
 ---
 dominio: jarvis
 tipo: doc
-<<<<<<<< HEAD:70 Sistema/Claude Obsidian — Prompt de Organização.md
 status: publicado
-========
-status: arquivado
->>>>>>>> reconcile/vault-merge-20260628:90 Arquivo/00 Sistema/Claude Obsidian — Prompt de Organização.md
 categoria: sistema
 area: sistema
 criado: 2026-06-27

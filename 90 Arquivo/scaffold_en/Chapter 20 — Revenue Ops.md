@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Revenue Ops"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 20 — Revenue Ops.md
 status: arquivado
 area: 50 Financeiro
 title: Revenue Ops
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: empresa
-titulo: Revenue Ops
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:50 Financeiro/Chapter 20 — Revenue Ops.md
 ---
 
 <!-- canonicity-banner -->

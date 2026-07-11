@@ -3,17 +3,10 @@ dominio: yalt
 aliases:
   - "Projects & Releases"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 13 — Projects & Releases.md
 status: arquivado
 area: 30 Empresa
 title: Projects & Releases
 created: 2026-06-27T18:24:00Z
-=======
-status: backlog
-area: empresa
-titulo: Projects & Releases
-criado: 2026-06-27
->>>>>>> reconcile/vault-merge-20260628:30 Empresa/Chapter 13 — Projects & Releases.md
 ---
 
 <!-- canonicity-banner -->

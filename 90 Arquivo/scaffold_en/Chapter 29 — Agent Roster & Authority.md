@@ -3,23 +3,10 @@ dominio: jarvis
 aliases:
   - "Agent Roster & Authority"
 tipo: chapter
-<<<<<<< HEAD:90 Arquivo/scaffold_en/Chapter 29 — Agent Roster & Authority.md
 status: arquivado
 area: 70 Sistema
 title: Agent Roster & Authority
 created: 2026-06-27T18:24:00Z
-=======
-status: ativo
-area: sistema
-titulo: Agent Roster & Authority
-criado: 2026-06-27
-atualizado: 2026-07-03
-relacionado:
-  - "[[estagiarios]]"
-  - "[[protocolo_orquestracao_jarvis]]"
-  - "[[agent_roster]]"
-  - "[[_Contrato de Autoridade dos Agentes]]"
->>>>>>> reconcile/vault-merge-20260628:70 Sistema/Chapter 29 — Agent Roster & Authority.md
 ---
 
 <!-- canonicity-banner -->
