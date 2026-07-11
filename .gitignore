@@ -34,7 +34,12 @@ pixel-agents/
 .obsidian/themes/
 .obsidian/hotkeys.json
 .obsidian/text-generator.json
+# Regra guarda: Ignora o .obsidian INTEIRO (plugins com client secrets hardcoded,
+# ex: remotely-save/main.js com chaves do OneDrive/Dropbox/Google). Ver comentario acima.
+.obsidian/
 .trash/
+# Resultados de teste (cache de e2e/VS Code), nunca versionar
+test-results/
 
 # --- Node / builds ---
 node_modules/
@@ -67,10 +72,8 @@ output/ea_briefing_executivo.md
 output/organizer_log.md
 output/comercial/
 
-# --- Duplicata do vault (sync OneDrive caiu dentro do repo Desktop) ---
-# NÃO é o vault canônico; está em C:\Users\talle\OneDrive\Documents\Jarvis.
-# Mantido fora do git + lint. Move para backup fora do repo (ver histórico).
-Jarvis/
+# --- Vault antigo: subpasta Jarvis/ removida em 2026-07-11 (era duplicata
+#     desatualizada do modelo trilinear; após migração p/ raiz numerada) ---
 sai
-test-results/
+
 textgenerator/
