@@ -34,7 +34,12 @@ pixel-agents/
 .obsidian/themes/
 .obsidian/hotkeys.json
 .obsidian/text-generator.json
+# Regra guarda: Ignora o .obsidian INTEIRO (plugins com client secrets hardcoded,
+# ex: remotely-save/main.js com chaves do OneDrive/Dropbox/Google). Ver comentario acima.
+.obsidian/
 .trash/
+# Resultados de teste (cache de e2e/VS Code), nunca versionar
+test-results/
 
 # --- Node / builds ---
 node_modules/
