@@ -33,12 +33,12 @@ tags:
 
 ### 1.1 — Fonte da verdade (SSOT)
 
-| Contexto | SSOT | Não fazer |
-|----------|------|-----------|
-| **App TALES OF TALLES** | `index.html` no repo `tales-of-talles` | Não manter specs paralelas do app no Vault |
-| **Morning Brief / JARVIS specs** | `Automacao/_Morning Brief — Spec` **neste Vault** | Não duplicar specs no repo; repo recebe só `output/` regenerável |
-| **Docs de Sistema (00/70)** | Repo (`tales-of-talles`) — referência | Vault guarda versões-rascunho e contexto; repo tem versão estável |
-| **Decisões & ADRs** | `70 Sistema/Decisions/` no repo | Arquive rascunhos aqui, versão final é no repo |
+| Contexto                         | SSOT                                              | Não fazer                                                         |
+| -------------------------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+| **App TALES OF TALLES**          | `index.html` no repo `tales-of-talles`            | Não manter specs paralelas do app no Vault                        |
+| **Morning Brief / JARVIS specs** | `Automacao/_Morning Brief — Spec` **neste Vault** | Não duplicar specs no repo; repo recebe só `output/` regenerável  |
+| **Docs de Sistema (00/70)**      | Repo (`tales-of-talles`) — referência             | Vault guarda versões-rascunho e contexto; repo tem versão estável |
+| **Decisões & ADRs**              | `70 Sistema/Decisions/` no repo                   | Arquive rascunhos aqui, versão final é no repo                    |
 
 ### 1.2 — Aplicar canonicidade retroativamente
 
