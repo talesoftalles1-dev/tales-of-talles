@@ -20,17 +20,17 @@ arquivado_em: 2026-07-03
 
 ## O que foi completado, commitado e documentado nesta passada
 
-| # | Item | Resultado | Commit |
-|---|---|---|---|
-| 1 | Verificar pipeline Morning Brief ponta-a-ponta | Rodada manual ao vivo (14:36Z): gera local OK, Slack falha com o mesmo erro 500 de sempre. Confirmado, não é regressão. | — |
-| 2 | Validar scripts locais | `generate.mjs`, `dashboard.mjs`, `lib/slack.mjs` revisados — lógica correta. **1 bug real achado e corrigido**: `dashboard.mjs` tinha 3 referências hardcoded `_master-index` (hífen) que reintroduziriam o link quebrado todo dia, mesmo após o sync. | `f0f919c` |
-| 3 | Validar configuração do scheduler | Ambas as tarefas `Ready`, `TriggerEnabled: True`. Sem problema. | — |
-| 4 | Validar estado da config de entrega Slack | Confirmado ao vivo, agora. Mesma causa-raiz de sempre. | — |
-| 5 | Validar precisão do runbook | Corrigido — não dizia mais "ativar o toggle" (já estava ativo); agora reflete a causa real (credencial OAuth morta). | `52cda9d` |
-| 6 | Validar render do Dashboard | `🤖 JARVIS.md` confirmado íntegro. | — |
-| 7 | Validar alinhamento dos MOCs | `🏢 Yalt.md` e `🌱 Pessoal.md` confirmados corretos. | — |
-| 8 | Validar/resolver duplicatas | **3 de 4 pares resolvidos.** `ai-agents`/`slide-decks` já vinham de antes. `query-results.md` (hífen, stub vazio) removido — aprovado e executado. `_master-index` segue intencionalmente pendente (resolve via sync, ver abaixo — consertar à mão criaria conflito). | `13ec03e` |
-| 9 | Produzir relatório de trabalho restante | Este documento (atualizado). | — |
+| #   | Item                                           | Resultado                                                                                                                                                                                                                                                             | Commit    |
+| --- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| 1   | Verificar pipeline Morning Brief ponta-a-ponta | Rodada manual ao vivo (14:36Z): gera local OK, Slack falha com o mesmo erro 500 de sempre. Confirmado, não é regressão.                                                                                                                                               | —         |
+| 2   | Validar scripts locais                         | `generate.mjs`, `dashboard.mjs`, `lib/slack.mjs` revisados — lógica correta. **1 bug real achado e corrigido**: `dashboard.mjs` tinha 3 referências hardcoded `_master-index` (hífen) que reintroduziriam o link quebrado todo dia, mesmo após o sync.                | `f0f919c` |
+| 3   | Validar configuração do scheduler              | Ambas as tarefas `Ready`, `TriggerEnabled: True`. Sem problema.                                                                                                                                                                                                       | —         |
+| 4   | Validar estado da config de entrega Slack      | Confirmado ao vivo, agora. Mesma causa-raiz de sempre.                                                                                                                                                                                                                | —         |
+| 5   | Validar precisão do runbook                    | Corrigido — não dizia mais "ativar o toggle" (já estava ativo); agora reflete a causa real (credencial OAuth morta).                                                                                                                                                  | `52cda9d` |
+| 6   | Validar render do Dashboard                    | `🤖 JARVIS.md` confirmado íntegro.                                                                                                                                                                                                                                    | —         |
+| 7   | Validar alinhamento dos MOCs                   | `🏢 Yalt.md` e `🌱 Pessoal.md` confirmados corretos.                                                                                                                                                                                                                  | —         |
+| 8   | Validar/resolver duplicatas                    | **3 de 4 pares resolvidos.** `ai-agents`/`slide-decks` já vinham de antes. `query-results.md` (hífen, stub vazio) removido — aprovado e executado. `_master-index` segue intencionalmente pendente (resolve via sync, ver abaixo — consertar à mão criaria conflito). | `13ec03e` |
+| 9   | Produzir relatório de trabalho restante        | Este documento (atualizado).                                                                                                                                                                                                                                          | —         |
 
 **Total: 4 commits limpos**, cada um restrito por pathspec explícito aos arquivos realmente revisados — nenhum dos ~45 arquivos pré-existentes staged (plugins novos, `.claudian`, `_Roadmap JARVIS OS.md`, canvases) foi tocado ou commitado.
 
